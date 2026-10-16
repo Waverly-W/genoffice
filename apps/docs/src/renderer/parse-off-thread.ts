@@ -52,6 +52,19 @@ function getWorker(): Worker | null {
   return worker
 }
 
+/** Stop the parse worker for good: a torn-down renderer stays alive until the
+ *  app quits, and an idle worker still holds its own V8 heap. Waiting parses
+ *  get the lost-buffer failure, so they reject instead of hanging. */
+export function disposeParseWorker(): void {
+  const waiting = [...pending.entries()]
+  pending.clear()
+  worker?.terminate()
+  worker = null
+  for (const [id, resolve] of waiting) {
+    resolve({ id, ok: false, error: 'parse worker disposed', bytes: new ArrayBuffer(0) })
+  }
+}
+
 /** how parses ran, for probes and troubleshooting */
 export const parseStats = { worker: 0, inline: 0 }
 

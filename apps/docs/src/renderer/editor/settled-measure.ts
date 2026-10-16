@@ -42,6 +42,12 @@ export function noteFloatTransaction(tr: Transaction): void {
   }
 }
 
+/** Drop the scan when its editor goes away: the module outlives the editor
+ *  (a closed docs tab keeps its renderer), and the scan holds the editor root. */
+export function forgetFloatScan(dom: Element): void {
+  if (floatScan?.dom === dom) floatScan = null
+}
+
 function floatBandsOf(view: EditorView): number[][] {
   const state = (view as { state?: object }).state
   const cached = state && floatBandsByState.get(state)

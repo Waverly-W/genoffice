@@ -2,7 +2,7 @@ import { Extension } from '@tiptap/core'
 import { Plugin, PluginKey, type EditorState } from '@tiptap/pm/state'
 import { Decoration, DecorationSet, type EditorView } from '@tiptap/pm/view'
 import type { Node as ProseMirrorNode } from '@tiptap/pm/model'
-import { SettledParagraphCache, noteFloatTransaction } from './settled-measure'
+import { SettledParagraphCache, forgetFloatScan, noteFloatTransaction } from './settled-measure'
 import { sameLine } from './justify-shrink'
 import { rangeSlot } from '../dom-range'
 import { PHASED_CONTENT_SETTLED_EVENT, isPhasedContentPending } from '../phased-content'
@@ -458,6 +458,7 @@ class CjkPunctShrinkView {
     document.removeEventListener(PHASED_CONTENT_SETTLED_EVENT, this.onPhasedSettled)
     this.resizeObserver?.disconnect()
     if (this.retryRaf) cancelAnimationFrame(this.retryRaf)
+    forgetFloatScan(this.view.dom)
   }
 
   private scheduleRetry() {

@@ -2,6 +2,7 @@ import { createRoot } from 'react-dom/client'
 import { htmlDir, htmlLang, type Lang } from '@genoffice/i18n'
 import { App } from './App'
 import { setAuthorName } from './author-name'
+import { installTeardownRelease } from './teardown-release'
 import { LocaleProvider, setModuleLang } from './i18n/locale'
 import type { DocTheme, UiTheme } from '../shared/ipc'
 import '@genoffice/ui/tokens.css'
@@ -38,6 +39,13 @@ function applyDocumentTheme(theme: DocTheme): void {
 }
 
 async function bootstrap(): Promise<void> {
+  const container = document.getElementById('root')!
+  const root = createRoot(container)
+  const teardown = installTeardownRelease({
+    onTeardown: window.desktop?.onTeardown,
+    unmount: () => root.unmount(),
+    container,
+  })
   let lang: Lang = 'zh'
   let theme: UiTheme = 'system'
   let docTheme: DocTheme = 'follow'
@@ -69,7 +77,9 @@ async function bootstrap(): Promise<void> {
     .then(setAuthorName)
     .catch(() => {})
   window.desktop?.onAuthorNameChanged?.(setAuthorName)
-  createRoot(document.getElementById('root')!).render(
+  // a tab closed while it was still booting must not mount an editor afterwards
+  if (teardown.released) return
+  root.render(
     <LocaleProvider initial={lang}>
       <App />
     </LocaleProvider>,
