@@ -18,12 +18,12 @@ Coba pada paragraf mana pun:
 
 ![Bilah anotasi setelah memilih teks](img/pdf-highlight.png)
 
-2. Pilih **Sorot** (swatch kuning membuka palet warna), **Garis bawah** atau **Coret**; **Tanya AI** mengirim pilihan beserta pertanyaan Anda ke panel AI.
+2. Pilih **Sorot** (swatch kuning membuka palet warna), **Garis bawah** atau **Coret**.
 3. Untuk membatalkan sebuah anotasi, seret-pilih ulang bagian yang sama lalu klik tombol aktif pada bilah itu (sakelar bergaya Word), atau pilih bagian itu dan tekan Delete.
 
 Catatan:
 
-- Seret melewati teks dan sebuah bilah muncul: **Sorot / Garis bawah / Coret / Salin / Tanya AI**.
+- Seret melewati teks dan sebuah bilah muncul: **Sorot / Garis bawah / Coret / Salin**.
 - Warna diambil dari palet; **menerapkan markup yang sama pada rentang yang sudah ditandai akan menghapusnya** (sakelar bergaya Word).
 - Markup yang sudah tersimpan di dalam file dapat dipilih dan dihapus (menu ⋯ atau Delete).
 - **Catatan**: selagi alat gambar aktif, lapisan teks tidak dapat dipilih — alatnya menonaktifkan diri sendiri setelah tiap penempatan, sehingga Anda kembali ke mode pilih untuk tindakan berikutnya.

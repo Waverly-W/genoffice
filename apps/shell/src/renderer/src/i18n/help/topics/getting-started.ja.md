@@ -16,7 +16,7 @@ GenOffice は自分のマシン上でだけで動くオフィススイートで�
 
 以下のいずれかで作成できます。
 
-- **ホーム**の[クイックスタート](help://getting-started)欄にあるクイック作成カード（AI Docs、AI Sheets、AI Slides など）をクリックする。
+- **ホーム**の[クイックスタート](help://getting-started)欄にあるクイック作成カード（Docs、Sheets、Slides など）をクリックする。
 - メニュー **ファイル ▸ 新規作成**：Docs（⌘N/ctrl+N）、Sheets、Slides、Markdown、HTML、PDF。
 - ファイルをウィンドウにドラッグする。あるいは、ファイルマネージャーでダブルクリックする（GenOffice が既定のアプリになっている場合）。
 
@@ -26,7 +26,6 @@ GenOffice は自分のマシン上でだけで動くオフィススイートで�
 
 - メニュー **ファイル ▸ 開く**（⌘O/ctrl+O）でシステム標準の選択ダイアログが開きます。.docx / .doc / .xlsx / .xls / .csv / .tsv / .pptx / .ppt / .pdf / .md / .html に対応しています。
 - ホームの**最近使用**リストから任意の項目をクリックする。
-- ターミナルで `genoffice <file>` と入力しても開けます。
 
 ## 保存の仕組み
 
@@ -87,5 +86,4 @@ Windows は Mac 側の 2 つを書き直したものではありません。Exce
 
 - ファイルの置き場所：[ホーム画面](help://home-screen)。
 - 開いているファイルが多いときの管理：[タブとウィンドウの管理](help://tabs-and-windows)。
-- AI に作業を見せる：[AI アシスタントパネル](help://ai-panel)。
-- 言語、テーマ、既定のアプリ：[設定、言語、テーマと MCP 連携](help://settings-integrations)。
+- 言語、テーマ、既定のアプリ：[設定、言語とテーマ](help://settings)。

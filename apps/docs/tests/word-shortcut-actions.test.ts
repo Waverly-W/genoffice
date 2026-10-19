@@ -8,7 +8,7 @@ import { Editor } from '@tiptap/core'
 import { TextSelection } from '@tiptap/pm/state'
 import { editorExtensions } from '../src/renderer/editor/extensions'
 import { applyCase, nextCaseMode, selectionText } from '../src/renderer/editor/case-transform'
-import { stepHangingIndent, stepParagraphIndent } from '../src/renderer/editor/indent'
+import { stepHangingIndent, stepParagraphIndent } from '../src/renderer/editor/paragraph-ops'
 import { moveBlocks } from '../src/renderer/editor/move-block'
 import { clearParagraphFormatting } from '../src/renderer/components/ribbon-tabs'
 

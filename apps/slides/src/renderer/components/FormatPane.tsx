@@ -1,6 +1,6 @@
 /**
  * Format pane (a trimmed-down PowerPoint Format Pane): position/size/rotation/fill of the
- * selected element. Shares the right dock area with the AI panel, mutually exclusive. Inputs
+ * selected element. Docked on the right of the editor. Inputs
  * commit on blur/Enter; external changes (dragging etc.) sync default values by remounting
  * inputs via key.
  */
@@ -1304,7 +1304,7 @@ export function FormatPane({
   // streaming, an in-flight IPC result is usually behind the values we already sent, and
   // wiping the base on its arrival would let the next commit rebuild from stale render
   // values. A node update with no commit in the last 600ms can only be our final
-  // response or an external edit (undo / AI) — both mean the node is the truth again.
+  // response or an external edit (undo) — both mean the node is the truth again.
   useEffect(() => {
     const clearBase = () => {
       sentEffects.current.shadow = undefined
@@ -1476,13 +1476,13 @@ export function FormatPane({
 
   return (
     <aside className="format-pane">
-      <div className="ai-panel-header">
-        <span className="ai-panel-title">
+      <div className="side-pane-header">
+        <span className="side-pane-title">
           {typeName ? t('paneFormatTitleTyped', { type: typeName }) : t('paneFormatTitle')}
         </span>
-        <div className="ai-panel-header-actions">
+        <div className="side-pane-header-actions">
           <button
-            className="ai-header-btn"
+            className="side-pane-header-btn"
             onClick={onCollapse}
             data-tip={t('paneFormatClose')}
             aria-label={t('paneFormatClose')}

@@ -501,15 +501,6 @@ export function rejectAllRevisions(editor: Editor): void {
   applyRevisions(editor, collectRevisions(editor.state.doc), 'reject')
 }
 
-/** accept / reject only the revisions of one author (e.g. the AI assistant) */
-export function applyRevisionsBy(editor: Editor, author: string, mode: 'accept' | 'reject'): void {
-  applyRevisions(
-    editor,
-    collectRevisions(editor.state.doc).filter((r) => r.author === author),
-    mode,
-  )
-}
-
 /** the revision containing the selection head, else the next one, else the first */
 function currentRevision(editor: Editor): RevisionRange | null {
   const ranges = collectRevisions(editor.state.doc)

@@ -16,8 +16,8 @@ Tabs: **Start / Einfügen / Zeichnen / Layout / Entwurf / Referenzen / Überprü
 
   ![Der Tab Referenzen](img/docs-references.png)
 
-- **Überprüfen**: **Editor** prüft das ganze Dokument auf Rechtschreibung, Grammatik und Zeichensetzung; **Übersetzen**; Rechtschreibprüfung; Kommentare (**KI-Kommentare** arbeitet die offenen durch); Änderungen nachverfolgen mit den Ansichten „Alle Markups“ / „Einfaches Markup“, Annehmen/Ablehnen und **KI-Änderungsübersicht**; Wörter zählen; **Vergleichen** mit einer anderen Datei; **Dokument schützen**.
-- **Ansicht**: fünf Wege, die Datei anzusehen — **Drucklayout**, **Weblayout**, **Gliederung**, **Lesemodus** und **Seitenvorschau**; Verkleinern/Vergrößern/100 %/Seitenbreite/Eine Seite; **KI-Bereich**; **Dunkler Modus**; Lineal, Gitternetzlinien und der Navigationsbereich; **Neue Registerkarte**, **Teilen** und **Registerkarte wechseln**; der durchsuchbare Dialog für **Tastenkombinationen**.
+- **Überprüfen**: Rechtschreibprüfung; Kommentare; Änderungen nachverfolgen mit den Ansichten „Alle Markups“ / „Einfaches Markup“ sowie Annehmen/Ablehnen; Wörter zählen; **Vergleichen** mit einer anderen Datei; **Dokument schützen**.
+- **Ansicht**: fünf Wege, die Datei anzusehen — **Drucklayout**, **Weblayout**, **Gliederung**, **Lesemodus** und **Seitenvorschau**; Verkleinern/Vergrößern/100 %/Seitenbreite/Eine Seite; **Dunkler Modus**; Lineal, Gitternetzlinien und der Navigationsbereich; **Neue Registerkarte**, **Teilen** und **Registerkarte wechseln**; der durchsuchbare Dialog für **Tastenkombinationen**.
   - **Dunkler Modus** dunkelt die Seite und die Arbeitsfläche um sie herum ab, niemals das Menüband — Words Trennung zwischen dunkler Bearbeitungsfläche und dunklem Fenster. Die Wahl wird gemerkt und gewinnt in jedem Fall über das App-Design.
   - **Teilen** öffnet darunter einen zweiten Bereich, der unabhängig scrollt und den ersten spiegelt; schließen Sie ihn mit dem × an seinem Rand.
 
@@ -42,7 +42,6 @@ Rechtsklicken Sie irgendwo im Text — das Menü richtet sich nach dem, was Sie 
 - **Zwischenablage**: Ausschneiden / Kopieren / Einfügen / **Unformatierter Unicode-Text einfügen**.
 - **Schriftart, Absatz**: Schriftart und -größe, Fett/Kursiv/Unterstrichen, Ausrichtung/Einzug/Abstand ändern, ohne zum Menüband zu gehen.
 - **Synonyme**: listet Synonyme zum ausgewählten Wort auf; ein Klick ersetzt es.
-- **Übersetzen** (KI): übersetzt die Auswahl über den KI-Bereich in die Zielsprache (Englisch, vereinfachtes Chinesisch, Japanisch, Koreanisch, Französisch, Deutsch, Spanisch, …).
 - **Neuer Kommentar**: hängt einen Kommentar an die Auswahl an.
 - **Rechtschreibung** (auf einem falsch geschriebenen Wort): Ersetzungsvorschläge, alle ignorieren, zum Wörterbuch hinzufügen, Rechtschreibsprache festlegen.
 - **Hyperlink**: öffnen / bearbeiten / Link kopieren / Hyperlink entfernen.
@@ -62,11 +61,6 @@ Rechtsklicken Sie irgendwo im Text — das Menü richtet sich nach dem, was Sie 
 
 - Zeichensatzkompression und Kinsoku-Zeilenumbrüche entsprechen Word; Umwandlung zwischen voller und halber Breite.
 - Die Schriftkandidaten decken die gängigen ostasiatischen Familiennamen unter Windows und macOS ab.
-
-## KI
-
-- KI-Schaltfläche im Menüband und Seitenbereich: umformulieren, ausbauen, übersetzen, zusammenfassen, Tabellen-Voreinstellungen einfügen sowie freie Anweisungen.
-- Jeder KI-Durchgang legt zuerst einen Snapshot an; Sie können aus der Versionsliste zurückrollen, und auch das Zurückrollen lässt sich rückgängig machen.
 
 ## Speichern und exportieren
 

@@ -1,8 +1,8 @@
 /**
  * Applies a planned batch of workbook operations to the live Univer workbook:
  * prechecks, one undo item per batch, per-op facade calls and journal
- * records. Extracted from App.tsx so ribbon actions can run the same ops the
- * AI proposes; every function receives its App-scope context explicitly.
+ * records. Extracted from App.tsx so ribbon and dialog actions share one
+ * apply path; every function receives its App-scope context explicitly.
  */
 import { IUndoRedoService } from '@univerjs/core'
 import type { CellBounds } from '@genoffice/xlsx-gateway/domain/chart-visual'
@@ -81,20 +81,17 @@ import {
   ensureSheetFileState,
   lazyWorkbookCellReader,
   loadVisibleRange,
-  measureImage,
   pinStreamedPrecedents,
   protectSheetGuard,
   pushVisualUndo,
   queueSparklineInstall,
   readCopySourceDirect,
-  sniffImageMime,
   workbookStructureLocked,
 } from './univer-sync'
 import {
   applyAiShapeEdit,
   buildAiChartEdit,
   insertAiChartVisual,
-  insertAiImageVisual,
   insertAiShapeVisual,
   type VisualActionContext,
 } from './visual-actions'
@@ -109,13 +106,6 @@ import {
 import type { ChartEditData, ShapeEditChanges } from './WorkbookVisuals'
 
 export type PlannedOp = StructuralChange['op']
-
-export interface LoadedImage {
-  dataUrl: string
-  mediaType: string
-  width: number
-  height: number
-}
 
 /** App-scope refs/state the executors need; built fresh per apply by App. */
 export interface OpExecutorContext {
@@ -146,13 +136,11 @@ interface OpRun {
     string,
     { value: string | number | boolean | null; formula: string | null }
   >
-  readonly imageData: ReadonlyMap<string, LoadedImage>
   readonly notices: string[]
   /// Called only AFTER a mutation actually committed (end of each op, plus the
   /// intermediate commit points of multi-step handlers): a throw before any
   /// call really is "unchanged".
   readonly markApplied: () => void
-  readonly userFacing: boolean
 }
 
 export interface ApplyPlanOptions {
@@ -161,9 +149,6 @@ export interface ApplyPlanOptions {
   verifyBeforeApply?: () => ApplyOutcome | null
   /** Status-bar text on success; null keeps the status bar as is. */
   successMessage?: string | null
-  /** Ribbon/dialog caller: gate refusals show their localized string instead
-   * of the model-facing reason. */
-  userFacing?: boolean
 }
 
 export function richCellText(cell: unknown): string | null {
@@ -180,40 +165,6 @@ const SHEET_LIFECYCLE_OPS = new Set([
   'set_sheet_hidden',
   'rename_sheet',
 ])
-
-/**
- * Image bytes load BEFORE any drift check and the (synchronous) mutation
- * loop, so a slow disk read can never interleave with edits.
- */
-export async function prefetchOpImages(
-  ops: readonly PlannedOp[],
-): Promise<Map<string, LoadedImage>> {
-  const imageData = new Map<string, LoadedImage>()
-  for (const op of ops) {
-    if (op.op !== 'add_image' || imageData.has(op.path)) continue
-    let dataUrl: string
-    let mediaType: string
-    // file:// = a BYOK-generated image in the local store (fetchImage resolves it)
-    if (/^(https?|file):\/\//i.test(op.path)) {
-      const fetched = await window.desktopApi.fetchImage(op.path)
-      if (!fetched) throw new Error(t('appCannotReadImage'))
-      // Trust the bytes, not the Content-Type header the handler echoed
-      const sniffed = sniffImageMime(fetched.base64)
-      if (!sniffed) {
-        throw new Error('The downloaded image is not PNG/JPEG/GIF — pick another image URL.')
-      }
-      dataUrl = `data:${sniffed};base64,${fetched.base64}`
-      mediaType = sniffed
-    } else {
-      const image = await window.desktopApi.readLocalImage({ path: op.path })
-      dataUrl = `data:${image.mediaType};base64,${image.base64}`
-      mediaType = image.mediaType
-    }
-    const size = await measureImage(dataUrl)
-    imageData.set(op.path, { dataUrl, mediaType, ...size })
-  }
-  return imageData
-}
 
 /**
  * Names the formula a batch's first row/column-shifting delete would strand,
@@ -309,7 +260,7 @@ export function beginUndoBatch(runtime: UniverRuntime): { settle(): void } {
   }
 }
 
-/** Wraps ops the UI built (ribbon, dialogs) into the plan shape the AI path applies. */
+/** Wraps ops the UI built (ribbon, dialogs) into the plan shape the executor applies. */
 export function planFromOps(
   ops: readonly WorkbookOperation[],
   workbook: ActiveWorkbook,
@@ -366,7 +317,7 @@ export function applyChangePlan(
   options: ApplyPlanOptions = {},
 ): Promise<ApplyOutcome> {
   // One apply at a time: the undo batch and aiBulkUndoGate are not reentrant,
-  // and the async prechecks yield — a ribbon click landing during an AI apply
+  // and the async prechecks yield — a ribbon click landing during another apply
   // (or a second click during a delete precheck) must wait its turn.
   const run = applyQueue.then(() => applyChangePlanNow(plan, ctx, options))
   applyQueue = run.then(
@@ -384,11 +335,9 @@ async function applyChangePlanNow(
   const { runtime, workbook, state, lazyWorkbookRef, setMessage, setPendingEdits } = ctx
   const plannedOps = plan.structuralChanges.map((structural) => structural.op)
   const notices: string[] = []
-  let imageData: Map<string, LoadedImage>
   try {
-    imageData = await prefetchOpImages(plannedOps)
     const spanError = await precheckStructuralDeletes(state, workbook, plannedOps)
-    if (spanError) throw new Error(options.userFacing ? t('appDeleteSpanFormulas') : spanError)
+    if (spanError) throw new Error(t('appDeleteSpanFormulas'))
     for (const sheetId of planTargetSheets(plan)) {
       if (!(await ensureSheetFileState(state, sheetId, lazyWorkbookRef))) {
         throw new Error(t('appProtectionNeedsIndexed'))
@@ -436,12 +385,10 @@ async function applyChangePlanNow(
       sheetById,
       plannedOps,
       plannedCellContents,
-      imageData,
       notices,
       markApplied: () => {
         anyApplied = true
       },
-      userFacing: options.userFacing ?? false,
     }
     // Checked for the whole batch BEFORE anything applies — a mid-loop
     // throw would leave earlier ops committed.
@@ -534,12 +481,12 @@ async function applyChangePlanNow(
 
 /** One structural / layout / range-level op against the live workbook. */
 async function executeOp(op: PlannedOp, run: OpRun): Promise<void> {
-  const { ctx, workbook, sheetById, plannedCellContents, imageData, notices } = run
+  const { ctx, workbook, sheetById, plannedCellContents, notices } = run
   const { runtime, state, lazyWorkbookRef, setMessage, setPendingEdits } = ctx
   // BeforeCommandExecute gates cancel commands silently; re-check them
   // here so a gated op fails loud instead of reporting success.
   const gate = lazyGateFailure(state, op)
-  if (gate) throw new Error(run.userFacing && gate.messageKey ? t(gate.messageKey) : gate.reason)
+  if (gate) throw new Error(gate.messageKey ? t(gate.messageKey) : gate.reason)
   if (op.op === 'insert_rows') sheetById(op.sheetId).insertRowsBefore(op.row - 1, op.count)
   else if (op.op === 'delete_rows') sheetById(op.sheetId).deleteRows(op.row - 1, op.count)
   else if (op.op === 'insert_cols')
@@ -550,10 +497,9 @@ async function executeOp(op: PlannedOp, run: OpRun): Promise<void> {
     // A UI caller picks its SheetN before the queue turn; re-derive against
     // the live list so two quick clicks cannot collide.
     const taken = workbook.getSheets().map((sheet) => sheet.getSheetName())
-    const name =
-      run.userFacing && taken.some((existing) => existing.toLowerCase() === op.name.toLowerCase())
-        ? nextSheetName(taken)
-        : op.name
+    const name = taken.some((existing) => existing.toLowerCase() === op.name.toLowerCase())
+      ? nextSheetName(taken)
+      : op.name
     workbook.insertSheet(
       name,
       op.rows !== undefined || op.columns !== undefined
@@ -648,9 +594,8 @@ async function executeOp(op: PlannedOp, run: OpRun): Promise<void> {
   } else if (op.op === 'edit_shape') {
     applyAiShapeEdit(ctx.visualContext(), runtime, state, op)
   } else if (op.op === 'add_image') {
-    const image = imageData.get(op.path)
-    if (!image) throw new Error(t('appImageNotLoaded', { path: op.path }))
-    insertAiImageVisual(ctx.visualContext(), runtime, state, op, image)
+    // No in-app flow produces image ops; pictures insert through visual-actions.
+    throw new Error(t('appCannotReadImage'))
   } else if (op.op === 'add_table') {
     applyAiTableAdd(runtime, state, op)
   } else if (op.op === 'add_table_row') {

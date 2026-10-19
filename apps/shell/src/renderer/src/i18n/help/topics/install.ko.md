@@ -61,7 +61,3 @@ FUSE 2 런타임이 필요합니다. 설치하기를 꺼리면 `--appimage-extra
 - **Flatpak** — Flatpak의 `extra-data` 방식으로 `.deb`를 설치하고, Electron 자체 샌드박스를 그에 맞춰 조정하는 Zypak 아래에서 실행합니다. `/app` 트리는 읽기 전용이라 업데이트는 앱 내 업데이트 대화상자가 아니라 Flatpak으로 갑니다.
 - **Nix** — 체크아웃을 `nix-build packaging/nix`로 빌드하는 패키지 식입니다. `packaging/nix`을 보세요.
 - **Docker** — 헤드리스 일괄 변환 이미지(`packaging/docker`)입니다. Office, Markdown, HTML 문서 트리 전체를 앱 자체 내보내기 파이프라인으로 PDF로 바꿔 주므로, 결과는 파일 ▸ 내보내기로 내보낸 것과 같습니다. 서버가 아니라 CLI 유틸리티입니다.
-
-## 명령줄도 함께 옵니다
-
-모든 설치본에는 `genoffice` 명령이 들어 있고, 창이 쓰는 바로 그 엔진을 구동합니다. 같은 파일에 대한 둘의 판단이 어긋날 일은 없습니다. macOS와 Windows에서는 앱 번들 안에 있으며, `genoffice install-cli`로 `PATH`에 넣습니다. 무엇을 할 수 있는지는 **명령줄과 에이전트**를 보세요.

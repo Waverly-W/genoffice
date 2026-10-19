@@ -47,12 +47,6 @@ Il menu cambia in base al punto in cui fai clic destro:
 - Master e layout: unificano caratteri, segnaposto e sfondi; le nuove diapositive ereditano il layout scelto.
 - I colori e i caratteri del tema seguono il tema.
 
-## Generazione con l'IA
-
-- La scheda AI Slides di Home: dai un argomento o uno schema e l'IA costruisce la presentazione; se la generazione nel cloud fallisce, ricade su quella locale.
-- Continua a mettere a punto con il pannello IA.
-- Clic destro su una selezione di testo o su un elemento immagine/video/audio ▸ **Nascondi la selezione all'IA** la toglie dagli occhi del modello (dettagli nel capitolo del pannello IA); una diapositiva con contenuto nascosto salta il controllo automatico via screenshot.
-
 ## Presentare ed esportare
 
 - **Esporta in PDF**: rasterizzazione pagina per pagina in una finestra nascosta, con avanzamento e un controllo di timeout per presentazioni molto grandi.

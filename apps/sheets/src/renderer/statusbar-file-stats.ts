@@ -24,10 +24,10 @@ import { SheetsSelectionsService } from '@univerjs/sheets'
 import { IStatusBarService } from '@univerjs/sheets-ui'
 import type { RangeBounds } from '@genoffice/xlsx-gateway/domain/cell-address'
 
-import type { RangeAggregate } from './ai/aggregate'
+import type { RangeAggregate } from './aggregate'
 import type { LazyWorkbookState, UniverRuntime } from './univer-state'
 
-/** Same per-call budget as the aggregate_range AI tool (post-clamp cells). */
+/** Per-call cell budget for one file aggregate (post-clamp cells). */
 const MAX_STATUSBAR_AGGREGATE_CELLS = 1_000_000
 /** Collapses selection-drag bursts into one file read. */
 const RECOMPUTE_DEBOUNCE_MS = 150

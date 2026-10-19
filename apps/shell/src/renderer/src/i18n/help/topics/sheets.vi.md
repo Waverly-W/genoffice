@@ -19,7 +19,7 @@ Sheets là trình soạn thảo giống Excel; việc tính toán chạy trong m
 - **Bố trí Trang**: màu và phông chủ đề, công tắc in đường lưới/tiêu đề, xem trước ngắt trang.
 - **Công thức**: Tính tổng tự động và chèn hàm, đặt tên (kể cả từ vùng chọn), dò ô tiền nhiệm/ô phụ thuộc, cửa sổ theo dõi, tính toán lại trang tính/sổ làm việc.
 - **Dữ liệu**: sắp xếp & lọc (gồm bộ lọc nâng cao, xóa bộ lọc), chuyển văn bản thành cột, hợp nhất sổ làm việc, làm mới tất cả.
-- **Xem lại**: duyệt nhận xét (hiện, trước/sau), dịch và nhóm **Bảo vệ** — **Bảo vệ trang tính**, **Bảo vệ sổ làm việc** và **Cho phép chỉnh sửa các vùng**.
+- **Xem lại**: duyệt nhận xét (hiện, trước/sau) và nhóm **Bảo vệ** — **Bảo vệ trang tính**, **Bảo vệ sổ làm việc** và **Cho phép chỉnh sửa các vùng**.
   - Bảo vệ được ghi vào tệp .xlsx và những gì ứng dụng này áp dụng không có mật khẩu, nên cùng nút đó thành **Bỏ bảo vệ…** và hoàn tác lại. Bảo vệ đến từ chương trình khác _thực sự_ có mật khẩu thì không thể gỡ khỏi đây.
   - Hai nút bảo vệ có hiệu lực ngay — không có hộp thoại nào để hủy, chỉ có ghi chú trên thanh trạng thái rằng nó sẽ được ghi khi lưu.
   - **Cho phép chỉnh sửa các vùng** đánh dấu những ô vẫn chỉnh sửa được trong khi phần còn lại của trang tính bị khóa.
@@ -87,13 +87,6 @@ Thẻ "Công thức", từng nút:
 - **Trên dải trạng thái dưới cùng**: chọn số liệu thống kê nào hiển thị trên thanh trạng thái (trung bình / đếm / tổng, ...); lựa chọn được ghi nhớ.
 - **Trên một thẻ trang tính ở dưới**: thêm / đổi tên / xóa / tô màu / ẩn trang tính (menu thẻ của Univer).
 - Menu ngữ cảnh của dải thẻ phía trên được nói ở [Quản lý thẻ và cửa sổ](help://tabs-and-windows).
-
-## AI
-
-- Bảng AI bên cạnh: chọn một vùng rồi ra lệnh bằng ngôn ngữ tự nhiên (đổi định dạng, tạo dữ liệu, viết công thức).
-- Gắn tệp vào câu lệnh bằng nút 📎, hoặc kéo tệp thả vào bảng; chúng đi cùng câu hỏi và ảnh trở về dưới dạng hình thu nhỏ.
-- Một câu trả lời có thể trích dẫn một ô — bấm vào tham chiếu là lưới nhảy tới ô đó.
-- Có thể quay lui các thay đổi của AI ngay trên bảng này.
 
 ## Lưu và xuất
 

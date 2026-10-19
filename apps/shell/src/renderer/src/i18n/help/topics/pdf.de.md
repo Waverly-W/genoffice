@@ -18,12 +18,12 @@ Probieren Sie es an einem beliebigen Absatz aus:
 
 ![Die Annotationsleiste nach der Textauswahl](img/pdf-highlight.png)
 
-2. Wählen Sie **Hervorheben** (das gelbe Feld öffnet eine Farbpalette), **Unterstreichen** oder **Durchstreichen**; **KI fragen** sendet die Auswahl mit Ihrer Frage an den KI-Bereich.
+2. Wählen Sie **Hervorheben** (das gelbe Feld öffnet eine Farbpalette), **Unterstreichen** oder **Durchstreichen**.
 3. Um eine Annotation rückgängig zu machen, wählen Sie dieselbe Stelle erneut durch Ziehen aus und klicken Sie auf die aktive Schaltfläche der Leiste (ein Umschalter im Word-Stil) oder wählen Sie sie aus und drücken Sie Entf.
 
 Referenz:
 
-- Über Text ziehen lässt eine Popup-Leiste erscheinen: **hervorheben / unterstreichen / durchstreichen / kopieren / KI fragen**.
+- Über Text ziehen lässt eine Popup-Leiste erscheinen: **hervorheben / unterstreichen / durchstreichen / kopieren**.
 - Die Farben kommen aus der Palette; **dieselbe Markierung erneut auf einen bereits markierten Bereich anzuwenden entfernt sie** (Umschalter im Word-Stil).
 - Bereits in der Datei gespeicherte Markierungen lassen sich auswählen und löschen (⋯-Menü oder Entf).
 - **Hinweis**: Solange ein Zeichnungswerkzeug aktiviert ist, ist die Textebene nicht auswählbar — das Werkzeug deaktiviert sich nach jeder Platzierung, Sie sind also für den nächsten Schritt wieder im Auswahlmodus.

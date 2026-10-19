@@ -3,7 +3,7 @@ import { Editor } from '@tiptap/core'
 import { NodeSelection, TextSelection } from '@tiptap/pm/state'
 import { parseDocx, saveDocx } from '@genoffice/docx-engine'
 import { buildDocx } from '../../../packages/docx-engine/tests/helpers/build-docx'
-import { executeOps } from '../src/renderer/ai/ops'
+import { moveBlocks } from '../src/renderer/editor/move-block'
 import { blocksToPmDoc, pmDocToSavePlan, type PmNode } from '../src/renderer/editor/convert'
 import { editorExtensions } from '../src/renderer/editor/extensions'
 
@@ -112,8 +112,13 @@ describe('object move and text modes', () => {
       content: blocksToPmDoc(parsed.blocks) as never,
     })
 
-    const result = executeOps(editor, [{ op: 'moveBlocks', blockIndexes: [1], afterBlockIndex: 3 }])
-    expect(result.ok).toBe(true)
+    // caret inside the table, then Alt+Shift+Down twice: past the paragraph and the textbox
+    const tablePos = editor.state.doc.child(0).nodeSize
+    editor.view.dispatch(
+      editor.state.tr.setSelection(TextSelection.near(editor.state.doc.resolve(tablePos + 1))),
+    )
+    expect(moveBlocks(editor, 1)).toBe(true)
+    expect(moveBlocks(editor, 1)).toBe(true)
     const plan = pmDocToSavePlan(editor.getJSON() as PmNode, parsed.blocks)
     const reparsed = await parseDocx(await saveDocx(parsed, plan.saveBlocks))
     const visibleTypes = reparsed.blocks.filter((block) => !block.hidden).map((block) => block.type)

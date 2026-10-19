@@ -18,12 +18,12 @@ Prova su un qualsiasi paragrafo:
 
 ![La barra di annotazione dopo aver selezionato il testo](img/pdf-highlight.png)
 
-2. Scegli **evidenziazione** (il campione giallo apre una tavolozza di colori), **sottolineatura** o **barratura**; **Chiedi all'IA** invia la selezione insieme alla tua domanda al pannello IA.
+2. Scegli **evidenziazione** (il campione giallo apre una tavolozza di colori), **sottolineatura** o **barratura**.
 3. Per annullare un'annotazione, riseleziona con il trascinamento lo stesso passaggio e fai clic sul pulsante già attivo sulla barra (un interruttore in stile Word), oppure selezionalo e premi Canc.
 
 Per sapere cosa aspettarti:
 
-- Trascinando sul testo compare una barra a comparsa: **evidenziazione / sottolineatura / barratura / copia / Chiedi all'IA**.
+- Trascinando sul testo compare una barra a comparsa: **evidenziazione / sottolineatura / barratura / copia**.
 - I colori vengono dalla tavolozza; **applicare la stessa marcatura a un intervallo già marcato la rimuove** (interruttore in stile Word).
 - Le marcature già salvate nel file possono essere selezionate ed eliminate (⋯ menu o Canc).
 - **Nota**: mentre è attivo uno strumento di disegno, il livello di testo non è selezionabile — lo strumento si disattiva da solo dopo ogni inserimento, così torni in modalità selezione per l'azione successiva.

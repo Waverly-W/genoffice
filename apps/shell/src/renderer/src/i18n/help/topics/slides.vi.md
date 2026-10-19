@@ -47,12 +47,6 @@ Menu đi theo chỗ bạn nhấp chuột phải:
 - Bố cục chủ và bố cục: thống nhất phông chữ, vị trí và nền; trang chiếu mới kế thừa bố cục đã chọn.
 - Màu và phông chữ chủ đề đi theo chủ đề.
 
-## Tạo bằng AI
-
-- Thẻ AI Slides ở Trang chủ: đưa một chủ đề hoặc dàn ý, AI sẽ dựng cả bộ trang chiếu; nếu tạo trên đám mây thất bại thì tự động chuyển sang tạo tại máy.
-- Bạn có thể tiếp tục điều chỉnh bằng bảng AI.
-- Chuột phải vào vùng chọn chữ hay phần tử hình/video/âm thanh ▸ **Ẩn vùng chọn khỏi AI** để giấu khỏi mắt mô hình (chi tiết ở chương bảng AI); slide có nội dung ẩn sẽ bỏ qua bước kiểm tra chụp màn hình tự động.
-
 ## Trình chiếu và xuất
 
 - **Xuất dưới dạng PDF**: raster hóa từng trang trong một cửa sổ ẩn, có thanh tiến trình và bộ giám sát quá thời gian cho các bộ trang chiếu lớn.

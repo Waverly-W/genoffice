@@ -61,7 +61,3 @@ Ketiganya membungkus artefak yang sudah diterbitkan, bukan membangun ulang aplik
 - **Flatpak** — memasang `.deb` lewat mekanisme `extra-data` milik Flatpak dan menjalankannya di bawah Zypak, yang menyesuaikan sandbox bawaan Electron. Pohon `/app` bersifat hanya-baca, jadi pembaruan lewat Flatpak, bukan lewat dialog pembaruan di dalam aplikasi.
 - **Nix** — ekspresi paket yang bisa Anda build dari salinan lokal repositori dengan `nix-build packaging/nix`; lihat `packaging/nix`.
 - **Docker** — citra konversi massal tanpa antarmuka (`packaging/docker`). Ia mengonversi seluruh pohon dokumen Office, Markdown, dan HTML ke PDF lewat jalur ekspor milik aplikasi itu sendiri, sehingga hasilnya sama dengan yang dihasilkan File ▸ Ekspor. Ini utilitas baris perintah, bukan server.
-
-## Baris perintahnya sudah ikut
-
-Setiap pemasangan membawa perintah `genoffice` yang berbicara dengan mesin yang sama dengan jendela, sehingga keduanya tidak pernah berbeda pendapat tentang sebuah berkas. Di macOS dan Windows perintahnya berada di dalam bundel aplikasi; `genoffice install-cli` menaruhnya di `PATH` Anda. Lihat **Perintah baris perintah dan agen** untuk mengetahui apa saja yang dapat dilaukannya.

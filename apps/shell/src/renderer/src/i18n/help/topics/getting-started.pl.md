@@ -16,7 +16,7 @@ Okno składa się z trzech części:
 
 Dowolny z tych sposobów:
 
-- Kliknij kartę szybkiego tworzenia w sekcji [Szybki start](help://getting-started) na **stronie głównej** (AI Docs, AI Sheets, AI Slides, ...).
+- Kliknij kartę szybkiego tworzenia w sekcji [Szybki start](help://getting-started) na **stronie głównej** (Docs, Sheets, Slides, ...).
 - Menu **Plik ▸ Nowy**: Docs (⌘N/ctrl+N), Sheets, Slides, Markdown, HTML lub PDF.
 - Przeciągnij plik na okno albo kliknij go dwukrotnie w menedżerze plików (jeśli GenOffice jest aplikacją domyślną).
 
@@ -26,7 +26,6 @@ Nowy dokument otwiera się bez tytułu; plik na dysku powstaje dopiero przy pier
 
 - Menu **Plik ▸ Otwórz…** (⌘O/ctrl+O) otwiera systemowy selektor: .docx / .doc / .xlsx / .xls / .csv / .tsv / .pptx / .ppt / .pdf / .md / .html.
 - Kliknij dowolny element na liście **Ostatnie** na stronie głównej.
-- Także `genoffice <plik>` wpisane w terminalu otwiera pliki.
 
 ## Model zapisywania
 
@@ -87,5 +86,4 @@ To zostawia ⌥⌘D wolny dla GenOffice na macOS, gdyby jakieś przyszłe polece
 
 - Gdzie są pliki: [Ekran strony głównej](help://home-screen).
 - Zarządzanie wieloma otwartymi plikami: [Karty i zarządzanie oknami](help://tabs-and-windows).
-- Zlecenie pracy sztucznej inteligencji: [Panel asystenta AI](help://ai-panel).
-- Język, motyw, aplikacje domyślne: [Ustawienia, język, motyw i integracje MCP](help://settings-integrations).
+- Język, motyw, aplikacje domyślne: [Ustawienia, język i motyw](help://settings).

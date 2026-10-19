@@ -31,7 +31,7 @@ Every editor has its own key bindings, and only a few of them work everywhere. T
 
 ## Word
 
-Word has a full menu bar, so the file and formatting chords below work whenever a Word tab has focus, whichever document is open. The editing chords need a loaded, editable document with the caret in the text; they do not fire while you are typing in the Find box, the AI prompt or any other field.
+Word has a full menu bar, so the file and formatting chords below work whenever a Word tab has focus, whichever document is open. The editing chords need a loaded, editable document with the caret in the text; they do not fire while you are typing in the Find box or any other field.
 
 ### File
 
@@ -138,11 +138,10 @@ Insert Endnote is a real platform split, not a rename: Word uses ⌥⌘E on the 
 | ------------------ | ----- | --------------- |
 | Track Changes      | ⇧⌘E   | Ctrl+Shift+E    |
 | Word Count         | ⇧⌘G   | Ctrl+Shift+G    |
-| Proofread          | F7    | F7              |
 | Update Field       | F9    | F9              |
 | Toggle Field Codes | ⌥F9   | Alt+F9          |
 
-F7 runs the AI proofread and F9 updates fields; both need a loaded document. Once an editing restriction turns Track Changes on, it cannot be switched back off.
+F9 updates fields and needs a loaded document. Once an editing restriction turns Track Changes on, it cannot be switched back off.
 
 ### View
 
@@ -310,7 +309,6 @@ Closing a tab is the one place the two platforms split completely: ⌘W on macOS
 | ----------------------------------------------------- | ------ | --------------- |
 | New slide                                             | ⇧⌘N    | Ctrl+M          |
 | Find (not while editing text in a shape)              | ⌘F     | Ctrl+F          |
-| Annotate the selection with AI (with shapes selected) | ⌘K     | Ctrl+K          |
 | Zoom in                                               | ⌘=     | Ctrl+=          |
 | Zoom out                                              | ⌘-     | Ctrl+-          |
 | Actual size (100%)                                    | ⌘0     | Ctrl+0          |
@@ -478,7 +476,7 @@ Only active when an annotation, stamp, redaction or image is selected.
 | Cancel the topmost state | Escape | Escape          |
 | Confirm the open dialog  | Enter  | Enter           |
 
-Escape unwinds one layer at a time — an open dialog first, then the AI popover, a text draft, the search panel and finally the selection itself. With the cursor in the search box, Enter and ⇧Enter step to the next and previous match, and Escape closes the panel; with the cursor in a new text note, ⌘⏎ commits it.
+Escape unwinds one layer at a time — an open dialog first, then a text draft, the search panel and finally the selection itself. With the cursor in the search box, Enter and ⇧Enter step to the next and previous match, and Escape closes the panel; with the cursor in a new text note, ⌘⏎ commits it.
 
 ## Markdown
 
@@ -555,7 +553,6 @@ Inside the code editor or a form field, the field's own editing keys take over i
 
 | Action                            | macOS      | Windows / Linux    |
 | --------------------------------- | ---------- | ------------------ |
-| Ask AI about the element          | ⌘K         | Ctrl+K             |
 | Delete the element                | ⌫ / Delete | Backspace / Delete |
 | Previous sibling                  | ↑          | ArrowUp            |
 | Next sibling                      | ↓          | ArrowDown          |

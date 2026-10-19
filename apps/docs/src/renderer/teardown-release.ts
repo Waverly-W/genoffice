@@ -13,8 +13,8 @@ export interface TeardownReleaseDeps {
 }
 
 /**
- * The editor publishes `window.__*` hooks for the CLI and automation
- * (`__aidocs`, `__genofficeControl`, `__exportImages`, `__pageDebug`, …). They
+ * The editor publishes `window.__*` hooks for automation and tests
+ * (`__aidocs`, `__exportImages`, `__pageDebug`, …). They
  * close over the App scope, so after an unmount they alone kept the editor,
  * the page layout and every paginated paragraph reachable. Nothing calls into
  * a torn-down page again, so all of them go.
@@ -39,7 +39,7 @@ export interface TeardownRelease {
 /**
  * A closed docs tab is detached but never destroyed (destroying its
  * webContents freezes the shell — see TabManager.removeTab), so the renderer
- * process lives until the app quits. Stopping the recovery/MCP/autosave
+ * process lives until the app quits. Stopping the recovery/autosave
  * effects alone left the editor, the parsed document, the paginated DOM and
  * the parse worker resident: a few closed tabs were enough to hold several
  * gigabytes and keep layout work running in the background. Unmounting the

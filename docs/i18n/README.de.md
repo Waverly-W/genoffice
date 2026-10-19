@@ -1,16 +1,7 @@
-<p align="center">
-  <a href="https://genoffice.ai/">
-    <picture>
-      <source srcset="../assets/readme/hero-dark.webp" media="(prefers-color-scheme: dark)">
-      <img src="../assets/readme/hero.webp" alt="GenOffice – die Open-Source-KI-Office-Suite: Docs, Sheets, Slides, PDF, Markdown und HTML mit integriertem KI-Panel" width="100%">
-    </picture>
-  </a>
-</p>
-
 <h1 align="center">GenOffice</h1>
 
-<p align="center"><b>Die weltweit erste vollwertige Open-Source-KI-Office-Suite.</b><br>
-Word-, Excel-, PowerPoint- und PDF-Dateien, bearbeitet von dir und deiner KI, gespeichert in den echten Formaten.</p>
+<p align="center"><b>Eine kostenlose Open-Source-Office-Suite, die vollständig auf deinem Rechner läuft.</b><br>
+Word-, Excel-, PowerPoint-, PDF-, Markdown- und HTML-Dateien, geöffnet, bearbeitet und in ihren echten Formaten zurückgespeichert.</p>
 
 <p align="center">
   <a href="../../LICENSE"><img src="https://img.shields.io/github/license/genspark-ai/genoffice" alt="Lizenz: Apache-2.0"></a>
@@ -23,193 +14,91 @@ Word-, Excel-, PowerPoint- und PDF-Dateien, bearbeitet von dir und deiner KI, ge
 
 <p align="center">
   <a href="#download"><b>Download</b></a> ·
-  <a href="#command-line-and-agent-skill"><b>CLI</b></a> ·
-  <a href="#mcp-server"><b>MCP</b></a> ·
-  <a href="https://genoffice.ai/"><b>Website</b></a> ·
-  <a href="https://genoffice.ai/join"><b>Community</b></a> ·
+  <a href="#development"><b>Entwicklung</b></a> ·
   <a href="../../PRIVACY.md"><b>Datenschutz</b></a>
 </p>
 
 GenOffice ist eine kostenlose Open-Source-Alternative zu Microsoft Office für
 macOS, Windows und Linux. Es öffnet und speichert native `.docx`-, `.xlsx`-
-und `.pptx`-Dateien, bearbeitet PDF, Markdown und HTML und stellt jedem
-Dokument einen KI-Agenten zur Seite – keine angeflanschte Chat-Box, sondern
-ein Editor, der die Datei liest, die Änderung vornimmt und genau zeigt, was
-er verändert hat.
+und `.pptx`-Dateien und bearbeitet PDF, Markdown und HTML – alles in einem
+einzigen Fenster mit Tabs. Es gibt kein Konto anzulegen und nichts, wo du
+dich anmelden müsstest: Dateien werden auf deinem eigenen Computer geöffnet,
+bearbeitet, gespeichert und konvertiert.
 
 - **Echte Formate, byteerhaltend.** Nur das, was du bearbeitest, wird neu
   geschrieben. Alles andere in der Datei bleibt Byte für Byte erhalten,
   sodass Dokumente in Word, Excel und PowerPoint weiter funktionieren.
-- **KI, die du überprüfen kannst.** Änderungen kommen als nachverfolgte
-  Änderungen und Diffs mit Rückgängig-Funktion per Klick an. Tabellen
-  erhalten echte Formeln statt eingefügter Zahlen. Präsentationen und Seiten
-  werden direkt auf der Arbeitsfläche erzeugt und bleiben vollständig
-  bearbeitbar.
-- **Lokal von Grund auf.** Dateien werden auf deinem Rechner geöffnet,
-  bearbeitet, gespeichert und konvertiert. PDF → Word / Excel / PowerPoint,
-  Markdown → Word und HTML → Word laufen vollständig auf dem Gerät. Nur die
-  KI-Aufrufe verlassen den Rechner – zu dem Anbieter, den du wählst.
-- **Deine Schlüssel oder keine.** Melde dich mit Genspark an und du brauchst
-  keine Schlüssel, oder bring deinen eigenen Schlüssel für Claude, OpenAI,
-  Gemini, DeepSeek, Kimi, GLM, Qwen, Doubao, MiniMax, Grok, Mistral,
-  OpenRouter, Requesty oder jeden OpenAI-kompatiblen Endpunkt mit – auch lokale Server
-  werden unterstützt.
-- **Skriptbar und bereit für Agenten.** Die App bringt eine
-  `genoffice`-Befehlszeile und einen Skill für Claude Code, Codex, Cursor,
-  Gemini CLI, GitHub Copilot, OpenCode und Windsurf mit, sodass ein
-  Coding-Agent echte Office-Dateien auf deinem Rechner erstellen,
-  konvertieren, lesen und bearbeiten kann, ohne ein Fenster zu öffnen.
+- **Lokal von Grund auf.** Keine Cloud, kein Upload. PDF → Word / Excel /
+  PowerPoint, Markdown → Word und HTML → Word laufen vollständig auf dem
+  Gerät.
+- **Sechs Editoren, ein Fenster.** Docs, Sheets, Slides, PDF, Markdown und
+  HTML teilen sich eine Tab-Leiste, einen Startbildschirm und einen Satz
+  Einstellungen.
+- **Dateien nach ihrem Inhalt finden.** Der Startbildschirm durchsucht Namen,
+  Ordner und den Volltext deiner `.docx`-, `.xlsx`-, `.pptx`-, PDF-,
+  Markdown- und HTML-Dateien über einen lokalen Index, CJK eingeschlossen.
+- **21 Oberflächensprachen**, helles, dunkles und System-Design sowie ein
+  eingebautes Benutzerhandbuch (F1) in jeder Sprache.
 
 **Los geht's:** [macOS](https://github.com/genspark-ai/genoffice/releases/latest) (Apple Silicon und Intel) ·
 [Windows](https://github.com/genspark-ai/genoffice/releases/latest) (x64 und Arm) ·
 [Linux](https://github.com/genspark-ai/genoffice/releases/latest) (deb, rpm, AppImage) —
 Details und Voraussetzungen unter [Download](#download).
 
-## Demo
+## Die Apps
 
-Sechs Apps, ein KI-Panel und eine Befehlszeile für deinen Coding-Agenten.
-Jeder Screenshot zeigt die echte App auf macOS, wobei die KI durch den
-Prompt gesteuert wird, den du im Panel nachlesen kannst.
+| App          | Öffnet und speichert                    | Highlights                                                                                                                                                                                                         |
+| ------------ | --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Docs**     | `.docx` (und `.doc` zum Öffnen)         | Echte WYSIWYG-Paginierung nach den Zeilenmetriken von Word; Formatvorlagen, Tabellen, Kopf- und Fußzeilen, Fußnoten, Inhaltsverzeichnis, Kommentare, nachverfolgte Änderungen, Vergleichen, Formeln und Freihand. |
+| **Sheets**   | `.xlsx`, `.xls`, `.csv`, `.tsv`         | Eine hauseigene Rust-`.xlsx`-Engine in einem eigenen Prozess; echte Formeln, Diagramme, Pivot-Tabellen, Datenschnitte, bedingte Formatierung, Datenüberprüfung, Formelverfolgung und Blattschutz.                  |
+| **Slides**   | `.pptx` (und `.ppt` zum Öffnen)         | Master und Layouts, intelligente Hilfslinien, nicht-destruktives Zuschneiden, Übergänge und Animationen, Sprechernotizen, Referentenansicht und PDF-Export.                                                       |
+| **PDF**      | `.pdf`                                  | Text direkt auf der Seite über PDFium bearbeiten, kommentieren, Formulare ausfüllen, signieren, schwärzen, Seiten neu anordnen, teilen und zusammenführen; lokal mit System-OCR in Word, Excel oder PowerPoint konvertieren. |
+| **Markdown** | `.md`, `.markdown`, `.txt`, `.json`     | Ein Block-Editor über einfachem Markdown mit Tabellen, Aufgabenlisten, Mermaid-Diagrammen und Mathematik, eine bytegetreue Quelltextansicht und Export nach Word, PDF und Bildern.                                 |
+| **HTML**     | `.html`, `.htm`                         | Eine Live-Vorschau mit Element-Inspektor, eine CodeMirror-Quelltextansicht, Vollbild-Präsentation und Export nach Word, PDF oder in eine einzelne, eigenständige HTML-Datei.                                       |
 
-### 1 · Docs – `.docx` öffnen und bearbeiten mit einer KI, die du überprüfen kannst
+### Docs
 
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/docs-report.webp" alt="GenOffice Docs stellt eine zweispaltige Geschäftsberichtsseite mit vollbreitem Titelbild, schattierter KPI-Tabelle, Kopf- und Fußzeile bei 80 % Zoom mit eingeklapptem KI-Panel dar"></td>
-<td width="50%"><img src="../assets/readme/docs-ai.webp" alt="GenOffice Docs: eine Unternehmensübersicht mit einem Banner-Bild; die KI hat die Übersicht gestrafft und einen neuen Abschnitt mit Aufzählungspunkten eingefügt, und das Panel bietet ein Rückgängig per Klick"></td>
-</tr>
-<tr>
-<td><b>Öffnet die Datei genau so, wie Word sie layoutet</b> — zweispaltige Abschnitte, randlose Bilder, schattierte Tabellen, Kopf- und Fußzeilen, Seitenumbruch nach Words Zeilenmetrik. Formatvorlagen, Kommentare, nachverfolgte Änderungen, Formeln und Tinteneingaben bleiben beim Roundtrip unverändert.</td>
-<td><b>Frag nach der Änderung</b> — die KI liest die Blöcke, die sie braucht, schreibt die Übersicht neu und fügt einen neuen Abschnitt mit Aufzählungspunkten ein. Jeder KI-Durchgang ist ein Snapshot, den du zurücksetzen kannst; ist <b>Änderungen nachverfolgen</b> aktiviert, kommen die Bearbeitungen als Word-typische Überarbeitungen an.</td>
-</tr>
-</table>
+Docs öffnet eine Datei so, wie Word sie setzt – mehrspaltige Abschnitte,
+randlose Bilder, schattierte Tabellen, Kopf- und Fußzeilen, Paginierung nach
+den Zeilenmetriken von Word. Formatvorlagen, Kommentare, nachverfolgte
+Änderungen, Formeln und Freihand überstehen den Roundtrip unverändert, und
+beim Speichern werden nur die Absätze neu geschrieben, die du geändert hast.
 
-### 2 · Sheets – `.xlsx` mit echten Formeln und Diagrammen statt eingefügter Zahlen
+### Sheets
 
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/sheets-ai.webp" alt="GenOffice Sheets: die KI hat ein Summary-Tabellenblatt mit Umsatz nach Region und Kategorie über SUMIF-Formeln sowie ein Säulendiagramm hinzugefügt und meldet 43 angewendete Änderungen mit einer Rückgängig-Schaltfläche"></td>
-<td width="50%"><img src="../assets/readme/sheets-qa.webp" alt="GenOffice Sheets: auf die Frage, welche Region den Q2-Umsatz anführte, antwortet die KI mit Europa samt Aufschlüsselung nach Kategorie und verlinkt die verwendeten Zellen als Belege, neben dem Orders-Tabellenblatt"></td>
-</tr>
-<tr>
-<td><b>Bau es</b> — aus einem einzigen Satz fügt der Agent ein Summary-Tabellenblatt mit echten <code>SUMIF</code>s nach Region und Kategorie hinzu, fügt ein Säulendiagramm ein und wendet die 43 Änderungen als einen einzigen, rückgängig machbaren Vorgang an.</td>
-<td><b>Frag es</b> — Fragen zur Arbeitsmappe werden mit der Begründung und den genau verwendeten Zellen als klickbare Belege beantwortet. Im Hintergrund: eine hausgemachte Rust-<code>.xlsx</code>-Engine, Pivot-Tabellen, Datenschnitte, bedingte Formatierung und Formel-Tracing.</td>
-</tr>
-</table>
+Die Berechnung läuft in einem separaten Rust-Engine-Prozess, sodass ein
+Absturz dort nie die App mitreißt. Formeln bleiben echte Formeln, Diagramme
+und PivotCharts sind echte Objekte in der gespeicherten Arbeitsmappe, und
+Schutz, definierte Namen und bedingte Formate werden in die `.xlsx`
+zurückgeschrieben.
 
-### 3 · Slides – vom Prompt zur `.pptx`-Präsentation
+### Slides
 
-<img src="../assets/readme/slides-generate.webp" alt="Zeitraffer von GenOffice Slides bei der Erstellung des Investoren-Decks für Aurora Home: Die KI plant die Storyline im Panel, die Folien erscheinen nacheinander auf der Leinwand, und das fertige Deck endet mit dem abschließenden Ask" width="100%">
+Ein Editor im Stil von PowerPoint mit Mastern und Layouts, intelligenten
+Hilfslinien, Tabellen, Diagrammen, Übergängen und Animationen. Unveränderte
+Folien bleiben beim Speichern byteidentisch; Notizen, Master und Anmerkungen
+bleiben erhalten, und Präsentationen lassen sich als PDF oder als ein PNG pro
+Folie exportieren.
 
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/slides-cover.webp" alt="GenOffice Slides: die Titelfolie einer von der KI erstellten Investoren-Präsentation für Aurora Home auf der Arbeitsfläche, mit dem ursprünglichen Ein-Zeilen-Prompt und der Zusammenfassung der KI im Panel, was sie erstellt hat"></td>
-<td width="50%"><img src="../assets/readme/slides-ai.webp" alt="GenOffice Slides: die gestaltete Abschlussfolie derselben 11-Folien-Präsentation, mit der Miniaturansicht-Leiste links und dem KI-Panel, das den Handlungsbogen zusammenfasst"></td>
-</tr>
-<tr>
-<td><b>Eine Zeile rein</b> — „Erstelle eine 10-Folien-Investoren-Präsentation für Aurora Home…“. GenOffice plant den Handlungsbogen, recherchiert die Zahlen und entwirft jede Folie direkt auf der Arbeitsfläche als echte <code>.pptx</code>.</td>
-<td><b>Eine fertige Präsentation raus</b> — elf gestaltete Folien mit einheitlicher Typografie, Bildsprache und einem abschließenden Call-to-Action; weiter bearbeiten mit Master-Folien, Layouts, intelligenten Hilfslinien und zerstörungsfreiem Zuschneiden, oder das Panel bitten, neu zu stylen, umzuschreiben und neu zu ordnen.</td>
-</tr>
-</table>
+### PDF
 
-### 4 · PDF – PDF-Text direkt bearbeiten, PDF lokal in Word konvertieren
+Der Bearbeitungsmodus umrandet jeden Textblock, damit du ihn direkt neu
+tippen kannst; der Content-Stream wird über PDFium mit den Originalschriften
+neu geschrieben, nicht mit einer überdeckenden Anmerkung. **PDF-Konverter →
+PDF in Word** erzeugt eine bearbeitbare `.docx`, die neben der Quelle in
+Docs geöffnet wird. Excel und PowerPoint als Ziel funktionieren genauso, und
+unter macOS und Windows durchlaufen gescannte Seiten die System-OCR. Das
+Schwärzen entfernt den abgedeckten Inhalt physisch in einer neuen Kopie.
 
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/pdf-edit.webp" alt="GenOffice PDF: Der Textbearbeitungsmodus umrahmt jeden Textblock auf der Seite zur direkten Bearbeitung, während das KI-Panel eine Frage zum Bericht mit Seitenangaben beantwortet"></td>
-<td width="50%"><img src="../assets/readme/pdf-convert.webp" alt="GenOffice Docs zeigt ein Word-Dokument, das lokal aus dem PDF des Helios-Quartalsberichts konvertiert wurde, geöffnet in einem zweiten Tab neben dem Original-PDF"></td>
-</tr>
-<tr>
-<td><b>Direkt auf der Seite bearbeiten</b> — der Textbearbeitungsmodus umrahmt jeden Textblock zum direkten Neutippen; der Inhaltsstream wird über PDFium mit den Originalschriften neu geschrieben, nicht mit einer überdeckenden Anmerkung. Frag die KI zu einem langen Bericht und erhalte Antworten mit Seitenangaben.</td>
-<td><b>Lokal konvertieren</b> — <b>PDF-Konverter → PDF zu Word</b> erzeugt eine bearbeitbare <code>.docx</code>, die neben der Quelle in Docs geöffnet wird, mit intakten Überschriften, Kennzahlenzeilen und Absätzen. Die Ziele Excel und PowerPoint funktionieren genauso; gescannte Seiten laufen durch die System-OCR.</td>
-</tr>
-</table>
+### Markdown und HTML
 
-### 5 · HTML – ein KI-Seiten- und UI-Builder, zuerst das Design-Briefing
-
-Sag, wofür die Seite gedacht ist und für wen. Die KI schlägt zunächst ein
-**Design-Briefing** vor – Aufhänger, Farbpalette, Typografie und
-Stilrichtungen – und baut dann eine einzige, in sich geschlossene `.html`-Datei
-nach diesen Vorgaben.
-
-<img src="../assets/readme/html-restyle-motion.webp" alt="Zeitraffer von GenOffice HTML beim Neugestalten der Lumen-Landingpage: Eine einzige Restyle-Anfrage im Panel verwandelt die dunkle Midnight Studio-Seite in die warme Solar Daybreak-Version, während jeder Abschnitt und der gesamte Text unverändert bleiben" width="100%">
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/html-ai.webp" alt="GenOffice HTML: eine generierte Landingpage für eine Solar-Schreibtischlampe in der dunklen Stilrichtung „Midnight Studio“, gezeigt in der Live-Vorschau mit dem KI-Panel, das die gerade erstellte Seite zusammenfasst"></td>
-<td width="50%"><img src="../assets/readme/html-restyle.webp" alt="Dieselbe Lumen-Landingpage, von der KI in die warme Stilrichtung „Solar Daybreak“ umgestylt: Papierhintergrund, Serifen-Überschriften und ein Orange-Akzent, wobei jeder Abschnitt und der gesamte Text erhalten bleiben"></td>
-</tr>
-<tr>
-<td><b>Aus einem Prompt generiert</b> — ein kräftiger Hero-Bereich, Feature-Karten, Preise und ein Warteliste-Formular für Lumen, gebaut in der Stilrichtung „Midnight Studio“. Klick auf ein beliebiges Element, um es umzustylen, doppelklicke, um Text zu bearbeiten, oder wechsle in die CodeMirror-Quellansicht.</td>
-<td><b>Gleiches Design, neue Richtung</b> — eine einzige <b>Restyle</b>-Anfrage tauscht die Vorgaben des Briefings aus, und die Seite folgt: warmes Papier, editorielle Serifenschrift, sonnenoranger Akzent, ohne dass etwas neu geschrieben wird. Im Vollbild präsentieren oder als PDF oder natives, bearbeitbares Word-Dokument exportieren.</td>
-</tr>
-</table>
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/html-dashboard.webp" alt="GenOffice HTML: ein generiertes persönliches Dashboard-UI für eine freiberufliche Designerin im warmen Leinen-Stil, mit einer linken Leiste, einer Begrüßung in Serifenschrift und vier Kennzahlen-Karten"></td>
-<td width="50%"><img src="../assets/readme/html-report.webp" alt="GenOffice HTML: ein generierter Datenreport zum E-Auto-Markt im Broadsheet-Stil, mit einem Serifen-Kopf, einer Schlagzeile von 17,3 Millionen und einer Kennzahlenzeile"></td>
-</tr>
-<tr>
-<td><b>UI-Mockups</b> — die Vorlage „Personal Dashboard“ macht aus einer Persona ein funktionierendes Layout: linke Leiste, Begrüßung, Sparkline für abrechenbare Stunden, Rechnungs- und Auslastungskarten – alles echtes HTML, das du direkt an eine Entwicklerin oder einen Entwickler weitergeben kannst.</td>
-<td><b>Datengeschichten</b> — die Vorlage „Data Report“ baut ein editorielles Broadsheet: Serifen-Kopf, eine Schlagzeilenzahl, eine durch Linien abgetrennte Kennzahlenzeile, eingebettete SVG-Diagramme und eine Methodik-Notiz.</td>
-</tr>
-</table>
-
-### 6 · Markdown – ein Block-Editor für einfaches `.md`, mit Ask AI
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/markdown-ai.webp" alt="GenOffice Markdown: In einem ausgewählten Absatz erscheint ein Ask-AI-Popover mit einer eingegebenen Anweisung und Vorschlags-Chips wie „Polish“, „Make more concise“, „Expand“ und „Fix grammar“, außerdem den Schaltflächen „Send now“ und „Add to queue“"></td>
-<td width="50%"><img src="../assets/readme/markdown-render.webp" alt="GenOffice Markdown stellt ein Launch-Notes-Dokument mit einer Tabelle, einem Mermaid-Flussdiagramm und einer Aufgabenliste dar, mit den Start-Prompts des KI-Panels links"></td>
-</tr>
-<tr>
-<td><b>Ask AI zu einer Auswahl</b> — markiere eine beliebige Textstelle, und ein <b>Ask AI</b>-Chip erscheint: eine Anweisung eingeben oder einen Vorschlag auswählen, sofort senden, oder mehrere verankerte Änderungen in eine Warteschlange legen und in einem Durchgang ausführen. Denselben Einstiegspunkt gibt es in jeder App.</td>
-<td><b>Gerendert, gespeichert als reines Markdown</b> — Überschriften, Listen, Tabellen, Bilder, Codeblöcke und Mermaid-Diagramme in einem Tiptap-Block-Editor, zurückgeschrieben als reines <code>.md</code>, mit einem vollständig lokalen Markdown-→-Word-Export.</td>
-</tr>
-</table>
-
-### 7 · CLI – dein Coding-Agent steuert GenOffice, auf deinem Rechner
-
-GenOffice bringt eine `genoffice`-Befehlszeile und einen Agent-Skill mit.
-Installiere den Skill, und Claude Code, Codex, Cursor, Gemini CLI, GitHub
-Copilot, OpenCode oder Windsurf können echte Office-Dateien über dieselben
-Engines wie die Apps erstellen, konvertieren, lesen und bearbeiten, ohne ein
-Fenster zu öffnen.
-
-<img src="../assets/readme/cli-deck-in-app.webp" alt="GenOffice Slides zeigt eine Sonnensystem-Präsentation mit acht Folien, die ein Coding-Agent über die genoffice-Befehlszeile erstellt hat: die Titelfolie auf der Arbeitsfläche, acht Miniaturansichten links und das geöffnete KI-Panel" width="100%">
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/cli-slides-grid.webp" alt="Die acht gerenderten Folien der Sonnensystem-Präsentation nebeneinander: Titel, Zeitleiste der Erforschung, vier Kennzahlen, Balkendiagramm der Planetendurchmesser, Gesteinsplaneten gegen Riesen, die 99,8 % der Sonne als Hero-Zahl, das Raster der vier Riesen und die Kernaussagen"></td>
-<td width="50%"><img src="../assets/readme/cli-integrations.webp" alt="GenOffice-Einstellungen, Seite Integrationen: der genoffice-Skill ist in Claude Code installiert, mit Installieren-Schaltflächen neben Codex und Cursor"></td>
-</tr>
-<tr>
-<td><b>Ein Prompt an deinen Agenten</b> — „Erstelle eine Präsentation mit acht Folien über das Sonnensystem.“ Der Agent liest den Skill, schreibt ein Stylesheet, eine Gliederung und eine Seitenspezifikation pro Folie, generiert die beiden Fotos mit <code>genoffice image</code> und lässt <code>genoffice slides check</code> alles zurückweisen, was überläuft oder sich überlappt, bevor <code>genoffice create</code> die <code>.pptx</code> zusammensetzt und <code>slides render</code> pro Folie ein PNG zum Anschauen zurückgibt.</td>
-<td><b>Einmal installieren, unter Einstellungen → Integrationen</b> — GenOffice listet die Coding-Agenten auf, die es auf diesem Rechner findet, und schreibt den Skill in jeden, den du auswählst. Oder lade den Skill als Zip herunter oder führe <code>npx skills add genspark-ai/genoffice</code> aus. Befehle und der vollständige Workflow stehen unter <a href="#command-line-and-agent-skill">Befehlszeile und Agent-Skill</a>.</td>
-</tr>
-</table>
-
-### 8 · MCP – dieselben Tools über das Model Context Protocol
-
-Jeder `genoffice`-Befehl ist auch ein MCP-Tool. Claude Code, Claude Desktop,
-Cursor und jeder andere MCP-Client können `genoffice mcp` selbst starten,
-ganz ohne Skill-Installation und ohne geöffnetes Fenster, und erhalten 29
-Tools plus die Op-Referenzen als Ressourcen. Ein zweiter HTTP-Server in der
-App lässt einen Agenten ein Word-Dokument in einem sichtbaren Editor-Tab
-aufbauen, während du zusiehst.
-
-<img src="../assets/readme/mcp-deck-motion.webp" alt="Zeitraffer von Claude Code beim Bau einer achtseitigen Investoren-Präsentation über erneuerbare Energien über den genoffice-MCP-Server: sucht nach Abbildungen und Fotos, prüft jedes Kandidatenbild mit media, deck_start schreibt das Stylesheet und die Gliederung, deck_page fügt Seite für Seite eine geprüfte Seite hinzu, deck_build stellt die .pptx zusammen und slides_render liefert ein Bild jeder Folie zurück; die fertige Präsentation öffnet sich danach in GenOffice Slides" width="100%">
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/mcp-deck-in-app.webp" alt="GenOffice Slides zeigt die achtseitige Präsentation Renewable Energy 2026, die Claude Code über den genoffice-MCP-Server erstellt hat: die Titelfolie mit einem Foto eines Windparks auf der Arbeitsfläche und acht Miniaturansichten links"></td>
-<td width="50%"><img src="../assets/readme/mcp-integrations.webp" alt="GenOffice-Einstellungen, Seite Integrationen, MCP-Teil: der einzeilige claude mcp add-Befehl für Claude Code, der JSON-Block für Cursor, Claude Desktop und andere MCP-Clients, und die Option für den lokalen HTTP-Server darunter"></td>
-</tr>
-<tr>
-<td><b>Ein Prompt, 38 Tool-Aufrufe, kein Terminal</b> — „Erstelle eine achtseitige Investoren-Präsentation über erneuerbare Energien im Jahr 2026, mit einem echten Foto auf dem Titelblatt und überall sonst, wo ein Foto hilft.“ Der Agent holt die Abbildungen und die Fotos mit <code>search</code>, fragt <code>media</code>, ob jedes Kandidatenbild eine echte Fotografie ist, ruft <code>deck_start</code> mit einem Stylesheet und einer Gliederung auf, dann <code>deck_page</code> einmal pro Folie; jede Seite wird gegen die Gliederung und die Palette geprüft, bevor sie behalten wird, <code>deck_build</code> stellt die <code>.pptx</code> zusammen, <code>slides_audit</code> sucht nach Überlauf, <code>slides_render</code> liefert pro Folie ein PNG als Bildinhalt zurück, den das Modell ansehen kann, und <code>deck_replace</code> überarbeitet die drei Seiten, die ihm nicht gefallen haben.</td>
-<td><b>Einmal verbinden, unter Einstellungen → Integrationen</b> — kopiere die <code>claude mcp add</code>-Zeile für Claude Code oder den JSON-Block in Cursor, Claude Desktop oder einen anderen MCP-Client. Option B schaltet den lokalen HTTP-Server für den sichtbaren Word-Editor ein. Beides wird unter <a href="#mcp-server">MCP-Server</a> beschrieben.</td>
-</tr>
-</table>
+Markdown ist ein Tiptap-Block-Editor, der als einfaches `.md`
+zurückgeschrieben wird, mit einer bytegetreuen Quelltextansicht für den
+Rohtext. Der HTML-Editor zeigt die Seite im eingebauten Chromium an; klicke
+auf ein beliebiges Element, um es neu zu gestalten, doppelklicke, um seinen
+Text zu bearbeiten, oder wechsle zur Quelltextansicht. **Als Word
+exportieren** erzeugt in beiden Apps eine native, bearbeitbare `.docx`,
+vollständig auf dem Gerät.
 
 ## Warum GenOffice
 
@@ -219,177 +108,16 @@ aufbauen, während du zusiehst.
   und jede Konvertierung findet auf deinem Rechner statt.
 - **Echte Office-Dateien.** Native `.docx`, `.xlsx` und `.pptx`, byteerhaltend:
   Teile der Datei, die du nicht angefasst hast, werden unverändert kopiert.
-- **Eine KI, die das Dokument selbst bearbeitet.** Nachverfolgte Änderungen in
-  Docs, echte Formeln und Diagramme in Sheets, Folien werden direkt auf die
-  Arbeitsfläche gezeichnet, und jeder KI-Schritt hinterlässt einen Snapshot,
-  den du zurückrollen kannst.
-- **Dein Modell, dein Schlüssel.** Melde dich mit Genspark an oder bring einen
-  eigenen Schlüssel für Claude, OpenAI, Gemini, DeepSeek und mehr mit – lokale
-  Server und jeder OpenAI-kompatible Endpunkt sind ebenfalls möglich.
 - **PDF richtig gemacht.** Text direkt auf der Seite bearbeiten und PDF lokal
   in Word, Excel oder PowerPoint konvertieren, mit System-OCR für Scans.
-- **Auch Markdown und HTML**, mit demselben KI-Panel und lokalem Export nach
-  Word.
-- **Skriptbar.** Eine `genoffice`-Befehlszeile, ein Agent-Skill und ein
-  MCP-Server stellen jede Engine in den Dienst von Claude Code, Claude
-  Desktop, Codex, Cursor und anderen Agenten – weiterhin auf dem Gerät.
+- **Auch Markdown und HTML**, mit lokalem Export nach Word und PDF.
+- **Kein Konto.** Keine Registrierung, keine Credits, kein Abo.
 - **Kostenlos**, für Einzelpersonen wie für Teams.
-
-## KI-Backends
-
-**Mit Genspark anmelden**, und es gibt nichts zu konfigurieren:
-Modellaufrufe laufen über den Genspark-Proxy (die Modellfamilien Claude, GPT
-und Gemini), und die Agenten erhalten Web- und Bildsuche, Bildgenerierung
-sowie Bild-/Audio-/Videoanalyse.
-
-**Oder bring deinen eigenen Schlüssel mit.** Unter Einstellungen → KI stehen
-Claude, OpenAI, Gemini, DeepSeek, Kimi, GLM, Qwen, Doubao, MiniMax, Grok,
-Mistral, OpenRouter, Requesty und OpenCode Zen/Go zur Wahl, plus ein freier Slot für
-jeden OpenAI-kompatiblen Endpunkt (Basis-URL + Schlüssel), einschließlich
-lokaler Modell-Server. Suche und Medien haben eigene Anbieter je Fähigkeit
-unter KI-Medien & Suche: Serper oder Tavily für die Websuche und OpenAI,
-Gemini, Doubao/Seedream, GLM, Grok, Qwen, MiniMax oder jeder
-OpenAI-kompatible Bild-Endpunkt für Bildgenerierung und Bild-/Videoanalyse.
 
 Die gesamte Suite bringt ein helles, ein dunkles und einen
 Systemdesign-Modus mit. Designs ändern nur, was auf dem Bildschirm zu sehen
 ist: Exporte, Ausdrucke und gespeicherte Dateien behalten immer die eigenen
 Farben des Dokuments.
-
-<a id="command-line-and-agent-skill"></a>
-
-## Befehlszeile und Agent-Skill
-
-Alles, was die Apps mit einer Datei tun können, kann die
-`genoffice`-Befehlszeile aus einem Terminal heraus: Word, Excel, PowerPoint,
-PDF, Markdown und HTML inspizieren, konvertieren, erstellen, lesen und
-bearbeiten – auf denselben Engines, ohne Fenster. Sie wird mit GenOffice
-installiert, braucht keine eigene Laufzeitumgebung und schickt nie ein
-Dokument irgendwohin. Zusammen mit dem mitgelieferten **Agent-Skill** macht
-sie aus einem Coding-Agenten einen Dokumentenarbeiter, der echte
-Office-Dateien statt Markdown-Näherungen liefert.
-
-**Funktioniert mit:** Claude Code, Codex, Cursor, Gemini CLI, GitHub Copilot,
-OpenCode und Windsurf von Haus aus, mit jedem anderen Agenten, der Skills
-liest, sowie über den [MCP-Server](#mcp-server) mit Claude Desktop und jedem
-MCP-Client.
-
-### Skill installieren
-
-| Wie                                           | Was passiert                                                                                                                                                                                                             |
-| --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Einstellungen → Integrationen** in der App  | Listet die auf diesem Rechner gefundenen Agenten auf; ein Klick schreibt den Skill in jeden, den du auswählst. Eine **Aktualisieren**-Schaltfläche erscheint, wenn eine GenOffice-Version einen neueren Skill mitbringt. |
-| **Als Zip herunterladen** auf derselben Seite | Das Layout, das claude.ai, die Claude-Desktop-Apps und andere Assistenten als hochgeladenen Skill akzeptieren.                                                                                                           |
-| `npx skills add genspark-ai/genoffice`        | Installiert aus diesem Repository in jeden Skills-kompatiblen Agenten.                                                                                                                                                   |
-
-Starte dann einen neuen Chat und bitte um ein Dokument. Der Skill bringt dem
-Agenten bei, wann er zu `genoffice` greifen soll, wie er eine Datei vor dem
-Bearbeiten liest und wie er seine eigene Arbeit prüft.
-
-### Schnellstart im Terminal
-
-```bash
-genoffice --version
-genoffice info report.docx --json                  # headings and blocks; or sheets, slides, pages
-genoffice convert report.md --to pdf               # md/html/docx/xlsx/pptx → pdf, pdf → docx/xlsx/pptx/md/html, …
-genoffice create --type docx --from notes.md --out notes.docx
-genoffice create --type xlsx --from table.json --out sales.xlsx   # "=SUM(B2:B9)" cells stay live formulas
-genoffice docs read report.docx --range 0-9 --json # then `docs apply --ops edits.json` edits in place
-genoffice render report.docx --out shots/          # one PNG per page, to look at what you made
-genoffice open sales.xlsx                          # hand the result to the editor
-```
-
-Jeder Befehl gibt eine einzeilige Zusammenfassung aus, oder mit `--json` ein
-einzelnes JSON-Objekt. Bearbeitungen sind atomar: Eine zurückgewiesene
-Operation lässt die Datei unangetastet und kommt mit einer erklärenden
-Fehlermeldung zurück. `genoffice help` listet die aktuellen Befehle auf; die
-vollständige Referenz steht in
-[packages/cli/README.md](../../packages/cli/README.md).
-
-### Was der Agent tatsächlich ausführt
-
-Die Sonnensystem-Präsentation in der Demo oben brauchte einen einzigen Prompt
-in Claude Code. Dahinter folgte der Agent dem gestuften Workflow des Skills,
-und die CLI prüfte jede Stufe, bevor die nächste begann:
-
-```bash
-genoffice capabilities --json                        # which cloud tools GenOffice has configured
-genoffice guide slides design                        # the deck workflow and layout library
-genoffice image "the eight planets in a row …" --aspect 16:9 --out deck/assets/cover.jpg
-genoffice slides check deck/outline.json --json      # 8 pages, no findings
-genoffice slides check deck/pages/01.json --json     # builds one slide, audits overflow and overlap
-…                                                    # one page file per slide, fixed until each check is clean
-genoffice create --type pptx --spec deck/pages --outline deck/outline.json --out deck/solar-system.pptx --json
-genoffice slides render deck/solar-system.pptx --out deck/shots --json
-genoffice slides audit deck/solar-system.pptx --json    # 8 slides, no layout issues
-genoffice slides replace deck/solar-system.pptx --slide 4 --spec deck/pages/05.json --json
-genoffice open deck/solar-system.pptx
-```
-
-Innerhalb von `genoffice` findet kein Modellaufruf statt: Der Agent denkt,
-die CLI baut und prüft, und das Ergebnis öffnet sich in GenOffice oder
-PowerPoint als gewöhnliche `.pptx`.
-
-<a id="mcp-server"></a>
-
-### MCP-Server
-
-Dieselben Befehle stehen auch als
-[Model-Context-Protocol](https://modelcontextprotocol.io)-Tools zur
-Verfügung, für Assistenten, die kein Terminal ausführen können oder denen du
-lieber keins gibst. Es gibt zwei Wege hinein, beide mit kopierfertigen
-Snippets unter **Einstellungen → Integrationen → MCP**:
-
-| Weg                                 | Was es ist                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| ----------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **A · `genoffice mcp`** (empfohlen) | Ein Stdio-Server, den der Assistent selbst startet; GenOffice muss dafür nicht geöffnet sein. Ein Tool pro Befehl (`info`, `convert`, `create_docx`, `create_xlsx`, `create_pptx`, `create_pdf`, `docs_read` / `docs_apply` / `docs_check`, `sheet_*`, `slides_*`, `render`, `guide`, `search`, `image`, `media`, `open`) plus der gestufte Deck-Ablauf `deck_start` → `deck_page` → `deck_build` → `deck_replace`. Ops, Specs und Markdown werden inline übergeben, sodass auch ein Client ohne Dateisystem funktioniert. |
-| **B · Lokaler HTTP-Server**         | Läuft innerhalb der GenOffice-App unter `http://127.0.0.1:3093/mcp` (Streamable HTTP, mit Legacy-SSE). Seine Tools steuern einen sichtbaren Word-Editor-Tab: `create_session`, `insert_content`, `replace_blocks`, `apply_ops`, `read_document`, `save_session`, und du siehst zu, wie das Dokument entsteht. Standardmäßig aus; im selben Einstellungsbereich einschalten.                                                                                                                                                |
-
-```bash
-# Claude Code
-claude mcp add --transport stdio genoffice -- genoffice mcp
-```
-
-```jsonc
-// Cursor, Claude Desktop oder ein anderer MCP-Client
-{ "mcpServers": { "genoffice": { "command": "genoffice", "args": ["mcp"] } } }
-```
-
-`genoffice` ist hier die CLI, die in der App enthalten ist (unter macOS
-`/Applications/GenOffice.app/Contents/Resources/cli/genoffice`; der
-Einstellungsbereich zeigt den genauen Pfad für deine Installation an). Der
-Server bringt seine eigenen Workflow-Anweisungen mit und stellt die
-Op-Referenzen als `genoffice://guide/*`-Ressourcen bereit, sodass kein
-Skill nötig ist; der Skill und der MCP-Server können nebeneinander
-bestehen, und der Assistent wählt einen davon. Cloud-Funktionen (`search`,
-`image`, `media`) laufen weiterhin über den in GenOffice konfigurierten
-Anbieter; alles andere läuft lokal, und `GENOFFICE_ALLOWED_ROOTS`
-beschränkt jedes Tool auf die Ordner, die du angibst.
-
-Die Präsentation über erneuerbare Energien aus der Demo oben zeigt, wie ein
-einzelner Prompt in Claude Code mit nur dem `genoffice`-MCP-Server auf
-Protokollebene aussieht:
-
-```text
-capabilities · guide(slides, spec) · guide(slides, design)
-search(query) ×4                         → IEA, BNEF and IRENA figures for the slides
-search(query, images) ×7 · media(url, ask) ×7
-                                         → candidate photos, each one checked to be a real photograph
-deck_start(dir, style, outline)          → outline checked: 8 pages to write
-deck_page(dir, 0, page) … deck_page(dir, 7, page)
-                                         → each page checked against the outline and the palette; one page sent again
-deck_build(dir, out)                     → renewables-2026.pptx, no image failures
-slides_audit(file) · slides_render(file, out)
-                                         → no layout findings; 8 PNGs come back as image content
-deck_replace(dir, n, page) ×3 · slides_render(file, out)
-                                         → three pages fixed after looking at the renders
-```
-
-Achtunddreißig Aufrufe, etwa dreizehn Minuten, und der Assistent hat nie
-ein Terminal angefasst: Die Abbildungen, die Fotos, die Guides, die
-Prüfungen und die Renderings liefen alle als MCP-Tool-Ergebnisse. Nur
-`search` und `media` haben die Maschine verlassen, zum in GenOffice
-konfigurierten Provider.
 
 <a id="download"></a>
 
@@ -407,7 +135,9 @@ konfigurierten Provider.
 
 Alle Builds stammen aus `main`; die macOS- und Windows-Installer sind
 signiert. Ältere Versionen findest du auf der Seite
-[Releases](https://github.com/genspark-ai/genoffice/releases).
+[Releases](https://github.com/genspark-ai/genoffice/releases). Flatpak, Nix
+und ein Headless-Docker-Image für die Stapelkonvertierung sind in
+[packaging/README.md](../../packaging/README.md) beschrieben.
 
 <details>
 <summary><b>Installation unter Linux</b></summary>
@@ -448,45 +178,48 @@ alles, was der Editor nicht berührt hat, überlebt den Roundtrip unverändert.
 ```
 open docx ─► archive original by hash (never touched)
           ─► parse word/document.xml into a block tree, each block anchored to its original XML
-          ─► Tiptap editor (manual + AI editing, dirty tracking)
+          ─► Tiptap editor (dirty tracking per block)
 save      ─► dirty blocks → OOXML fragments (referencing existing styles only)
           ─► splice into the original document.xml; untouched blocks keep their bytes
           ─► repack the zip; every other entry is copied byte-for-byte
 ```
 
-Die Paket-für-Paket-Tour (docx-/pptx-Engines, `pdf2docx`, `html2docx`, der
-Agent-Kern und die Provider) findest du in
-[CONTRIBUTING.md](../../CONTRIBUTING.md#engine-packages).
+Die Engines liegen unter `packages/` (`docx-engine`, `pptx-engine`,
+`pptx-render`, `pptx-ops`, `pdf2docx`, `html2docx`, `xlsx-gateway`,
+`file-parse`, `font-metrics`, `i18n`, `ui` und weitere); die Rust-`.xlsx`-Engine
+liegt in `apps/sheets/native/xlsx-engine`. Die Paket-für-Paket-Tour findest
+du in [CONTRIBUTING.md](../../CONTRIBUTING.md).
+
+<a id="development"></a>
 
 ## Entwicklung
+
+Voraussetzungen: Node 22+, npm 10+ und eine Rust-Toolchain (`cargo` im PATH)
+für den `.xlsx`-Sidecar von Sheets.
 
 ```bash
 npm install
 npm run fixtures     # generate test .docx fixtures
-npm test             # engine + app unit tests (docs/sheets/slides need no display)
-npm run typecheck    # tsc --noEmit across every workspace
 npm run dev          # all six editors + shell against Vite dev servers
 npm run dev:docs     # a single app (same pattern works per workspace)
+npm run build:all    # build every app and the shell
+npm run shell        # build everything, then launch the shell in Electron
+npm test             # engine + app unit tests (docs/sheets/slides need no display)
+npm run typecheck    # tsc --noEmit across every workspace
+npm run lint         # ESLint across the repository
 npm run dist:mac     # package macOS dmg (regenerates third-party notices)
 npm run dist:win     # package Windows nsis installer
 npm run dist:linux   # package Linux AppImage + deb + rpm
 ```
 
-Die Sheets-App benötigt zusätzlich eine Rust-Toolchain für ihren
-xlsx-Sidecar (`cargo` im PATH); `npm run build -w @genoffice/sheets`
-kompiliert ihn automatisch. Die Prüfungen, die jede Änderung bestehen muss,
-und wie Pull Requests landen, stehen in
-[CONTRIBUTING.md](../../CONTRIBUTING.md).
+`npm run build -w @genoffice/sheets` kompiliert den Rust-Sidecar
+automatisch. Die Prüfungen, die jede Änderung bestehen muss, und wie Pull
+Requests landen, stehen in [CONTRIBUTING.md](../../CONTRIBUTING.md).
 
 ## Community
 
-GenOffice wird aktiv weiterentwickelt, und dein Feedback prägt es mit.
-
 - **Melde einen Bug oder wünsche dir ein Feature** in
   [GitHub Issues](https://github.com/genspark-ai/genoffice/issues).
-- **Tritt dem GenOffice-Gruppenchat** auf
-  [GenTeam](https://genoffice.ai/join) bei, um mit dem Team und anderen
-  Nutzern zu sprechen.
 - **Gib dem Repo einen Stern**, wenn dir GenOffice nützlich ist – das ist
   die beste Art, das Projekt zu unterstützen.
 
@@ -496,7 +229,7 @@ GenOffice wird aktiv weiterentwickelt, und dein Feedback prägt es mit.
 <summary><b>Ist GenOffice kostenlos?</b></summary>
 
 Ja. GenOffice ist kostenlos und Open Source unter der Apache-2.0-Lizenz –
-keine Testversion, keine kostenpflichtige Stufe für die Apps selbst.
+keine Testversion, kein Konto und keine kostenpflichtige Stufe.
 
 </details>
 
@@ -513,11 +246,11 @@ Dokumente in Microsoft Office weiter funktionieren.
 <details>
 <summary><b>Funktioniert GenOffice offline?</b></summary>
 
-Die Dokumentbearbeitung ist vollständig lokal – Dateien verlassen deinen
-Rechner nie, um geöffnet, bearbeitet, gespeichert oder konvertiert zu
-werden. Die KI-Funktionen (Agenten, Suche, Bildwerkzeuge) benötigen eine
-Netzwerkverbindung, entweder über eine Genspark-Anmeldung oder deinen
-eigenen Modell-API-Schlüssel.
+Ja. Das Öffnen, Bearbeiten, Speichern und Konvertieren von Dokumenten
+geschieht vollständig lokal und braucht keine Netzwerkverbindung. Das
+Netzwerk wird nur für die Suche nach Updates, optionale Schriftdownloads und
+die anonyme Nutzungsstatistik verwendet, die du unter Einstellungen →
+Allgemein abschalten kannst.
 
 </details>
 
@@ -541,18 +274,6 @@ Seitenbild konvertiert werden.
 </details>
 
 <details>
-<summary><b>Kann ich mein eigenes KI-Modell oder meinen eigenen API-Schlüssel verwenden?</b></summary>
-
-Ja. Neben der schlüssellosen Genspark-Anmeldung unterstützt GenOffice das
-Mitbringen eigener Schlüssel für Claude, OpenAI, Gemini, DeepSeek, Kimi,
-GLM, Qwen, Doubao, MiniMax, Grok, Mistral, OpenRouter, Requesty und OpenCode Zen/Go,
-plus jeden OpenAI-kompatiblen Endpunkt – einschließlich lokaler
-Modell-Server. Suche, Bildgenerierung und Bild-/Videoanalyse benötigen
-eigene Schlüssel unter Einstellungen → KI-Medien & Suche.
-
-</details>
-
-<details>
 <summary><b>Kann GenOffice HTML in Word konvertieren?</b></summary>
 
 Ja – **Als Word exportieren** in der HTML-App erzeugt vollständig lokal
@@ -565,26 +286,13 @@ Boxen) werden als Bilder eingebettet.
 </details>
 
 <details>
-<summary><b>Kann ich GenOffice aus Claude Code, Codex, Cursor oder einem Skript steuern?</b></summary>
-
-Ja. GenOffice installiert eine `genoffice`-Befehlszeile, die dieselben
-Engines ohne Fenster ausführt: Dokumente aus einem Terminal oder einem Skript
-inspizieren, konvertieren, erstellen, lesen und bearbeiten, mit
-`--json`-Ausgabe für Programme. Der mitgelieferte Agent-Skill bringt Claude
-Code, Codex, Cursor, Gemini CLI, GitHub Copilot, OpenCode und Windsurf bei,
-sie zu nutzen; installiere ihn unter **Einstellungen → Integrationen**. Siehe
-[Befehlszeile und Agent-Skill](#command-line-and-agent-skill).
-
-</details>
-
-<details>
 <summary><b>Erfasst GenOffice irgendwelche Daten?</b></summary>
 
-Offizielle gepackte Builds senden standardmäßig begrenzte Nutzungsanalysen,
-und du kannst die Übermittlung jederzeit unter Einstellungen → Allgemein
-deaktivieren. Die Analysen senden niemals Dokumentinhalte, Dateinamen,
-Dateipfade, Kontoidentität oder E-Mail-Adressen. Die vollständigen Angaben
-zu Ereignissen und Daten stehen in
+Offizielle gepackte Builds senden standardmäßig begrenzte, anonyme
+Nutzungsanalysen, und du kannst die Übermittlung jederzeit unter
+Einstellungen → Allgemein deaktivieren. Die Analysen senden niemals
+Dokumentinhalte, Dateinamen, Dateipfade oder E-Mail-Adressen. Die
+vollständigen Angaben zu Ereignissen und Daten stehen in
 [GenOffice-Datenschutz](../../PRIVACY.md).
 
 </details>
@@ -592,8 +300,8 @@ zu Ereignissen und Daten stehen in
 ## Sicherheit
 
 Die Sicherheitsarchitektur der Prozesse (Renderer-Sandboxing,
-IPC-Validierung, Filterung externer Links) und die Bedrohungsmodelle für
-KI-generierte Inhalte stehen in [SECURITY.md](../../SECURITY.md).
+IPC-Validierung, Filterung externer Links) steht in
+[SECURITY.md](../../SECURITY.md).
 
 ## Danksagungen
 

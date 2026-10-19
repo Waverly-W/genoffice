@@ -18,12 +18,12 @@ Try it on any paragraph:
 
 ![The annotation bar after selecting text](img/pdf-highlight.png)
 
-2. Pick **highlight** (the yellow swatch opens a color palette), **underline** or **strikethrough**; **Ask AI** sends the selection with your question to the AI panel.
+2. Pick **highlight** (the yellow swatch opens a color palette), **underline** or **strikethrough**.
 3. To undo an annotation, drag-select the same passage again and click the active button on the bar (a Word-style toggle), or select it and press Delete.
 
 Reference:
 
-- Drag over text and a popup bar appears: **highlight / underline / strikethrough / copy / Ask AI**.
+- Drag over text and a popup bar appears: **highlight / underline / strikethrough / copy**.
 - Colors come from the palette; **applying the same markup to an already-marked range removes it** (Word-style toggle).
 - Markups already saved into the file can be selected and deleted (⋯ menu or Delete).
 - **Note**: while a drawing tool is armed the text layer is not selectable — the tool disarms itself after each placement, so you are back in select mode for the next action.

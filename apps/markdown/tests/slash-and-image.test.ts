@@ -163,7 +163,7 @@ describe('block keymap commands (secondbrain parity)', () => {
   it('duplicateBlock copies the current top-level block below itself', async () => {
     const editor = await editorWith('first\n\nsecond\n\nthird')
     placeIn(editor, 'second')
-    expect(uiOp(editor, { op: 'duplicateBlocks', target: 'selection' })).toBe(true)
+    expect(uiOp(editor, { op: 'duplicateBlocks' })).toBe(true)
     const texts: string[] = []
     editor.state.doc.forEach((n) => texts.push(n.textContent))
     expect(texts).toEqual(['first', 'second', 'second', 'third'])
@@ -172,7 +172,7 @@ describe('block keymap commands (secondbrain parity)', () => {
   it('deleteBlock removes the block and keeps at least one paragraph', async () => {
     const editor = await editorWith('only block')
     placeIn(editor, 'only')
-    expect(uiOp(editor, { op: 'deleteBlocks', target: 'selection' })).toBe(true)
+    expect(uiOp(editor, { op: 'deleteBlocks' })).toBe(true)
     expect(editor.state.doc.childCount).toBe(1)
     expect(editor.state.doc.textContent).toBe('')
   })

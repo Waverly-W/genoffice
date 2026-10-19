@@ -16,7 +16,7 @@ Tingkap ini mempunyai tiga bahagian:
 
 Mana-mana satu daripada berikut:
 
-- Klik pada kad penciptaan pantas dalam bahagian [Mula pantas](help://getting-started) pada **Laman Utama** (AI Docs, AI Sheets, AI Slides, ...).
+- Klik pada kad penciptaan pantas dalam bahagian [Mula pantas](help://getting-started) pada **Laman Utama** (Docs, Sheets, Slides, ...).
 - Menu **Fail ▸ Baharu**: Docs (⌘N/ctrl+N), Sheets, Slides, Markdown, HTML atau PDF.
 - Seret fail ke dalam tingkap, atau klik dua kali pada fail dalam pengurus fail anda (jika GenOffice ialah aplikasi lalai).
 
@@ -26,7 +26,6 @@ Dokumen baharu dibuka tanpa tajuk; fail pada cakera hanya dicipta semasa simpana
 
 - Menu **Fail ▸ Buka…** (⌘O/ctrl+O) membuka pemilih sistem: .docx / .doc / .xlsx / .xls / .csv / .tsv / .pptx / .ppt / .pdf / .md / .html.
 - Klik mana-mana item dalam senarai **Terkini** pada Laman Utama.
-- `genoffice <fail>` daripada terminal turut membuka fail.
 
 ## Model simpanan
 
@@ -87,5 +86,4 @@ Maka ⌥⌘D kekal bebas untuk GenOffice gunakan pada macOS, jika ada perintah p
 
 - Di mana fail berada: [Skrin Laman Utama](help://home-screen).
 - Menguruskan ramai fail yang dibuka: [Tab dan pengurusan tingkap](help://tabs-and-windows).
-- Membiarkan AI mengendalikan kerja: [Panel pembantu AI](help://ai-panel).
-- Bahasa, tema, aplikasi lalai: [Tetapan, bahasa, tema dan integrasi MCP](help://settings-integrations).
+- Bahasa, tema, aplikasi lalai: [Tetapan, bahasa dan tema](help://settings).

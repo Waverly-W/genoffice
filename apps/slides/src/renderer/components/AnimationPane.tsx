@@ -77,11 +77,11 @@ export function AnimationPane({
 
   return (
     <aside className="comments-pane anim-pane">
-      <div className="ai-panel-header">
-        <span className="ai-panel-title">{t('paneAnimTitle', { n: slideIndex + 1 })}</span>
-        <div className="ai-panel-header-actions">
+      <div className="side-pane-header">
+        <span className="side-pane-title">{t('paneAnimTitle', { n: slideIndex + 1 })}</span>
+        <div className="side-pane-header-actions">
           <button
-            className="ai-header-btn"
+            className="side-pane-header-btn"
             disabled={items.length === 0}
             onClick={onPreview}
             data-tip={t('paneAnimPreview')}
@@ -90,7 +90,7 @@ export function AnimationPane({
             ▶
           </button>
           <button
-            className="ai-header-btn"
+            className="side-pane-header-btn"
             onClick={onCollapse}
             data-tip={t('paneAnimCollapse')}
             aria-label={t('paneAnimCollapse')}

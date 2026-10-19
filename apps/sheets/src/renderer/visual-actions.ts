@@ -14,12 +14,10 @@ import type { InMemoryWorkbookAdapter } from '@genoffice/xlsx-gateway/domain/in-
 import { buildPivotChartData } from '@genoffice/xlsx-gateway/domain/pivot-chart'
 import type {
   AddChartOperation,
-  AddImageOperation,
   AddShapeOperation,
   EditChartOperation,
   EditShapeOperation,
 } from '@genoffice/xlsx-gateway/domain/workbook-dsl'
-import type { ChangePlan } from '@genoffice/xlsx-gateway/domain/workbook.types'
 import { IRenderManagerService, Vector2 } from '@univerjs/engine-render'
 import { SheetSkeletonManagerService } from '@univerjs/preset-sheets-core'
 import type { WorkbookVisualObject } from '../shared/desktop-api'
@@ -68,7 +66,6 @@ export interface VisualActionContext {
   shapeEditRef: { current: (visualId: string, changes: ShapeEditChanges) => void }
   setMessage: (message: string) => void
   setRevision: (revision: number) => void
-  setPreview: (plan: ChangePlan | null) => void
   setPendingEdits: (count: number) => void
   pivotContext: () => PivotActionContext
   queueDemoVisualInstall: (runtime: UniverRuntime) => void
@@ -159,7 +156,6 @@ function insertDemoChartFromSelection(
     })
     const receipt = ctx.adapterRef.current.apply(plan)
     ctx.setRevision(receipt.revision)
-    ctx.setPreview(null)
     ctx.queueDemoVisualInstall(runtime)
     ctx.setMessage(t('appChartInsertedDemo'))
   } catch (error: unknown) {
@@ -523,45 +519,6 @@ export async function buildAiChartEdit(
     })
   }
   return { ...edit, series }
-}
-
-/// AI add_image: same visual pipeline as the picker-based insert, sized
-/// from the measured natural dimensions.
-export function insertAiImageVisual(
-  ctx: VisualActionContext,
-  runtime: UniverRuntime,
-  state: LazyWorkbookState,
-  op: AddImageOperation,
-  image: { dataUrl: string; mediaType: string; width: number; height: number },
-): void {
-  const workbook = runtime.univerAPI.getActiveWorkbook()
-  if (!workbook?.getSheetBySheetId(op.sheetId)) throw new Error(`Unknown sheet: ${op.sheetId}`)
-  // ~80px per column, ~22px per row; scale down to a ≤480px-wide frame
-  // (same sizing as the picker-based insert).
-  const scale = Math.min(1, 480 / Math.max(1, image.width))
-  const columns = Math.min(16, Math.max(2, Math.round((image.width * scale) / 80)))
-  const rows = Math.min(40, Math.max(2, Math.round((image.height * scale) / 22)))
-  const base = parseAddress(op.anchorCell)
-  const visual: WorkbookVisualObject = {
-    id: `added-image-${Date.now().toString(36)}-${state.editJournal.visualAdds.length + 1}`,
-    sheetId: op.sheetId,
-    kind: 'image',
-    anchor: {
-      fromRow: base.row,
-      fromColumn: base.column,
-      fromRowOffset: 0,
-      fromColumnOffset: 0,
-      toRow: base.row + rows,
-      toColumn: base.column + columns,
-      toRowOffset: 0,
-      toColumnOffset: 0,
-    },
-    mediaType: image.mediaType,
-    mediaDataUrl: image.dataUrl,
-    name: op.path.split('/').pop() ?? 'image',
-  }
-  pushVisualAddUndo(ctx, runtime, state, visual)
-  queueCtxVisualInstall(ctx, runtime)
 }
 
 /// AI edit_shape: in-place journal update of a session-added shape,

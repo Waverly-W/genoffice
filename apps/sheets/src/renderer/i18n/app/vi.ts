@@ -142,14 +142,9 @@ export const vi = {
   appRefresh: 'Làm mới',
   appRefreshHintIn: 'Tính toán lại PivotTable hiện tại',
   appRefreshHintOut: 'Trước tiên hãy chọn vùng PivotTable, sau đó làm mới',
-  appAttachmentReadFailed: '{name}: đọc thất bại',
-  appTooManyImages: 'Tối đa {max} hình ảnh cho mỗi tin nhắn; các ảnh thừa đã bị bỏ qua',
-  appAppliedRevision: 'Đã áp dụng (phiên bản {revision}) — hoàn tác bằng ⌘Z, lưu vào tệp bằng ⌘S.',
   appCannotReadImage: 'Không thể đọc tệp hình ảnh.',
   appTableNotDeletable:
     'Bảng "{name}" không tồn tại hoặc không được tạo trong phiên này — chưa thể xóa các bảng đã có sẵn trong tệp.',
-  appImageNotLoaded: 'Tải hình ảnh thất bại: {path}',
-  appApplyFailed: '⚠️ Áp dụng thất bại: {reason}',
   appPivotChartNeedsFile: 'Trước tiên hãy mở tệp XLSX — PivotChart sẽ được ghi vào tệp.',
   appCursorNotInPivot:
     'Con trỏ không nằm trong PivotTable — trước tiên hãy chọn một ô trong đầu ra của PivotTable.',
@@ -278,16 +273,6 @@ export const vi = {
   appSaveSecondFailed:
     'Cấu trúc đã được lưu, nhưng giai đoạn thứ hai (PivotTable/bảng/tên đã xác định) thất bại: {reason}',
   appReadyInitial: 'Sẵn sàng cho lệnh AI cục bộ, xác định.',
-  appAiThinking: 'AI đang suy nghĩ…',
-  appAiDone: 'AI đã hoàn thành',
-  appAiTurnLimit:
-    '(Đã đạt giới hạn lượt gọi công cụ cho yêu cầu này; câu trả lời ở trên dựa trên thông tin đã đọc được và có thể chưa đầy đủ.)',
-  appAiTruncatedNote: '(Câu trả lời bị cắt ngắn do giới hạn độ dài và có thể chưa đầy đủ.)',
-  appAiStopped: '(đã dừng)',
-  appAiNoSummary: 'AI đã hoàn thành mà không có tóm tắt.',
-  appAiNoAction:
-    'AI không thực hiện thay đổi nào và không đưa ra câu trả lời. Hãy thử lại hoặc diễn đạt lại.',
-  appNewConversation: 'Đã bắt đầu cuộc trò chuyện mới.',
   appPivotCellNoEdit: 'Ô này là một phần của PivotTable — chưa hỗ trợ chỉnh sửa.',
   appAreaStreaming: 'Khu vực đó vẫn đang tải theo luồng — vui lòng thử chỉnh sửa lại sau giây lát.',
   appFormulaRecordedPartial:
@@ -330,16 +315,8 @@ export const vi = {
   appDvListOptions: 'Danh sách: {items}',
   appDvListFromRange: 'Danh sách (từ vùng {range})',
   appRuleBrokenRef: 'Tham chiếu bị hỏng (#REF!) — quy tắc này không bao giờ có thể áp dụng',
-  appCellStreaming: 'Ô đó vẫn đang tải theo luồng — vui lòng thử lại sau giây lát.',
-  appPreviewCreated: 'Đã tạo bản xem trước — không có gì thay đổi cho đến khi bạn áp dụng.',
-  appPreviewCreatedDemo: 'Đã tạo bản xem trước. Trạng thái sổ làm việc chưa thay đổi.',
-  appPreviewFailed: 'Không thể tạo bản xem trước.',
   appApplyTxFailed: 'Không thể áp dụng giao dịch.',
   appTxCommitted: 'Giao dịch đã được cam kết ở phiên bản {revision}.',
-  appPreviewOtherWorkbook: 'Bản xem trước thuộc về một sổ làm việc khác — hãy tạo bản mới.',
-  appPreviewSheetGone: 'Trang tính được xem trước không còn tồn tại — hãy tạo bản xem trước mới.',
-  appWorkbookChangedSincePreview:
-    'Sổ làm việc đã thay đổi kể từ bản xem trước — hãy tạo bản xem trước mới.',
   appAppliedJournaled: 'Đã áp dụng — các thay đổi đã được ghi nhật ký; lưu bằng ⌘S.',
   appUndoCommitted: 'Đã hoàn tác cam kết dưới dạng phiên bản {revision}.',
   appUndoFailed: 'Không thể hoàn tác.',
@@ -589,8 +566,6 @@ export const vi = {
   appShowCommentsTitle: 'Ghim/bỏ ghim bong bóng nhận xét của ô đã chọn',
   appStructuralShiftBlocked:
     'Một biểu đồ hoặc bảng trên trang tính này được neo vào các hàng/cột bị ảnh hưởng, nên chúng không thể dịch chuyển; thay đổi cấu trúc chưa được lưu. Hãy hoàn tác (Cmd+Z) và lưu lại.',
-  appAiChangesNotSaved:
-    'Các thay đổi của AI đã được áp dụng (chưa lưu). Hoàn tác bằng Cmd+Z; lưu vào tệp bằng Cmd+S.',
   appChartUpdated: 'Đã cập nhật biểu đồ.',
   appChartNotEditable: 'Biểu đồ này không thể chỉnh sửa.',
   appChartEditRecorded: 'Đã ghi lại chỉnh sửa biểu đồ — lưu bằng ⌘S.',
@@ -761,7 +736,6 @@ export const vi = {
   appFormatPaneDetail: 'Trục, độ rộng khoảng cách, tách điểm',
   appGroupChartActions: 'Hành động biểu đồ',
   appRemoveFromSheet: 'Xóa khỏi trang tính',
-  appGroupAiAssistant: 'Trợ lý AI',
   appAiOpenPanelDetail: 'Thanh trò chuyện bên lề',
   appGroupAiStarters: 'Bắt đầu nhanh',
   appAiStarterDetail: 'Gửi tới bảng AI',
@@ -1239,11 +1213,6 @@ export const vi = {
   appGroupProofing: 'Soát lỗi',
   appWorkbookStatsLabel: 'Thống kê sổ làm việc',
   appSheetsCellsFormulas: 'Trang tính, ô, công thức',
-  appTranslate: 'Dịch',
-  appGroupLanguage: 'Ngôn ngữ',
-  appTranslateTitle: 'Dịch vùng chọn bằng AI',
-  appTranslatePrompt:
-    'Dịch văn bản trong vùng đã chọn sang {language} và ghi lại bản dịch vào chính các ô đó.',
   appNewCommentDetail: 'Thêm hoặc sửa',
   appDeleteLabel: 'Xóa',
   appNoteAtSelection: 'Ghi chú tại vùng chọn',

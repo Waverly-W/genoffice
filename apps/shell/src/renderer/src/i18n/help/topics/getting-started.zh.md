@@ -16,7 +16,7 @@ GenOffice 是一个完全运行在本机的办公套件：一个窗口、一排�
 
 三种方式任选：
 
-- 在**主页**的[快速开始](help://getting-started)区点对应的卡片（AI 文档、AI 表格、AI 幻灯片等）。
+- 在**主页**的[快速开始](help://getting-started)区点对应的卡片（文档、表格、幻灯片等）。
 - 菜单 **文件 ▸ 新建**：Docs（⌘N/ctrl+N）、表格、幻灯片、Markdown、网页、PDF 六种。
 - 直接把文件拖进窗口，或双击系统里的文件（若 GenOffice 已设为默认应用）。
 
@@ -26,7 +26,6 @@ GenOffice 是一个完全运行在本机的办公套件：一个窗口、一排�
 
 - 菜单 **文件 ▸ 打开**（⌘O/ctrl+O）弹出系统选择框，支持 .docx / .doc / .xlsx / .xls / .csv / .tsv / .pptx / .ppt / .pdf / .md / .html。
 - 主页的「最近使用」列表直接点开。
-- 命令行 `genoffice <文件>` 也可以打开（适配脚本）。
 
 ## 保存模型
 
@@ -87,5 +86,4 @@ Windows 并不是把 Mac 上那两个组合改写一遍。Excel for Mac 给 Shee
 
 - 想知道文件都放哪了：看[主屏（Home）](help://home-screen)一章。
 - 想管理一堆打开的文件：看[标签页与窗口管理](help://tabs-and-windows)。
-- 想让 AI 帮你干活：看[AI 助手面板](help://ai-panel)。
-- 想改语言、主题、默认应用：看[设置、语言、主题与 MCP 集成](help://settings-integrations)。
+- 想改语言、主题、默认应用：看[设置、语言与主题](help://settings)。

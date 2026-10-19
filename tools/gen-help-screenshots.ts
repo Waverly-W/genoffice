@@ -11,18 +11,10 @@
  *
  * ## Why HOME and not just GENOFFICE_USER_DATA
  *
- * The account name is not in userData at all. `gskApiKey()` reads
- * `~/.genspark-tool-cli/config.json` through `homedir()`, and GENOFFICE_USER_DATA
- * says nothing about that — so a run that only overrides userData still finds
- * the developer's key and greets them by name (verified: that is what a local
- * e2e run does today). HOME is the one lever that covers both it and the
- * `~/.genoffice/bin` shim. `GENOFFICE_AUTH_DIR` is not enough on its own: it
- * redirects GenOffice's own key and leaves the shared gsk CLI config in place.
- *
- * With no key, `gskLoginInfo()` returns null, the app reads as signed out, and
- * the greeting, the account row and the Genspark Projects entry all disappear —
- * which is also the state every CI run and every user without a Genspark account
- * is in. Nothing of the developer's own session is read or written.
+ * Not everything the app reads lives in userData: the OS account name and
+ * anything under `~` come through `homedir()`. A scratch HOME keeps both out of
+ * the figures, which is also the state every CI run is in. Nothing of the
+ * developer's own session is read or written.
  */
 import {
   _electron as electron,
@@ -153,7 +145,6 @@ async function launch(scratch: Scratch, lang: string): Promise<ElectronApplicati
       ...hostEnv,
       HOME: scratch.home,
       GENOFFICE_USER_DATA: scratch.userData,
-      GENOFFICE_AUTH_DIR: join(scratch.home, '.genoffice'),
       GENOFFICE_NO_SPARE_VIEW: '1',
       GENOFFICE_LANG: lang,
     },
@@ -284,14 +275,11 @@ async function main(): Promise<void> {
       await page.waitForTimeout(300)
 
       // 3. Settings. There is no gear in the top-right: the modal opens from the
-      //    account row at the bottom-left (Home.tsx's AccountEntry says so), and
-      //    its aria-label is localized, so match the class rather than the text.
-      //    Two panes, each saved under the name of the pane it actually shows:
-      //    General is where the manual's own subjects live — language and theme,
-      //    plus the analytics and AutoSave switches — and Account is where the
-      //    e-mail used to leak from. Integrations is the pane the MCP topic is
-      //    about, so it gets its own figure rather than a stand-in.
-      await page.locator('.account-btn').click()
+      //    settings entry at the bottom-left (Home.tsx's SettingsEntry), and its
+      //    label is localized, so match the class rather than the text. The
+      //    General pane is where the manual's own subjects live — language and
+      //    theme, plus the analytics and AutoSave switches.
+      await page.locator('.settings-btn').click()
       const nav = page.locator('.set-nav-item')
       const openPane = async (name: RegExp, shot: string) => {
         const item = nav.filter({ hasText: name })
@@ -301,17 +289,11 @@ async function main(): Promise<void> {
         await shoot(page, cdp, shot, lang)
       }
       // Every shipped UI language's own label for the pane, taken from
-      // `setSecGeneral` / `setSecIntegrations` in strings.ts. Matching three of
-      // them and skipping the click on a miss is how this silently captured the
-      // default pane for the other eighteen: the figure came out as Account, not
-      // General, and nobody noticed because the file name still said otherwise.
+      // `setSecGeneral` in strings.ts. Matching only a few of them and skipping
+      // the click on a miss once silently captured the wrong pane for the rest.
       await openPane(
         /通用|General|Chung|一般|일반|Général|Allgemein|ทั่วไป|Umum|Общие|عام|Geral|Generale|Ogólne|Obecné|Algemeen|כללי|सामान्य/,
         'settings-general',
-      )
-      await openPane(
-        /集成|Integrations|Tích hợp|連携|연동|Intégrations|Integrationen|Integraciones|การเชื่อมต่อ|Integrasi|Интеграции|التكاملات|Integrações|Integrazioni|Integracje|Integrace|Integraties|שילובים|इंटीग्रेशन|整合/,
-        'settings-integrations',
       )
       await page.keyboard.press('Escape').catch(() => {})
 
@@ -325,7 +307,7 @@ async function main(): Promise<void> {
       //    the suite carries (`packages/ui/src/ribbon-collapse.tsx` documents
       //    it), so one selector crops all six editors rather than a per-app
       //    class that only exists in one of them.
-      await page.locator('.account-btn').waitFor({ state: 'visible', timeout: 15_000 })
+      await page.locator('.settings-btn').waitFor({ state: 'visible', timeout: 15_000 })
       const deckRow = page.locator('.recent-row').filter({ hasText: 'deck.pptx' }).first()
       const slidesWindow = app.waitForEvent('window')
       await deckRow.dblclick()

@@ -1,16 +1,6 @@
 import type { zh } from './zh'
 
 export const ja = {
-  redactMenuLabel: '選択範囲をAIから隠す',
-  redactDialogDesc:
-    '選択した内容はドキュメントとファイルに残り、AI には下のマーカーしか見えません。名前をつけると、何を表すかAIが理解できます。',
-  redactDialogScope:
-    'これはこのアプリの AI に限られます。CLI、MCP ツール、GUI なしのエクスポートはファイルを直接読み込むため、これらの文字はまだ見えています。',
-  redactDialogPlaceholder: 'プレースホルダー名（例：顧客電話）',
-  redactCancel: 'キャンセル',
-  redactInsert: '隠す',
-  redactEnable: '選択範囲を右クリックしてAIから隠します。',
-
   appPhPromptTitle: 'クリックしてタイトルを追加',
   appPhPromptSubtitle: 'クリックしてサブタイトルを追加',
   appPhPromptBody: 'クリックしてテキストを追加',
@@ -235,8 +225,6 @@ export const ja = {
   appNotesPlaceholder: 'クリックして発表者のノートを追加（ドキュメントと一緒に pptx に保存）',
   appNotesShow: 'ノートを表示',
   appNotesHide: 'ノートを非表示',
-  appAiRailExpand: 'AI アシスタントを展開',
-  appAiRailText: 'AI',
   appStatusBarSlide: 'スライド {current} / {total}',
   appStatusBarReady: '準備完了',
   appMediaCloseTitle: '閉じる (Esc)',
@@ -245,17 +233,7 @@ export const ja = {
     'スライドショーの所要時間は {duration} でした。各スライドの表示時間を自動切り替えのタイミングとして保存しますか？',
   appRehearseDiscard: '保存しない',
   appRehearseSave: '保存',
-  appSettingsTitle: 'AI 設定',
-  appSettingsAccount: 'Genspark アカウント',
-  appSettingsChecking: '確認中…',
-  appSettingsLoggedIn: 'サインイン済み',
-  appSettingsLoggedInEmail: 'サインイン済み：{email}',
-  appSettingsLoggedOut: '未サインイン（AI 機能には Genspark アカウントへのサインインが必要）',
-  appSettingsLoginPending: 'ブラウザーでのサインインを待機中…',
-  appSettingsLogin: 'Genspark にサインイン',
-  appSettingsModel: 'モデル',
   appSettingsCancel: 'キャンセル',
-  appSettingsSave: '保存',
   appCropHint: 'Enter で確定 · Esc でキャンセル · 外側をクリックで確定',
   appStatusZoomsInserted:
     'ズームを {count} 個挿入しました: スライドショー中にクリックすると該当スライドへ移動します',

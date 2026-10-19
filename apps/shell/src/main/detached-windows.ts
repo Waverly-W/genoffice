@@ -24,7 +24,7 @@ import { markdownIsDirty, requestMarkdownClose } from '../../../markdown/src/mai
 import { htmlIsDirty, requestHtmlClose } from '../../../html/src/main/html-main'
 import { canonicalPath } from './tab-manager'
 import type { DetachedTab } from './tab-manager'
-import type { OpenDocumentTab, TabKind } from '../shared/tabs-api'
+import type { TabKind } from '../shared/tabs-api'
 import {
   DOCK_BAND_SLACK,
   DOCK_DWELL_MS,
@@ -55,8 +55,6 @@ interface DetachedRecord {
   view: WebContentsView
   kind: TabKind
   filePath?: string
-  /** tear the window down with no save prompt (agent/MCP close) */
-  closeWithoutPrompt: () => void
   /** the view left for the shell strip: the pending destroy must not touch it */
   released: boolean
   /** cursor currently inside the shell strip's dock band during a native drag */
@@ -68,15 +66,8 @@ interface DetachedRecord {
 /** keyed by the view's webContents id — the same key the app modules use */
 const detached = new Map<number, DetachedRecord>()
 
-/** tab-style ids for the control host / MCP: `detached:<webContents id>` */
+/** tab-style ids for the menu targets: `detached:<webContents id>` */
 const ID_PREFIX = 'detached:'
-
-let onChanged: () => void = () => {}
-
-/** fires whenever a detached window opens, closes, or changes file (open-documents publishing) */
-export function setDetachedChangedListener(listener: () => void): void {
-  onChanged = listener
-}
 
 /**
  * The shell side of docking, registered by the shell window: where its strip
@@ -98,12 +89,6 @@ export function setDockHost(host: DockHost | null): void {
 
 /** the one window mid tear-off: created under the held pointer, following it */
 let torn: { rec: DetachedRecord; grabDx: number; grabDy: number } | null = null
-
-function recordById(id: string): DetachedRecord | undefined {
-  if (!id.startsWith(ID_PREFIX)) return undefined
-  const rec = detached.get(Number(id.slice(ID_PREFIX.length)))
-  return rec && !rec.window.isDestroyed() ? rec : undefined
-}
 
 function bringToFront(win: BrowserWindow): void {
   if (win.isMinimized()) win.restore()
@@ -138,19 +123,6 @@ export function focusDetachedByPath(path: string): boolean {
     }
   }
   return false
-}
-
-/** control-host lookup: a detached editor answers like a tab, with a `detached:` id */
-export function findDetachedTabByPath(
-  path: string,
-): { id: string; kind: TabKind; webContents: WebContents } | undefined {
-  const wanted = canonicalPath(path)
-  for (const [wcId, rec] of detached) {
-    if (rec.filePath && canonicalPath(rec.filePath) === wanted && !rec.window.isDestroyed()) {
-      return { id: ID_PREFIX + wcId, kind: rec.kind, webContents: rec.view.webContents }
-    }
-  }
-  return undefined
 }
 
 /** the detached window hosting this webContents (dialog parenting: fromWebContents
@@ -188,29 +160,6 @@ export function focusedDetachedTab():
     }
   }
   return undefined
-}
-
-export function isDetachedTabId(id: string): boolean {
-  return recordById(id) !== undefined
-}
-
-/** bring a detached editor forward; false when the id is not a detached window */
-export function activateDetached(id: string): boolean {
-  const rec = recordById(id)
-  if (!rec) return false
-  bringToFront(rec.window)
-  return true
-}
-
-export function detachedWebContentsFor(id: string): WebContents | undefined {
-  return recordById(id)?.view.webContents
-}
-
-export function closeDetachedWithoutPrompt(id: string): boolean {
-  const rec = recordById(id)
-  if (!rec) return false
-  rec.closeWithoutPrompt()
-  return true
 }
 
 /** unsaved-changes state of one detached document, whichever family owns it */
@@ -259,26 +208,6 @@ async function confirmDetachedClose(rec: DetachedRecord): Promise<boolean> {
   }
 }
 
-/** the detached editors in the same shape as TabManager.openDocuments (agent/MCP targets) */
-export async function detachedOpenDocuments(): Promise<OpenDocumentTab[]> {
-  const out: OpenDocumentTab[] = []
-  for (const [wcId, rec] of detached) {
-    if (rec.window.isDestroyed()) continue
-    const dirty = await detachedIsDirty(rec)
-    // the dirty query yielded: the window may have closed meanwhile
-    if (rec.window.isDestroyed()) continue
-    out.push({
-      id: ID_PREFIX + wcId,
-      kind: rec.kind as OpenDocumentTab['kind'],
-      title: rec.window.getTitle(),
-      ...(rec.filePath ? { filePath: rec.filePath } : {}),
-      active: rec.window.isFocused(),
-      dirty,
-    })
-  }
-  return out
-}
-
 /** Save As / open-in-place landed on a new path — keep the window title and
  *  the dedup registry in sync (same contract as TabManager.setTabFileFor). */
 export function detachedSetFileFor(webContentsId: number, filePath: string): void {
@@ -286,14 +215,6 @@ export function detachedSetFileFor(webContentsId: number, filePath: string): voi
   if (!rec) return
   rec.filePath = filePath
   if (!rec.window.isDestroyed()) rec.window.setTitle(basename(filePath))
-  onChanged()
-}
-
-/** an untitled document named itself before its first save (html: from the first AI request) */
-export function detachedSetTitleFor(webContentsId: number, title: string): void {
-  const rec = detached.get(webContentsId)
-  if (!rec || rec.filePath || rec.window.isDestroyed()) return
-  rec.window.setTitle(title)
 }
 
 /** a rename on disk (Home list) — follow it, same contract as renameTabFile */
@@ -306,7 +227,6 @@ export function detachedRenameFile(
     if (rec.filePath && canonicalPath(rec.filePath) === wanted) {
       rec.filePath = newPath
       if (!rec.window.isDestroyed()) rec.window.setTitle(basename(newPath))
-      onChanged()
       return { kind: rec.kind, webContents: rec.view.webContents }
     }
   }
@@ -349,7 +269,6 @@ function releaseDetached(rec: DetachedRecord): DetachedTab {
     win.contentView.removeChildView(view)
     win.destroy()
   }
-  onChanged()
   return { view, kind, title, filePath }
 }
 
@@ -458,13 +377,11 @@ export function createDetachedEditorWindow(options: {
     view,
     kind,
     filePath,
-    closeWithoutPrompt: tearDown,
     released: false,
     hovering: false,
     dockTimer: null,
   }
   detached.set(wcId, rec)
-  onChanged()
 
   win.contentView.addChildView(view)
   const layout = () => {
@@ -557,7 +474,6 @@ export function createDetachedEditorWindow(options: {
     clearDockHover(rec)
     if (torn?.rec === rec) torn = null
     detached.delete(wcId)
-    onChanged()
   })
   return win
 }

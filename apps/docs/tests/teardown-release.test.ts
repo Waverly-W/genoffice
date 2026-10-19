@@ -51,7 +51,7 @@ describe('torn-down docs renderer releases its document', () => {
     const globals: Record<string, unknown> = {
       __aidocs: { editor: {} },
       __exportImages: () => {},
-      __genofficeControl: () => {},
+      __pageDebug: () => {},
       keepMe: 1,
     }
     installTeardownRelease({

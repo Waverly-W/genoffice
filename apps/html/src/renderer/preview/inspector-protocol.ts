@@ -14,8 +14,6 @@ export type ToInspector =
   | { type: 'gx:previewStyle'; sid: number; styles: Record<string, string | null> }
   /** the mouse button went up over the host chrome: a reorder drag in the frame ends without a drop */
   | { type: 'gx:endDrag' }
-  /** numbered pins on elements with queued AI edits (replaces the previous set) */
-  | { type: 'gx:mark'; marks: Array<{ sid: number; label: string }> }
   /** restore the window scroll of the copy an edit just replaced */
   | { type: 'gx:scrollTo'; y: number }
 
@@ -106,7 +104,6 @@ export type FromInspectorBody =
         | 'next'
         | 'prev'
         | 'child'
-        | 'askAi'
         | 'bold'
         | 'italic'
         | 'escape'
@@ -121,7 +118,6 @@ export type FromInspectorBody =
   /** ctrl/meta + wheel inside the frame (trackpad pinch); the host owns the zoom level */
   | { type: 'gx:zoom'; delta: number }
   | { type: 'gx:navigateBlocked'; href: string }
-  | { type: 'gx:markClick'; sid: number }
   /** a resize handle or a sideways image slide was released: the frame already shows these inline styles */
   | { type: 'gx:resize'; sid: number; styles: Record<string, string> }
   /** the selected element was dropped next to another one */
@@ -143,7 +139,6 @@ const KNOWN_FROM_INSPECTOR = new Set([
   'gx:keyCommand',
   'gx:zoom',
   'gx:navigateBlocked',
-  'gx:markClick',
   'gx:resize',
   'gx:moveTo',
   'gx:drag',

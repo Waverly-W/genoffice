@@ -1,5 +1,5 @@
 /**
- * Tolerant search for a model-supplied `old` snippet in HTML source. Runs a
+ * Tolerant search for a `str_replace` `old` snippet in HTML source. Runs a
  * ladder of increasingly lenient comparisons and stops at the first rung that
  * yields exactly one candidate; several candidates at any rung is ambiguity,
  * never "take the first".

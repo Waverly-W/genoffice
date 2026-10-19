@@ -18,12 +18,12 @@ Spróbuj na dowolnym akapicie:
 
 ![Pasek adnotacji po zaznaczeniu tekstu](img/pdf-highlight.png)
 
-2. Wybierz **wyróżnienie** (żółta próbka otwiera paletę kolorów), **podkreślenie** albo **przekreślenie**; **Zapytaj AI** wysyła zaznaczenie razem z Twoim pytaniem do panelu AI.
+2. Wybierz **wyróżnienie** (żółta próbka otwiera paletę kolorów), **podkreślenie** albo **przekreślenie**.
 3. Aby cofnąć adnotację, zaznacz przeciągnięciem ten sam fragment i kliknij aktywny przycisk na pasku (przełącznik w stylu Worda), albo zaznacz go i naciśnij Usuń.
 
 Oczekiwane działanie:
 
-- Przeciągnięcie po tekście wyświetla pasek: **wyróżnienie / podkreślenie / przekreślenie / kopiuj / Zapytaj AI**.
+- Przeciągnięcie po tekście wyświetla pasek: **wyróżnienie / podkreślenie / przekreślenie / kopiuj**.
 - Kolory pochodzą z palety; **nałożenie tego samego oznaczenia na już oznaczony zakres je usuwa** (przełącznik w stylu Worda).
 - Oznaczenia zapisane już w pliku można zaznaczyć i usunąć (⋯ menu lub Usuń).
 - **Uwaga**: gdy aktywne jest narzędzie rysowania, warstwa tekstu nie jest dostępna do zaznaczenia — narzędzie wyłącza się samo po każdym umieszczeniu, więc przed następną czynnością znów jesteś w trybie zaznaczania.

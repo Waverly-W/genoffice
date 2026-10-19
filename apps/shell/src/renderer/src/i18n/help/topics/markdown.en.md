@@ -2,12 +2,11 @@
 
 The Markdown editor opens .md / .markdown — and .txt / .json, straight into source view — with a source + rendered-preview experience.
 
-- **Open**: from Home or File ▸ Open; the CLI works too.
+- **Open**: from Home or File ▸ Open.
 - **Edit**: plain-text editing; GFM extensions (tables, task lists, strikethrough, autolinks) render in the preview.
 - **Preview**: live; relative assets like images resolve next to the document.
 - **Saving**: byte-faithful — BOM, CRLF and the presence of a trailing newline are preserved; an unmodified save does not rewrite the file.
 - **Find & replace**: ctrl+F searches the source; Replace All writes back.
-- **AI**: preset buttons let the assistant rewrite, extend or translate the document. A selection can be hidden from the AI (see the AI panel chapter).
 
 ## The toolbar
 
@@ -16,7 +15,6 @@ One row of buttons above the editor (hover for tooltips):
 ![The Markdown toolbar](img/md-toolbar.png)
 
 - **File & history**: Save, Save As, Undo, Redo, Find; the **AutoSave** toggle on the right writes changes to disk on a timer.
-- **AI button**: opens the AI panel; next to it are the rewrite / extend / translate presets.
 - **Paragraph style** (dropdown): switch between body text and heading levels.
 - **Inline formatting**: **bold**, _italic_, ~~strikethrough~~, `inline code`, link.
 - **Lists**: bullet, numbered, task list.

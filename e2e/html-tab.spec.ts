@@ -5,11 +5,13 @@ import { test, expect } from '@playwright/test'
 import { launchShell, closeAndSaveVideo, waitForPageWithUrl, screenshotPath } from './helpers'
 
 test.describe('html editor', () => {
-  test('AI HTML quick card opens an html editor tab in preview view with a ribbon', async () => {
+  test('HTML quick card opens an html editor tab in preview view with a ribbon', async () => {
     const launched = await launchShell({ onboardingSeen: true, videoDir: 'new-html-tab' })
     const { app, page } = launched
     try {
-      const card = page.locator('.quick-card', { hasText: 'AI HTML' })
+      const card = page.locator('.quick-card', {
+        has: page.locator('.quick-title', { hasText: /^HTML$/ }),
+      })
       await expect(card).toHaveCount(1)
       await card.click()
 
@@ -20,15 +22,6 @@ test.describe('html editor', () => {
       const editorPage = await waitForPageWithUrl(app, '://html/')
       await expect(editorPage.locator('.ribbon-body')).toBeVisible()
       await expect(editorPage.locator('.preview-frame')).toBeVisible()
-      // blank document: the AI panel offers the design / write intent cards and swaps its starters
-      const copilot = editorPage.locator('.copilot')
-      if (!(await copilot.isVisible())) await editorPage.locator('.ai-rail').click()
-      const cards = copilot.getByRole('radio')
-      await expect(cards).toHaveCount(2)
-      await expect(cards.first()).toHaveAttribute('aria-checked', 'true')
-      await cards.nth(1).click()
-      await expect(cards.nth(1)).toHaveAttribute('aria-checked', 'true')
-      await expect(copilot.locator('.ai-starter').first()).toHaveText(/Write an article/)
       // preview-only by default; the source pane stays mounted but hidden
       await expect(editorPage.locator('.pane-source')).toBeHidden()
       await editorPage.locator('.rb-view', { hasText: /Source/ }).click()
@@ -184,92 +177,7 @@ test.describe('html editor', () => {
     }
   })
 
-  test('AI panel toggles from the toolbar and accepts an instruction', async () => {
-    const dir = await mkdtemp(join(tmpdir(), 'genoffice-html-'))
-    const htmlPath = join(dir, 'ai.html')
-    await writeFile(htmlPath, '<html><body><h1>Topic</h1><p>Body.</p></body></html>\n')
-
-    const launched = await launchShell({
-      onboardingSeen: true,
-      videoDir: 'html-ai-panel',
-      openFile: htmlPath,
-    })
-    const { app } = launched
-    try {
-      const editorPage = await waitForPageWithUrl(app, '://html/')
-      await expect(editorPage.locator('.ribbon-body')).toBeVisible()
-      const toggle = editorPage.locator('.ribbon .ai-entry').first()
-      // the panel state is remembered; normalize to closed first
-      if (await editorPage.locator('.copilot').isVisible()) await toggle.click()
-      await expect(editorPage.locator('.copilot')).toBeHidden()
-      await editorPage.locator('.ai-rail').click()
-      await expect(editorPage.locator('.copilot')).toBeVisible()
-      // the panel's right border is the divider to the canvas: it must not be clipped by the dock
-      await expect
-        .poll(() =>
-          editorPage.evaluate(() => {
-            const dock = document.querySelector('.ai-dock')!.getBoundingClientRect()
-            const panel = document.querySelector('.copilot')!.getBoundingClientRect()
-            return panel.right <= dock.right
-          }),
-        )
-        .toBe(true)
-
-      const composer = editorPage.locator('.copilot textarea')
-      // a pasted bitmap becomes an image attachment chip; sending echoes it on the bubble
-      await expect(editorPage.locator('.copilot .ai-attach-btn')).toBeVisible()
-      await composer.evaluate((ta) => {
-        const b64 =
-          'iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAEklEQVR4nGP4z8DwHwyBNAMDAB9dB/8dB8xVAAAAAElFTkSuQmCC'
-        const bytes = Uint8Array.from(atob(b64), (c) => c.charCodeAt(0))
-        const dt = new DataTransfer()
-        dt.items.add(new File([bytes], 'shot.png', { type: 'image/png' }))
-        ta.dispatchEvent(
-          new ClipboardEvent('paste', { clipboardData: dt, bubbles: true, cancelable: true }),
-        )
-      })
-      await expect(editorPage.locator('.copilot .ai-attachments .ai-attachment-thumb')).toHaveCount(
-        1,
-      )
-      await composer.fill('Rename the heading to Summary')
-      await composer.press('Enter')
-      // the instruction lands as a sent user message (the model reply itself needs credentials)
-      await expect(editorPage.locator('.ai-msg-user')).toContainText('Rename the heading')
-      await expect(editorPage.locator('.ai-msg-user .ai-msg-attachments img')).toHaveCount(1)
-      await expect(editorPage.locator('.copilot .ai-attachments')).toHaveCount(0)
-      await editorPage.screenshot({ path: screenshotPath('html-ai-panel') })
-
-      // collapsing hides the panel but keeps it mounted: the live transcript is still there on reopen
-      await toggle.click()
-      await expect(editorPage.locator('.copilot')).toBeHidden()
-      await toggle.click()
-      await expect(editorPage.locator('.ai-msg-user')).toContainText('Rename the heading')
-
-      // page-wide AI entries: Theme opens a direction menu, a pick sends the instruction
-      // (or parks it in the composer while a run is still busy); Summarize sends right away
-      await editorPage
-        .locator('.ribbon')
-        .getByRole('button', { name: /^Theme$/ })
-        .click()
-      const themeMenu = editorPage.locator('.rb-menu')
-      await expect(themeMenu.getByRole('menuitem')).toHaveCount(5)
-      await themeMenu.getByRole('menuitem', { name: /Minimal/ }).click()
-      await expect(themeMenu).toBeHidden()
-      const instructionText = async () =>
-        (await editorPage.locator('.ai-msg-user').last().textContent()) +
-        (await editorPage.locator('.copilot textarea').inputValue())
-      await expect.poll(instructionText).toMatch(/Minimal/)
-      await editorPage
-        .locator('.ribbon')
-        .getByRole('button', { name: /^AI Summarize$/ })
-        .click()
-      await expect.poll(instructionText).toMatch(/Summarize/)
-    } finally {
-      await closeAndSaveVideo(launched, 'html-ai-panel')
-    }
-  })
-
-  test('preview inspector: click selects, double-click edits text, toolbar deletes, Ask AI drafts', async () => {
+  test('preview inspector: click selects, double-click edits text, toolbar deletes', async () => {
     const dir = await mkdtemp(join(tmpdir(), 'genoffice-html-'))
     const htmlPath = join(dir, 'inspect.html')
     const source =
@@ -394,27 +302,6 @@ test.describe('html editor', () => {
       await frame.locator('body').dispatchEvent('click')
       await expect(float).toBeHidden()
       await expect(editorPage.locator('.hx-panel')).toHaveCount(0)
-
-      // the floating toolbar's Ask AI (the single canvas entry) opens the element popover;
-      // "Add to queue" parks the instruction in the AI panel
-      await frame.locator('h1#title').click()
-      await expect(editorPage.locator('.hx-panel-tag')).toHaveText('<h1>')
-      await float.getByRole('button', { name: /Ask AI/ }).click()
-      const askPop = editorPage.locator('.ai-ask-pop')
-      await expect(askPop).toBeVisible()
-      await expect(askPop.locator('.ai-ask-pop-sub')).toContainText('<h1>')
-      await askPop.locator('.ai-ask-pop-input').fill('make it shorter')
-      await askPop.locator('.ai-ask-confirm').click()
-      await expect(askPop).toBeHidden()
-      const queueRow = editorPage.locator('.copilot .ai-queue-row')
-      await expect(queueRow).toHaveCount(1)
-      await expect(queueRow).toContainText('make it shorter')
-      await expect(frame.locator('[data-gx-inspector-pin]')).toHaveText('1')
-      // the pin reopens the instruction for editing; removing it clears the queue
-      await frame.locator('[data-gx-inspector-pin]').click()
-      await expect(askPop.locator('.ai-ask-pop-input')).toHaveValue('make it shorter')
-      await askPop.locator('.ai-ask-cancel').click()
-      await expect(queueRow).toHaveCount(0)
 
       // Present → In this tab hides the editing chrome and links work; Exit returns to Edit
       await editorPage

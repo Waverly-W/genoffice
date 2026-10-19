@@ -1,15 +1,6 @@
 import type { zh } from './zh'
 
 export const it = {
-  redactMenuLabel: 'Nascondi la selezione all’IA',
-  redactDialogDesc:
-    'Le parole restano nel documento e nel file; il modello vede solo il segnaposto. Dai un nome perché sappia cosa rappresenta.',
-  redactDialogScope:
-    'Nascondere vale solo per l’IA di questa app. La CLI, gli strumenti MCP e l’esportazione senza interfaccia leggono direttamente il file e vedono comunque queste parole.',
-  redactDialogPlaceholder: 'Nome del segnaposto, es. telefono del cliente',
-  redactCancel: 'Annulla',
-  redactInsert: 'Nascondi',
-
   loading: 'Caricamento…',
   loadFailed: 'Impossibile aprire il file',
   untitled: 'Senza titolo',
@@ -50,7 +41,7 @@ export const it = {
   inspectHint:
     "Fai clic su un elemento nell'anteprima per selezionarlo, doppio clic per modificare il testo",
   nodeDynamic:
-    "Questo elemento è stato creato dallo script della pagina e non esiste nel sorgente; modificalo dal sorgente o con l'IA",
+    'Questo elemento è stato creato dallo script della pagina e non esiste nel sorgente; modificalo dal sorgente',
   nodeDynamicShort: 'generato da script',
   nodeDirty:
     'Lo script della pagina ha modificato questo elemento; le modifiche nel sorgente potrebbero essere sovrascritte',

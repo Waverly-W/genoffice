@@ -133,7 +133,6 @@ describe('computeFormatState', () => {
     const plain = computeFormatState(editor)
     expect(plain.bold).toBe(false)
     expect(plain.headingLevel).toBeNull()
-    expect(plain.docEmpty).toBe(false)
     expect(plain.doc).toBe(editor.state.doc)
 
     editor.commands.setTextSelection(28) // inside the bold run

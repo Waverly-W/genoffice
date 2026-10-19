@@ -18,12 +18,12 @@ Hãy thử trên bất kỳ đoạn nào:
 
 ![Thanh chú thích sau khi chọn văn bản](img/pdf-highlight.png)
 
-2. Chọn **Tô sáng** (ô vuông vàng mở bảng màu), **Gạch chân** hoặc **Gạch ngang**; **Hỏi AI** gửi phần đã chọn kèm câu hỏi của bạn tới bảng AI.
+2. Chọn **Tô sáng** (ô vuông vàng mở bảng màu), **Gạch chân** hoặc **Gạch ngang**.
 3. Để bỏ một dấu đánh, hãy kéo chọn lại đoạn văn đó rồi nhấp nút đang bật trên thanh (một nút bật/tắt kiểu Word), hoặc chọn rồi nhấn Delete.
 
 Lưu ý:
 
-- Kéo trên văn bản sẽ hiện một thanh bật lên: **Tô sáng / Gạch chân / Gạch ngang / Sao chép / Hỏi AI**.
+- Kéo trên văn bản sẽ hiện một thanh bật lên: **Tô sáng / Gạch chân / Gạch ngang / Sao chép**.
 - Màu lấy từ bảng màu; **áp dụng lại cùng một dấu đánh lên một đoạn đã đánh dấu là gỡ bỏ dấu đó** (nút bật/tắt kiểu Word).
 - Những dấu đánh đã lưu vào tệp cũng có thể chọn rồi xóa (menu ⋯ hoặc Delete).
 - **Lưu ý**: khi một công cụ vẽ đang được trang bị, lớp văn bản không thể chọn — công cụ tự ngắm sau mỗi lần đặt, nên bạn trở lại chế độ chọn cho thao tác tiếp theo.

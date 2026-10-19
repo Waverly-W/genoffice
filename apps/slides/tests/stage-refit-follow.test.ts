@@ -82,7 +82,6 @@ function makeSlidesApi() {
     newBlank: () => Promise.resolve({ path: '', slides: [blankSlide()], defaultFont: 'Arial' }),
     isDirty: () => Promise.resolve(false),
     getRecentFiles: () => Promise.resolve([]),
-    getAiSettings: () => Promise.resolve(null),
     getSections: () => Promise.resolve([]),
     getComments: () => Promise.resolve([]),
     getNotes: () => Promise.resolve(''),

@@ -1,8 +1,8 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 
 import { parseRange } from '@genoffice/xlsx-gateway/domain/cell-address'
-import { aggregateWorkbookRange } from '../src/renderer/ai/aggregate-range'
-import type { WorkbookReadContext } from '../src/renderer/ai/workbook-readers'
+import { aggregateWorkbookRange } from '../src/renderer/aggregate-range'
+import type { WorkbookReadContext } from '../src/renderer/workbook-read-context'
 
 afterEach(() => {
   vi.unstubAllGlobals()
@@ -139,7 +139,7 @@ describe('aggregateWorkbookRange: demo workbook', () => {
     const result = await aggregateWorkbookRange(demoCtx(SHEETS), 'sheet-9', parseRange('A1:A10'))
     expect(result).toEqual({
       ok: false,
-      error: 'Unknown sheet: sheet-9 (use an id from get_workbook_context)',
+      error: 'Unknown sheet: sheet-9',
     })
   })
 

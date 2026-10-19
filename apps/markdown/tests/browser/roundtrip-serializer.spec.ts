@@ -5,39 +5,27 @@ import type { Editor } from '@tiptap/core'
 import { openSource, rebaseSource, source } from './helpers'
 
 for (const enabled of [false, true]) {
-  test(`save and MCP read use the ${enabled ? 'opt-in' : 'default'} serializer`, async ({
-    page,
-  }) => {
+  test(`save uses the ${enabled ? 'opt-in' : 'default'} serializer`, async ({ page }) => {
     await openSource(page, enabled)
     await expect(page.locator('.doc-editor')).toContainText('Title')
-    const read = () =>
-      page.evaluate(
-        () =>
-          new Promise<string>((resolve) => {
-            window.addEventListener(
-              'test:read-source-result',
-              (event) => {
-                resolve((event as CustomEvent).detail.text)
-              },
-              { once: true },
-            )
-            window.dispatchEvent(new Event('test:read-source'))
-          }),
-      )
+    const save = async (): Promise<string> => {
+      await page.evaluate(() => {
+        delete document.body.dataset.saved
+        window.dispatchEvent(new Event('test:save'))
+      })
+      await page.waitForFunction(() => document.body.dataset.saved !== undefined)
+      return page.evaluate(() => document.body.dataset.saved!)
+    }
     // block-level splicing already returns an unedited document's source; the
     // opt-in shortcut must agree with it
-    const initial = await read()
+    const initial = await save()
     expect(initial).toBe(source)
-    await page.evaluate(() => window.dispatchEvent(new Event('test:save')))
-    await expect(page.locator('body')).toHaveAttribute('data-saved', initial)
     await page.locator('.doc-editor').evaluate((node) => {
       const editor = (node as HTMLElement & { editor: Editor }).editor
       editor.commands.insertContentAt(2, ' edited')
     })
-    const edited = await read()
+    const edited = await save()
     expect(edited).toContain('edited')
-    await page.evaluate(() => window.dispatchEvent(new Event('test:save')))
-    await expect(page.locator('body')).toHaveAttribute('data-saved', edited)
     await page.locator('.doc-editor').evaluate((node) => {
       const editor = (node as HTMLElement & { editor: Editor }).editor
       editor.commands.undo()
@@ -45,7 +33,7 @@ for (const enabled of [false, true]) {
     // the shortcut restores the loaded bytes; the splice path has already
     // written the edited heading, so undo re-serializes that block and keeps
     // the untouched list verbatim
-    const reverted = await read()
+    const reverted = await save()
     if (enabled) expect(reverted).toBe(initial)
     else {
       expect(reverted).not.toContain('edited')

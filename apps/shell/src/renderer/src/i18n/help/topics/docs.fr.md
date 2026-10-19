@@ -16,8 +16,8 @@ Onglets : **Accueil / Insertion / Dessin / Mise en page / Création / Référenc
 
   ![L’onglet Références](img/docs-references.png)
 
-- **Révision** : **Éditeur** relit tout le document — orthographe, grammaire et ponctuation ; **Traduire** ; vérification orthographique ; commentaires (**Commentaires par IA** traite ceux qui sont ouverts) ; suivi des modifications avec les vues Toutes les marques / Marques simples, accepter/refuser, et **Résumé IA des révisions** ; comptage des mots ; **Comparer** avec un autre fichier ; **Protéger le document**.
-- **Affichage** : cinq façons de regarder le fichier — **Page**, **Web**, **Plan**, **Mode Lecture** et **Aperçu des pages** ; zoom arrière/avant/100 %/largeur de la page/une page ; **Volet IA** ; **Mode sombre** ; règle, quadrillage et volet de navigation ; **Nouvel onglet**, **Fractionner** et **Changer d'onglet** ; la boîte de dialogue de **raccourcis clavier** consultable.
+- **Révision** : vérification orthographique ; commentaires ; suivi des modifications avec les vues Toutes les marques / Marques simples et accepter/refuser ; comptage des mots ; **Comparer** avec un autre fichier ; **Protéger le document**.
+- **Affichage** : cinq façons de regarder le fichier — **Page**, **Web**, **Plan**, **Mode Lecture** et **Aperçu des pages** ; zoom arrière/avant/100 %/largeur de la page/une page ; **Mode sombre** ; règle, quadrillage et volet de navigation ; **Nouvel onglet**, **Fractionner** et **Changer d'onglet** ; la boîte de dialogue de **raccourcis clavier** consultable.
   - **Mode sombre** assombrit la page et le canevas autour d’elle, jamais le ruban — la séparation de Word entre une surface d’édition sombre et une fenêtre sombre. Le choix est mémorisé et l’emporte sur le thème de l’application dans tous les cas.
   - **Fractionner** ouvre un second volet en dessous qui défile indépendamment et reflète le premier ; fermez-le avec le × sur son bord.
 
@@ -42,7 +42,6 @@ Clic droit n’importe où dans le corps — le menu correspond à ce que vous a
 - **Presse-papiers** : couper / copier / coller / **collier en texte brut**.
 - **Police, paragraphe** : changer la police et la taille, gras/italique/souligné, alignement/retrait/interligne sans passer par le ruban.
 - **Synonymes** : liste des synonymes du mot sélectionné ; cliquez sur l’un pour remplacer.
-- **Traduire** (IA) : traduit la sélection vers la langue cible (anglais, chinois simplifié, japonais, coréen, français, allemand, espagnol, …) via le panneau IA.
 - **Nouveau commentaire** : attache un commentaire à la sélection.
 - **Orthographe** (sur un mot mal orthographié) : remplacements suggérés, tout ignorer, ajouter au dictionnaire, définir la langue de correction.
 - **Lien hypertexte** : ouvrir / modifier / copier le lien / supprimer le lien hypertexte.
@@ -62,11 +61,6 @@ Clic droit n’importe où dans le corps — le menu correspond à ce que vous a
 
 - La compression des signes de ponctuation et les règles de césure (kinsoku) sont alignées sur Word ; conversion pleine largeur / demi-largeur.
 - Les polices candidates couvrent les noms de familles est-asiatiques courants de Windows et de macOS.
-
-## IA
-
-- Bouton IA du ruban et panneau latéral : réécriture, développement, traduction, résumé, insertion de tableaux prédéfinis, plus des instructions libres.
-- Chaque tour de l’IA enregistre d’abord un instantané ; vous pouvez revenir en arrière depuis la liste des versions, et ce retour en arrière est lui-même annulable.
 
 ## Enregistrement et export
 

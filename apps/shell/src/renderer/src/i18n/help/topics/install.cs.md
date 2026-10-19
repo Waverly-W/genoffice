@@ -60,8 +60,4 @@ Všechny tři obalí zveřejněné artefakty místo toho, aby aplikaci znovu ses
 
 - **Flatpak** — nainstaluje `.deb` pomocí mechanismu `extra-data` ve Flatpaku a spustí jej pod Zypakem, který přizpůsobuje vlastní izolaci Electronu. Strom `/app` je jen pro čtení, takže aktualizace jdou přes Flatpak, ne přes dialog aktualizace v aplikaci.
 - **Nix** — výraz balíčku, který sestavíte z checkoutu příkazem `nix-build packaging/nix`; viz `packaging/nix`.
-- **Docker** — obraz pro dávkovou převod bez rozhraní (`packaging/docker`). Převede celý strom dokumentů Office, Markdown a HTML do PDF přes vlastní exportní kanál aplikace, takže výstup je stejný, jaký by dalo Soubor ▸ Exportovat. Je to nástroj CLI, ne server.
-
-## Příkazová řádka je součástí
-
-Každá instalace obsahuje příkaz `genoffice`, který mluví se stejnými enginy jako okno, takže se nikdy neshodnou v tom, jaký soubor je. V systémech macOS a Windows je uvnitř balíčku aplikace; `genoffice install-cli` jej umístí do vaší `PATH`. Co umí, se dozvíte v kapitole **Příkazová řádka a agenti**.
+- **Docker** — obraz pro dávkový převod bez rozhraní (`packaging/docker`). Převede celý strom dokumentů Office, Markdown a HTML do PDF přes vlastní exportní kanál aplikace, takže výstup je stejný, jaký by dalo Soubor ▸ Exportovat. Je to nástroj CLI, ne server.

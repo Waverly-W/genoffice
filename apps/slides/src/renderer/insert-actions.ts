@@ -419,7 +419,7 @@ export async function insertDroppedMedia(
 ): Promise<void> {
   if (!ctx.slide) return
   const slideIndex = ctx.current
-  const path = window.desktop.getPathForFile(file)
+  const path = window.slidesApi.getPathForFile(file)
   const source = path
     ? { path }
     : { base64: bytesToBase64(new Uint8Array(await file.arrayBuffer())) }

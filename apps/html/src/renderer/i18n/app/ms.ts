@@ -1,15 +1,6 @@
 import type { zh } from './zh'
 
 export const ms = {
-  redactMenuLabel: 'Sembunyikan pilihan daripada AI',
-  redactDialogDesc:
-    'Perkataan kekal dalam dokumen dan fail; model hanya melihat placeholder di bawah. Beri nama supaya model tahu apa yang diwakili.',
-  redactDialogScope:
-    'Penyembunyian ini hanya untuk AI dalam aplikasi ini. CLI, alat MCP dan eksport tanpa antara muka membaca fail secara terus, jadi perkataan ini masih kelihatan kepada mereka.',
-  redactDialogPlaceholder: 'Nama placeholder, cth. telefon pelanggan',
-  redactCancel: 'Batal',
-  redactInsert: 'Sembunyikan',
-
   loading: 'Memuatkan…',
   loadFailed: 'Tidak dapat membuka fail',
   untitled: 'Tanpa tajuk',
@@ -47,7 +38,7 @@ export const ms = {
   previewNeedsSave: 'Imej dan gaya relatif akan dipaparkan dalam pratonton selepas fail disimpan',
   inspectHint: 'Klik elemen dalam pratonton untuk memilih, klik dua kali untuk menyunting teks',
   nodeDynamic:
-    'Elemen ini dicipta oleh skrip halaman dan tiada dalam sumber; sunting melalui sumber atau AI',
+    'Elemen ini dicipta oleh skrip halaman dan tiada dalam sumber; sunting melalui sumber',
   nodeDynamicShort: 'dijana skrip',
   nodeDirty: 'Skrip halaman telah mengubah elemen ini; suntingan ke sumber mungkin ditindih skrip',
   nodeDirtyShort: 'diubah skrip',

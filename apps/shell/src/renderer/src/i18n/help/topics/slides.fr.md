@@ -47,12 +47,6 @@ Le menu dépend de l’endroit du clic droit:
 - Masques et dispositions: unifier polices, espaces réservés et arrière-plans; les nouvelles diapositives héritent de la disposition choisie.
 - Les couleurs et polices du thème suivent le thème.
 
-## Génération par IA
-
-- La carte AI Slides de l’accueil: donnez un sujet ou un plan et l’IA construit le diaporama; si la génération dans le cloud échoue, elle bascule sur la génération locale.
-- Continuez à ajuster ensuite avec le panneau IA.
-- Clic droit sur une sélection de texte ou un élément image/vidéo/audio ▸ **Masquer la sélection à l'IA** la soustrait aux yeux du modèle (détails au chapitre du panneau IA) ; une diapositive au contenu masqué saute le contrôle automatique par capture.
-
 ## Présentation et export
 
 - **Exporter en PDF**: rastérisation page par page dans une fenêtre masquée, avec progression et garde-fou de délai pour les gros diaporamas.

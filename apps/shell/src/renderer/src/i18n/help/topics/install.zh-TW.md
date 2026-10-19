@@ -61,7 +61,3 @@ chmod +x GenOffice-<version>.AppImage
 - **Flatpak** — 透過 Flatpak 的 `extra-data` 機制安裝 `.deb`，並在 Zypak 沙箱下執行，由 Zypak 調整 Electron 自帶的沙箱。`/app` 目錄是唯讀的，所以更新要走 Flatpak，而不是應用程式內的更新對話方塊。
 - **Nix** — 一個套件表示式，用 `nix-build packaging/nix` 從原始碼檢出建置；詳見 `packaging/nix`。
 - **Docker** — 一個無頭批次轉換映像（`packaging/docker`）。它會透過應用程式自己的匯出流程，把整棵目錄樹裡的 Office、Markdown 與 HTML 文件轉成 PDF，輸出的結果與 檔案 ▸ 匯出 相同。它是一個命令列工具，不是伺服器。
-
-## 命令列隨著一起安裝
-
-每次安裝都會附帶一個 `genoffice` 命令，它與視窗呼叫的是同一套引擎，因此兩者對同一個檔案不會有分歧。在 macOS 與 Windows 上它位於應用程式套件內；`genoffice install-cli` 會把它放進你的 `PATH`。它能做什麼，見**命令列與代理**。

@@ -31,7 +31,7 @@ Setiap editor mempunyai pengikatan kekunci sendiri, dan hanya sebahagian kecil d
 
 ## Word
 
-Word mempunyai bar menu penuh, jadi pintasan fail dan pemformatan di bawah berfungsi bila-bila mana tab Word mempunyai fokus, dokumen mana pun yang sedang dibuka. Pintasan penyuntingan memerlukan dokumen yang sudah dimuatkan dan boleh disunting, dengan caret berada dalam teks; ia tidak dicetuskan semasa anda menaip dalam kotak Cari, kotak arahan AI atau medan lain.
+Word mempunyai bar menu penuh, jadi pintasan fail dan pemformatan di bawah berfungsi bila-bila mana tab Word mempunyai fokus, dokumen mana pun yang sedang dibuka. Pintasan penyuntingan memerlukan dokumen yang sudah dimuatkan dan boleh disunting, dengan caret berada dalam teks; ia tidak dicetuskan semasa anda menaip dalam kotak Cari atau medan lain.
 
 ### Fail
 
@@ -138,11 +138,10 @@ Sisipkan Nota Akhir ialah pembahagian platform yang sebenar, bukan sekadar nama 
 | ------------------ | ----- | --------------- |
 | Jejak Perubahan    | ⇧⌘E   | Ctrl+Shift+E    |
 | Bilangan Perkataan | ⇧⌘G   | Ctrl+Shift+G    |
-| Semak Ejaan        | F7    | F7              |
 | Kemas Kini Medan   | F9    | F9              |
 | Togol Kod Medan    | ⌥F9   | Alt+F9          |
 
-F7 menjalankan semakan ejaan AI dan F9 mengemas kini medan; kedua-duanya memerlukan dokumen yang sudah dimuatkan. Sebaik sahaja sekatan suntingan menyalakan Jejak Perubahan, ia tidak boleh dimatikan semula.
+F9 mengemas kini medan dan memerlukan dokumen yang sudah dimuatkan. Sebaik sahaja sekatan suntingan menyalakan Jejak Perubahan, ia tidak boleh dimatikan semula.
 
 ### Pandangan
 
@@ -310,7 +309,6 @@ Menutup tab ialah satu-satunya tempat kedua platform berasingan sepenuhnya: ⌘W
 | ------------------------------------------------- | ------ | --------------- |
 | Slaid baharu                                      | ⇧⌘N    | Ctrl+M          |
 | Cari (bukan semasa menyunting teks dalam bentuk)  | ⌘F     | Ctrl+F          |
-| Anotasi pilihan dengan AI (dengan bentuk dipilih) | ⌘K     | Ctrl+K          |
 | Zum masuk                                         | ⌘=     | Ctrl+=          |
 | Zum keluar                                        | ⌘-     | Ctrl+-          |
 | Saiz sebenar (100%)                               | ⌘0     | Ctrl+0          |
@@ -478,7 +476,7 @@ Hanya aktif apabila satu anotasi, setem, penyuntingan atau imej dipilih.
 | Batalkan keadaan teratas   | Escape | Escape          |
 | Sahkan dialog yang terbuka | Enter  | Enter           |
 
-Escape membongkar satu lapisan pada satu masa — dialog yang terbuka dahulu, kemudian munculan AI, draf teks, panel carian, dan akhirnya pilihan itu sendiri. Dengan kursor di dalam kotak carian, Enter dan ⇧Enter melangkah ke padanan seterusnya dan sebelumnya, dan Escape menutup panel itu; dengan kursor dalam nota teks baharu, `⌘⏎` menguncikannya.
+Escape membongkar satu lapisan pada satu masa — dialog yang terbuka dahulu, kemudian draf teks, panel carian, dan akhirnya pilihan itu sendiri. Dengan kursor di dalam kotak carian, Enter dan ⇧Enter melangkah ke padanan seterusnya dan sebelumnya, dan Escape menutup panel itu; dengan kursor dalam nota teks baharu, `⌘⏎` menguncikannya.
 
 ## Markdown
 
@@ -555,7 +553,6 @@ Di dalam editor kod atau medan borang, kekunci penyuntingan milik medan itu send
 
 | Tindakan                              | macOS      | Windows / Linux    |
 | ------------------------------------- | ---------- | ------------------ |
-| Tanya AI tentang elemen itu           | ⌘K         | Ctrl+K             |
 | Padam elemen itu                      | ⌫ / Delete | Backspace / Delete |
 | Saudara sebelumnya                    | ↑          | ArrowUp            |
 | Saudara seterusnya                    | ↓          | ArrowDown          |

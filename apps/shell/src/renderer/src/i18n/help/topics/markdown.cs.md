@@ -2,12 +2,11 @@
 
 Editor Markdown otevírá .md / .markdown — a .txt / .json, rovnou v zobrazení zdroje — se zdrojem a vykresleným náhledem.
 
-- **Otevřít**: z domovské stránky nebo Soubor ▸ Otevřít…; funguje i z příkazové řádky.
+- **Otevřít**: z domovské stránky nebo Soubor ▸ Otevřít…
 - **Úpravy**: úpravy v čistém textu; rozšíření GFM (tabulky, kontrolní seznamy, přeškrtnutí, automatické odkazy) se vykreslují v náhledu.
 - **Náhled**: živý; relativní zdroje, například obrázky, se načítají vedle dokumentu.
 - **Ukládání**: věrné bajt po bajtu — BOM, znaky CRLF i přítomnost prázdného řádku na konci se zachovávají; uložení bez změn soubor nepřepíše.
 - **Najít a nahradit**: ctrl+F hledá ve zdroji; Nahradit vše zapíše výsledek.
-- **AI**: předvolená tlačítka nechají asistenta dokument přepsat, rozšířit nebo přeložit. Výběr lze skrýt před AI (viz kapitola o AI panelu).
 
 ## Pruh nástrojů
 
@@ -16,7 +15,6 @@ Jeden řádek tlačítek nad editorem (nápovědy zobrazíte po najetí):
 ![Pruh nástrojů Markdown](img/md-toolbar.png)
 
 - **Soubor a historie**: Uložit, Uložit jako…, Zpět, Znovu, Najít; přepínač **Automatické ukládání** vpravo zapisuje změny na disk v pravidelných intervalech.
-- **Tlačítko AI**: otevře panel AI; vedle něj jsou předvolby přepsat / rozšířit / přeložit.
 - **Styl odstavce** (rozbalovací seznam): přechod mezi základním textem a úrovněmi nadpisů.
 - **Formátování v textu**: **tučné**, _kurzíva_, ~~přeškrtnutí~~, `kód v textu`, odkaz.
 - **Seznamy**: odrážkový, číslovaný, kontrolní.

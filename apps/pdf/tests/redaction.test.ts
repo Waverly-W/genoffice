@@ -7,7 +7,7 @@ import {
   decodePDFRawStream,
   StandardFonts,
 } from 'pdf-lib'
-import { readPdfText } from '../src/main/read-text'
+import { readPdfText } from './read-text'
 import { redactPdf } from '../src/main/redaction'
 
 async function fixture(): Promise<Uint8Array> {

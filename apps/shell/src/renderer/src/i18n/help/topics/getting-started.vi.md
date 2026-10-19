@@ -16,7 +16,7 @@ Cửa sổ gồm ba phần:
 
 Bất kỳ cách nào sau đây:
 
-- Nhấp vào một thẻ tạo nhanh trong mục [Bắt đầu nhanh](help://getting-started) của **Trang chủ** (AI Docs, AI Sheets, AI Slides, ...).
+- Nhấp vào một thẻ tạo nhanh trong mục [Bắt đầu nhanh](help://getting-started) của **Trang chủ** (Docs, Sheets, Slides, ...).
 - Menu **File ▸ Mới**: Docs (⌘N/ctrl+N), Sheets, Slides, Markdown, HTML hoặc PDF.
 - Kéo một tập tin vào cửa sổ, hoặc nhấp đúp vào nó trong trình quản lý tập tin (nếu GenOffice là ứng dụng mặc định).
 
@@ -26,7 +26,6 @@ Tài liệu mới mở ra chưa có tiêu đề; tập tin trên đĩa chỉ đ�
 
 - Menu **File ▸ Mở** (⌘O/ctrl+O) mở bộ chọn của hệ thống: .docx / .doc / .xlsx / .xls / .csv / .tsv / .pptx / .ppt / .pdf / .md / .html.
 - Nhấp vào bất kỳ mục nào trong danh sách **Gần đây** của Trang chủ.
-- `genoffice <file>` từ terminal cũng mở được tập tin.
 
 ## Mô hình lưu
 
@@ -87,5 +86,4 @@ Như vậy ⌥⌘D vẫn còn trống để GenOffice dùng trên macOS, nếu m
 
 - Tập tin nằm ở đâu: [Màn hình Trang chủ](help://home-screen).
 - Quản lý nhiều tập tin đang mở: [Quản lý thẻ và cửa sổ](help://tabs-and-windows).
-- Để AI làm việc giúp: [Bảng điều khiển trợ lý AI](help://ai-panel).
-- Ngôn ngữ, chủ đề, ứng dụng mặc định: [Cài đặt, ngôn ngữ, chủ đề và tích hợp MCP](help://settings-integrations).
+- Ngôn ngữ, chủ đề, ứng dụng mặc định: [Cài đặt, ngôn ngữ và chủ đề](help://settings).

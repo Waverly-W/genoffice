@@ -19,7 +19,7 @@ Sheets es el editor de hojas de cálculo similar a Excel; el cálculo se ejecuta
 - **Disposición de página**: colores y fuentes del tema, interruptores para imprimir líneas de la cuadrícula y encabezados, vista previa de salto de página.
 - **Fórmulas**: Autosuma e inserción de funciones, definir nombres (también desde la selección), rastrear precedentes y dependientes, ventana Inspección, recalcular hoja o libro.
 - **Datos**: ordenar y filtrar (incluido el filtro avanzado y borrar el filtro), texto en columnas, combinar libros, actualizar todo.
-- **Revisar**: explorar comentarios (mostrar, anterior/siguiente), traducir y un grupo **Proteger** — **Proteger hoja**, **Proteger libro** y **Permitir editar rangos**.
+- **Revisar**: explorar comentarios (mostrar, anterior/siguiente) y un grupo **Proteger** — **Proteger hoja**, **Proteger libro** y **Permitir editar rangos**.
   - La protección se escribe en el .xlsx y lo que aplica esta aplicación no lleva contraseña, así que el mismo botón pasa a ser **Desproteger…** y la deshace. La protección procedente de otro programa que _sí_ lleva contraseña no se puede quitar desde aquí.
   - Los dos botones de proteger se aplican de inmediato: no hay ningún cuadro de diálogo que cancelar, solo una nota en la barra de estado indicando que se escribirá al guardar.
   - **Permitir editar rangos** marca las celdas que siguen siendo editables mientras el resto de la hoja queda bloqueada.
@@ -87,13 +87,6 @@ La pestaña Fórmulas, botón por botón:
 - **En la barra de estado inferior**: elija qué estadísticas muestra la barra de estado (promedio / recuento / suma, …); la elección se conserva.
 - **En una pestaña de hoja abajo**: agregar / cambiar el nombre / quitar / colorear / ocultar hojas (menú de pestañas de Univer).
 - El menú contextual de la barra de pestañas superior se trata en [Pestañas y gestión de ventanas](help://tabs-and-windows).
-
-## IA
-
-- El panel de IA lateral: seleccione un rango e indíquelo en lenguaje natural (reformatear, generar datos, escribir fórmulas).
-- Adjunta archivos a un mensaje con el botón 📎 o arrástralos hasta el panel; viajan con la pregunta y las imágenes vuelven como miniaturas.
-- Una respuesta puede citar una celda: haz clic en la referencia y la cuadrícula saltará allí.
-- Las ediciones de la IA se pueden revertir desde el panel.
 
 ## Guardar y exportar
 

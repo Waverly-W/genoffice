@@ -16,8 +16,8 @@ Separadores: **Página Inicial / Inserir / Desenhar / Layout / Design / Referên
 
   ![O separador Referências](img/docs-references.png)
 
-- **Revisão**: **Editor** revê a ortografia, a gramática e a pontuação de todo o documento; **Traduzir**; verificação ortográfica; comentários (**Comentários com IA** trata os que estão abertos); controlar alterações com as vistas Toda a Marcação / Marcação Simples, aceitar/rejeitar e **Resumo de revisões com IA**; contagem de palavras; **Comparar** com outro ficheiro; **Proteger Documento**.
-- **Exibir**: cinco formas de ver o ficheiro — **Layout de Impressão**, **Layout da Web**, **Estrutura de Tópicos**, **Modo de Leitura** e **Visualização de Páginas**; reduzir/ampliar/100 %/largura da página/uma página; **Painel de IA**; **Modo Escuro**; régua, linhas de grade e o painel de navegação; **Nova Guia**, **Dividir** e **Alternar Guias**; a janela pesquisável de **atalhos de teclado**.
+- **Revisão**: verificação ortográfica; comentários; controlar alterações com as vistas Toda a Marcação / Marcação Simples e aceitar/rejeitar; contagem de palavras; **Comparar** com outro ficheiro; **Proteger Documento**.
+- **Exibir**: cinco formas de ver o ficheiro — **Layout de Impressão**, **Layout da Web**, **Estrutura de Tópicos**, **Modo de Leitura** e **Visualização de Páginas**; reduzir/ampliar/100 %/largura da página/uma página; **Modo Escuro**; régua, linhas de grade e o painel de navegação; **Nova Guia**, **Dividir** e **Alternar Guias**; a janela pesquisável de **atalhos de teclado**.
   - O **Modo Escuro** escurece a página e a tela à volta dela, nunca o friso — a divisão do Word entre uma superfície de edição escura e uma janela escura. A escolha fica guardada e, em qualquer caso, prevalece sobre o tema da aplicação.
   - **Dividir** abre um segundo painel por baixo, que desliza de forma independente e espelha o primeiro; feche-o com o × no seu limite.
 
@@ -42,7 +42,6 @@ Clique com o botão direito em qualquer ponto do texto — o menu acompanha aqui
 - **Área de transferência**: recortar / copiar / colar / **colar como texto simples**.
 - **Fonte, parágrafo**: mudar a família e o tamanho, negrito/itálico/sublinhado, alinhamento/recuo/espaçamento sem passar pelo friso.
 - **Sinônimos**: lista sinônimos da palavra selecionada; clique num deles para substituir.
-- **Traduzir** (IA): traduz a seleção para o idioma de destino (inglês, chinês simplificado, japonês, coreano, francês, alemão, espanhol, ...) pelo painel de IA.
 - **Novo Comentário**: anexa um comentário à seleção.
 - **Ortografia** (numa palavra escrita errado): substituições sugeridas, ignorar tudo, adicionar ao dicionário, definir o idioma de verificação.
 - **Hiperligação**: abrir / editar / copiar ligação / remover hiperligação.
@@ -62,11 +61,6 @@ Clique com o botão direito em qualquer ponto do texto — o menu acompanha aqui
 
 - A compactação de pontuação e as regras de quebra de linha kinsoku correspondem às do Word; há conversão entre largura plena e meia largura.
 - Os candidatos de fonte cobrem os nomes de família CJK mais comuns no Windows e no macOS.
-
-## IA
-
-- O botão de IA no friso e o painel lateral: reescrever, expandir, traduzir, resumir, inserir tabela, além de instruções livres.
-- Cada turno da IA guarda um instantâneo antes de começar; é possível voltar a qualquer um deles na lista de versões, e o próprio retrocesso pode ser desfeito.
 
 ## Salvar e exportar
 

@@ -31,7 +31,7 @@ Cada editor tiene sus propias combinaciones de teclas, y solo unas cuantas funci
 
 ## Word
 
-Word tiene una barra de menús completa, así que las combinaciones de archivo y de formato de abajo funcionan siempre que una pestaña de Word tenga el foco, sea cual sea el documento abierto. Las combinaciones de edición necesitan un documento cargado y editable, con el cursor en el texto; no se disparan mientras escribes en el cuadro de búsqueda, en el indicador de IA ni en ningún otro campo.
+Word tiene una barra de menús completa, así que las combinaciones de archivo y de formato de abajo funcionan siempre que una pestaña de Word tenga el foco, sea cual sea el documento abierto. Las combinaciones de edición necesitan un documento cargado y editable, con el cursor en el texto; no se disparan mientras escribes en el cuadro de búsqueda ni en ningún otro campo.
 
 ### Archivo
 
@@ -138,11 +138,10 @@ Insertar nota al final es un reparto real entre plataformas, no un renombrado: W
 | -------------------------------- | ----- | --------------- |
 | Controlar cambios                | ⇧⌘E   | Ctrl+Shift+E    |
 | Recuento de palabras             | ⇧⌘G   | Ctrl+Shift+G    |
-| Corrección con IA                | F7    | F7              |
 | Actualizar campo                 | F9    | F9              |
 | Mostrar/ocultar códigos de campo | ⌥F9   | Alt+F9          |
 
-F7 ejecuta la corrección con IA y F9 actualiza los campos; ambos necesitan un documento cargado. En cuanto una restricción de edición activa Controlar cambios, ya no se puede volver a desactivar.
+F9 actualiza los campos y necesita un documento cargado. En cuanto una restricción de edición activa Controlar cambios, ya no se puede volver a desactivar.
 
 ### Vista
 
@@ -310,7 +309,6 @@ Cerrar una pestaña es el único sitio donde las dos plataformas se separan por 
 | ----------------------------------------------------------- | ------ | --------------- |
 | Diapositiva nueva                                           | ⇧⌘N    | Ctrl+M          |
 | Buscar (no mientras se edita texto en una forma)            | ⌘F     | Ctrl+F          |
-| Anotar la selección con IA (con formas seleccionadas)       | ⌘K     | Ctrl+K          |
 | Acercar                                                     | ⌘=     | Ctrl+=          |
 | Alejar                                                      | ⌘-     | Ctrl+-          |
 | Tamaño real (100 %)                                         | ⌘0     | Ctrl+0          |
@@ -478,7 +476,7 @@ Solo está activo cuando hay seleccionada una anotación, un sello, una ocultaci
 | Cancelar el estado más externo         | Escape | Escape          |
 | Confirmar el cuadro de diálogo abierto | Enter  | Enter           |
 
-Escape desenvuelve una capa cada vez — primero un cuadro de diálogo abierto, luego el menú emergente de IA, un borrador de texto, el panel de búsqueda y por último la propia selección. Con el cursor en el cuadro de búsqueda, Enter y `⇧Enter` pasan a la coincidencia siguiente y a la anterior, y Escape cierra el panel; con el cursor en una nota de texto nueva, `⌘⏎` la confirma.
+Escape desenvuelve una capa cada vez — primero un cuadro de diálogo abierto, luego un borrador de texto, el panel de búsqueda y por último la propia selección. Con el cursor en el cuadro de búsqueda, Enter y `⇧Enter` pasan a la coincidencia siguiente y a la anterior, y Escape cierra el panel; con el cursor en una nota de texto nueva, `⌘⏎` la confirma.
 
 ## Markdown
 
@@ -555,7 +553,6 @@ Dentro del editor de código o de un campo de formulario, las teclas de edición
 
 | Acción                                         | macOS      | Windows / Linux    |
 | ---------------------------------------------- | ---------- | ------------------ |
-| Preguntar a la IA sobre el elemento            | ⌘K         | Ctrl+K             |
 | Eliminar el elemento                           | ⌫ / Delete | Backspace / Delete |
 | Hermano anterior                               | ↑          | ArrowUp            |
 | Hermano siguiente                              | ↓          | ArrowDown          |

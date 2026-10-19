@@ -1,12 +1,7 @@
-import { contextBridge, ipcRenderer, webUtils } from 'electron'
+import { contextBridge, ipcRenderer } from 'electron'
 import type { IpcRendererEvent } from 'electron'
 import { VIEW_IMAGE_CHANNEL, type MarkdownImage, type PdfInternalLink } from '../shared/ipc'
-import type { AiPanelPrefs } from '@genoffice/ui'
 import type {
-  AiChatRequest,
-  AiSettings,
-  AiStreamChunk,
-  AiStreamRequest,
   DesktopApi,
   MenuCommand,
   AutoSaveDefault,
@@ -16,7 +11,6 @@ import type {
   UiTheme,
   ZoteroRendererRequest,
 } from '../shared/ipc'
-import type { ProjectApi } from '@genoffice/project-store'
 import { installDropOpenBridge } from '@genoffice/electron-utils/drop-open'
 
 const api: DesktopApi = {
@@ -59,13 +53,6 @@ const api: DesktopApi = {
     ipcRenderer.on('app:author-name-changed', listener)
     return () => ipcRenderer.removeListener('app:author-name-changed', listener)
   },
-  getAiPanelPrefs: () => ipcRenderer.invoke('app:get-ai-panel-prefs'),
-  setAiPanelPrefs: (patch) => ipcRenderer.invoke('app:set-ai-panel-prefs', patch),
-  onAiPanelPrefsChanged: (handler) => {
-    const listener = (_event: IpcRendererEvent, prefs: AiPanelPrefs) => handler(prefs)
-    ipcRenderer.on('app:ai-panel-prefs-changed', listener)
-    return () => ipcRenderer.removeListener('app:ai-panel-prefs-changed', listener)
-  },
   onChromePressed: (handler) => {
     const listener = () => handler()
     ipcRenderer.on('app:chrome-pressed', listener)
@@ -96,11 +83,9 @@ const api: DesktopApi = {
     ipcRenderer.invoke('docs:discard-password-intents', throughRevision),
   consumePendingOpenDocx: () => ipcRenderer.invoke('docs:consume-pending-open'),
   consumeNewBlankDoc: () => ipcRenderer.invoke('docs:consume-new-blank'),
-  consumeAiDocContent: () => ipcRenderer.invoke('docs:consume-ai-doc-content'),
   consumeHeadlessExport: () => ipcRenderer.invoke('docs:consume-headless-export'),
   headlessExportDone: (result: { ok: boolean; error?: string }) =>
     ipcRenderer.send('docs:headless-export-done', result),
-  createDocument: (request) => ipcRenderer.invoke('docs:create-document', request),
   onOpenDocx: (handler) => {
     const listener = (_event: IpcRendererEvent, result: Parameters<typeof handler>[0]) =>
       handler(result)
@@ -142,16 +127,6 @@ const api: DesktopApi = {
     ipcRenderer.invoke('docs:save-as', defaultName, data, sourcePath ?? null),
   saveDocxNew: (defaultName: string, data: ArrayBuffer) =>
     ipcRenderer.invoke('docs:save-new', defaultName, data),
-  saveDocxTo: (path: string, data: ArrayBuffer, overwrite: boolean) =>
-    ipcRenderer.invoke('docs:save-to', path, data, overwrite === true),
-  onMcpCommand: (handler) => {
-    const listener = (_event: IpcRendererEvent, message: Parameters<typeof handler>[0]) =>
-      handler(message)
-    ipcRenderer.on('docs:mcp-command', listener)
-    return () => ipcRenderer.removeListener('docs:mcp-command', listener)
-  },
-  reportMcpResult: (result) => ipcRenderer.send('docs:mcp-result', result),
-  signalMcpReady: () => ipcRenderer.send('docs:mcp-ready'),
   getRecentFiles: () => ipcRenderer.invoke('docs:recent'),
   pickImage: () => ipcRenderer.invoke('docs:pick-image'),
   fontMetrics: (family: string) => ipcRenderer.invoke('docs:font-metrics', family),
@@ -200,50 +175,12 @@ const api: DesktopApi = {
     ipcRenderer.on(VIEW_IMAGE_CHANNEL, listener)
     return () => ipcRenderer.removeListener(VIEW_IMAGE_CHANNEL, listener)
   },
-  getAiSettings: () => ipcRenderer.invoke('ai:get-settings'),
-  setAiSettings: (settings: AiSettings) => ipcRenderer.invoke('ai:set-settings', settings),
-  onAiSettingsChanged: (handler) => {
-    const listener = () => handler()
-    ipcRenderer.on('ai:settings-changed', listener)
-    return () => ipcRenderer.removeListener('ai:settings-changed', listener)
-  },
-  openAiModelSettings: () => ipcRenderer.invoke('ai:open-model-settings'),
-  aiChat: (request: AiChatRequest) => ipcRenderer.invoke('ai:chat', request),
-  aiStream: (request: AiStreamRequest) => ipcRenderer.invoke('ai:stream', request),
-  aiStreamCancel: (requestId: string) => ipcRenderer.invoke('ai:stream-cancel', requestId),
-  aiGskStatus: (withEmail?: boolean) => ipcRenderer.invoke('ai:gsk-status', withEmail),
-  aiGskLogin: () => ipcRenderer.invoke('ai:gsk-login'),
-  webSearch: (query: string, maxResults?: number) =>
-    ipcRenderer.invoke('ai:web-search', query, maxResults),
-  imageSearch: (query: string, maxResults?: number) =>
-    ipcRenderer.invoke('ai:image-search', query, maxResults),
-  analyzeMedia: (op: { mediaUrls: string[]; requirements: string }) =>
-    ipcRenderer.invoke('docs:analyze-media', op),
-  fetchImage: (url: string) => ipcRenderer.invoke('ai:fetch-image', url),
-  aiGenerateImage: (op: { prompt: string; aspectRatio?: string }) =>
-    ipcRenderer.invoke('docs:ai-generate-image', op),
-  pickAttachments: () => ipcRenderer.invoke('files:pick'),
-  addAttachmentPaths: (paths: string[]) => ipcRenderer.invoke('files:add', paths),
-  addPastedImage: (data: ArrayBuffer, ext: string) =>
-    ipcRenderer.invoke('files:add-pasted-image', data, ext),
+  fetchImage: (url: string) => ipcRenderer.invoke('docs:fetch-image', url),
   copyImageToClipboard: (dataUrl: string, metaJson?: string) =>
     ipcRenderer.invoke('docs:copy-image-to-clipboard', dataUrl, metaJson),
-  readAttachment: (path: string, offset: number, maxChars: number) =>
-    ipcRenderer.invoke('files:read', path, offset, maxChars),
-  readAttachmentImage: (path: string) => ipcRenderer.invoke('files:read-image', path),
-  kbList: () => ipcRenderer.invoke('kb:list'),
-  kbSearch: (query: { q: string; limit?: number }) => ipcRenderer.invoke('kb:search', query),
-  kbRead: (path: string, offset: number) => ipcRenderer.invoke('kb:read', { path, offset }),
-  getPathForFile: (file: File) => webUtils.getPathForFile(file),
   openNewTab: (openPath?: string | null) => ipcRenderer.invoke('win:new', openPath ?? null),
-  openSourcePath: (path: string) => ipcRenderer.invoke('home:open-path', path),
   listDocsTabs: () => ipcRenderer.invoke('win:list'),
   focusDocsTab: (id: string) => ipcRenderer.invoke('win:focus', id),
-  onAiStream: (handler: (chunk: AiStreamChunk) => void) => {
-    const listener = (_event: IpcRendererEvent, chunk: AiStreamChunk) => handler(chunk)
-    ipcRenderer.on('ai:stream-chunk', listener)
-    return () => ipcRenderer.removeListener('ai:stream-chunk', listener)
-  },
   onMenuCommand: (handler: (command: MenuCommand, payload?: string) => void) => {
     const listener = (_event: IpcRendererEvent, command: MenuCommand, payload?: string) =>
       handler(command, payload)
@@ -255,11 +192,8 @@ const api: DesktopApi = {
     ipcRenderer.on('docs:close-check', listener)
     return () => ipcRenderer.removeListener('docs:close-check', listener)
   },
-  reportViewMenuState: (state: { aiSidebar: boolean; darkCanvas: boolean }) =>
-    ipcRenderer.send('docs:view-menu-state', {
-      aiSidebar: state?.aiSidebar === true,
-      darkCanvas: state?.darkCanvas === true,
-    }),
+  reportViewMenuState: (state: { darkCanvas: boolean }) =>
+    ipcRenderer.send('docs:view-menu-state', { darkCanvas: state?.darkCanvas === true }),
   reportCloseCheck: (state: { dirty: boolean; autoSave: boolean; filePath?: string | null }) =>
     ipcRenderer.send('docs:close-check-result', {
       dirty: state?.dirty === true,
@@ -274,15 +208,7 @@ const api: DesktopApi = {
   reportCloseSaveResult: (ok: boolean) => ipcRenderer.send('docs:close-save-result', ok === true),
 }
 
-const projectApi: ProjectApi = {
-  resolveChat: (args) => ipcRenderer.invoke('project:resolveChat', args),
-  appendChat: (args) => ipcRenderer.invoke('project:appendChat', args),
-  loadChat: (args) => ipcRenderer.invoke('project:loadChat', args),
-  rebindChat: (args) => ipcRenderer.invoke('project:rebindChat', args),
-}
-
 contextBridge.exposeInMainWorld('desktop', api)
-contextBridge.exposeInMainWorld('projectApi', projectApi)
 
 // open documents dragged from the OS onto this tab as a new shell tab
 installDropOpenBridge()

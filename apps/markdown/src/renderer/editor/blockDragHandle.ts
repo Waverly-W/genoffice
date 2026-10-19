@@ -175,14 +175,14 @@ function dragHandlePlugin(editor: Editor): Plugin {
         { labelKey: 'blockAddBelow', run: () => onPlusClick() },
         {
           labelKey: 'blockDuplicate',
-          run: () => void uiOp(editor, { op: 'duplicateBlocks', target: 'selection' }),
+          run: () => void uiOp(editor, { op: 'duplicateBlocks' }),
         },
         { labelKey: 'blockMoveUp', run: () => void moveSelectedBlocks(editor, -1) },
         { labelKey: 'blockMoveDown', run: () => void moveSelectedBlocks(editor, 1) },
         {
           labelKey: 'blockDelete',
           danger: true,
-          run: () => void uiOp(editor, { op: 'deleteBlocks', target: 'selection' }),
+          run: () => void uiOp(editor, { op: 'deleteBlocks' }),
         },
       ]
 

@@ -19,7 +19,7 @@ Sheets ist der Excel-ähnliche Editor; die Berechnung läuft in einem separaten 
 - **Seitenlayout**: Designfarben und -schriften, Schalter zum Drucken von Gitternetzlinien und Überschriften, Umbruchvorschau.
 - **Formeln**: AutoSumme und Funktionseinfügung, Namen definieren (auch aus der Auswahl), Spur zum Vorgänger/Nachfolger, Überwachungsfenster, Blatt/Arbeitsmappe neu berechnen.
 - **Daten**: Sortieren und Filtern (einschließlich erweiterter Filter, Filter löschen), Text in Spalten, Arbeitsmappen zusammenführen, alle aktualisieren.
-- **Überprüfen**: Kommentare durchsehen (anzeigen, vorheriger/nächster), übersetzen und die Gruppe **Schützen** — **Blatt schützen**, **Arbeitsmappe schützen** und **Bereiche zur Bearbeitung freigeben**.
+- **Überprüfen**: Kommentare durchsehen (anzeigen, vorheriger/nächster) und die Gruppe **Schützen** — **Blatt schützen**, **Arbeitsmappe schützen** und **Bereiche zur Bearbeitung freigeben**.
   - Der Schutz wird in die .xlsx geschrieben, und auf das, was diese App anwendet, gibt es kein Passwort; derselbe Knopf wird damit zu **Schutz aufheben…** und macht es rückgängig. Ein Schutz aus einem anderen Programm, der _tatsächlich_ ein Passwort hat, lässt sich von hier nicht entfernen.
   - Die beiden Schutzknöpfe wirken sofort — es gibt keinen Dialog zum Abbrechen, nur einen Hinweis in der Statusleiste, dass es beim Speichern geschrieben wird.
   - **Bereiche zur Bearbeitung freigeben** markiert die Zellen, die bearbeitbar bleiben, während der Rest des Blatts gesperrt ist.
@@ -87,13 +87,6 @@ Der Tab „Formeln“, Knopf für Knopf:
 - **Auf der Statusleiste unten**: wählen Sie, welche Statistiken die Statusleiste anzeigt (Mittelwert / Anzahl / Summe, …); die Auswahl bleibt erhalten.
 - **Auf einem Blattreiter unten**: Blätter hinzufügen / umbenennen / löschen / einfärben / ausblenden (Tab-Menü von Univer).
 - Das Kontextmenü der Tab-Leiste oben ist in [Tabs und Fensterverwaltung](help://tabs-and-windows) behandelt.
-
-## KI
-
-- Der KI-Bereich seitlich: Bereich auswählen und in normaler Sprache anweisen (umformatieren, Daten erzeugen, Formeln schreiben).
-- Mit der Schaltfläche 📎 hängen Sie Dateien an eine Eingabe an, oder ziehen Sie sie auf den Bereich; sie reisen mit der Frage mit, und Bilder kommen als Miniaturansichten zurück.
-- Eine Antwort kann auf eine Zelle verweisen — ein Klick auf den Verweis springt im Raster dorthin.
-- Änderungen der KI lassen sich im Bereich zurückrollen.
 
 ## Speichern und exportieren
 

@@ -5,14 +5,13 @@
  * ReviewContext built fresh per call so state never goes stale.
  */
 import type { Editor } from '@tiptap/core'
-import { TextSelection } from '@tiptap/pm/state'
+import { TextSelection, type Transaction } from '@tiptap/pm/state'
 import { nextNoteId, parseDocx, type CommentInfo, type NoteInfo } from '@genoffice/docx-engine'
 import type { Dispatch, SetStateAction } from 'react'
 import { authorName } from './author-name'
 import { fetchDocBytes } from './doc-bytes'
 import type { DocState } from './doc-state'
 import {
-  addCommentToRange,
   addCommentToSelection,
   addReplyToCommentRange,
   commentAnchors,
@@ -30,7 +29,6 @@ import {
 } from './editor/compare'
 import { pendingCommentPluginKey } from './editor/extensions'
 import type { InkAnnotation } from './editor/ink'
-import { renumber } from './ai/note-ops'
 import {
   TRACK_IGNORE,
   acceptAllRevisions,
@@ -72,6 +70,17 @@ export interface ReviewContext {
 }
 
 // ---- References: footnotes / endnotes ----
+
+/** Rewrite every reference mark of `kind` in `tr` to its 1-based document-order number. */
+function renumber(tr: Transaction, kind: 'footnote' | 'endnote'): void {
+  let num = 0
+  tr.doc.descendants((node, pos) => {
+    if (node.type.name !== 'docNoteRef' || node.attrs.kind !== kind) return true
+    num++
+    if (node.attrs.num !== num) tr.setNodeMarkup(pos, undefined, { ...node.attrs, num })
+    return false
+  })
+}
 
 /** dialog submit: create a new note (+ caret marker) or update an existing one */
 export function submitNote(ctx: ReviewContext, text: string): void {
@@ -178,34 +187,11 @@ export function submitNewComment(ctx: ReviewContext, text: string): void {
   ctx.setStatus(t('appCommentAdded'))
 }
 
-/** New thread on an explicit range (AI add_comment); the new id, null when the range holds no text */
-export function addCommentAt(
-  ctx: ReviewContext,
-  range: { from: number; to: number },
-  text: string,
-  author: string,
-  initials?: string,
-): string | null {
-  if (!ctx.editor) return null
-  const id = nextCommentId(ctx.comments)
-  if (!addCommentToRange(ctx.editor, range.from, range.to, id)) return null
-  const now = new Date().toISOString().replace(/\.\d{3}Z$/, 'Z')
-  ctx.setComments((prev) => [
-    ...prev,
-    { id, author, date: now, text, ...(initials ? { initials } : {}) },
-  ])
-  ctx.setCommentsDirty(true)
-  ctx.dirtyRef.current = true
-  ctx.setStatus(t('appCommentAdded'))
-  return id
-}
-
 /** Reply to a comment: the new entry carries parentId; the anchor shares the parent comment's range */
 export function replyToComment(
   ctx: ReviewContext,
   parentId: string,
   text: string,
-  author = authorName(),
 ): boolean {
   if (!ctx.editor) return false
   const id = nextCommentId(ctx.comments)
@@ -214,7 +200,7 @@ export function replyToComment(
     return false
   }
   const now = new Date().toISOString().replace(/\.\d{3}Z$/, 'Z')
-  ctx.setComments((prev) => [...prev, { id, author, date: now, text, parentId }])
+  ctx.setComments((prev) => [...prev, { id, author: authorName(), date: now, text, parentId }])
   ctx.setCommentsDirty(true)
   ctx.dirtyRef.current = true
   ctx.setStatus(t('appCommentReplied'))

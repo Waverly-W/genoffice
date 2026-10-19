@@ -97,8 +97,7 @@ export function TableMenu({ editor, scrollRef, zoom }: Props) {
   }, [editor, inTable, scrollRef, zoom])
 
   if (!editor || !inTable || !rect) return null
-  const run = (action: TableAction) =>
-    uiOp(editor, { op: 'editTable', target: 'selection', action })
+  const run = (action: TableAction) => uiOp(editor, { op: 'editTable', action })
   const ICON = 15
 
   return (

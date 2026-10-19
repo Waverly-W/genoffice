@@ -56,7 +56,7 @@ describe('shortcut registry', () => {
     expect(win('page-break')).toBe('Ctrl+Enter')
     expect(win('nbsp')).toBe('Ctrl+Shift+Space')
     expect(win('style-h1')).toBe('Ctrl+Alt+1')
-    expect(win('proofread')).toBe('F7')
+    expect(win('update-fields')).toBe('F9')
     // platform-specific keys come from the explicit override, not a rewrite
     expect(win('endnote')).toBe('Ctrl+Alt+D')
     expect(shortcutKeys(byId.get('endnote')!, true)).toBe('⌥⌘E')

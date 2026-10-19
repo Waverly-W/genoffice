@@ -3,11 +3,10 @@
 Edytor HTML otwiera pliki .html / .htm w dwóch trybach: **podgląd** (wyrenderowana strona) i **źródło**.
 
 - **Podgląd**: rzeczywiste renderowanie; względne arkusze stylów i obrazy wczytują się obok pliku.
-- **Inspektor podglądu**: kliknij, aby zaznaczyć element, kliknij dwukrotnie, aby edytować jego tekst w miejscu, usuń z paska narzędzi oraz Zapytaj AI o zaznaczenie.
+- **Inspektor podglądu**: kliknij, aby zaznaczyć element, kliknij dwukrotnie, aby edytować jego tekst w miejscu, albo usuń go z paska narzędzi.
 - **Tryb źródła**: edycja HTML; ctrl+F do wyszukiwania, Zastąp wszystko zapisuje przepisany znacznik.
 - **Zapisywanie**: wierne bajt w bajt (BOM/CRLF/końcowa nowa linia zachowane); zapis bez zmian nic nie przepisuje.
 - **Powiększenie**: ctrl+kółko / gest szczypania zmienia skalę podglądu; ctrl+Z wewnątrz podglądu cofa ostatnią zmianę.
-- **Ukryj przed AI**: w trybie źródła prawy przycisk na zaznaczeniu — treść elementu, wartość atrybutu, napisy skryptu — a model widzi zastępczą; wyrenderowana strona nigdy się nie zmienia (szczegóły w rozdziale o panelu AI).
 
 ## Pasek narzędzi
 
@@ -21,7 +20,6 @@ Kliknij dowolny element w podglądzie, a nad nim pojawi się pasek narzędzi:
 - **Wstaw**: nagłówek, akapit, tabela, obraz (przez odnośnik), inne.
 - **Operacje na obrazie** (z zaznaczonym obrazem): przytnij, **usuń tło**, zastąp, zablokuj proporcje.
 - **Operacje na elemencie** (z elementem zaznaczonym w inspektorze podglądu): usuń, zduplikuj, przesuń w górę/w dół.
-- **Przycisk AI**: otwiera panel AI; możesz pytać o zaznaczony element.
 
 ## Eksportowanie
 

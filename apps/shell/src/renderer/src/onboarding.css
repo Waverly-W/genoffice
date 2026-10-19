@@ -1,8 +1,8 @@
 /* First-run onboarding: full-window overlay above the home screen.
  * Layout follows the design spec: 540×420 white
- * card, left-aligned content column, slide-2 credits offer panel, and a
+ * card, left-aligned content column, slide-2 "Join GenTeam" call-to-action, and a
  * dots-left / Skip-Back-Next-right footer. Genspark tokens: black pill primary,
- * gray ramp, brand blue #0f7fff only on the credits line. */
+ * gray ramp, brand blue #0f7fff only on the join button. */
 
 .onb-overlay {
   /* Genspark tokens, scoped to the overlay (home.css keeps its own --accent) */
@@ -157,11 +157,6 @@
   color: var(--onb-text-secondary);
 }
 
-/* slide 3's credits disclaimer reads as a footnote */
-.onb-body-dim {
-  color: var(--onb-text-tertiary);
-}
-
 .onb-consent {
   display: flex;
   align-items: center;
@@ -240,43 +235,14 @@
   background: var(--onb-brand);
 }
 
-/* slide 2's offer: quiet gray lead-in, then the amount in large brand-blue
- * type, grouped with the Join CTA in one panel so the page reads as
- * info / offer / navigation */
-.onb-offer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  width: 100%;
+/* slide 2's community call-to-action, below the body copy */
+.onb-join-row {
   margin-top: 14px;
-  padding: 17px 16px;
-  border-radius: 12px;
-  background: var(--onb-bg-panel);
 }
 
-.onb-credits {
-  margin: 0;
-  font-size: 16px;
-  letter-spacing: -0.154px;
-  line-height: 1.5;
-  color: var(--onb-text-secondary);
-}
-
-.onb-credits strong {
-  display: block;
-  margin-top: 4px;
-  color: var(--onb-brand);
-  font-size: 22px;
-  font-weight: 700;
-  font-style: italic;
-  letter-spacing: -0.3px;
-  line-height: normal;
-}
-
-/* the offer CTA is the dialog's standout action: a weighted blue outline —
- * 1.5px border + semibold + a faint blue seat-shadow so it doesn't float on
- * the tinted panel — inverting to solid blue on hover */
+/* the join CTA is the dialog's standout action: a weighted blue outline —
+ * 1.5px border + semibold + a faint blue seat-shadow — inverting to solid
+ * blue on hover */
 .onb-join {
   display: inline-flex;
   align-items: center;

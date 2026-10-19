@@ -1,7 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { Editor } from '@tiptap/core'
 import { editorExtensions } from '../src/renderer/editor/extensions'
-import { parseHtmlFragment, replaceBlockRange } from '../src/renderer/ai/protocol'
 import { documentToMarkdown, restrictedHtmlToMarkdown } from '../src/renderer/export-markdown'
 
 describe('restrictedHtmlToMarkdown', () => {
@@ -73,11 +72,19 @@ describe('documentToMarkdown', () => {
       content: '<p></p>',
     })
     try {
-      const nodes = parseHtmlFragment('<h1>Doc</h1><p>Hello <strong>world</strong></p>', {
-        bullet: null,
-        ordered: null,
+      editor.commands.setContent({
+        type: 'doc',
+        content: [
+          { type: 'docHeading', attrs: { level: 1 }, content: [{ type: 'text', text: 'Doc' }] },
+          {
+            type: 'docParagraph',
+            content: [
+              { type: 'text', text: 'Hello ' },
+              { type: 'text', text: 'world', marks: [{ type: 'bold' }] },
+            ],
+          },
+        ],
       })
-      replaceBlockRange(editor, 0, editor.state.doc.childCount - 1, nodes)
       expect(documentToMarkdown(editor)).toEqual({
         markdown: '# Doc\n\nHello **world**\n',
         images: [],

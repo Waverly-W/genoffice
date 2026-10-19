@@ -61,7 +61,3 @@ Wszystkie trzy opakowują opublikowane artefakty zamiast przebudowywać aplikacj
 - **Flatpak** — instaluje `.deb` przez mechanizm `extra-data` Flatpaka i uruchamia go pod Zypakiem, który dostosowuje własny sandbox Electrona. Drzewo `/app` jest tylko do odczytu, więc aktualizacje przechodzą przez Flatpak, a nie przez okno aktualizacji w aplikacji.
 - **Nix** — wyrażenie pakietu, które budujesz z checkoutu poleceniem `nix-build packaging/nix`; zobacz `packaging/nix`.
 - **Docker** — obraz headless do konwersji wsadowej (`packaging/docker`). Konwertuje całe drzewo dokumentów Office, Markdown i HTML do PDF przez własny potok eksportu aplikacji, więc wynik jest taki sam jak po Plik ▸ Eksportuj. To narzędzie CLI, a nie serwer.
-
-## Wiersz poleceń jest w zestawie
-
-Każda instalacja zawiera polecenie `genoffice`, które komunikuje się z tymi samymi silnikami co okno, więc nigdy nie rozbieżą się w ocenie pliku. W systemach macOS i Windows znajduje się w pakiecie aplikacji; `genoffice install-cli` umieszcza je w `PATH`. Co potrafi, dowiesz się w rozdziale **Wiersz poleceń i agenci**.

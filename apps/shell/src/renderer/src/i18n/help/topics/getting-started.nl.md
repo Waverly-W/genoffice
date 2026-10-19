@@ -16,7 +16,7 @@ Het venster bestaat uit drie delen:
 
 Een van de volgende:
 
-- Klik op een snelmakenkaart in het onderdeel [Snel starten](help://getting-started) van **Start** (AI Docs, AI Sheets, AI Slides, ...).
+- Klik op een snelmakenkaart in het onderdeel [Snel starten](help://getting-started) van **Start** (Docs, Sheets, Slides, ...).
 - Menu **Bestand ▸ Nieuw**: Docs (⌘N/ctrl+N), Sheets, Slides, Markdown, HTML of PDF.
 - Sleep een bestand naar het venster, of dubbelklik erop in je bestandsverkenner (als GenOffice de standaardapp is).
 
@@ -26,7 +26,6 @@ Een nieuw document opent zonder titel; het bestand op schijf wordt pas aangemaak
 
 - Menu **Bestand ▸ Openen…** (⌘O/ctrl+O) opent de systeemkiezer: .docx / .doc / .xlsx / .xls / .csv / .tsv / .pptx / .ppt / .pdf / .md / .html.
 - Klik op een willekeurig item in de lijst **Recent** op Start.
-- Ook `genoffice <bestand>` in een terminal opent bestanden.
 
 ## Het opslagmodel
 
@@ -87,5 +86,4 @@ Daarmee blijft ⌥⌘D vrij voor GenOffice om op macOS te gebruiken, als een toe
 
 - Waar je bestanden staan: [Het startscherm](help://home-screen).
 - Veel geopende bestanden beheren: [Tabbladen en vensterbeheer](help://tabs-and-windows).
-- Het werk door de AI laten doen: [Het AI-assistentpaneel](help://ai-panel).
-- Taal, thema, standaardapps: [Instellingen, taal, thema en MCP-integraties](help://settings-integrations).
+- Taal, thema, standaardapps: [Instellingen, taal en thema](help://settings).

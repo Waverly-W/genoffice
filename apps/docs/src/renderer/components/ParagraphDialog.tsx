@@ -7,7 +7,7 @@ import { setParaAttrs, activeParaAttrs } from './ribbon-tabs'
 import { setSelectionAlign } from '../editor/direction'
 import { effectiveSizeHalfPoints } from '../editor/text-style-resolve'
 import { textHasCjk } from '../line-metrics'
-import { runUiOps } from '../ai/ops'
+import { setOutlineLevel } from '../editor/paragraph-ops'
 import { useModalKeys } from './modal-keys'
 import { LengthInput } from './LengthInput'
 import {
@@ -178,7 +178,7 @@ export function ParagraphDialog({
       ...changed,
     })
     if (initOutline.editable && outline !== initOutline.level)
-      runUiOps(editor, [{ op: 'setOutlineLevel', target: { scope: 'selection' }, level: outline }])
+      setOutlineLevel(editor, outline)
     onClose()
   }
 

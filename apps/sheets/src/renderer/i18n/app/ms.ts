@@ -142,15 +142,9 @@ export const ms = {
   appRefresh: 'Segar Semula',
   appRefreshHintIn: 'Kira semula Jadual Pangsi semasa',
   appRefreshHintOut: 'Pilih kawasan Jadual Pangsi dahulu, kemudian segar semula',
-  appAttachmentReadFailed: '{name}: gagal dibaca',
-  appTooManyImages: 'Maksimum {max} imej setiap mesej; yang lebihan telah diabaikan',
-  appAppliedRevision:
-    'Digunakan (semakan {revision}) — buat asal dengan ⌘Z, simpan ke fail dengan ⌘S.',
   appCannotReadImage: 'Tidak dapat membaca fail imej.',
   appTableNotDeletable:
     'Jadual "{name}" tidak wujud atau tidak dicipta dalam sesi ini — jadual yang sedia ada dalam fail belum boleh dipadamkan.',
-  appImageNotLoaded: 'Imej gagal dimuatkan: {path}',
-  appApplyFailed: '⚠️ Gagal digunakan: {reason}',
   appPivotChartNeedsFile: 'Buka fail XLSX dahulu — Carta Pangsi ditulis ke dalam fail.',
   appCursorNotInPivot:
     'Kursor tidak berada dalam Jadual Pangsi — pilih sel dalam output Jadual Pangsi dahulu.',
@@ -282,16 +276,6 @@ export const ms = {
   appSaveSecondFailed:
     'Struktur telah disimpan, tetapi fasa kedua (Jadual Pangsi/jadual/nama tertakrif) gagal: {reason}',
   appReadyInitial: 'Sedia untuk perintah AI setempat yang berketentuan.',
-  appAiThinking: 'AI sedang berfikir…',
-  appAiDone: 'AI selesai',
-  appAiTurnLimit:
-    '(Had pusingan panggilan alat untuk permintaan ini telah dicapai; jawapan di atas berdasarkan maklumat yang dibaca setakat ini dan mungkin tidak lengkap.)',
-  appAiTruncatedNote: '(Balasan terpotong kerana had panjang dan mungkin tidak lengkap.)',
-  appAiStopped: '(dihentikan)',
-  appAiNoSummary: 'AI selesai tanpa ringkasan.',
-  appAiNoAction:
-    'AI tidak melakukan sebarang tindakan dan tiada balasan. Cuba lagi atau ubah ayat.',
-  appNewConversation: 'Perbualan baharu dimulakan.',
   appPivotCellNoEdit: 'Sel ini sebahagian daripada Jadual Pangsi — pengeditannya belum disokong.',
   appAreaStreaming: 'Kawasan itu masih dimuatkan secara penstriman — cuba edit lagi sebentar.',
   appFormulaRecordedPartial:
@@ -336,15 +320,8 @@ export const ms = {
   appDvListOptions: 'Senarai: {items}',
   appDvListFromRange: 'Senarai (dari julat {range})',
   appRuleBrokenRef: 'Rujukan rosak (#REF!) — peraturan ini tidak akan berkuat kuasa',
-  appCellStreaming: 'Sel itu masih dimuatkan secara penstriman — cuba lagi sebentar.',
-  appPreviewCreated: 'Pratonton dicipta — tiada apa berubah sehingga anda menggunakannya.',
-  appPreviewCreatedDemo: 'Pratonton dicipta. Keadaan buku kerja tidak berubah.',
-  appPreviewFailed: 'Tidak dapat mencipta pratonton.',
   appApplyTxFailed: 'Tidak dapat menggunakan transaksi.',
   appTxCommitted: 'Transaksi disahkan pada semakan {revision}.',
-  appPreviewOtherWorkbook: 'Pratonton itu milik buku kerja lain — cipta yang baharu.',
-  appPreviewSheetGone: 'Helaian yang dipratonton tidak lagi wujud — cipta pratonton baharu.',
-  appWorkbookChangedSincePreview: 'Buku kerja berubah sejak pratonton — cipta pratonton baharu.',
   appAppliedJournaled: 'Digunakan — perubahan telah direkodkan; simpan dengan ⌘S.',
   appUndoCommitted: 'Buat asal disahkan sebagai semakan {revision}.',
   appUndoFailed: 'Tidak dapat membuat asal.',
@@ -599,8 +576,6 @@ export const ms = {
   appShowCommentsTitle: 'Semat/nyahsemat belon komen sel yang dipilih',
   appStructuralShiftBlocked:
     'Carta atau jadual pada helaian ini berlabuh pada baris/lajur terjejas, jadi tidak boleh dianjak; perubahan struktur tidak disimpan. Buat asal (⌘Z) dan simpan semula.',
-  appAiChangesNotSaved:
-    'Perubahan AI digunakan (belum disimpan). Buat asal dengan ⌘Z; simpan dengan ⌘S.',
   appChartUpdated: 'Carta dikemas kini.',
   appChartNotEditable: 'Carta ini tidak boleh diedit.',
   appChartEditRecorded: 'Suntingan carta direkodkan — simpan dengan ⌘S.',
@@ -769,7 +744,6 @@ export const ms = {
   appFormatPaneDetail: 'Paksi, lebar sela, pemisahan',
   appGroupChartActions: 'Tindakan carta',
   appRemoveFromSheet: 'Alih keluar daripada helaian',
-  appGroupAiAssistant: 'Pembantu AI',
   appAiOpenPanelDetail: 'Bar sisi sembang',
   appGroupAiStarters: 'Mula pantas',
   appAiStarterDetail: 'Hantar ke panel AI',
@@ -1248,11 +1222,6 @@ export const ms = {
   appGroupProofing: 'Pembacaan Pruf',
   appWorkbookStatsLabel: 'Statistik Buku Kerja',
   appSheetsCellsFormulas: 'Helaian, sel, formula',
-  appTranslate: 'Terjemah',
-  appGroupLanguage: 'Bahasa',
-  appTranslateTitle: 'Terjemah pilihan dengan AI',
-  appTranslatePrompt:
-    'Terjemahkan teks dalam julat terpilih ke {language} dan tulis semula ke sel yang sama.',
   appNewCommentDetail: 'Tambah atau edit',
   appDeleteLabel: 'Padam',
   appNoteAtSelection: 'Nota pada pilihan',

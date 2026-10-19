@@ -16,8 +16,8 @@ Tabs: **Home / Insert / Draw / Layout / Design / References / Review / View**, p
 
   ![The References tab](img/docs-references.png)
 
-- **Review**: **Editor** proofreads the whole document for spelling, grammar and punctuation; **Translate**; spell check; comments (**AI Resolve Comments** works through the open ones); track changes with All/Simple markup views, accept/reject, and **AI Revision Summary**; word count; **Compare** against another file; **Protect Document**.
-- **View**: five ways to look at the file — **Print Layout**, **Web Layout**, **Outline**, **Read Mode** and **Page Preview**; zoom out/in/100%/page width/one page; **AI Panel**; **Dark Mode**; ruler, gridlines and the navigation pane; **New Tab**, **Split** and **Switch Tabs**; the searchable **keyboard-shortcuts dialog**.
+- **Review**: spell check; comments; track changes with All/Simple markup views and accept/reject; word count; **Compare** against another file; **Protect Document**.
+- **View**: five ways to look at the file — **Print Layout**, **Web Layout**, **Outline**, **Read Mode** and **Page Preview**; zoom out/in/100%/page width/one page; **Dark Mode**; ruler, gridlines and the navigation pane; **New Tab**, **Split** and **Switch Tabs**; the searchable **keyboard-shortcuts dialog**.
   - **Dark Mode** darkens the page and the canvas around it, never the ribbon — Word's split between a dark editing surface and a dark window. The choice is remembered, and it wins over the app theme either way.
   - **Split** opens a second pane below that scrolls independently and mirrors the first; close it with the × on its edge.
 
@@ -51,7 +51,6 @@ Right-click anywhere in the body — the menu follows what you clicked. Main gro
 - **Clipboard**: cut / copy / paste / **paste as plain text**.
 - **Font, paragraph**: change family and size, bold/italic/underline, alignment/indent/spacing without visiting the ribbon.
 - **Synonyms**: lists synonyms for the selected word; click one to replace.
-- **Translate** (AI): translate the selection into the target language (English, Simplified Chinese, Japanese, Korean, French, German, Spanish, ...) via the AI panel.
 - **New comment**: attach a comment to the selection.
 - **Spelling** (on a misspelled word): suggested replacements, ignore all, add to dictionary, set proofing language.
 - **Hyperlink**: open / edit / copy link / remove hyperlink.
@@ -71,11 +70,6 @@ Right-click anywhere in the body — the menu follows what you clicked. Main gro
 
 - Punctuation compression and kinsoku line-breaking match Word; full/half-width conversion.
 - Font candidates cover the common Windows and macOS CJK family names.
-
-## AI
-
-- Ribbon AI button and the side panel: rewrite, expand, translate, summarize, insert-table presets plus free-form instructions.
-- Every AI turn snapshots first; roll back from the version list, and the rollback itself is undoable.
 
 ## Saving and export
 

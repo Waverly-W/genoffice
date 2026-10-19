@@ -9,8 +9,7 @@ import { useModalDialog } from './modal-dialog'
 
 /// Excel's custom auto-filter ("Advanced" in Data → Sort & Filter), minimal:
 /// one column, up to two conditions joined by AND/OR. OK hands the criteria
-/// to App, which lands them through the same path as the AI op
-/// set_filter_criteria.
+/// to App, which lands them through the shared filter-criteria path.
 
 /// Mirrors both the gateway's custom-filter operators and Univer's
 /// CustomFilterOperator string values (whose .d.ts declaration is missing,

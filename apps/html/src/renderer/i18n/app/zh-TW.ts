@@ -1,15 +1,6 @@
 import type { zh } from './zh'
 
 export const zhTW = {
-  redactMenuLabel: '把選中的內容對 AI 隱藏',
-  redactDialogDesc:
-    '這段文字會留在文件裡，AI 讀到的卻是下面的標記。給它起個名字，AI 才知道它是什麼。',
-  redactDialogScope:
-    '這只針對本應用的 AI。命令列、MCP 工具和無介面匯出會直接讀取文件，仍然看得到這些文字。',
-  redactDialogPlaceholder: '佔位名稱，例如：客戶電話',
-  redactCancel: '取消',
-  redactInsert: '隱藏',
-
   loading: '載入中…',
   loadFailed: '無法開啟檔案',
   untitled: '未命名文件',
@@ -46,7 +37,7 @@ export const zhTW = {
   charCount: '{n} 字元',
   previewNeedsSave: '儲存檔案後，相對路徑的圖片和樣式才會在預覽中顯示',
   inspectHint: '點選預覽中的元素以選取，雙擊編輯文字',
-  nodeDynamic: '此元素由頁面腳本產生，原始碼中不存在；請透過原始碼或 AI 修改',
+  nodeDynamic: '此元素由頁面腳本產生，原始碼中不存在；請透過原始碼修改',
   nodeDynamicShort: '腳本產生',
   nodeDirty: '頁面腳本改動過此元素，寫回原始碼的修改可能被腳本覆蓋',
   nodeDirtyShort: '腳本已改動',

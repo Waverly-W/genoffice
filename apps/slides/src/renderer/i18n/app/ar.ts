@@ -1,16 +1,6 @@
 import type { zh } from './zh'
 
 export const ar = {
-  redactMenuLabel: 'إخفاء التحديد عن الذكاء الاصطناعي',
-  redactDialogDesc:
-    'يبقى ما تختاره في المستند وفي الملف؛ يرى النموذج العلامة أدناه. سمِّها ليعرف ما تمثّله.',
-  redactDialogScope:
-    'الإخفاء يشمل الذكاء الاصطناعي في هذا التطبيق فقط. أما CLI وأدوات MCP والتصدير بدون واجهة فيقرأون الملف مباشرة، وما زالوا يرون هذه الكلمات.',
-  redactDialogPlaceholder: 'اسم العنصر، مثال: هاتف العميل',
-  redactCancel: 'إلغاء',
-  redactInsert: 'إخفاء',
-  redactEnable: 'انقر بزر الفأرة الأيمن على النص المحدد لإخفائه عن النموذج.',
-
   appPhPromptTitle: 'انقر لإضافة عنوان',
   appPhPromptSubtitle: 'انقر لإضافة عنوان فرعي',
   appPhPromptBody: 'انقر لإضافة نص',
@@ -233,8 +223,6 @@ export const ar = {
   appNotesPlaceholder: 'انقر لإضافة ملاحظات المحاضر (يتم حفظها في ملف pptx)',
   appNotesShow: 'إظهار الملاحظات',
   appNotesHide: 'إخفاء الملاحظات',
-  appAiRailExpand: 'توسيع مساعد الذكاء الاصطناعي',
-  appAiRailText: 'AI',
   appStatusBarSlide: 'الشريحة {current} من {total}',
   appStatusBarReady: 'جاهز',
   appMediaCloseTitle: 'إغلاق (Esc)',
@@ -243,17 +231,7 @@ export const ar = {
     'المدة الإجمالية للعرض هي {duration}. هل تريد حفظ توقيتات الشرائح للتقدم التلقائي للشرائح؟',
   appRehearseDiscard: 'عدم الحفظ',
   appRehearseSave: 'حفظ',
-  appSettingsTitle: 'إعدادات الذكاء الاصطناعي',
-  appSettingsAccount: 'حساب Genspark',
-  appSettingsChecking: 'جارٍ التحقق…',
-  appSettingsLoggedIn: 'تم تسجيل الدخول',
-  appSettingsLoggedInEmail: 'تم تسجيل الدخول: {email}',
-  appSettingsLoggedOut: 'لم يتم تسجيل الدخول (تتطلب ميزات الذكاء الاصطناعي حساب Genspark)',
-  appSettingsLoginPending: 'في انتظار تسجيل الدخول عبر المتصفح…',
-  appSettingsLogin: 'تسجيل الدخول إلى Genspark',
-  appSettingsModel: 'النموذج',
   appSettingsCancel: 'إلغاء',
-  appSettingsSave: 'حفظ',
   appCropHint: 'Enter للتأكيد · Esc للإلغاء · انقر بالخارج للتأكيد',
   appStatusZoomsInserted: 'تم إدراج {count} تكبير/تصغير: انقر أثناء العرض للانتقال إلى الشرائح',
   appStatusSummaryZoomInserted: 'تم إدراج شريحة تكبير/تصغير الملخص مع {count} مربعات',

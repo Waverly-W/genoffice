@@ -47,12 +47,6 @@ Menu zależy od miejsca, w którym klikniesz prawym przyciskiem:
 - Wzorce slajdów i układy: ujednolicają czcionki, symbole zastępcze i tła; nowe slajdy dziedziczą wybrany układ.
 - Kolory i czcionki motywu stosują się zgodnie z motywem.
 
-## Generowanie przez AI
-
-- Karta AI Slides na stronie głównej: podaj temat lub konspekt, a AI zbuduje prezentację; gdy generowanie w chmurze się nie powiedzie, następuje powrót do generowania lokalnego.
-- Dalej możesz dopracowywać materiał panelem AI.
-- Prawy przycisk na zaznaczeniu tekstu lub elemencie obraz/wideo/audio ▸ **Ukryj zaznaczenie przed AI** chowa go przed oczami modelu (szczegóły w rozdziale o panelu AI); slajd z ukrytą treścią pomija automatyczne sprawdzanie zrzutem.
-
 ## Pokaz i eksport
 
 - **Eksportuj jako PDF**: rasteryzacja strona po stronie w ukrytym oknie, z paskiem postępu i zabezpieczeniem czasowym dla dużych prezentacji.

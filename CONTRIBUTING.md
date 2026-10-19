@@ -26,7 +26,7 @@ directly on this repository as usual.
   Each app is an npm workspace with its own `src/main` (Electron main
   process), `src/renderer` (React UI), and `tests/`.
 - `packages/*` — pure TypeScript engine and shared packages (no Electron
-  dependency, unit-tested): docx/pptx engines, AI agent core, providers,
+  dependency, unit-tested): docx/pptx/xlsx engines, format converters,
   i18n, UI kit.
 - `apps/sheets/native/xlsx-engine` — Rust xlsx engine (runs as a sidecar process) for xlsx import/export.
 
@@ -45,16 +45,11 @@ All pure TypeScript, no Electron dependency, unit-tested (except the UI kit):
   the app's own Chromium, reduced in-browser to a document intent tree, and
   written as native OOXML with the `docx` library; only visuals with no Word
   counterpart are screenshotted. Drives the HTML app's Export as Word.
-- `packages/file-parse` — text extraction for AI attachments (office formats,
-  text formats).
-- `packages/agent-core` — the AI agent loop and skill composition shared by
-  every app.
-- `packages/ai-provider` — provider abstraction and streaming for the model
-  backends.
-- `packages/ai-search` — Genspark auth + web/image search tools.
-- `packages/i18n`, `packages/ui`, `packages/project-store`,
-  `packages/electron-utils` — shared i18n core, React UI kit, recent-files
-  store, and Electron main-process helpers.
+- `packages/file-parse` — text extraction (office and text formats) for the
+  Home file search index.
+- `packages/pptx-ops` — the slides edit/transaction layer.
+- `packages/i18n`, `packages/ui`, `packages/electron-utils` — shared i18n
+  core, React UI kit, and Electron main-process helpers.
 
 ### Architecture notes (docx round trip)
 
@@ -62,7 +57,7 @@ All pure TypeScript, no Electron dependency, unit-tested (except the UI kit):
 open docx ─► archive original by hash (never touched)
           ─► docx-engine parses word/document.xml top-level elements (w:p / w:tbl / …)
           ─► Block tree, each block anchored by docxIndex + original XML slice
-          ─► Tiptap streaming editor (manual + AI editing, dirty tracking)
+          ─► Tiptap editor (editing, dirty tracking)
 save      ─► dirty blocks → OOXML fragments (referencing existing styles only)
           ─► splice into original document.xml (untouched blocks keep original bytes)
           ─► repack zip; all other entries copied byte-for-byte
@@ -149,21 +144,14 @@ or copy an existing `target/release/xlsx-sidecar.exe` to
 None are required — the apps run with all of these unset. They exist for
 testing and local overrides:
 
-| Variable                                                                                          | Effect                                                                           |
-| ------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `BUILD_DIR`                                                                                       | Override the electron-builder output directory (default `apps/shell/release`)    |
-| `GENOFFICE_USER_DATA`                                                                             | Override the Electron userData directory (test isolation)                        |
-| `GENOFFICE_LANG`                                                                                  | Force the UI language instead of following the OS locale                         |
-| `GENOFFICE_FAKE_UPDATE`                                                                           | Exercise the updater UI without a real release feed                              |
-| `GENOFFICE_CLOUD_SLIDE`, `GENOFFICE_CLOUD_SLIDE_TIER`                                             | Route slide generation through the cloud endpoint                                |
-| `GSK_API_KEY`, `GSK_CLI_PATH`                                                                     | Genspark credentials / CLI location for the built-in AI provider                 |
-| `AI_SEARCH_DISABLE_GSK`, `SERPER_API_KEY`, `SERPLY_API_KEY`, `TAVILY_API_KEY`, `PARALLEL_API_KEY` | Disable the gsk search backend / supply a Serper, Serply, Tavily or Parallel key |
-| `XLSX_SIDECAR_PATH`, `XLSX_OPEN_PATH`, `XLSX_DEBUG_PORT`                                          | Point at a locally built xlsx sidecar and its debug port                         |
-| `*_DEV_PORT`, `*_RENDERER_URL`                                                                    | Per-app Vite dev server ports and renderer URLs (set by `npm run dev`)           |
-
-AI features degrade rather than break without credentials: requests surface an
-inline sign-in prompt, and web search falls back to keyless backends (Parallel's
-free Search MCP, then DuckDuckGo).
+| Variable                                                 | Effect                                                                        |
+| -------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `BUILD_DIR`                                              | Override the electron-builder output directory (default `apps/shell/release`) |
+| `GENOFFICE_USER_DATA`                                    | Override the Electron userData directory (test isolation)                     |
+| `GENOFFICE_LANG`                                         | Force the UI language instead of following the OS locale                      |
+| `GENOFFICE_FAKE_UPDATE`                                  | Exercise the updater UI without a real release feed                           |
+| `XLSX_SIDECAR_PATH`, `XLSX_OPEN_PATH`, `XLSX_DEBUG_PORT` | Point at a locally built xlsx sidecar and its debug port                      |
+| `*_DEV_PORT`, `*_RENDERER_URL`                           | Per-app Vite dev server ports and renderer URLs (set by `npm run dev`)        |
 
 ## Coding conventions
 

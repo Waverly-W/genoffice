@@ -1,15 +1,6 @@
 import type { zh } from './zh'
 
 export const pl = {
-  redactMenuLabel: 'Ukryj zaznaczenie przed AI',
-  redactDialogDesc:
-    'Słowa zostają w dokumencie i w pliku; model widzi tylko symbol. Nadaj mu nazwę, by wiedział, co oznacza.',
-  redactDialogScope:
-    'Ukrywanie dotyczy tylko AI w tej aplikacji. CLI, narzędzia MCP i eksport bez okienka czytują plik bezpośrednio i nadal widzą te słowa.',
-  redactDialogPlaceholder: 'Nazwa symbolu, np. telefon klienta',
-  redactCancel: 'Anuluj',
-  redactInsert: 'Ukryj',
-
   loading: 'Wczytywanie…',
   loadFailed: 'Nie można otworzyć pliku',
   untitled: 'Bez tytułu',
@@ -47,7 +38,7 @@ export const pl = {
   previewNeedsSave: 'Względne obrazy i style pojawią się w podglądzie po zapisaniu pliku',
   inspectHint: 'Kliknij element w podglądzie, aby go zaznaczyć; dwukrotne kliknięcie edytuje tekst',
   nodeDynamic:
-    'Ten element został utworzony przez skrypt strony i nie istnieje w źródle; edytuj przez źródło lub AI',
+    'Ten element został utworzony przez skrypt strony i nie istnieje w źródle; edytuj przez źródło',
   nodeDynamicShort: 'wygenerowany skryptem',
   nodeDirty: 'Skrypt strony zmienił ten element; zmiany zapisane w źródle mogą zostać nadpisane',
   nodeDirtyShort: 'zmieniony skryptem',

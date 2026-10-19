@@ -1,15 +1,6 @@
 import type { zh } from './zh'
 
 export const nl = {
-  redactMenuLabel: 'Selectie verbergen voor de AI',
-  redactDialogDesc:
-    'De woorden blijven in het document en het bestand; het model ziet alleen de placeholder. Geef hem een naam.',
-  redactDialogScope:
-    'Verbergen geldt alleen voor de AI in deze app. De CLI, MCP-tools en de export zonder venster lezen het bestand rechtstreeks en zien deze woorden nog steeds.',
-  redactDialogPlaceholder: 'Naam van placeholder, bv. telefoonnummer klant',
-  redactCancel: 'Annuleren',
-  redactInsert: 'Verbergen',
-
   loading: 'Laden…',
   loadFailed: 'Kan het bestand niet openen',
   untitled: 'Naamloos',
@@ -50,7 +41,7 @@ export const nl = {
   inspectHint:
     'Klik op een element in het voorbeeld om het te selecteren, dubbelklik om tekst te bewerken',
   nodeDynamic:
-    'Dit element is door het paginascript gemaakt en bestaat niet in de bron; bewerk via de bron of AI',
+    'Dit element is door het paginascript gemaakt en bestaat niet in de bron; bewerk via de bron',
   nodeDynamicShort: 'door script gemaakt',
   nodeDirty:
     'Het paginascript heeft dit element gewijzigd; bewerkingen in de bron kunnen worden overschreven',

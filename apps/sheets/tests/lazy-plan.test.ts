@@ -1,9 +1,8 @@
 import { describe, expect, it } from 'vitest'
 
-import { planPrompt } from '../src/ai/deterministic-planner'
 import { workbookCommandBatchSchema } from '@genoffice/xlsx-gateway/domain/workbook-dsl'
 import type { CellState } from '@genoffice/xlsx-gateway/domain/workbook.types'
-import { buildLazyChangePlan, planStillMatches } from '../src/renderer/lazy-plan'
+import { buildLazyChangePlan } from '../src/renderer/lazy-plan'
 
 const CELLS: Record<string, CellState> = {
   B2: { value: 'existing' },
@@ -11,16 +10,20 @@ const CELLS: Record<string, CellState> = {
 }
 const readCell = (address: string): CellState => CELLS[address] ?? { value: null }
 
-function plan(prompt: string) {
-  const batch = workbookCommandBatchSchema.parse(
-    planPrompt(prompt, { revision: 0, sheetId: 'sheet-1' }),
-  )
+function plan(operation: Record<string, unknown>) {
+  const batch = workbookCommandBatchSchema.parse({
+    dslVersion: 1,
+    transactionId: 'tx-test',
+    baseRevision: 0,
+    summary: 'test',
+    operations: [{ sheetId: 'sheet-1', ...operation }],
+  })
   return buildLazyChangePlan(batch, readCell, () => 'Data')
 }
 
 describe('buildLazyChangePlan', () => {
   it('previews a value set with the live cell as before-state', () => {
-    const result = plan('set B2 to 4242')
+    const result = plan({ op: 'set_cell', address: 'B2', value: 4242 })
     expect(result.cellChanges).toEqual([
       {
         sheetId: 'sheet-1',
@@ -33,7 +36,7 @@ describe('buildLazyChangePlan', () => {
   })
 
   it('previews a formula set over a formula cell', () => {
-    const result = plan('formula C3 = MAX(A1:A9)')
+    const result = plan({ op: 'set_formula', address: 'C3', formula: '=MAX(A1:A9)' })
     expect(result.cellChanges).toEqual([
       {
         sheetId: 'sheet-1',
@@ -45,7 +48,7 @@ describe('buildLazyChangePlan', () => {
   })
 
   it('previews a sheet rename with the current name as before-state', () => {
-    const result = plan('rename sheet to Budget 2027')
+    const result = plan({ op: 'rename_sheet', name: 'Budget 2027' })
     expect(result.sheetRenames).toEqual([
       {
         sheetId: 'sheet-1',
@@ -57,7 +60,7 @@ describe('buildLazyChangePlan', () => {
   })
 
   it('rejects an invalid sheet name through the DSL schema', () => {
-    expect(() => plan('rename sheet to bad[name]')).toThrow()
+    expect(() => plan({ op: 'rename_sheet', name: 'bad[name]' })).toThrow()
   })
 })
 
@@ -98,11 +101,6 @@ describe('buildLazyChangePlan: DSL v2 operations', () => {
       'Insert 2 rows before row 2',
       'Add sheet "Summary"',
     ])
-  })
-
-  it('a structural-only plan always still matches (no cell CAS to verify)', () => {
-    const result = planBatch([{ op: 'delete_rows', sheetId: 'sheet-1', row: 5, count: 1 }])
-    expect(planStillMatches(result, () => ({ value: 'anything' }))).toBe(true)
   })
 
   it('previews format_range as a labeled format change', () => {
@@ -271,43 +269,5 @@ describe('buildLazyChangePlan: cross-sheet routing', () => {
       { sheetId: 'sheet-2', address: 'A1', before: { value: 'other' }, after: { value: 'new' } },
     ])
     expect(result.sheetRenames).toEqual([{ sheetId: 'sheet-2', before: 'Other', after: 'Renamed' }])
-  })
-})
-
-describe('planStillMatches', () => {
-  it('accepts when previewed cells are unchanged and rejects drift', () => {
-    const result = plan('set B2 to 4242')
-    expect(planStillMatches(result, readCell)).toBe(true)
-    expect(planStillMatches(result, () => ({ value: 'changed meanwhile' }))).toBe(false)
-  })
-
-  it('treats formula changes as drift', () => {
-    const result = plan('formula C3 = MAX(A1:A9)')
-    expect(planStillMatches(result, readCell)).toBe(true)
-    expect(planStillMatches(result, () => ({ value: null, formula: '=SUM(A1:A3)' }))).toBe(false)
-  })
-
-  it("checks drift against each change's own sheet", () => {
-    const result = buildLazyChangePlan(
-      workbookCommandBatchSchema.parse({
-        dslVersion: 1,
-        transactionId: 'tx-cross-drift',
-        baseRevision: 0,
-        summary: 'cross-sheet drift',
-        operations: [{ op: 'set_cell', sheetId: 'sheet-2', address: 'A1', value: 'new' }],
-      }),
-      (_address, sheetId) => (sheetId === 'sheet-2' ? { value: 'other' } : { value: 'active' }),
-      () => 'Other',
-    )
-    expect(
-      planStillMatches(result, (_address, sheetId) =>
-        sheetId === 'sheet-2' ? { value: 'other' } : { value: 'changed' },
-      ),
-    ).toBe(true)
-    expect(
-      planStillMatches(result, (_address, sheetId) =>
-        sheetId === 'sheet-2' ? { value: 'changed' } : { value: 'active' },
-      ),
-    ).toBe(false)
   })
 })

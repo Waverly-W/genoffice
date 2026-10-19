@@ -19,7 +19,7 @@ Sheets ialah editor yang menyerupai Excel. Pengiraan dijalankan dalam proses ber
 - **Bentangan Halaman**: warna dan fon tema, suis untuk cetak garisan grid dan tajuk, pratonton pemisah halaman.
 - **Formula**: jumlah automatik dan sisip fungsi, takrif nama (juga daripada pilihan), jejak pendahulu dan bergantung, tetingkap pemerhati, kira semula helaian atau buku kerja.
 - **Data**: isihan dan penapisan (termasuk penapis lanjutan dan kosongkan penapis), teks ke lajur, gabung buku kerja, muat semula semua.
-- **Semakan**: semak komen (tunjukkan, sebelumnya / seterusnya), terjemah, dan kumpulan **Perlindungan** — **Lindungi Helaian**, **Lindungi Buku Kerja** dan **Benarkan Edit Julat**.
+- **Semakan**: semak komen (tunjukkan, sebelumnya / seterusnya) dan kumpulan **Perlindungan** — **Lindungi Helaian**, **Lindungi Buku Kerja** dan **Benarkan Edit Julat**.
   - Perlindungan ditulis ke dalam .xlsx dan tiada kata laluan pada apa yang digunakan oleh aplikasi ini, jadi butang yang sama menjadi **Nyahlindung…** dan membatalkannya. Perlindungan daripada program lain yang _benar-benar_ membawa kata laluan tidak boleh dibuang dari sini.
   - Kedua-dua butang perlindungan berkuat kuasa serta-merta — tiada dialog untuk dibatalkan, hanya nota pada baris status bahawa ia akan ditulis semasa menyimpan.
   - **Benarkan Edit Julat** menanda sel yang kekal boleh disunting sementara bahagian lain helaian dikunci.
@@ -87,13 +87,6 @@ Tab Formula, butiran demi butiran:
 - **Pada bar status di bawah**: pilih statistik yang mahu ditunjukkan pada bar status, iaitu min / bilangan / jumlah, dan pilihan itu akan kekal.
 - **Pada tab helaian di bawah**: tambah / namakan semula / padam / warnakan / sembunyikan helaian, iaitu menu tab Univer.
 - Menu konteks baris tab di atas diterangkan dalam [Tab dan pengurusan tingkap](help://tabs-and-windows).
-
-## AI
-
-- Panel AI di sisi: pilih julat dan berikan arahan dalam bahasa biasa, seperti memformat semula, menjana data, atau menulis formula.
-- Lampirkan fail pada arahan dengan butang 📎, atau seret ke dalam panel tersebut; fail ikut bersama soalan dan gambar kembali sebagai lakaran kecil.
-- Satu jawapan boleh memetik sel — klik rujukan itu dan grid akan melompat ke sana.
-- Perubahan oleh AI boleh dibatalkan daripada panel tersebut.
 
 ## Simpanan dan eksport
 

@@ -7,7 +7,6 @@ import {
   type HfStripGeom,
 } from '../src/renderer/editor/hf-dom'
 import { hfDocJson, hfValueFromDoc } from '../src/renderer/editor/hf-editor'
-import { applyHfText } from '../src/renderer/editor/hf-text'
 
 /**
  * A header paragraph "text <tab> inline picture" with a left stop whose segment
@@ -63,20 +62,6 @@ describe('inline picture after a header tab', () => {
 })
 
 describe('pictures survive header text edits', () => {
-  it('applyHfText keeps a leading picture first and a trailing one last', () => {
-    const lead: HfParagraph = { runs: [{ text: '', image: picture }, { text: 'Title' }] }
-    const trail: HfParagraph = { runs: [{ text: 'Title\t' }, { text: '', image: picture }] }
-    const edited = applyHfText({ text: 'Title', paras: [lead, trail] }, 'A\nB')
-    expect(edited.paras![0].runs.map((r) => [r.text, !!r.image])).toEqual([
-      ['', true],
-      ['A', false],
-    ])
-    expect(edited.paras![1].runs.map((r) => [r.text, !!r.image])).toEqual([
-      ['B', false],
-      ['', true],
-    ])
-  })
-
   it('hfDocJson leaves pictures out of the editor and hfValueFromDoc restores them', () => {
     const base = {
       text: 'Title',

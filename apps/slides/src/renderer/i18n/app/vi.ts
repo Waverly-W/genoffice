@@ -1,16 +1,6 @@
 import type { zh } from './zh'
 
 export const vi = {
-  redactMenuLabel: 'Ẩn phần đã chọn khỏi AI',
-  redactDialogDesc:
-    'Nội dung đã chọn vẫn còn trong tài liệu và tệp; mô hình chỉ thấy placeholder bên dưới. Đặt tên để mô hình biết nó đại diện cho điều gì.',
-  redactDialogScope:
-    'Điều này chỉ áp dụng cho AI trong ứng dụng này. CLI, các công cụ MCP và bản xuất không có cửa sổ đều đọc thẳng tệp, nên chúng vẫn thấy những từ này.',
-  redactDialogPlaceholder: 'Tên placeholder, ví dụ: số điện thoại khách hàng',
-  redactCancel: 'Hủy',
-  redactInsert: 'Ẩn',
-  redactEnable: 'Nhấp chuột phải vào phần đã chọn để ẩn khỏi mô hình.',
-
   appPhPromptTitle: 'Bấm để thêm tiêu đề',
   appPhPromptSubtitle: 'Bấm để thêm phụ đề',
   appPhPromptBody: 'Bấm để thêm văn bản',
@@ -236,8 +226,6 @@ export const vi = {
   appNotesPlaceholder: 'Bấm để thêm ghi chú diễn giả (được lưu vào tệp .pptx)',
   appNotesShow: 'Hiện ghi chú',
   appNotesHide: 'Ẩn ghi chú',
-  appAiRailExpand: 'Mở rộng trợ lý AI',
-  appAiRailText: 'AI',
   appStatusBarSlide: 'Trang chiếu {current} trên {total}',
   appStatusBarReady: 'Sẵn sàng',
   appMediaCloseTitle: 'Đóng (Esc)',
@@ -246,17 +234,7 @@ export const vi = {
     'Tổng thời gian cho buổi trình chiếu là {duration}. Bạn có muốn lưu thời gian trang chiếu để tự động chuyển trang không?',
   appRehearseDiscard: 'Không lưu',
   appRehearseSave: 'Lưu',
-  appSettingsTitle: 'Cài đặt AI',
-  appSettingsAccount: 'Tài khoản Genspark',
-  appSettingsChecking: 'Đang kiểm tra…',
-  appSettingsLoggedIn: 'Đã đăng nhập',
-  appSettingsLoggedInEmail: 'Đã đăng nhập: {email}',
-  appSettingsLoggedOut: 'Chưa đăng nhập (các tính năng AI yêu cầu tài khoản Genspark)',
-  appSettingsLoginPending: 'Đang chờ đăng nhập trên trình duyệt…',
-  appSettingsLogin: 'Đăng nhập vào Genspark',
-  appSettingsModel: 'Mô hình',
   appSettingsCancel: 'Hủy',
-  appSettingsSave: 'Lưu',
   appCropHint: 'Enter để xác nhận · Esc để hủy · Nhấp ra ngoài để xác nhận',
   appStatusZoomsInserted:
     'Đã chèn {count} mục thu phóng: nhấp trong khi trình chiếu để chuyển đến trang chiếu tương ứng',

@@ -61,7 +61,3 @@ Las tres envuelven los artefactos publicados en lugar de recompilar la aplicaci�
 - **Flatpak** — instala el `.deb` a través del mecanismo `extra-data` de Flatpak y lo ejecuta bajo Zypak, que adapta el propio sandbox de Electron. El árbol `/app` es de solo lectura, así que las actualizaciones pasan por Flatpak y no por el diálogo de actualización de la aplicación.
 - **Nix** — una expresión de paquete que usted compila desde una copia local del repositorio con `nix-build packaging/nix`; véase `packaging/nix`.
 - **Docker** — una imagen de conversión por lotes sin interfaz (`packaging/docker`). Convierte un árbol entero de documentos de Office, Markdown y HTML a PDF mediante la propia canalización de exportación de la aplicación, así que la salida es la misma que produciría Archivo ▸ Exportar. Es una utilidad de línea de comandos, no un servidor.
-
-## La línea de comandos viene incluida
-
-Cada instalación trae un comando `genoffice` que habla con los mismos motores que la ventana, de modo que ambos nunca discrepan sobre un archivo. En macOS y Windows está dentro del paquete de la aplicación; `genoffice install-cli` lo pone en su `PATH`. Vea **Línea de comandos y agentes** para saber qué puede hacer.

@@ -3,8 +3,7 @@ import { Editor } from '@tiptap/core'
 import { parseDocx, saveDocx } from '@genoffice/docx-engine'
 import { buildDocx } from '../../../packages/docx-engine/tests/helpers/build-docx'
 import { blocksToPmDoc, pmDocToSavePlan, type PmNode } from '../src/renderer/editor/convert'
-import { executeTool } from '../src/renderer/ai/tools'
-import { runUiOps } from '../src/renderer/ai/ops'
+import { setBlockParagraphAttrs } from './helpers/paragraph-attrs'
 
 /**
  * Indent edits on paragraphs laid out with character-unit indents
@@ -31,7 +30,6 @@ const BODY =
   // the paragraph's own character-unit indent (12pt text: 2 chars = 480 twips)
   '<w:p><w:pPr><w:ind w:firstLineChars="200" w:firstLine="480"/></w:pPr>' +
   '<w:r><w:t>direct two-character paragraph</w:t></w:r></w:p>'
-const NUM_IDS = { bullet: null, ordered: null }
 
 const editors: Editor[] = []
 afterEach(() => {
@@ -50,19 +48,8 @@ async function openEditor() {
   return { editor, parsed }
 }
 
-async function setFirstLine(editor: Editor, indentFirstLine: number | null) {
-  const exec = await executeTool(
-    editor,
-    {
-      id: 't',
-      name: 'apply_ops',
-      input: {
-        ops: [{ op: 'setParagraphFormat', target: { blockIndexes: [0, 1] }, indentFirstLine }],
-      },
-    },
-    NUM_IDS,
-  )
-  expect(exec.isError).toBeFalsy()
+function setFirstLine(editor: Editor, indentFirstLine: number | null) {
+  setBlockParagraphAttrs(editor, [0, 1], { indentFirstLine })
 }
 
 describe('character-unit indents: saving an indent edit', () => {
@@ -78,7 +65,7 @@ describe('character-unit indents: saving an indent edit', () => {
 
   it('a new first-line indent is saved with the cancel and survives a reload', async () => {
     const { editor, parsed } = await openEditor()
-    await setFirstLine(editor, 720)
+    setFirstLine(editor, 720)
     const plan = pmDocToSavePlan(editor.getJSON() as PmNode, parsed.blocks)
     expect(plan.changedCount).toBe(2)
     const saved = await saveDocx(parsed, plan.saveBlocks)
@@ -96,7 +83,7 @@ describe('character-unit indents: saving an indent edit', () => {
 
   it('removing the first-line indent writes the bare cancel', async () => {
     const { editor, parsed } = await openEditor()
-    await setFirstLine(editor, null)
+    setFirstLine(editor, null)
     const plan = pmDocToSavePlan(editor.getJSON() as PmNode, parsed.blocks)
     const saved = await saveDocx(parsed, plan.saveBlocks)
 
@@ -110,18 +97,7 @@ describe('character-unit indents: saving an indent edit', () => {
 
   it('an unrelated edit keeps the paragraphs character-indented', async () => {
     const { editor, parsed } = await openEditor()
-    const exec = await executeTool(
-      editor,
-      {
-        id: 't',
-        name: 'apply_ops',
-        input: {
-          ops: [{ op: 'setParagraphFormat', target: { blockIndexes: [1] }, align: 'center' }],
-        },
-      },
-      NUM_IDS,
-    )
-    expect(exec.isError).toBeFalsy()
+    setBlockParagraphAttrs(editor, [1], { align: 'center' })
     const plan = pmDocToSavePlan(editor.getJSON() as PmNode, parsed.blocks)
     const saved = await saveDocx(parsed, plan.saveBlocks)
     const reparsed = await parseDocx(saved)
@@ -136,14 +112,8 @@ describe('character-unit indents: saving an indent edit', () => {
   it('the dialog’s character-unit edit rewrites w:firstLineChars and survives a reload', async () => {
     const { editor, parsed } = await openEditor()
     // the Paragraph dialog applies the char unit with its resolved twips twin
-    // (3 chars at 12pt = 720 twips) through the UI op setParagraphAttrs
-    runUiOps(editor, [
-      {
-        op: 'setParagraphAttrs',
-        target: { blockIndexes: [2] },
-        attrs: { indentFirstLineChars: 300, indentFirstLine: 720 },
-      },
-    ])
+    // (3 chars at 12pt = 720 twips) as raw paragraph attrs
+    setBlockParagraphAttrs(editor, [2], { indentFirstLineChars: 300, indentFirstLine: 720 })
     const plan = pmDocToSavePlan(editor.getJSON() as PmNode, parsed.blocks)
     const saved = await saveDocx(parsed, plan.saveBlocks)
 

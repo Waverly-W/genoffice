@@ -47,12 +47,6 @@ Menu menyesuaikan tempat Anda klik:
 - Master dan tata letak: menyatukan font, placeholder, dan latar; slide baru mewarisi tata letak yang dipilih.
 - Warna dan font tema mengikuti tema.
 
-## Pembuatan dengan AI
-
-- Kartu AI Slides di Beranda: berikan topik atau kerangka, lalu AI menyusun seluruh dek; jika pembuatan cloud gagal, sistem kembali ke pembuatan lokal.
-- Terus sesuaikan dengan panel AI setelahnya.
-- Klik kanan pada seleksi teks atau elemen gambar/video/audio ▸ **Sembunyikan seleksi dari AI** menjauhkannya dari mata model (rincian di bab panel AI); slide dengan konten tersembunyi melewatkan pemeriksaan tangkapan layar otomatis.
-
 ## Presentasi dan ekspor
 
 - **Ekspor sebagai PDF**: rasterisasi halaman demi halaman di jendela tersembunyi, dengan progres dan pengawas waktu untuk dek besar.

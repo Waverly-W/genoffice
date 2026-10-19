@@ -70,7 +70,7 @@ function focusRail(cls: 'slide-list' | 'outline-pane' | 'sorter-view' = 'slide-l
 
 function selectText(): void {
   const div = document.createElement('div')
-  div.textContent = 'answer from the AI panel'
+  div.textContent = 'selected text outside the canvas'
   document.body.appendChild(div)
   const range = document.createRange()
   range.selectNodeContents(div)
@@ -78,53 +78,6 @@ function selectText(): void {
   sel.removeAllRanges()
   sel.addRange(range)
 }
-
-describe('AI composer history shortcuts', () => {
-  beforeEach(() => {
-    vi.clearAllMocks()
-    document.body.innerHTML = ''
-  })
-
-  it.each([
-    ['Ctrl+Shift+Z', 'Z', true],
-    ['Ctrl+Y', 'y', false],
-  ])('routes %s to deck redo while the cleared composer is untouched', (_label, key, shiftKey) => {
-    const textarea = document.createElement('textarea')
-    textarea.dataset.slidesAiInput = 'true'
-    textarea.dataset.deckUndoReady = 'true'
-    document.body.appendChild(textarea)
-    textarea.focus()
-    const redo = vi.fn(async () => {})
-    const ctx = makeCtx({ redo })
-    textarea.addEventListener('keydown', (event) => handleGlobalKeydown(ctx, event, 'Win32'))
-    const event = keydown(key, { metaKey: false, ctrlKey: true, shiftKey })
-
-    textarea.dispatchEvent(event)
-
-    expect(event.defaultPrevented).toBe(true)
-    expect(redo).toHaveBeenCalledOnce()
-  })
-
-  it.each([
-    ['Ctrl+Shift+Z', 'Z', true],
-    ['Ctrl+Y', 'y', false],
-  ])('preserves native %s after the composer is edited', (_label, key, shiftKey) => {
-    const textarea = document.createElement('textarea')
-    textarea.dataset.slidesAiInput = 'true'
-    textarea.dataset.deckUndoReady = 'false'
-    document.body.appendChild(textarea)
-    textarea.focus()
-    const redo = vi.fn(async () => {})
-    const ctx = makeCtx({ redo })
-    textarea.addEventListener('keydown', (event) => handleGlobalKeydown(ctx, event, 'Win32'))
-    const event = keydown(key, { metaKey: false, ctrlKey: true, shiftKey })
-
-    textarea.dispatchEvent(event)
-
-    expect(event.defaultPrevented).toBe(false)
-    expect(redo).not.toHaveBeenCalled()
-  })
-})
 
 describe('slide show shortcuts', () => {
   beforeEach(() => {

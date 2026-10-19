@@ -1,16 +1,6 @@
 import type { zh } from './zh'
 
 export const pt = {
-  redactMenuLabel: 'Ocultar a seleção da IA',
-  redactDialogDesc:
-    'O conteúdo selecionado continua no documento e no arquivo; o modelo vê apenas o marcador. Dê-lhe um nome para que saiba o que representa.',
-  redactDialogScope:
-    'Isso se aplica apenas à IA deste aplicativo. A CLI, as ferramentas MCP e a exportação sem interface leem o arquivo diretamente e ainda veem essas palavras.',
-  redactDialogPlaceholder: 'Nome do marcador, ex.: telefone do cliente',
-  redactCancel: 'Cancelar',
-  redactInsert: 'Ocultar',
-  redactEnable: 'Clique com o botão direito numa seleção para ocultá-la do modelo.',
-
   appPhPromptTitle: 'Clique para adicionar um título',
   appPhPromptSubtitle: 'Clique para adicionar um subtítulo',
   appPhPromptBody: 'Clique para adicionar texto',
@@ -246,8 +236,6 @@ export const pt = {
   appNotesPlaceholder: 'Clique para adicionar anotações do orador (salvas no .pptx)',
   appNotesShow: 'Mostrar anotações',
   appNotesHide: 'Ocultar anotações',
-  appAiRailExpand: 'Expandir assistente de IA',
-  appAiRailText: 'IA',
   appStatusBarSlide: 'Slide {current} de {total}',
   appStatusBarReady: 'Pronto',
   appMediaCloseTitle: 'Fechar (Esc)',
@@ -256,17 +244,7 @@ export const pt = {
     'O tempo total da apresentação foi de {duration}. Deseja salvar os intervalos dos slides para o avanço automático?',
   appRehearseDiscard: 'Não Salvar',
   appRehearseSave: 'Salvar',
-  appSettingsTitle: 'Configurações de IA',
-  appSettingsAccount: 'Conta Genspark',
-  appSettingsChecking: 'Verificando…',
-  appSettingsLoggedIn: 'Conectado',
-  appSettingsLoggedInEmail: 'Conectado: {email}',
-  appSettingsLoggedOut: 'Não conectado (os recursos de IA exigem uma conta Genspark)',
-  appSettingsLoginPending: 'Aguardando o login no navegador…',
-  appSettingsLogin: 'Entrar no Genspark',
-  appSettingsModel: 'Modelo',
   appSettingsCancel: 'Cancelar',
-  appSettingsSave: 'Salvar',
   appCropHint: 'Enter para confirmar · Esc para cancelar · Clique fora para confirmar',
   appStatusZoomsInserted:
     '{count} zooms inseridos: clique durante a apresentação para ir aos slides',

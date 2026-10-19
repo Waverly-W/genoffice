@@ -15,7 +15,7 @@ import {
   signatureOfGenerated,
 } from '../src/renderer/editor/convert'
 import { clearParagraphFormatting, setParaAttrs } from '../src/renderer/components/ribbon-tabs'
-import { runUiOps } from '../src/renderer/ai/ops'
+import { setOutlineLevel } from '../src/renderer/editor/paragraph-ops'
 import {
   directParaFlags,
   imageParaPaginationMeta,
@@ -144,11 +144,11 @@ describe('mergePPrFormat pagination flags', () => {
   })
 })
 
-describe('outline level (setOutlineLevel op)', () => {
+describe('outline level (setOutlineLevel)', () => {
   it('body paragraph -> outline-only heading -> back to body, style kept', async () => {
     const editor = await openDoc(p('<w:pStyle w:val="Normal"/>', 'body'))
     editor.commands.setTextSelection(2)
-    runUiOps(editor, [{ op: 'setOutlineLevel', target: { scope: 'selection' }, level: 3 }])
+    setOutlineLevel(editor, 3)
     let node = firstNode(editor)
     expect(node.type.name).toBe('docHeading')
     expect(node.attrs).toMatchObject({ level: 3, outlineOnly: true, styleId: 'Normal' })
@@ -156,7 +156,7 @@ describe('outline level (setOutlineLevel op)', () => {
     expect(xml).toContain('<w:pStyle w:val="Normal"/>')
     expect(xml).toContain('<w:outlineLvl w:val="2"/>')
 
-    runUiOps(editor, [{ op: 'setOutlineLevel', target: { scope: 'selection' }, level: 0 }])
+    setOutlineLevel(editor, 0)
     node = firstNode(editor)
     expect(node.type.name).toBe('docParagraph')
     expect(node.attrs.styleId).toBe('Normal')
@@ -168,7 +168,7 @@ describe('outline level (setOutlineLevel op)', () => {
   it('a styled heading keeps its style-bound level', async () => {
     const editor = await openDoc(p('<w:pStyle w:val="Heading2"/>', 'styled'))
     editor.commands.setTextSelection(2)
-    runUiOps(editor, [{ op: 'setOutlineLevel', target: { scope: 'selection' }, level: 5 }])
+    setOutlineLevel(editor, 5)
     expect(firstNode(editor).attrs).toMatchObject({ level: 2, styleId: 'Heading2' })
     expect(firstNode(editor).attrs.outlineOnly).toBeFalsy()
   })

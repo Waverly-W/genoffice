@@ -2,12 +2,11 @@
 
 Penyunting Markdown membuka .md / .markdown — dan .txt / .json, terus ke paparan sumber — dengan sumber dan pratonton terterjemah.
 
-- **Buka**: daripada Laman Utama atau melalui Fail ▸ Buka, dan baris arahan turut berfungsi.
+- **Buka**: daripada Laman Utama atau melalui Fail ▸ Buka.
 - **Sunting**: penyuntingan teks biasa. Sambungan GFM seperti jadual, senarai tugasan, teks bergaris, dan pautan automatik dipaparkan dalam pratonton.
 - **Pratonton**: dipaparkan secara langsung, dengan sumber relatif seperti imej diselesaikan berhampiran dokumen.
 - **Simpanan** mengekalkan setiap bait dengan tepat. Tanda BOM, aksara CRLF, dan kehadiran baris akhir kosong semuanya dikekalkan, dan simpanan tanpa perubahan tidak menulis semula fail.
 - **Cari dan ganti**: ctrl+F mencari dalam sumber, dan Ganti Semua menulis hasilnya ke fail.
-- **AI**: Butang tetapan awal membolehkan pembantu menulis semula, melanjutkan, atau menterjemah dokumen tersebut. Pemilihan boleh disembunyikan daripada AI (lihat bab panel AI).
 
 ## Bar alat
 
@@ -16,7 +15,6 @@ Satu baris butang di atas editor (halakan penuding ke atasnya untuk melihat tool
 ![Bar alat Markdown](img/md-toolbar.png)
 
 - **Fail dan sejarah**: Simpan, Simpan Sebagai, Buat Asal, Buat Semula, dan Cari. Togol **Autosimpan** di sebelah kanan menulis perubahan ke cakera secara berkala.
-- **Butang AI** membuka panel AI, dan bersetunya terdapat tetapan awal untuk menulis semula, melanjutkan, dan menterjemah.
 - **Gaya perenggan** dalam senarai lungsur membolehkan anda bertukar antara teks biasa dan pelbagai tahap tajuk.
 - **Pemformatan dalam talian** merangkumi tebal, condong, teks bergaris, kod dalam talian, dan pautan.
 - **Senarai** merangkumi senarai bertindan, bernombor, dan senarai tugasan.

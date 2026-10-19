@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { Editor } from '@tiptap/core'
 import { TextSelection } from '@tiptap/pm/state'
 import { editorExtensions } from '../src/renderer/editor/extensions'
-import { stepParagraphIndent } from '../src/renderer/editor/indent'
+import { stepParagraphIndent } from '../src/renderer/editor/paragraph-ops'
 
 interface JsonNode {
   type: string

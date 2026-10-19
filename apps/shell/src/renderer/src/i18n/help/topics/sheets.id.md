@@ -19,7 +19,7 @@ Sheets adalah editor mirip Excel; perhitungan dijalankan di proses mesin Rust te
 - **Tata Letak Halaman**: warna & font tema, tombol garis kisi/heading cetak, pratinjau hentian halaman.
 - **Rumus**: JumlahOtomatis dan sisipkan fungsi, menentukan nama (juga dari pilihan), lacak presedan/dependen, jendela pemantauan, menghitung ulang lembar/buku kerja.
 - **Data**: urutkan & filter (termasuk filter lanjutan, hapus filter), teks ke kolom, gabungkan buku kerja, refresh semua.
-- **Tinjau**: telusuri komentar (tampilkan, sebelumnya/berikutnya), terjemahkan, dan grup **Proteksi** — **Proteksi Lembar**, **Proteksi Buku Kerja** dan **Izinkan Edit Rentang**.
+- **Tinjau**: telusuri komentar (tampilkan, sebelumnya/berikutnya) dan grup **Proteksi** — **Proteksi Lembar**, **Proteksi Buku Kerja** dan **Izinkan Edit Rentang**.
   - Proteksi ditulis ke dalam .xlsx dan tidak ada kata sandi pada apa yang diterapkan aplikasi ini, sehingga tombol yang sama menjadi **Buka Proteksi…** dan membatalkannya. Proteksi dari program lain yang _benar-benar_ membawa kata sandi tidak dapat dihapus dari sini.
   - Kedua tombol proteksi langsung berlaku — tidak ada dialog untuk dibatalkan, hanya catatan di bilah status bahwa perubahan itu akan ditulis saat disimpan.
   - **Izinkan Edit Rentang** menandai sel yang tetap dapat disunting sementara sisa lembar terkunci.
@@ -87,13 +87,6 @@ Tab Rumus, tombol demi tombol:
 - **Pada bilah status bawah**: pilih statistik apa yang ditampilkan di bilah status (rata-rata / jumlah data / jumlah, ...); pilihan itu tersimpan.
 - **Pada tab lembar di bawah**: tambah / ganti nama / hapus / warnai / sembunyikan lembar (menu tab Univer).
 - Menu konteks bilah tab atas dibahas di [Tab dan pengelolaan jendela](help://tabs-and-windows).
-
-## AI
-
-- Panel AI di samping: pilih satu rentang lalu beri instruksi dengan bahasa biasa (format ulang, buat data, tulis rumus).
-- Lampirkan berkas ke sebuah prompt dengan tombol 📎, atau seret ke panel; berkas ikut bersama pertanyaan dan gambar kembali sebagai thumbnail.
-- Sebuah jawaban dapat mengutip sel — klik rujukan itu dan kisi akan melompat ke sana.
-- Perubahan dari AI dapat dikembalikan dari panel.
 
 ## Menyimpan dan mengekspor
 

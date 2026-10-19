@@ -18,12 +18,12 @@ Pruébelo en cualquier párrafo:
 
 ![La barra de anotación tras seleccionar texto](img/pdf-highlight.png)
 
-2. Elija **Resaltar** (la muestra amarilla abre una paleta de colores), **Subrayar** o **Tachar**; **Preguntar a la IA** envía la selección junto con su pregunta al panel de IA.
+2. Elija **Resaltar** (la muestra amarilla abre una paleta de colores), **Subrayar** o **Tachar**.
 3. Para deshacer una anotación, vuelva a seleccionar el mismo fragmento arrastrándolo y haga clic en el botón activo de la barra (un conmutador al estilo de Word), o selecciónelo y pulse Supr.
 
 Referencia:
 
-- Al arrastrar sobre texto aparece una barra emergente: **resaltar / subrayar / tachar / copiar / Preguntar a la IA**.
+- Al arrastrar sobre texto aparece una barra emergente: **resaltar / subrayar / tachar / copiar**.
 - Los colores salen de la paleta; **aplicar el mismo marcado a un intervalo ya marcado lo quita** (conmutador al estilo de Word).
 - Los marcados ya guardados en el archivo se pueden seleccionar y borrar (menú ⋯ o Supr).
 - **Nota**: mientras hay una herramienta de dibujo activada, la capa de texto no se puede seleccionar; la herramienta se desactiva sola tras cada colocación, así que vuelve al modo selección para la siguiente acción.

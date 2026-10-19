@@ -31,7 +31,7 @@ Elke editor heeft een eigen toetsenindeling en slechts een paar werken overal. D
 
 ## Word
 
-Word heeft een volledige menubalk, dus de onderstaande bestands- en opmaakcombinaties werken zodra een Word-tabblad focus heeft, ongeacht welk document open is. De bewerkingscombinaties vereisen een geladen, bewerkbaar document met de caret in de tekst; ze werken niet terwijl je in het zoekvak, de AI-prompt of een ander veld typt.
+Word heeft een volledige menubalk, dus de onderstaande bestands- en opmaakcombinaties werken zodra een Word-tabblad focus heeft, ongeacht welk document open is. De bewerkingscombinaties vereisen een geladen, bewerkbaar document met de caret in de tekst; ze werken niet terwijl je in het zoekvak of een ander veld typt.
 
 ### Bestand
 
@@ -138,11 +138,10 @@ Eindnoot invoegen is een echte platformsplitsing, geen naamsverandering: Word ge
 | ------------------------- | ----- | --------------- |
 | Wijzigingen bijhouden     | ⇧⌘E   | Ctrl+Shift+E    |
 | Woordentelling            | ⇧⌘G   | Ctrl+Shift+G    |
-| Nakijken                  | F7    | F7              |
 | Veld bijwerken            | F9    | F9              |
 | Veldcodes tonen/verbergen | ⌥F9   | Alt+F9          |
 
-F7 start de AI-nakijkbeurt en F9 werkt velden bij; beide vereisen een geladen document. Zodra een bewerkingsbeperking Wijzigingen bijhouden aanzet, kan het niet meer uit.
+F9 werkt velden bij en vereist een geladen document. Zodra een bewerkingsbeperking Wijzigingen bijhouden aanzet, kan het niet meer uit.
 
 ### Weergave
 
@@ -310,7 +309,6 @@ Een tabblad sluiten is de enige plek waar de twee platformen volledig uit elkaar
 | -------------------------------------------------------- | ------ | --------------- |
 | Nieuwe dia                                               | ⇧⌘N    | Ctrl+M          |
 | Zoeken (niet tijdens het bewerken van tekst in een vorm) | ⌘F     | Ctrl+F          |
-| De selectie met AI annoteren (met vormen geselecteerd)   | ⌘K     | Ctrl+K          |
 | Inzoomen                                                 | ⌘=     | Ctrl+=          |
 | Uitzoomen                                                | ⌘-     | Ctrl+-          |
 | Werkelijke grootte (100%)                                | ⌘0     | Ctrl+0          |
@@ -478,7 +476,7 @@ Alleen actief wanneer een aantekening, stempel, redactie of afbeelding geselecte
 | De bovenste toestand annuleren     | Escape | Escape          |
 | Het open dialoogvenster bevestigen | Enter  | Enter           |
 
-Escape haalt één laag tegelijk weg — eerst een open dialoogvenster, dan de AI-popover, een tekstconcept, het zoekpaneel en ten slotte de selectie zelf. Met de cursor in het zoekvak springen Enter en ⇧Enter naar de volgende en vorige overeenkomst, en Escape sluit het paneel; met de cursor in een nieuwe tekstnotitie bevestigt ⌘⏎ die.
+Escape haalt één laag tegelijk weg — eerst een open dialoogvenster, dan een tekstconcept, het zoekpaneel en ten slotte de selectie zelf. Met de cursor in het zoekvak springen Enter en ⇧Enter naar de volgende en vorige overeenkomst, en Escape sluit het paneel; met de cursor in een nieuwe tekstnotitie bevestigt ⌘⏎ die.
 
 ## Markdown
 
@@ -555,7 +553,6 @@ In de code-editor of een formulierveld nemen de eigen bewerkingsftoetsen van het
 
 | Actie                                          | macOS      | Windows / Linux    |
 | ---------------------------------------------- | ---------- | ------------------ |
-| AI vragen over het element                     | ⌘K         | Ctrl+K             |
 | Het element verwijderen                        | ⌫ / Delete | Backspace / Delete |
 | Vorige broer                                   | ↑          | ArrowUp            |
 | Volgende broer                                 | ↓          | ArrowDown          |

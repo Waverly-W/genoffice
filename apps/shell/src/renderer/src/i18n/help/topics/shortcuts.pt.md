@@ -31,7 +31,7 @@ Cada editor tem as suas próprias combinações de teclas, e apenas algumas func
 
 ## Word
 
-O Word tem uma barra de menus completa, por isso as combinações de ficheiro e de formatação abaixo funcionam assim que um separador do Word tenha o foco, seja qual for o documento aberto. As combinações de edição exigem um documento carregado e editável, com o cursor no texto; não disparam enquanto escreve na caixa de pesquisa, no pedido de IA ou em qualquer outro campo.
+O Word tem uma barra de menus completa, por isso as combinações de ficheiro e de formatação abaixo funcionam assim que um separador do Word tenha o foco, seja qual for o documento aberto. As combinações de edição exigem um documento carregado e editável, com o cursor no texto; não disparam enquanto escreve na caixa de pesquisa ou em qualquer outro campo.
 
 ### Ficheiro
 
@@ -138,11 +138,10 @@ Inserir nota de fim é uma divisão real entre plataformas, não uma renomeaçã
 | -------------------------------- | ----- | --------------- |
 | Controlar alterações             | ⇧⌘E   | Ctrl+Shift+E    |
 | Contagem de palavras             | ⇧⌘G   | Ctrl+Shift+G    |
-| Revisão de texto                 | F7    | F7              |
 | Atualizar o campo                | F9    | F9              |
 | Mostrar/ocultar códigos de campo | ⌥F9   | Alt+F9          |
 
-O F7 executa a revisão de texto com IA e o F9 atualiza os campos; ambos precisam de um documento carregado. Assim que uma restrição de edição ativa Controlar alterações, já não é possível voltar a desativá-lo.
+O F9 atualiza os campos e precisa de um documento carregado. Assim que uma restrição de edição ativa Controlar alterações, já não é possível voltar a desativá-lo.
 
 ### Vista
 
@@ -310,7 +309,6 @@ Fechar um separador é o único sítio onde as duas plataformas se separam por c
 | ------------------------------------------------------- | ------ | --------------- |
 | Novo diapositivo                                        | ⇧⌘N    | Ctrl+M          |
 | Localizar (não enquanto edita texto numa forma)         | ⌘F     | Ctrl+F          |
-| Anotar a seleção com IA (com formas selecionadas)       | ⌘K     | Ctrl+K          |
 | Ampliar                                                 | ⌘=     | Ctrl+=          |
 | Reduzir                                                 | ⌘-     | Ctrl+-          |
 | Tamanho real (100 %)                                    | ⌘0     | Ctrl+0          |
@@ -478,7 +476,7 @@ Apenas ativo quando está selecionada uma anotação, um carimbo, uma ocultaçã
 | Cancelar o estado mais à frente     | Escape | Escape          |
 | Confirmar a caixa de diálogo aberta | Enter  | Enter           |
 
-O Escape desfaz uma camada de cada vez — primeiro uma caixa de diálogo aberta, depois o menu de contexto de IA, um rascunho de texto, o painel de pesquisa e por fim a própria seleção. Com o cursor na caixa de pesquisa, Enter e `⇧Enter` passam para a correspondência seguinte e para a anterior, e o Escape fecha o painel; com o cursor numa nota de texto nova, `⌘⏎` confirma-a.
+O Escape desfaz uma camada de cada vez — primeiro uma caixa de diálogo aberta, depois um rascunho de texto, o painel de pesquisa e por fim a própria seleção. Com o cursor na caixa de pesquisa, Enter e `⇧Enter` passam para a correspondência seguinte e para a anterior, e o Escape fecha o painel; com o cursor numa nota de texto nova, `⌘⏎` confirma-a.
 
 ## Markdown
 
@@ -555,7 +553,6 @@ Dentro do editor de código ou de um campo de formulário, as teclas de edição
 
 | Ação                                     | macOS      | Windows / Linux    |
 | ---------------------------------------- | ---------- | ------------------ |
-| Perguntar à IA sobre o elemento          | ⌘K         | Ctrl+K             |
 | Eliminar o elemento                      | ⌫ / Delete | Backspace / Delete |
 | Irmão anterior                           | ↑          | ArrowUp            |
 | Irmão seguinte                           | ↓          | ArrowDown          |

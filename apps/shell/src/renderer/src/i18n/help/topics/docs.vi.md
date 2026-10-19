@@ -16,8 +16,8 @@ Các thẻ: **Trang chủ / Chèn / Vẽ / Bố trí / Thiết kế / Tham khả
 
   ![Thẻ Tham khảo](img/docs-references.png)
 
-- **Xem lại**: **Trình biên tập** kiểm tra chính tả, ngữ pháp và dấu câu cho toàn bộ tài liệu; **Dịch**; kiểm tra chính tả; nhận xét (**AI giải quyết nhận xét** xử lý những nhận xét đang mở); theo dõi thay đổi với chế độ Tất cả đánh dấu / Đánh dấu đơn giản, chấp nhận/từ chối và **Tóm tắt sửa đổi bằng AI**; thống kê từ; **So sánh** với tệp khác; **Bảo vệ tài liệu**.
-- **Chế độ xem**: năm cách nhìn tệp — **Bố trí in**, **Bố trí Web**, **Dàn bài**, **Chế độ đọc** và **Xem trước trang**; thu nhỏ/phóng to/100 %/chiều rộng trang/một trang; **Ngăn AI**; **Chế độ tối**; thước kẻ, đường lưới và ngăn điều hướng; **Tab mới**, **Tách** và **Chuyển tab**; **hộp thoại phím tắt bàn phím** có thể tìm kiếm.
+- **Xem lại**: kiểm tra chính tả; nhận xét; theo dõi thay đổi với chế độ Tất cả đánh dấu / Đánh dấu đơn giản và chấp nhận/từ chối; thống kê từ; **So sánh** với tệp khác; **Bảo vệ tài liệu**.
+- **Chế độ xem**: năm cách nhìn tệp — **Bố trí in**, **Bố trí Web**, **Dàn bài**, **Chế độ đọc** và **Xem trước trang**; thu nhỏ/phóng to/100 %/chiều rộng trang/một trang; **Chế độ tối**; thước kẻ, đường lưới và ngăn điều hướng; **Tab mới**, **Tách** và **Chuyển tab**; **hộp thoại phím tắt bàn phím** có thể tìm kiếm.
   - **Chế độ tối** làm tối trang và vùng vẽ xung quanh, chứ không bao giờ làm tối dải ruy-băng — đó là cách Word chia sự khác biệt giữa một mặt phẳng chỉnh sửa tối và một cửa sổ tối. Lựa chọn này được ghi nhớ và dù thế nào cũng thắng chủ đề của ứng dụng.
   - **Tách** mở ra một ngăn thứ hai bên dưới, cuộn độc lập và phản chiếu ngăn đầu tiên; đóng lại bằng dấu × trên mép của nó.
 
@@ -42,7 +42,6 @@ Nhấp chuột phải ở bất kỳ đâu trong nội dung — menu đi theo th
 - **Bảng tạm**: cắt / sao chép / dán / **dán văn bản thuần**.
 - **Phông chữ, đoạn văn**: đổi họ phông và cỡ, in đậm/nghiêng/gạch chân, căn chỉnh/thụt lề/rãnh dòng mà không cần vào dải ruy-bâng.
 - **Từ đồng nghĩa**: liệt kê các từ đồng nghĩa của từ đã chọn; nhấp vào một từ để thay thế.
-- **Dịch** (AI): dịch phần đã chọn sang ngôn ngữ đích (tiếng Anh, Trung giản thể, Nhật, Hàn, Pháp, Đức, Tây Ban Nha, ...) qua bảng AI.
 - **Bình luận mới**: gắn một bình luận vào phần đã chọn.
 - **Chính tả** (trên một từ sai): các gợi ý thay thế, bỏ qua tất cả, thêm vào từ điển, đặt ngôn ngữ soát lỗi.
 - **Siêu liên kết**: mở / sửa / sao chép liên kết / bỏ siêu liên kết.
@@ -62,11 +61,6 @@ Nhấp chuột phải ở bất kỳ đâu trong nội dung — menu đi theo th
 
 - Nén dấu câu và quy tắc ngắt dòng (kinsoku) khớp với Word; chuyển đổi toàn vừa/bán vừa.
 - Danh sách phông ứng viên bao gồm các tên họ phông CJK phổ biến trên Windows và macOS.
-
-## AI
-
-- Nút AI trên dải ruy-bâng và bảng bên: viết lại, mở rộng, dịch, tóm tắt, các mẫu chèn bảng, cùng các chỉ dẫn tự do.
-- Mỗi lượt AI đều chụp ảnh trước; có thể quay lui từ danh sách phiên bản, và bản thân thao tác quay lui cũng có thể hoàn tác.
 
 ## Lưu và xuất
 

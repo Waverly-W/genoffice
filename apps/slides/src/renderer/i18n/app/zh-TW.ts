@@ -1,16 +1,6 @@
 import type { zh } from './zh'
 
 export const zhTW = {
-  redactMenuLabel: '把選中的內容對 AI 隱藏',
-  redactDialogDesc:
-    '選取的內容會留在文件裡，AI 讀到的卻是下面的標記。給它起個名字，AI 才知道它是什麼。',
-  redactDialogScope:
-    '這只針對本應用的 AI。命令列、MCP 工具和無介面匯出會直接讀取文件，仍然看得到這些文字。',
-  redactDialogPlaceholder: '佔位名稱，例如：客戶電話',
-  redactCancel: '取消',
-  redactInsert: '隱藏',
-  redactEnable: '選中文字後右鍵，即可對 AI 隱藏。',
-
   appPhPromptTitle: '按一下此處新增標題',
   appPhPromptSubtitle: '按一下此處新增副標題',
   appPhPromptBody: '按一下此處新增文字',
@@ -223,8 +213,6 @@ export const zhTW = {
   appNotesPlaceholder: '按一下此處新增演講者備忘稿（隨文件儲存進 pptx）',
   appNotesShow: '顯示備忘稿',
   appNotesHide: '隱藏備忘稿',
-  appAiRailExpand: '展開 AI 助理',
-  appAiRailText: 'AI',
   appStatusBarSlide: '投影片 {current} / {total}',
   appStatusBarReady: '就緒',
   appMediaCloseTitle: '關閉 (Esc)',
@@ -232,17 +220,7 @@ export const zhTW = {
   appRehearseSummary: '本次放映總時長 {duration}。是否儲存每頁停留時間作為自動換頁時間？',
   appRehearseDiscard: '不儲存',
   appRehearseSave: '儲存',
-  appSettingsTitle: 'AI 設定',
-  appSettingsAccount: 'Genspark 帳號',
-  appSettingsChecking: '偵測中…',
-  appSettingsLoggedIn: '已登入',
-  appSettingsLoggedInEmail: '已登入：{email}',
-  appSettingsLoggedOut: '未登入（AI 功能需要登入 Genspark 帳號）',
-  appSettingsLoginPending: '等待瀏覽器登入…',
-  appSettingsLogin: '登入 Genspark',
-  appSettingsModel: '模型',
   appSettingsCancel: '取消',
-  appSettingsSave: '儲存',
   appCropHint: 'Enter 確認 · Esc 取消 · 點擊外部確認',
   appStatusZoomsInserted: '已插入 {count} 個縮放定位：放映時點擊跳轉到對應頁',
   appStatusSummaryZoomInserted: '已插入摘要縮放頁（{count} 個縮圖）',

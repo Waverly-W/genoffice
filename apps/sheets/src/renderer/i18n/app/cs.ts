@@ -140,14 +140,9 @@ export const cs = {
   appRefresh: 'Aktualizovat',
   appRefreshHintIn: 'Přepočítat aktuální kontingenční tabulku',
   appRefreshHintOut: 'Nejprve vyberte oblast kontingenční tabulky a pak aktualizujte',
-  appAttachmentReadFailed: '{name}: nepodařilo se načíst',
-  appTooManyImages: 'Nejvýše {max} obrázků na zprávu; přebývající byly ignorovány',
-  appAppliedRevision: 'Použito (revize {revision}) — zpět pomocí ⌘Z, uložit do souboru pomocí ⌘S.',
   appCannotReadImage: 'Nelze načíst soubor obrázku.',
   appTableNotDeletable:
     'Tabulka „{name}“ neexistuje nebo nebyla vytvořena v této relaci — tabulky již obsažené v souboru zatím nelze odstranit.',
-  appImageNotLoaded: 'Obrázek se nepodařilo načíst: {path}',
-  appApplyFailed: '⚠️ Použití se nezdařilo: {reason}',
   appPivotChartNeedsFile:
     'Nejprve otevřete soubor XLSX — kontingenční graf se zapisuje do souboru.',
   appCursorNotInPivot:
@@ -282,15 +277,6 @@ export const cs = {
   appSaveSecondFailed:
     'Struktura je uložena, ale druhá fáze (kontingenční tabulky/tabulky/definované názvy) selhala: {reason}',
   appReadyInitial: 'Připraveno na místní deterministický příkaz AI.',
-  appAiThinking: 'AI přemýšlí…',
-  appAiDone: 'AI dokončila',
-  appAiTurnLimit:
-    '(Dosažen limit počtu volání nástrojů pro tento požadavek; odpověď výše vychází z dosud přečtených dat a může být neúplná.)',
-  appAiTruncatedNote: '(Odpověď byla zkrácena limitem délky a může být neúplná.)',
-  appAiStopped: '(zastaveno)',
-  appAiNoSummary: 'AI skončila bez shrnutí.',
-  appAiNoAction: 'AI neprovedla žádné změny a neodpověděla. Zkuste to znovu nebo přeformulujte.',
-  appNewConversation: 'Zahájena nová konverzace.',
   appPivotCellNoEdit:
     'Tato buňka je součástí kontingenční tabulky — její úprava zatím není podporována.',
   appAreaStreaming: 'Tato oblast se stále načítá — zkuste ji upravit za chvíli znovu.',
@@ -337,15 +323,8 @@ export const cs = {
   appDvListOptions: 'Seznam: {items}',
   appDvListFromRange: 'Seznam (z oblasti {range})',
   appRuleBrokenRef: 'Neplatný odkaz (#REF!) — toto pravidlo se nikdy nemůže uplatnit',
-  appCellStreaming: 'Tato buňka se stále načítá — zkuste to za chvíli znovu.',
-  appPreviewCreated: 'Náhled vytvořen — dokud ho nepoužijete, nic se nezmění.',
-  appPreviewCreatedDemo: 'Náhled vytvořen. Stav sešitu se nezměnil.',
-  appPreviewFailed: 'Náhled nelze vytvořit.',
   appApplyTxFailed: 'Transakci nelze použít.',
   appTxCommitted: 'Transakce potvrzena v revizi {revision}.',
-  appPreviewOtherWorkbook: 'Náhled patřil jinému sešitu — vytvořte nový.',
-  appPreviewSheetGone: 'List z náhledu již neexistuje — vytvořte nový náhled.',
-  appWorkbookChangedSincePreview: 'Sešit se od vytvoření náhledu změnil — vytvořte nový náhled.',
   appAppliedJournaled: 'Použito — změny jsou zaznamenány v žurnálu; uložte pomocí ⌘S.',
   appUndoCommitted: 'Krok zpět potvrzen jako revize {revision}.',
   appUndoFailed: 'Nelze vzít zpět.',
@@ -600,8 +579,6 @@ export const cs = {
   appShowCommentsTitle: 'Připnout/odepnout bublinu komentáře vybrané buňky',
   appStructuralShiftBlocked:
     'Graf nebo tabulka na tomto listu je ukotvena k dotčeným řádkům/sloupcům, takže je nelze posunout; strukturální změna nebyla uložena. Vraťte ji zpět (Cmd+Z) a uložte znovu.',
-  appAiChangesNotSaved:
-    'Změny AI použity (neuloženo). Zpět pomocí Cmd+Z; uložit do souboru pomocí Cmd+S.',
   appChartUpdated: 'Graf aktualizován.',
   appChartNotEditable: 'Tento graf nelze upravovat.',
   appChartEditRecorded: 'Úprava grafu zaznamenána — uložte pomocí ⌘S.',
@@ -770,7 +747,6 @@ export const cs = {
   appFormatPaneDetail: 'Osa, šířka mezery, odsazení',
   appGroupChartActions: 'Akce grafu',
   appRemoveFromSheet: 'Odebrat z listu',
-  appGroupAiAssistant: 'Asistent AI',
   appAiOpenPanelDetail: 'Postranní panel chatu',
   appGroupAiStarters: 'Rychlý start',
   appAiStarterDetail: 'Odeslat do panelu AI',
@@ -1249,11 +1225,6 @@ export const cs = {
   appGroupProofing: 'Kontrola pravopisu',
   appWorkbookStatsLabel: 'Statistika sešitu',
   appSheetsCellsFormulas: 'Listy, buňky, vzorce',
-  appTranslate: 'Přeložit',
-  appGroupLanguage: 'Jazyk',
-  appTranslateTitle: 'Přeložit výběr pomocí AI',
-  appTranslatePrompt:
-    'Přelož text ve vybrané oblasti do jazyka {language} a zapiš překlady zpět do stejných buněk.',
   appNewCommentDetail: 'Přidat nebo upravit',
   appDeleteLabel: 'Odstranit',
   appNoteAtSelection: 'Poznámka u výběru',

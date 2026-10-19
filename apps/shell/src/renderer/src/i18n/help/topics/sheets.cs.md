@@ -19,7 +19,7 @@ Sheets je editor podobný Excelu; výpočty zajišťuje samostatný proces s eng
 - **Rozložení stránky**: barvy a písma motivu, přepínače tisku mřížky a záhlaví, náhled zalomení stránek.
 - **Vzorce**: automatický součet a vkládání funkcí, definice názvů (také z výběru), sledování předchůzců a závislostí, sledovací okno, přepočítání listu nebo sešitu.
 - **Data**: řazení a filtrování (včetně pokročilého filtru a zrušení filtru), text do sloupců, sloučení sešitů, aktualizovat vše.
-- **Revize**: procházení komentářů (zobrazit, předchozí/ další), přeložit a skupina **Zámek** — **Zamknout list**, **Zamknout sešit** a **Povolit úpravy oblastí**.
+- **Revize**: procházení komentářů (zobrazit, předchozí/další) a skupina **Zámek** — **Zamknout list**, **Zamknout sešit** a **Povolit úpravy oblastí**.
   - Ochrana se zapisuje do souboru .xlsx a na to, co tato aplikace použije, není žádné heslo, takže se stejné tlačítko změní na **Odemknout…** a ochranu zruší. Ochranu z jiného programu, která _skutečně_ heslo má, tu odstranit nelze.
   - Obě tlačítka pro zamčení se provedou ihned — není tu žádný dialog, který byste mohli zrušit, jen poznámka ve stavovém řádku, že se to zapíše při uložení.
   - **Povolit úpravy oblastí** označuje buňky, které zůstanou upravitelné, zatímco zbytek listu je zamčený.
@@ -87,13 +87,6 @@ Karta Vzorce, tlačítko po tlačítku:
 - **Na dolním stavovém pruhu**: vyberte, které statistiky má stavový pruh zobrazovat (průměr / počet / součet, ...); volba se zapamatuje.
 - **Na kartě listu dole**: přidat / přejmenovat / odstranit / obarvit / skrýt listy (nabídka karet Univer).
 - Kontextová nabídka horního pruhu karet je popsána v [Karty a správa oken](help://tabs-and-windows).
-
-## AI
-
-- Postranní panel AI: vyberte oblast a zadejte pokud v přirozeném jazyce (přeformátovat, vygenerovat data, napsat vzorce).
-- K dotazu přiložil soubory pomocí tlačítka 📎 nebo je přetáhněte na panel; putují s dotazem a obrázky se vrátí jako náhledy.
-- Odpověď může odkázat na buňku — kliknutím na odkaz se mřížka přesune na ni.
-- Změny provedené AI lze z panelu vrátit zpět.
 
 ## Ukládání a export
 

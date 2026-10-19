@@ -31,7 +31,7 @@ Mỗi trình soạn thảo có tổ hợp phím riêng, và chỉ vài tổ hợ
 
 ## Word
 
-Word có thanh menu đầy đủ, nên các tổ hợp phím tệp và định dạng bên dưới hoạt động bất cứ lúc nào một thẻ Word có tiêu điểm, dù tài liệu nào đang mở. Các tổ hợp phím chỉnh sửa thì cần một tài liệu đã nạp và chỉnh sửa được, với con trỏ nhấp nháy nằm trong văn bản; chúng không chạy khi bạn đang gõ trong ô Tìm, ô nhập câu lệnh AI hay bất kỳ ô nào khác.
+Word có thanh menu đầy đủ, nên các tổ hợp phím tệp và định dạng bên dưới hoạt động bất cứ lúc nào một thẻ Word có tiêu điểm, dù tài liệu nào đang mở. Các tổ hợp phím chỉnh sửa thì cần một tài liệu đã nạp và chỉnh sửa được, với con trỏ nhấp nháy nằm trong văn bản; chúng không chạy khi bạn đang gõ trong ô Tìm hay bất kỳ ô nào khác.
 
 ### Tệp
 
@@ -138,11 +138,10 @@ Chèn chú thích cuối văn bản là một cách chia thật sự theo nền 
 | ----------------- | ----- | --------------- |
 | Theo dõi thay đổi | ⇧⌘E   | Ctrl+Shift+E    |
 | Đếm từ            | ⇧⌘G   | Ctrl+Shift+G    |
-| Soát chính tả     | F7    | F7              |
 | Cập nhật trường   | F9    | F9              |
 | Bật/tắt mã trường | ⌥F9   | Alt+F9          |
 
-F7 chạy soát chính tả bằng AI và F9 cập nhật các trường; cả hai đều cần một tài liệu đã nạp. Khi một hạn chế chỉnh sửa đã bật Theo dõi thay đổi, không thể tắt lại được nữa.
+F9 cập nhật các trường và cần một tài liệu đã nạp. Khi một hạn chế chỉnh sửa đã bật Theo dõi thay đổi, không thể tắt lại được nữa.
 
 ### Xem
 
@@ -310,7 +309,6 @@ GenOffice Slides là một trình soạn thảo trình chiếu kiểu PowerPoint
 | ----------------------------------------------------- | ------ | --------------- |
 | Trang chiếu mới                                       | ⇧⌘N    | Ctrl+M          |
 | Tìm (không dùng khi đang soạn văn bản trong một hình) | ⌘F     | Ctrl+F          |
-| Chú thích vùng chọn bằng AI (khi đã chọn hình)        | ⌘K     | Ctrl+K          |
 | Phóng to                                              | ⌘=     | Ctrl+=          |
 | Thu nhỏ                                               | ⌘-     | Ctrl+-          |
 | Kích thước thật (100%)                                | ⌘0     | Ctrl+0          |
@@ -478,7 +476,7 @@ Chỉ hoạt động khi một chú thích, con dấu, vùng che nội dung ho�
 | Hủy lớp trên cùng          | Escape | Escape          |
 | Xác nhận hộp thoại đang mở | Enter  | Enter           |
 
-Esc lùi từng lớp một — trước hết là hộp thoại đang mở, rồi đến hộp bật lên AI, bản nháp văn bản, bảng tìm kiếm, và cuối cùng chính vùng chọn. Khi con trỏ nằm trong ô tìm kiếm, Enter và ⇧Enter chuyển tới kết quả khớp kế tiếp và trước đó, còn Esc đóng bảng; khi con trỏ nằm trong một ghi chú văn bản mới, `⌘⏎` chốt lại.
+Esc lùi từng lớp một — trước hết là hộp thoại đang mở, rồi đến bản nháp văn bản, bảng tìm kiếm, và cuối cùng chính vùng chọn. Khi con trỏ nằm trong ô tìm kiếm, Enter và ⇧Enter chuyển tới kết quả khớp kế tiếp và trước đó, còn Esc đóng bảng; khi con trỏ nằm trong một ghi chú văn bản mới, `⌘⏎` chốt lại.
 
 ## Markdown
 
@@ -555,7 +553,6 @@ Bên trong trình soạn thảo mã hoặc một ô biểu mẫu, các phím so�
 
 | Hành động                           | macOS      | Windows / Linux    |
 | ----------------------------------- | ---------- | ------------------ |
-| Hỏi AI về phần tử đó                | ⌘K         | Ctrl+K             |
 | Xóa phần tử                         | ⌫ / Delete | Backspace / Delete |
 | Anh em trước                        | ↑          | ArrowUp            |
 | Anh em sau                          | ↓          | ArrowDown          |

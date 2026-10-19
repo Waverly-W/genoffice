@@ -18,12 +18,12 @@ Probeer het op een willekeurige alinea:
 
 ![De annotatiebalk na het selecteren van tekst](img/pdf-highlight.png)
 
-2. Kies **markeren** (het gele monster opent een kleurenpalet), **onderstrepen** of **doorhalen**; **Vraag AI** stuurt de selectie met je vraag naar het AI-paneel.
+2. Kies **markeren** (het gele monster opent een kleurenpalet), **onderstrepen** of **doorhalen**.
 3. Wil je een annotatie ongedaan maken, selecteer dan hetzelfde fragment opnieuw met slepen en klik op de al actieve knop op de balk (een schakelaar in Word-stijl), of selecteer het en druk op Verwijderen.
 
 Verwacht gedrag:
 
-- Slepen over tekst toont een balk: **markeren / onderstrepen / doorhalen / kopiëren / Vraag AI**.
+- Slepen over tekst toont een balk: **markeren / onderstrepen / doorhalen / kopiëren**.
 - De kleuren komen uit het palet; **dezelfde markering opnieuw toepassen op een al gemarkeerd bereik verwijdert hem** (schakelaar in Word-stijl).
 - Markeringen die al in het bestand staan kunnen worden geselecteerd en verwijderd (⋯-menu of Verwijderen).
 - **Let op**: zolang een tekengereedschap actief is, is de tekstlaag niet selecteerbaar — het gereedschap schakelt zichzelf na elke plaatsing uit, zodat je voor de volgende actie weer in selectiemodus bent.

@@ -3,11 +3,10 @@
 Editor HTML membuka .html / .htm dengan dua mode: **Pratinjau** (halaman yang sudah dirender) dan **Sumber**.
 
 - **Pratinjau**: render yang sesungguhnya; stylesheet dan gambar relatif dimuat dari lokasi di samping berkas.
-- **Inspektur pratinjau**: klik untuk memilih sebuah elemen, klik dua kali untuk menyunting teksnya di tempat, hapus lewat bilah alat, dan Tanya AI untuk bagian yang dipilih.
+- **Inspektur pratinjau**: klik untuk memilih sebuah elemen, klik dua kali untuk menyunting teksnya di tempat, atau hapus lewat bilah alat.
 - **Mode sumber**: menyunting HTML; ctrl+F untuk mencari, dan Ganti Semua menyimpan penanda yang ditulis ulang.
 - **Menyimpan**: setia byte demi byte (BOM/CRLF/baris baru di akhir file dipertahankan); penyimpanan tanpa perubahan tidak menulis ulang.
 - **Zoom**: ctrl+roda / cubit untuk memperbesar pratinjau; ctrl+Z di dalam pratinjau membatalkan penyuntingan terakhir.
-- **Sembunyikan dari AI**: pada mode sumber, klik kanan sebuah seleksi — isi elemen, nilai atribut, string skrip — dan model melihat penampung; halaman yang dirender tak pernah berubah (rincian di bab panel AI).
 
 ## Bilah alat
 
@@ -21,7 +20,6 @@ Klik elemen apa pun di pratinjau dan sebuah bilah alat melayang di atasnya:
 - **Sisipkan**: judul, paragraf, tabel, gambar (dengan tautan), Lainnya.
 - **Tindakan gambar** (dengan gambar dipilih): pangkas, **hapus latar belakang**, ganti, kunci rasio aspek.
 - **Tindakan elemen** (dengan elemen dipilih di inspektur pratinjau): hapus, duplikat, naikkan/turunkan.
-- **Tombol AI**: membuka panel AI; tanyakan apa pun tentang elemen yang dipilih.
 
 ## Ekspor
 

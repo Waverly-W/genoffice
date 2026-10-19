@@ -31,7 +31,7 @@ Ogni editor ha le proprie combinazioni di tasti, e solo poche funzionano ovunque
 
 ## Word
 
-Word ha una barra dei menu completa, quindi le combinazioni di file e formattazione qui sotto funzionano finché una scheda di Word ha il focus, qualunque sia il documento aperto. Le combinazioni di modifica richiedono un documento caricato e modificabile, con il cursore nel testo; non si attivano mentre scrivi nella casella di ricerca, nel prompt IA o in un qualsiasi altro campo.
+Word ha una barra dei menu completa, quindi le combinazioni di file e formattazione qui sotto funzionano finché una scheda di Word ha il focus, qualunque sia il documento aperto. Le combinazioni di modifica richiedono un documento caricato e modificabile, con il cursore nel testo; non si attivano mentre scrivi nella casella di ricerca o in un qualsiasi altro campo.
 
 ### File
 
@@ -138,11 +138,10 @@ Inserisci nota di chiusura è una vera divisione tra piattaforme, non un rinomin
 | ---------------------------- | ----- | --------------- |
 | Revisione                    | ⇧⌘E   | Ctrl+Shift+E    |
 | Conteggio parole             | ⇧⌘G   | Ctrl+Shift+G    |
-| Correzione                   | F7    | F7              |
 | Aggiorna campo               | F9    | F9              |
 | Mostra/nascondi codici campo | ⌥F9   | Alt+F9          |
 
-F7 esegue la correzione IA e F9 aggiorna i campi; entrambe richiedono un documento caricato. Una volta che un vincolo di modifica attiva la Revisione, questa non può più essere disattivata.
+F9 aggiorna i campi e richiede un documento caricato. Una volta che un vincolo di modifica attiva la Revisione, questa non può più essere disattivata.
 
 ### Vista
 
@@ -310,7 +309,6 @@ Chiudere una scheda è l’unico punto in cui le due piattaforme si separano com
 | ---------------------------------------------------- | ------ | --------------- |
 | Nuova diapositiva                                    | ⇧⌘N    | Ctrl+M          |
 | Trova (non mentre modifichi il testo in una forma)   | ⌘F     | Ctrl+F          |
-| Annota la selezione con l’IA (con forme selezionate) | ⌘K     | Ctrl+K          |
 | Ingrandisci                                          | ⌘=     | Ctrl+=          |
 | Riduci                                               | ⌘-     | Ctrl+-          |
 | Dimensione reale (100 %)                             | ⌘0     | Ctrl+0          |
@@ -478,7 +476,7 @@ Attivo solo quando è selezionata un’annotazione, un timbro, una redazione o u
 | Annulla lo stato in primo piano | Escape | Escape          |
 | Conferma la finestra aperta     | Enter  | Enter           |
 
-Escape srotola un livello alla volta — prima una finestra aperta, poi il menu contestuale IA, una bozza di testo, il pannello di ricerca e infine la selezione stessa. Con il cursore nella casella di ricerca, Enter e `⇧Enter` passano alla corrispondenza successiva e a quella precedente, ed Escape chiude il pannello; con il cursore in una nuova nota di testo, `⌘⏎` la conferma.
+Escape srotola un livello alla volta — prima una finestra aperta, poi una bozza di testo, il pannello di ricerca e infine la selezione stessa. Con il cursore nella casella di ricerca, Enter e `⇧Enter` passano alla corrispondenza successiva e a quella precedente, ed Escape chiude il pannello; con il cursore in una nuova nota di testo, `⌘⏎` la conferma.
 
 ## Markdown
 
@@ -555,7 +553,6 @@ Dentro l’editor di codice o in un campo di modulo, a prendere il sopravvento s
 
 | Azione                                   | macOS      | Windows / Linux    |
 | ---------------------------------------- | ---------- | ------------------ |
-| Chiedi all’IA sull’elemento              | ⌘K         | Ctrl+K             |
 | Elimina l’elemento                       | ⌫ / Delete | Backspace / Delete |
 | Fratello precedente                      | ↑          | ArrowUp            |
 | Fratello successivo                      | ↓          | ArrowDown          |

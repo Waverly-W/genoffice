@@ -1,16 +1,6 @@
 import type { zh } from './zh'
 
 export const ru = {
-  redactMenuLabel: 'Скрыть выделение от ИИ',
-  redactDialogDesc:
-    'Выбранное остается в документе и в файле, а модель видит только метку. Дайте ей имя, чтобы было понятно, что она обозначает.',
-  redactDialogScope:
-    'Это касается только ИИ в этом приложении. CLI, инструменты MCP и экспорт без интерфейса читают файл напрямую и по-прежнему видят эти слова.',
-  redactDialogPlaceholder: 'Имя метки, напр. телефон клиента',
-  redactCancel: 'Отмена',
-  redactInsert: 'Скрыть',
-  redactEnable: 'Правый клик по выделению скрывает его от модели.',
-
   appPhPromptTitle: 'Щелкните, чтобы добавить заголовок',
   appPhPromptSubtitle: 'Щелкните, чтобы добавить подзаголовок',
   appPhPromptBody: 'Щелкните, чтобы добавить текст',
@@ -241,8 +231,6 @@ export const ru = {
   appNotesPlaceholder: 'Щелкните, чтобы добавить заметки докладчика (сохраняются в .pptx)',
   appNotesShow: 'Показать заметки',
   appNotesHide: 'Скрыть заметки',
-  appAiRailExpand: 'Развернуть ИИ-помощника',
-  appAiRailText: 'ИИ',
   appStatusBarSlide: 'Слайд {current} из {total}',
   appStatusBarReady: 'Готово',
   appMediaCloseTitle: 'Закрыть (Esc)',
@@ -251,17 +239,7 @@ export const ru = {
     'Общая продолжительность показа: {duration}. Сохранить время показа слайдов для автоматической смены?',
   appRehearseDiscard: 'Не сохранять',
   appRehearseSave: 'Сохранить',
-  appSettingsTitle: 'Настройки ИИ',
-  appSettingsAccount: 'Учетная запись Genspark',
-  appSettingsChecking: 'Проверка…',
-  appSettingsLoggedIn: 'Выполнен вход',
-  appSettingsLoggedInEmail: 'Выполнен вход: {email}',
-  appSettingsLoggedOut: 'Вход не выполнен (для функций ИИ требуется учетная запись Genspark)',
-  appSettingsLoginPending: 'Ожидание входа в браузере…',
-  appSettingsLogin: 'Войти в Genspark',
-  appSettingsModel: 'Модель',
   appSettingsCancel: 'Отмена',
-  appSettingsSave: 'Сохранить',
   appCropHint: 'Enter — подтвердить · Esc — отменить · Щелчок снаружи — подтвердить',
   appStatusZoomsInserted:
     'Вставлено масштабирований: {count} — щёлкните во время показа, чтобы перейти к слайдам',

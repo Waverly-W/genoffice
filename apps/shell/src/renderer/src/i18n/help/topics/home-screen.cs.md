@@ -8,8 +8,6 @@ Domů je startovní stránka GenOffice: navigační panel vlevo, seznamy soubor�
 
 - **Nedávné**: soubory, které jste nedávno otevřeli. Každý řádek nese svůj čas — dnes, včera nebo datum.
 - **Oblíbené**: soubory, které jste si označili hvězdičkou. Přejděte na řádek souboru a klikněte na hvězdičku, abyste jej přidali nebo odebrali. **Přesunout do skupiny** v nabídce ⋯ třídí soubory s hvězdičkou do pojmenovaných skupin; zobrazení S hvězdičkou se podle nich filtruje.
-- **Ask AI**: panel znalostní báze — ptejte se a dostávejte odpovědi s citacemi z vašich souborů s hvězdičkou (viz níže).
-- **Genspark Projects**: po přihlášení k účtu Genspark zobrazí projekty, které jste vytvořili na webu pomocí Genspark AI; kliknutím na projekt pokračujete v úpravách v prohlížeči. K dispozici je vyhledávání, řazení podle času, obnovení a načtení dalších.
 - **Složky**: adresáře, které do postranního panelu přidáte tlačítkem **Přidat složku…** nebo do něj přetáhnete ze správce souborů. Každý se stane kořenem, který můžete otevřít, vytvořit v něm podsložky, přejmenovat a odebrat; ten, který se stane nedostupným, se zobrazí jako nedostupný a lze ho ze seznamu sundat. **Nová složka** vytvoří další.
 
 Zde není žádná položka Koš. Odstraněné soubory putují do systémového koše a jejich obnova je věcí operačního systému.
@@ -36,36 +34,22 @@ Zaškrtněte pole u řádku nebo klepněte s ⌘/ctrl, abyste vytvořili výběr
 Vyhledávací pole nahoře filtruje najednou dvě věci:
 
 - **Názvy souborů**: rychlé filtrování podle názvu.
-- **Obsah souborů**: GenOffice na pozadí indexuje vaše soubory (text uvnitř docx/xlsx/pptx/pdf/md/html), takže hledáním v textu najdete i soubory. Rozsah a přepínače se nastavují v nastavení vyhledávání.
+- **Obsah souborů**: GenOffice na pozadí indexuje vaše soubory (text uvnitř docx/xlsx/pptx/pdf/md/html), takže hledáním v textu najdete i soubory.
 
 ## Karty rychlého startu
 
-Karty nad seznamy vytvoří nový dokument jediným krokem. Kliknutím na kartu se vytvoří soubor daného typu a otevře jeho editor — můžete rovnou psát, nebo nechat AI připravit první návrh (každý editor má na pásku **tlačítko AI** a v kontextové nabídce výběru **Zeptat se AI**).
+Karty nad seznamy vytvoří nový dokument jediným krokem. Kliknutím na kartu se vytvoří soubor daného typu a otevře jeho editor.
 
 Nový soubor se uloží do složky právě vybrané v postranním panelu; pokud není vybrána žádná, dostane se do výchozí složky.
 
 Co která karta dělá:
 
-- **AI Docs** (.docx): prázdný textový dokument v editoru Docs. Soubor se na disk zapíše až při **prvním uložení**; nové dokumenty se otevírají s rozbaleným panelem AI (vypnout to lze v Nastavení → „Otevírat panel AI v nových dokumentech“).
-- **AI Sheets** (.xlsx): prázdný list v editoru Sheets. Dokud neuložíte, na disku žádný soubor není — název je rezervován pro první uložení; po prvním vygenerování pomocí AI lze soubor také automaticky přejmenovat podle jeho obsahu.
-- **AI Slides** (.pptx): prázdná prezentace v editoru Slides.
-- **AI Markdown** (.md): prázdný dokument Markdown v editoru Markdown.
-- **AI HTML** (.html): prázdná webová stránka v editoru HTML.
-- **AI PDF** (.pdf): ostatní se liší — **okamžitě** vytvoří skutečný prázdný jednostránkový PDF v cílové složce a otevře ho jako běžný soubor (editor PDF pracuje se skutečnými soubory). Hodí se pro poznámky, začernění nebo přidávání textu; při prvním uložení lze soubor automaticky přejmenovat podle jeho obsahu.
+- **Docs** (.docx): prázdný textový dokument v editoru Docs. Soubor se na disk zapíše až při **prvním uložení**.
+- **Sheets** (.xlsx): prázdný list v editoru Sheets. Dokud neuložíte, na disku žádný soubor není — název je rezervován pro první uložení.
+- **Slides** (.pptx): prázdná prezentace v editoru Slides.
+- **Markdown** (.md): prázdný dokument Markdown v editoru Markdown.
+- **HTML** (.html): prázdná webová stránka v editoru HTML.
+- **PDF** (.pdf): ostatní se liší — **okamžitě** vytvoří skutečný prázdný jednostránkový PDF v cílové složce a otevře ho jako běžný soubor (editor PDF pracuje se skutečnými soubory). Hodí se pro poznámky, začernění nebo přidávání textu; při prvním uložení lze soubor automaticky přejmenovat podle jeho obsahu.
 - **Otevřít místní soubor**: systémový výběr souborů pro Word (.docx/.doc), Excel (.xlsx/.xlsm/.xls/.csv/.tsv), PowerPoint (.pptx/.ppt), PDF, Markdown (.md/.markdown) a webové stránky (.html/.htm). Lze vybrat více souborů; každý dostane vlastní kartu. Textové soubory (.txt, .json) se tu také otevírají — přistanou v zobrazení zdroje editoru Markdown.
 
 > Tip: Soubor ▸ Nový v pruhu nabídek vytvoří stejné typy dokumentů (⌘N/Ctrl+N ve výchozím stavu vytvoří textový dokument); přetažení souboru do okna ho otevře.
-
-## Zeptejte se své znalostní báze
-
-- Nejdřív dejte souborům hvězdičku (jakýkoli typ, který aplikace čte); hlavička panelu počítá korpus a prázdná báze vás vyzve, něco si označit.
-- Odpovědi citují zdrojové soubory; kliknutí na citaci otevře soubor v jeho editoru.
-- Vyžaduje přihlášení ke Genspark. Konverzace žije jen v paměti — zavření aplikace ji ukončí.
-- Hledání běží na lokálním indexu souborů jako na Domově; zmizelé soubory z korpusu tiše vypadnou.
-- Skupiny organizují jen seznam S hvězdičkou — znalostní báze vždy zahrnuje všechny soubory s hvězdičkou.
-
-## Projekty v cloudu (Genspark Projects)
-
-- Při prvním použití je nutné přihlásit se k účtu Genspark (postup s kódem zařízení: GenOffice zobrazí kód a vy dokončíte přihlášení v prohlížeči).
-- Seznam projektů se synchronizuje s webem; Otevřít v prohlížeči vás přesune tam, kde lze pokračovat.
-- Nepřihlášení nijak neomezuje žádnou místní funkci.

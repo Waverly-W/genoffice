@@ -4,7 +4,7 @@ import { join } from 'node:path'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { PDFDocument, StandardFonts } from 'pdf-lib'
 import { PDF_CHANNELS, type RedactionInput, type SavePdfResult } from '../src/shared/ipc'
-import { readPdfText } from '../src/main/read-text'
+import { readPdfText } from './read-text'
 
 type Handler = (event: { sender: FakeContents }, ...args: any[]) => any
 const handlers = new Map<string, Handler>()

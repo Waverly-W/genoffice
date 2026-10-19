@@ -18,12 +18,12 @@ Experimente num parágrafo qualquer:
 
 ![A barra de anotação depois de selecionar texto](img/pdf-highlight.png)
 
-2. Escolha **Destacar** (o quadrado amarelo abre uma paleta de cores), **Sublinhar** ou **Tachar**; **Perguntar à IA** envia a seleção com a sua pergunta para o painel de IA.
+2. Escolha **Destacar** (o quadrado amarelo abre uma paleta de cores), **Sublinhar** ou **Tachar**.
 3. Para desfazer uma anotação, volte a arrastar-seleccionar o mesmo trecho e clique no botão ativo da barra (um interruptor ao estilo do Word), ou selecione-o e prima Delete.
 
 A ter em conta:
 
-- Arrastar sobre o texto faz aparecer uma barra: **Destacar / Sublinhar / Tachar / Copiar / Perguntar à IA**.
+- Arrastar sobre o texto faz aparecer uma barra: **Destacar / Sublinhar / Tachar / Copiar**.
 - As cores vêm da paleta; e **aplicar a mesma marcação a um intervalo já marcado remove-a** (interruptor ao estilo do Word).
 - As marcações já gravadas no ficheiro podem ser selecionadas e eliminadas (menu ⋯ ou Delete).
 - **Nota**: enquanto uma ferramenta de desenho estiver armada, a camada de texto não pode ser selecionada — a ferramenta desarma-se sozinha após cada colocação, ficando outra vez em modo de seleção para a ação seguinte.

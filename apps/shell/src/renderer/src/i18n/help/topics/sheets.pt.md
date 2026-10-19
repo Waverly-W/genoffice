@@ -19,7 +19,7 @@ O Sheets é o editor parecido com o Excel; os cálculos correm num processo sepa
 - **Layout da Página**: cores e fontes do tema, interruptores de linhas de grade e títulos ao imprimir, visualização de quebra de página.
 - **Fórmulas**: AutoSoma e inserção de funções, definir nomes (também a partir da seleção), rastrear precedentes/dependentes, janela de inspeção, recalcular folha/livro.
 - **Dados**: classificar e filtrar (incluindo filtro avançado e limpar o filtro), texto para colunas, mesclar pastas de trabalho, atualizar tudo.
-- **Revisão**: navegar pelos comentários (mostrar, anterior/seguinte), traduzir e um grupo **Proteção** — **Proteger Planilha**, **Proteger Pasta de Trabalho** e **Permitir Edição de Intervalos**.
+- **Revisão**: navegar pelos comentários (mostrar, anterior/seguinte) e um grupo **Proteção** — **Proteger Planilha**, **Proteger Pasta de Trabalho** e **Permitir Edição de Intervalos**.
   - A proteção é escrita no .xlsx e o que esta aplicação aplica não tem palavra-passe, por isso o mesmo botão passa a **Desproteger…** e anula-a. A proteção vinda de outro programa que _tem mesmo_ palavra-passe não pode ser removida daqui.
   - Os dois botões de proteção aplicam-se de imediato — não há nenhuma caixa de diálogo para cancelar, apenas uma nota na barra de estado a indicar que será escrito ao guardar.
   - **Permitir Edição de Intervalos** marca as células que continuam editáveis enquanto o resto da folha fica bloqueada.
@@ -87,13 +87,6 @@ O separador Fórmulas, botão a botão:
 - **Na barra de estado inferior**: escolha que estatísticas a barra de estado mostra (média / contagem / soma, ...); a escolha fica guardada.
 - **Num separador de folha em baixo**: adicionar / renomear / eliminar / dar cor / ocultar folhas (o menu de separadores do Univer).
 - O menu de contexto da barra de guias superior está em [Guias e gestão de janelas](help://tabs-and-windows).
-
-## IA
-
-- O painel de IA lateral: selecione um intervalo e dê instruções em linguagem corrente (reformatar, gerar dados, escrever fórmulas).
-- Anexe ficheiros a um pedido com o botão 📎, ou arraste-os para o painel; acompanham a questão e as imagens voltam como miniaturas.
-- Uma resposta pode citar uma célula — clique na referência e a grelha salta para lá.
-- As alterações feitas pela IA podem ser revertidas a partir do painel.
 
 ## Salvar e exportar
 

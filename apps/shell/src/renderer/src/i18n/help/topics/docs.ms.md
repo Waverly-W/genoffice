@@ -16,8 +16,8 @@ Tab: **Laman Utama / Sisip / Lukis / Tataletak / Reka Bentuk / Rujukan / Semakan
 
   ![Tab Rujukan](img/docs-references.png)
 
-- **Semakan**: **Editor** menyemak keseluruhan dokumen dari segi ejaan, tatabahasa dan tanda baca; **Terjemah**; pemeriksaan ejaan; komen (**Komen dengan AI** mengendalikan yang masih terbuka); jejak perubahan dengan paparan Semua Penandaan / Penandaan Ringkas, terima/tolak, dan **Ringkasan semakan AI**; kiraan perkataan; **Banding** dengan fail lain; **Lindungi Dokumen**.
-- **PANDANGAN**: lima cara untuk melihat fail — **Tataletak Cetakan**, **Tataletak Web**, **Rangka**, **Mod Baca** dan **Pratonton Halaman**; zum keluar/masuk/100 %/lebar halaman/satu halaman; **Panel AI**; **Mod Gelap**; pembaris, garisan grid dan anak tetingkap navigasi; **Tab Baharu**, **Pisah** dan **Tukar Tab**; dialog pintasan papan kekunci yang boleh dicari.
+- **Semakan**: pemeriksaan ejaan; komen; jejak perubahan dengan paparan Semua Penandaan / Penandaan Ringkas dan terima/tolak; kiraan perkataan; **Banding** dengan fail lain; **Lindungi Dokumen**.
+- **PANDANGAN**: lima cara untuk melihat fail — **Tataletak Cetakan**, **Tataletak Web**, **Rangka**, **Mod Baca** dan **Pratonton Halaman**; zum keluar/masuk/100 %/lebar halaman/satu halaman; **Mod Gelap**; pembaris, garisan grid dan anak tetingkap navigasi; **Tab Baharu**, **Pisah** dan **Tukar Tab**; dialog pintasan papan kekunci yang boleh dicari.
   - **Mod Gelap** mengegelapkan halaman dan kanvas di sekelilingnya, tetapi tidak pernah ribbon — pemisahan Word antara permukaan penyuntingan gelap dan tingkap gelap. Pilihan ini diingat, dan dalam apa jua keadaan ia mendahului tema aplikasi.
   - **Pisah** membuka anak tetingkap kedua di bawah yang menatal secara bebas dan mencerminkan yang pertama; tutup dengan × pada tepinya.
 
@@ -53,7 +53,6 @@ Klik kanan di mana-mana bahagian teks, dan menu akan mengikut apa yang anda klik
 - **Papan keratan**: potong / salin / tampal / **tampal sebagai teks biasa**.
 - **Fon, perenggan**: tukar keluarga dan saiz fon, tebal / condong / garis bawah, penjajaran / indentasi / jarak tanpa perlu ke reben.
 - **Sinonim**: menyenaraikan sinonim bagi perkataan yang dipilih. Klik satu untuk menggantikan.
-- **Terjemah** (AI): terjemahan pilihan ke dalam bahasa sasaran (bahasa Inggeris, Cina ringkas, Jepun, Korea, Perancis, Jerman, Sepanyol, ...) melalui panel AI.
 - **Komen baharu**: melampirkan komen pada pilihan.
 - **Ejaan** (pada perkataan yang salah ejaan): cadangan ganti, abaikan semua, tambah ke kamus, tetapkan bahasa semakan.
 - **Hiperpautan**: buka / edit / salin pautan / buang hiperpautan.
@@ -73,11 +72,6 @@ Klik kanan di mana-mana bahagian teks, dan menu akan mengikut apa yang anda klik
 
 - Mampatan tanda baca dan peraturan pemenggalan baris (kinsoku) selaras dengan Word, termasuk penukaran lebar penuh dan separuh.
 - Senarai calon fon merangkumi nama keluarga CJK yang biasa digunakan pada Windows dan macOS.
-
-## AI
-
-- Butang AI pada reben dan panel sisi: tulis semula, perluaskan, terjemah, ringkaskan, sisip jadual siap, serta arahan bebas.
-- Setiap pusingan AI mengambil gambar keadaan lebih dahulu. Anda boleh berundur dari senarai versi, undur itu sendiri boleh dibatalkan.
 
 ## Simpanan dan eksport
 

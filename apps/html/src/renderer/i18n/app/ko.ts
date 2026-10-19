@@ -1,15 +1,6 @@
 import type { zh } from './zh'
 
 export const ko = {
-  redactMenuLabel: '선택한 부분을 AI에서 숨기기',
-  redactDialogDesc:
-    '문서는 그대로 두고 AI에게는 아래 자리표시자만 보냅니다. 이름을 붙이면 AI가 무엇을 뜻하는지 알 수 있습니다.',
-  redactDialogScope:
-    '이 앱의 AI에만 적용됩니다. CLI, MCP 도구, 창 없는 내보내기는 파일을 직접 읽으므로 이 단어들은 여전히 보입니다.',
-  redactDialogPlaceholder: '자리표시자 이름, 예: 고객 전화',
-  redactCancel: '취소',
-  redactInsert: '숨기기',
-
   loading: '불러오는 중…',
   loadFailed: '파일을 열 수 없습니다',
   untitled: '제목 없음',
@@ -46,8 +37,7 @@ export const ko = {
   charCount: '{n}자',
   previewNeedsSave: '파일을 저장하면 상대 경로의 이미지와 스타일이 미리보기에 표시됩니다',
   inspectHint: '미리보기에서 요소를 클릭해 선택, 더블클릭으로 텍스트 편집',
-  nodeDynamic:
-    '이 요소는 페이지 스크립트가 생성한 것으로 소스에 없습니다. 소스 또는 AI로 편집하세요',
+  nodeDynamic: '이 요소는 페이지 스크립트가 생성한 것으로 소스에 없습니다. 소스에서 편집하세요',
   nodeDynamicShort: '스크립트 생성',
   nodeDirty:
     '페이지 스크립트가 이 요소를 변경했습니다. 소스에 쓴 편집이 스크립트에 의해 덮어써질 수 있습니다',

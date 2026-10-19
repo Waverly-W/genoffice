@@ -44,8 +44,7 @@ export function countWords(text: string): number {
 /**
  * Words inside the current selection, for the status bar's "selected/total"
  * figure. Word shows that pair while a selection exists and the plain total
- * once the caret collapses; GenOffice reported only the total, so the selected
- * figure was reachable from the AI panel alone.
+ * once the caret collapses.
  *
  * Every no-selection case falls out of the counting rule itself: a collapsed
  * caret and a NodeSelection (an image or a table is selected as a node, not

@@ -22,7 +22,6 @@ export {
   IconRedo,
   IconCopy,
   IconSearch,
-  IconEyeOff,
   IconSpellcheck,
 } from '../../../../docs/src/renderer/components/icons'
 

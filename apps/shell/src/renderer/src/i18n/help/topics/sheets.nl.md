@@ -19,7 +19,7 @@ Sheets is de Excel-achtige editor; de berekeningen draaien in een apart proces m
 - **Pagina-indeling**: themakleuren en -lettertypen, schakelaars voor het afdrukken van rasterlijnen en koppen, voorbeeld van pagina-einden.
 - **Formules**: Autosom en functies invoegen, namen definiëren (ook vanuit een selectie), voorwaarden en gevolgen traceren, controlevenster, werkblad of werkmap opnieuw berekenen.
 - **Gegevens**: sorteren en filteren (inclusief geavanceerd filter en filter wissen), tekst naar kolommen, werkmap samenvoegen, alles vernieuwen.
-- **Controleren**: opmerkingen doorbladeren (tonen, vorige/volgende), vertalen en de groep **Beveiligen** — **Blad beveiligen**, **Werkmap beveiligen** en **Bewerken van bereiken toestaan**.
+- **Controleren**: opmerkingen doorbladeren (tonen, vorige/volgende) en de groep **Beveiligen** — **Blad beveiligen**, **Werkmap beveiligen** en **Bewerken van bereiken toestaan**.
   - De beveiliging wordt in de .xlsx geschreven en op wat deze app toepast zit geen wachtwoord, dus dezelfde knop wordt **Beveiliging opheffen…** en maakt het ongedaan. Beveiliging uit een ander programma dat _wél_ een wachtwoord heeft, kan hier niet worden verwijderd.
   - De twee beveiligingsknoppen werken meteen — er is geen dialoog om te annuleren, alleen een aantekening in de statusbalk dat het bij het opslaan wordt weggeschreven.
   - **Bewerken van bereiken toestaan** markeert de cellen die bewerkbaar blijven terwijl de rest van het blad vergrendeld is.
@@ -87,13 +87,6 @@ Het tabblad Formules, knop voor knop:
 - **Op de statusbalk onderaan**: kies welke statistieken de statusbalk toont (gemiddelde / aantal / som, ...); de keuze wordt onthouden.
 - **Op een werkbladtab onderaan**: werkbladen toevoegen / hernoemen / verwijderen / kleuren / verbergen (het tabbladmenu van Univer).
 - Het contextmenu van de bovenste tabbladenbalk staat in [Tabbladen en vensterbeheer](help://tabs-and-windows).
-
-## AI
-
-- Het AI-paneel aan de zijkant: selecteer een bereik en geef instructies in gewone taal (opnieuw opmaken, gegevens genereren, formules schrijven).
-- Voeg bestanden toe aan een prompt met de 📎-knop, of sleep ze op het paneel; ze reizen mee met de vraag en afbeeldingen komen terug als miniaturen.
-- Een antwoord kan naar een cel verwijzen — klik op de verwijzing en het raster springt er naartoe.
-- AI-wijzigingen kun je vanuit het paneel terugdraaien.
 
 ## Opslaan en exporteren
 

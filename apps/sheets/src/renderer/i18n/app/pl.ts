@@ -143,15 +143,9 @@ export const pl = {
   appRefresh: 'Odśwież',
   appRefreshHintIn: 'Przelicz ponownie bieżącą tabelę przestawną',
   appRefreshHintOut: 'Najpierw zaznacz obszar tabeli przestawnej, a następnie odśwież',
-  appAttachmentReadFailed: '{name}: odczyt nie powiódł się',
-  appTooManyImages: 'Maksymalnie {max} obrazów na wiadomość; nadmiarowe zostały zignorowane',
-  appAppliedRevision:
-    'Zastosowano (wersja {revision}) — cofnij za pomocą ⌘Z, zapisz do pliku za pomocą ⌘S.',
   appCannotReadImage: 'Nie można odczytać pliku obrazu.',
   appTableNotDeletable:
     'Tabela „{name}” nie istnieje lub nie została utworzona w tej sesji — tabel istniejących już w pliku nie można jeszcze usuwać.',
-  appImageNotLoaded: 'Nie udało się załadować obrazu: {path}',
-  appApplyFailed: '⚠️ Nie udało się zastosować: {reason}',
   appPivotChartNeedsFile: 'Najpierw otwórz plik XLSX — wykres przestawny jest zapisywany w pliku.',
   appCursorNotInPivot:
     'Kursor nie znajduje się w tabeli przestawnej — najpierw zaznacz komórkę w obszarze wyników tabeli przestawnej.',
@@ -293,16 +287,6 @@ export const pl = {
   appSaveSecondFailed:
     'Struktura została zapisana, ale druga faza (tabele przestawne/tabele/zdefiniowane nazwy) nie powiodła się: {reason}',
   appReadyInitial: 'Gotowe na lokalne, deterministyczne polecenie AI.',
-  appAiThinking: 'AI myśli…',
-  appAiDone: 'AI zakończyła pracę',
-  appAiTurnLimit:
-    '(Osiągnięto limit rund wywołań narzędzi dla tego żądania; powyższa odpowiedź opiera się na dotychczas odczytanych informacjach i może być niekompletna.)',
-  appAiTruncatedNote: '(Odpowiedź została ucięta przez limit długości i może być niepełna.)',
-  appAiStopped: '(zatrzymano)',
-  appAiNoSummary: 'AI zakończyła bez podsumowania.',
-  appAiNoAction:
-    'AI nie wykonała żadnej akcji i nie udzieliła odpowiedzi. Spróbuj ponownie lub przeformułuj.',
-  appNewConversation: 'Rozpoczęto nową rozmowę.',
   appPivotCellNoEdit:
     'Ta komórka jest częścią tabeli przestawnej — edycja nie jest jeszcze obsługiwana.',
   appAreaStreaming:
@@ -352,15 +336,8 @@ export const pl = {
   appDvListOptions: 'Lista: {items}',
   appDvListFromRange: 'Lista (z zakresu {range})',
   appRuleBrokenRef: 'Uszkodzone odwołanie (#REF!) — ta reguła nigdy nie zadziała',
-  appCellStreaming: 'Ta komórka jest wciąż ładowana strumieniowo — spróbuj ponownie za chwilę.',
-  appPreviewCreated: 'Utworzono podgląd — nic się nie zmieni, dopóki nie zastosujesz.',
-  appPreviewCreatedDemo: 'Utworzono podgląd. Stan skoroszytu nie uległ zmianie.',
-  appPreviewFailed: 'Nie można utworzyć podglądu.',
   appApplyTxFailed: 'Nie można zastosować transakcji.',
   appTxCommitted: 'Transakcja zatwierdzona w wersji {revision}.',
-  appPreviewOtherWorkbook: 'Podgląd należał do innego skoroszytu — utwórz nowy.',
-  appPreviewSheetGone: 'Arkusz z podglądu już nie istnieje — utwórz nowy podgląd.',
-  appWorkbookChangedSincePreview: 'Skoroszyt zmienił się od czasu podglądu — utwórz nowy podgląd.',
   appAppliedJournaled: 'Zastosowano — zmiany zostały zarejestrowane; zapisz za pomocą ⌘S.',
   appUndoCommitted: 'Cofnięcie zatwierdzone jako wersja {revision}.',
   appUndoFailed: 'Nie można cofnąć.',
@@ -622,8 +599,6 @@ export const pl = {
   appShowCommentsTitle: 'Przypnij/odepnij dymek komentarza zaznaczonej komórki',
   appStructuralShiftBlocked:
     'Wykres lub tabela w tym arkuszu jest zakotwiczona w zmienianych wierszach/kolumnach; nie można ich przesunąć, zmiana strukturalna nie została zapisana. Cofnij ją (⌘Z) i zapisz ponownie.',
-  appAiChangesNotSaved:
-    'Zmiany AI zastosowane (niezapisane). Cofnij za pomocą ⌘Z; zapisz plikiem ⌘S.',
   appChartUpdated: 'Zaktualizowano wykres.',
   appChartNotEditable: 'Tego wykresu nie można edytować.',
   appChartEditRecorded: 'Zarejestrowano edycję wykresu — zapisz za pomocą ⌘S.',
@@ -795,7 +770,6 @@ export const pl = {
   appFormatPaneDetail: 'Osie, szerokość przerwy, rozsunięcie',
   appGroupChartActions: 'Akcje wykresu',
   appRemoveFromSheet: 'Usuń z arkusza',
-  appGroupAiAssistant: 'Asystent AI',
   appAiOpenPanelDetail: 'Pasek boczny czatu',
   appGroupAiStarters: 'Szybki start',
   appAiStarterDetail: 'Wyślij do panelu AI',
@@ -1274,11 +1248,6 @@ export const pl = {
   appGroupProofing: 'Sprawdzanie',
   appWorkbookStatsLabel: 'Statystyki skoroszytu',
   appSheetsCellsFormulas: 'Arkusze, komórki, formuły',
-  appTranslate: 'Przetłumacz',
-  appGroupLanguage: 'Język',
-  appTranslateTitle: 'Przetłumacz zaznaczenie z AI',
-  appTranslatePrompt:
-    'Przetłumacz tekst z zaznaczonego zakresu na {language} i wpisz tłumaczenia do tych samych komórek.',
   appNewCommentDetail: 'Dodaj lub edytuj',
   appDeleteLabel: 'Usuń',
   appNoteAtSelection: 'Notatka w miejscu zaznaczenia',

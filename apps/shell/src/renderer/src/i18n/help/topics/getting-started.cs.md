@@ -16,7 +16,7 @@ Okno má tři části:
 
 Kterýkoli z těchto způsobů:
 
-- Klikněte na kartu rychlého vytvoření v části [Rychlý start](help://getting-started) na **domovské stránce** (AI Docs, AI Sheets, AI Slides, ...).
+- Klikněte na kartu rychlého vytvoření v části [Rychlý start](help://getting-started) na **domovské stránce** (Docs, Sheets, Slides, ...).
 - Nabídka **Soubor ▸ Nový**: Docs (⌘N/ctrl+N), Sheets, Slides, Markdown, HTML nebo PDF.
 - Přetáhněte soubor do okna, nebo na něj v Průzkumníku dvakrát klikněte (pokud je GenOffice výchozí aplikací).
 
@@ -26,7 +26,6 @@ Nový dokument se otevře bez názvu; soubor na disku vznikne až při prvním u
 
 - Nabídka **Soubor ▸ Otevřít…** (⌘O/ctrl+O) otevře systémový výběr: .docx / .doc / .xlsx / .xls / .csv / .tsv / .pptx / .ppt / .pdf / .md / .html.
 - Klikněte na cokoliv v seznamu **Nedávné** na domovské stránce.
-- Také `genoffice <soubor>` z terminálu soubory otevírá.
 
 ## Model ukládání
 
@@ -87,5 +86,4 @@ Tím pádem zůstává ⌥⌘D volný, aby ho GenOffice na macOS mohla použít,
 
 - Kde jsou soubory: [Obrazovka domovské stránky](help://home-screen).
 - Správa mnoha otevřených souborů: [Karty a správa oken](help://tabs-and-windows).
-- Nechat práci udělat AI: [Panel AI asistenta](help://ai-panel).
-- Jazyk, motiv, výchozí aplikace: [Nastavení, jazyk, motiv a integrace MCP](help://settings-integrations).
+- Jazyk, motiv, výchozí aplikace: [Nastavení, jazyk a motiv](help://settings).

@@ -16,7 +16,7 @@ Jendela ini terdiri dari tiga bagian:
 
 Pilih salah satu:
 
-- Klik salah satu kartu pembuatan cepat di bagian [Mulai cepat](help://getting-started) pada **Beranda** (AI Docs, AI Sheets, AI Slides, ...).
+- Klik salah satu kartu pembuatan cepat di bagian [Mulai cepat](help://getting-started) pada **Beranda** (Docs, Sheets, Slides, ...).
 - Menu **File ▸ Baru**: Docs (⌘N/ctrl+N), Sheets, Slides, Markdown, HTML, atau PDF.
 - Seret sebuah file ke jendela, atau klik dua kali di aplikasi file Anda (jika GenOffice adalah aplikasi default).
 
@@ -26,7 +26,6 @@ Dokumen baru terbuka tanpa nama; file di disk baru dibuat saat disimpan pertama 
 
 - Menu **File ▸ Buka…** (⌘O/ctrl+O) membuka pemilih file sistem: .docx / .doc / .xlsx / .xls / .csv / .tsv / .pptx / .ppt / .pdf / .md / .html.
 - Klik apa pun di daftar **Terbaru** pada Beranda.
-- `genoffice <file>` dari terminal juga dapat membuka file.
 
 ## Cara kerja penyimpanan
 
@@ -87,5 +86,4 @@ Dengan begitu ⌥⌘D tetap bebas untuk dipakai GenOffice di macOS, bila suatu p
 
 - Letak file Anda: [Layar Beranda](help://home-screen).
 - Mengelola banyak file terbuka: [Tab dan pengelolaan jendela](help://tabs-and-windows).
-- Membiarkan AI mengerjakan pekerjaan: [Panel asisten AI](help://ai-panel).
-- Bahasa, tema, aplikasi default: [Pengaturan, bahasa, tema, dan integrasi MCP](help://settings-integrations).
+- Bahasa, tema, aplikasi default: [Pengaturan, bahasa, dan tema](help://settings).

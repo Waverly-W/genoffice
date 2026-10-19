@@ -47,12 +47,6 @@ Het menu volgt de plek waar je met de rechtermuisknop klikt:
 - Masters en indelingen: verenigen lettertypen, plaatshouders en achtergronden; nieuwe dia's overnemen de gekozen indeling.
 - Themakleuren en -lettertypen volgen het thema.
 
-## Genereren met AI
-
-- De AI-dia-kaart op Start: geef een onderwerp of een outline en de AI bouwt de presentatie; lukt genereren in de cloud niet, dan valt het terug op lokaal genereren.
-- Ga daarna door met het AI-paneel.
-- Rechtsklik op een tekstselectie of een afbeeldings/video/audio-element ▸ **Selectie voor AI verbergen** houdt het uit het zicht van het model (details in het hoofdstuk over het AI-paneel); een dia met verborgen inhoud slaat de automatische screenshotcontrole over.
-
 ## Presenteren en exporteren
 
 - **Exporteren als pdf**: pagina per pagina rasteren in een verborgen venster, met voortgangsindicatie en een time-outbewaking voor grote presentaties.

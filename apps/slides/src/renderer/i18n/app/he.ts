@@ -1,16 +1,6 @@
 import type { zh } from './zh'
 
 export const he = {
-  redactMenuLabel: 'הסתרת הבחירה מהמודל',
-  redactDialogDesc:
-    'הבחירה נשארת במסמך ובקובץ; המודל רואה רק את הסימון. תן לו שם כדי שיהיה ברור מה הוא מייצג.',
-  redactDialogScope:
-    'ההסתרה חלה רק על המודל באפליקציה הזו. CLI, כלי MCP וייצוא ללא ממשק קוראים את הקובץ ישירות ועדיין רואים את המילות האלה.',
-  redactDialogPlaceholder: 'שם הסימון, לדוגמה: טלפון הלקוח',
-  redactCancel: 'ביטול',
-  redactInsert: 'הסתר',
-  redactEnable: 'לחיצה ימנית על טקסט נבחר מסתיר אותו מהמודל.',
-
   appPhPromptTitle: 'לחץ כדי להוסיף כותרת',
   appPhPromptSubtitle: 'לחץ כדי להוסיף כותרת משנה',
   appPhPromptBody: 'לחץ כדי להוסיף טקסט',
@@ -228,8 +218,6 @@ export const he = {
   appNotesPlaceholder: 'לחץ כדי להוסיף הערות מציג (נשמרות בקובץ ה-.pptx)',
   appNotesShow: 'הצג הערות',
   appNotesHide: 'הסתר הערות',
-  appAiRailExpand: 'הרחב את עוזר ה-AI',
-  appAiRailText: 'AI',
   appStatusBarSlide: 'שקופית {current} מתוך {total}',
   appStatusBarReady: 'מוכן',
   appMediaCloseTitle: 'סגור (Esc)',
@@ -238,17 +226,7 @@ export const he = {
     'משך ההצגה הכולל היה {duration}. האם לשמור את תזמוני השקופיות למעבר אוטומטי בין שקופיות?',
   appRehearseDiscard: 'אל תשמור',
   appRehearseSave: 'שמור',
-  appSettingsTitle: 'הגדרות AI',
-  appSettingsAccount: 'חשבון Genspark',
-  appSettingsChecking: 'בודק…',
-  appSettingsLoggedIn: 'מחובר',
-  appSettingsLoggedInEmail: 'מחובר: {email}',
-  appSettingsLoggedOut: 'לא מחובר (תכונות AI דורשות חשבון Genspark)',
-  appSettingsLoginPending: 'ממתין להתחברות בדפדפן…',
-  appSettingsLogin: 'התחבר אל Genspark',
-  appSettingsModel: 'מודל',
   appSettingsCancel: 'ביטול',
-  appSettingsSave: 'שמור',
   appCropHint: 'Enter לאישור · Esc לביטול · לחץ בחוץ לאישור',
   appStatusZoomsInserted: 'הוזנו {count} זומים: לחץ במהלך ההצגה כדי לעבור לשקופיות',
   appStatusSummaryZoomInserted: 'הוזנה שקופית זום סיכום עם {count} אריחים',

@@ -46,8 +46,6 @@ describe('Settings analytics consent', () => {
       getDefaultSaveDir: async () => '',
       getAnalyticsEnabled: async () => true,
       setAnalyticsEnabled: persist,
-      getAiPanelPrefs: async () => ({ fontSize: 'default', spellcheck: true }),
-      setAiPanelPrefs: async (patch) => ({ fontSize: 'default', spellcheck: true, ...patch }),
       getUpdateChannel: async () => 'stable',
       getAppVersion: async () => '1.0.0',
       githubStars: async () => null,
@@ -58,18 +56,7 @@ describe('Settings analytics consent', () => {
         createElement(
           LocaleProvider,
           { initial: 'en' },
-          createElement(SettingsModal, {
-            status: null,
-            loggingOut: false,
-            loginWaiting: false,
-            loginUrl: null,
-            urlCopied: false,
-            onOpenLoginUrl: vi.fn(),
-            onCopyLoginUrl: vi.fn(),
-            onClose: vi.fn(),
-            onLogin: vi.fn(),
-            onLogout: vi.fn(),
-          }),
+          createElement(SettingsModal, { onClose: vi.fn() }),
         ),
       )
       await Promise.resolve()
@@ -115,18 +102,7 @@ describe('Settings AutoSave default', () => {
         createElement(
           LocaleProvider,
           { initial: 'en' },
-          createElement(SettingsModal, {
-            status: null,
-            loggingOut: false,
-            loginWaiting: false,
-            loginUrl: null,
-            urlCopied: false,
-            onOpenLoginUrl: vi.fn(),
-            onCopyLoginUrl: vi.fn(),
-            onClose: vi.fn(),
-            onLogin: vi.fn(),
-            onLogout: vi.fn(),
-          }),
+          createElement(SettingsModal, { onClose: vi.fn() }),
         ),
       )
       await Promise.resolve()

@@ -1,6 +1,6 @@
 import type { Editor } from '@tiptap/core'
-import { isTrackedDeleted } from './ai/doc-utils'
-import { serializeRangeToHtml } from './ai/protocol'
+import type { Node as ProseMirrorNode } from '@tiptap/pm/model'
+import { pmTableToModel, type PmMark, type PmNode } from './editor/convert'
 import { MARKDOWN_MEDIA_DIR_TOKEN, type MarkdownImage } from '../shared/ipc'
 
 export interface MarkdownExport {
@@ -30,10 +30,10 @@ function imageExt(src: string): string | null {
 }
 
 /**
- * The whole document as GFM. Rich blocks go through the AI protocol's
- * restricted-HTML serializer (same source the CLI's docx→md uses); protected
- * blocks become a display formula, a field's visible text, a picture, or
- * nothing. Pictures are collected for the writer and referenced by name.
+ * The whole document as GFM. Rich blocks go through a restricted-HTML
+ * serializer first; protected blocks become a display formula, a field's
+ * visible text, a picture, or nothing. Pictures are collected for the writer
+ * and referenced by name.
  */
 export function documentToMarkdown(editor: Editor): MarkdownExport {
   const top = editor.state.doc
@@ -54,7 +54,7 @@ export function documentToMarkdown(editor: Editor): MarkdownExport {
   }
   let runStart = -1
   const flush = (end: number) => {
-    if (runStart >= 0) parts.push(serializeRangeToHtml(editor, runStart, end, null, image))
+    if (runStart >= 0) parts.push(serializeRangeToHtml(editor, runStart, end, image))
     runStart = -1
   }
   top.forEach((node, _offset, index) => {
@@ -81,6 +81,190 @@ export function documentToMarkdown(editor: Editor): MarkdownExport {
   })
   flush(top.childCount - 1)
   return { markdown: restrictedHtmlToMarkdown(parts.join('\n')), images }
+}
+
+/** Maps a picture's source to the `src` the restricted HTML should carry; null drops it. */
+type ImageSrcMapper = (src: string) => string | null
+
+const hasDelMark = (node: ProseMirrorNode) => node.marks.some((m) => m.type.name === 'del')
+
+/**
+ * The whole block is a pending deletion revision (struck through in the editor).
+ * Checked structurally, not by text length: atom leaves (inline formulas, ruby)
+ * carry no textContent, so a live formula must still count as live content.
+ */
+function isTrackedDeleted(node: ProseMirrorNode): boolean {
+  if ((node.attrs?.blockRevision as { kind?: string } | null)?.kind === 'del') return true
+  let hasContent = false
+  let hasLive = false
+  node.descendants((child) => {
+    if (child.isText || (child.isInline && child.isLeaf)) {
+      hasContent = true
+      if (!hasDelMark(child)) hasLive = true
+    }
+  })
+  return hasContent && !hasLive
+}
+
+const isDeletedRun = (node: PmNode) => (node.marks ?? []).some((m: PmMark) => m.type === 'del')
+
+function wrapInlineText(raw: string, marks: PmMark[]): string {
+  let text = escapeHtml(raw)
+  const has = (type: string) => marks.some((m: PmMark) => m.type === type)
+  if (has('bold')) text = `<strong>${text}</strong>`
+  if (has('italic')) text = `<em>${text}</em>`
+  if (has('underline')) text = `<u>${text}</u>`
+  if (has('strike')) text = `<s>${text}</s>`
+  const link = marks.find((m: PmMark) => m.type === 'link')
+  if (link?.attrs?.href) text = `<a href="${escapeHtml(String(link.attrs.href))}">${text}</a>`
+  return text
+}
+
+function inlineAtomToHtml(node: PmNode, image: ImageSrcMapper): string {
+  if (node.type === 'hardBreak') return '<br>'
+  if (node.type === 'docInlineImage') {
+    const src = node.attrs?.rule ? null : image(String(node.attrs?.dataUrl ?? ''))
+    return src ? `<img src="${escapeHtml(src)}">` : ''
+  }
+  if (node.type === 'docInlineMath') {
+    // editor-created formulas carry LaTeX; parsed-from-docx ones degrade to the flat token strip
+    const source = String(node.attrs?.latex ?? '') || String(node.attrs?.text ?? '')
+    return source ? `<formula>${escapeHtml(source)}</formula>` : ''
+  }
+  if (node.type === 'docRuby') return escapeHtml(String(node.attrs?.base ?? ''))
+  return ''
+}
+
+/** inline content as restricted HTML; pending tracked deletions are left out */
+function inlineToHtml(content: PmNode[] | undefined, image: ImageSrcMapper): string {
+  if (!content) return ''
+  let html = ''
+  for (const node of content) {
+    if (isDeletedRun(node)) continue
+    html +=
+      node.type === 'text'
+        ? wrapInlineText(node.text ?? '', node.marks ?? [])
+        : inlineAtomToHtml(node, image)
+  }
+  return html
+}
+
+/** plain text of a paragraph's inline content, hard breaks as newlines */
+function inlineToPlainText(content: PmNode[] | undefined): string {
+  if (!content) return ''
+  return content
+    .filter((n) => !isDeletedRun(n))
+    .map((n) => (n.type === 'hardBreak' ? '\n' : n.type === 'text' ? (n.text ?? '') : ''))
+    .join('')
+}
+
+/** a shaded, fully bordered Consolas-style paragraph reads as a code block */
+function isCodeParagraph(node: PmNode): boolean {
+  return node.attrs?.shadingFill === 'F2F2F2' && node.attrs?.borders === 'tblr'
+}
+
+/** an indented paragraph with only a left border reads as a quote */
+function isQuoteParagraph(node: PmNode): boolean {
+  return node.attrs?.borders === 'l' && Number(node.attrs?.indentLeft) > 0
+}
+
+/**
+ * Table block as restricted <table> HTML. The grid comes from the table model
+ * so merged cells keep their columns; each non-continuation entry maps to the
+ * row's next physical cell node, whose inline pictures are kept.
+ */
+function tableToHtml(node: PmNode, image: ImageSrcMapper): string {
+  const model = pmTableToModel(node)
+  const headerRow =
+    model.rows.length > 1 && model.rows[0].every((c) => c.bold || c.fill !== undefined)
+  const rows = model.rows.map((row, r) => {
+    const tag = headerRow && r === 0 ? 'th' : 'td'
+    const physical = node.content?.[r]?.content ?? []
+    let next = 0
+    const cells = row
+      .map((entry) => {
+        if (entry.vMerge === 'continue') return `<${tag}></${tag}>`
+        const cell = physical[next++]
+        const paras = (cell?.content ?? [])
+          .filter((n) => n.type === 'docParagraph' || n.type === 'docListItem')
+          .map((n) => inlineToHtml(n.content, image))
+        return `<${tag}>${paras.join('<br>')}</${tag}>`
+      })
+      .join('')
+    return `<tr>${cells}</tr>`
+  })
+  return `<table>${rows.join('')}</table>`
+}
+
+/**
+ * Serialize top-level nodes [startIndex, endIndex] into restricted HTML.
+ * Consecutive list items of the same kind are grouped into ul/ol.
+ */
+function serializeRangeToHtml(
+  editor: Editor,
+  startIndex: number,
+  endIndex: number,
+  image: ImageSrcMapper,
+): string {
+  const json = editor.getJSON() as PmNode
+  const children = (json.content ?? []).slice(startIndex, endIndex + 1)
+  const parts: string[] = []
+  let listBuffer: { kind: string; items: string[] } | null = null
+
+  const flushList = () => {
+    if (!listBuffer) return
+    const tag = listBuffer.kind === 'ordered' ? 'ol' : 'ul'
+    parts.push(`<${tag}>${listBuffer.items.join('')}</${tag}>`)
+    listBuffer = null
+  }
+
+  for (let i = 0; i < children.length; i++) {
+    const node = children[i]
+    if (isTrackedDeleted(editor.state.doc.child(startIndex + i))) {
+      // the deleted block still separates the surrounding lists in the document
+      flushList()
+      continue
+    }
+    if (node.type === 'docHeading') {
+      flushList()
+      const level = Math.min(Math.max(Number(node.attrs?.level) || 1, 1), 6)
+      parts.push(`<h${level}>${inlineToHtml(node.content, image)}</h${level}>`)
+    } else if (node.type === 'docListItem') {
+      const kind = (node.attrs?.kind as string) ?? 'bullet'
+      if (!listBuffer || listBuffer.kind !== kind) {
+        flushList()
+        listBuffer = { kind, items: [] }
+      }
+      listBuffer.items.push(`<li>${inlineToHtml(node.content, image)}</li>`)
+    } else if (node.type === 'docParagraph') {
+      flushList()
+      if (isCodeParagraph(node)) {
+        parts.push(`<pre>${escapeHtml(inlineToPlainText(node.content))}</pre>`)
+      } else if (isQuoteParagraph(node)) {
+        parts.push(`<blockquote>${inlineToHtml(node.content, image)}</blockquote>`)
+      } else {
+        parts.push(`<p>${inlineToHtml(node.content, image)}</p>`)
+      }
+    } else if (node.type === 'docTable') {
+      flushList()
+      parts.push(tableToHtml(node, image))
+    } else {
+      flushList()
+      const formula = node.attrs?.formulaDisplay as { tokens?: string[]; latex?: string } | null
+      if (formula?.latex) {
+        parts.push(`<formula>${escapeHtml(formula.latex)}</formula>`)
+      } else if (formula?.tokens?.length) {
+        parts.push(`<p>${escapeHtml(formula.tokens.join(' '))}</p>`)
+      } else {
+        const preview = String(node.attrs?.previewText ?? '')
+          .replace(/\s+/g, ' ')
+          .trim()
+        if (preview) parts.push(`<p>${escapeHtml(preview)}</p>`)
+      }
+    }
+  }
+  flushList()
+  return parts.join('\n')
 }
 
 /** Restricted HTML (paragraphs, headings, lists, pre, blockquote, table, formula + inline marks) → GFM. */

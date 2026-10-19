@@ -16,7 +16,7 @@ La ventana tiene tres partes:
 
 Sirve cualquiera de estas vías:
 
-- Haga clic en una tarjeta de creación rápida de la sección [Inicio rápido](help://getting-started) de **Inicio** (AI Docs, AI Sheets, AI Slides, …).
+- Haga clic en una tarjeta de creación rápida de la sección [Inicio rápido](help://getting-started) de **Inicio** (Docs, Sheets, Slides, …).
 - Menú **Archivo ▸ Nuevo**: Docs (⌘N/ctrl+N), Sheets, Slides, Markdown, HTML o PDF.
 - Arrastre un archivo a la ventana, o haga doble clic en él en el explorador de archivos (si GenOffice es la aplicación predeterminada).
 
@@ -26,7 +26,6 @@ Un documento nuevo se abre sin título; el archivo en el disco solo se crea al g
 
 - El menú **Archivo ▸ Abrir** (⌘O/ctrl+O) abre el selector del sistema: .docx / .doc / .xlsx / .xls / .csv / .tsv / .pptx / .ppt / .pdf / .md / .html.
 - Haga clic en cualquier elemento de la lista **Recientes** de la pantalla de inicio.
-- `genoffice <file>` en un terminal también abre archivos.
 
 ## El modelo de guardado
 
@@ -87,5 +86,4 @@ Eso deja ⌥⌘D libre para que GenOffice lo use en macOS si algún comando futu
 
 - Dónde viven los archivos: [La pantalla de inicio](help://home-screen).
 - Gestionar muchos archivos abiertos: [Pestañas y gestión de ventanas](help://tabs-and-windows).
-- Dejar que la IA haga el trabajo: [El panel de IA](help://ai-panel).
-- Idioma, tema, aplicaciones predeterminadas: [Configuración, idioma, tema e integraciones MCP](help://settings-integrations).
+- Idioma, tema, aplicaciones predeterminadas: [Configuración, idioma y tema](help://settings).

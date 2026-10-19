@@ -31,7 +31,7 @@ Každý editor má vlastní přiřazení kláves a funguje všude jen několik z
 
 ## Word
 
-Word má plnou lištu nabídky, takže níže uvedené zkratky souboru a formátování fungují vždy, když je aktivní panel Wordu, ať je otevřený jakýkoli dokument. Zkratky úprav vyžadují načtený editovatelný dokument s kurzorem v textu; neselhávají, když píšete do vyhledávacího pole, do promptu AI ani do jiného pole.
+Word má plnou lištu nabídky, takže níže uvedené zkratky souboru a formátování fungují vždy, když je aktivní panel Wordu, ať je otevřený jakýkoli dokument. Zkratky úprav vyžadují načtený editovatelný dokument s kurzorem v textu; nespouštějí se, když píšete do vyhledávacího pole ani do jiného pole.
 
 ### Soubor
 
@@ -138,11 +138,10 @@ Vložit poznámku na konec je skutečné rozdělení platforem, ne přejmenován
 | ------------------ | ----- | --------------- |
 | Sledovat změny     | ⇧⌘E   | Ctrl+Shift+E    |
 | Počet slov         | ⇧⌘G   | Ctrl+Shift+G    |
-| Zkontrolovat       | F7    | F7              |
 | Aktualizovat pole  | F9    | F9              |
 | Přepnout kódy polí | ⌥F9   | Alt+F9          |
 
-F7 spouští kontrolu pomocí AI a F9 aktualizuje pole; obojí potřebuje načtený dokument. Jakmile omezení úprav zapne Sledovat změny, už se nedá vypnout.
+F9 aktualizuje pole a potřebuje načtený dokument. Jakmile omezení úprav zapne Sledovat změny, už se nedá vypnout.
 
 ### Zobrazení
 
@@ -306,16 +305,15 @@ Zavírání panelu je jediné místo, kde se dvě platformy zcela rozdělí: ⌘
 
 ### Úpravy
 
-| Akce                                         | macOS  | Windows / Linux |
-| -------------------------------------------- | ------ | --------------- |
-| Nový snímek                                  | ⇧⌘N    | Ctrl+M          |
-| Najít (ne při úpravě textu v tvaru)          | ⌘F     | Ctrl+F          |
-| Opatrnit výběr pomocí AI (s vybranými tvary) | ⌘K     | Ctrl+K          |
-| Přiblížit                                    | ⌘=     | Ctrl+=          |
-| Oddálit                                      | ⌘-     | Ctrl+-          |
-| Skutečná velikost (100%)                     | ⌘0     | Ctrl+0          |
-| Vybrat vše                                   | ⌘A     | Ctrl+A          |
-| Přecházet výběrem tvarů vpřed / vzad         | ⇥ / ⇧⇥ | Tab / Shift+Tab |
+| Akce                                 | macOS  | Windows / Linux |
+| ------------------------------------ | ------ | --------------- |
+| Nový snímek                          | ⇧⌘N    | Ctrl+M          |
+| Najít (ne při úpravě textu v tvaru)  | ⌘F     | Ctrl+F          |
+| Přiblížit                            | ⌘=     | Ctrl+=          |
+| Oddálit                              | ⌘-     | Ctrl+-          |
+| Skutečná velikost (100%)             | ⌘0     | Ctrl+0          |
+| Vybrat vše                           | ⌘A     | Ctrl+A          |
+| Přecházet výběrem tvarů vpřed / vzad | ⇥ / ⇧⇥ | Tab / Shift+Tab |
 
 Nový snímek je druhé rozdělení platforem. Každá platforma má vlastní klávesu a druhá nic nedělá: ⇧⌘N na macOS, Ctrl+M na Windows a Linuxu. ⌘M to na macOS nemůže udělat, protože je to systémová klávesa Minimalizovat.
 
@@ -478,7 +476,7 @@ Funguje jen tehdy, když je vybrána poznámka, razítko, redakce nebo obrázek.
 | Zrušit nejvyšší stav             | Escape | Escape          |
 | Potvrdit otevřené dialogové okno | Enter  | Enter           |
 
-Escape rozvinuje jednu vrstvu po druhé — nejdřív otevřené dialogové okno, pak překryv AI, koncept textu, panel hledání a nakonec samotný výběr. Když je kurzor ve vyhledávacím poli, Enter a ⇧Enter přecházejí na další a předchozí shodu a Escape zavírá panel; když je kurzor v nové textové poznámce, ⌘⏎ ji potvrzuje.
+Escape rozvinuje jednu vrstvu po druhé — nejdřív otevřené dialogové okno, pak koncept textu, panel hledání a nakonec samotný výběr. Když je kurzor ve vyhledávacím poli, Enter a ⇧Enter přecházejí na další a předchozí shodu a Escape zavírá panel; když je kurzor v nové textové poznámce, ⌘⏎ ji potvrzuje.
 
 ## Markdown
 
@@ -555,7 +553,6 @@ Uvnitř editoru kódu nebo formulářového pole přebírají vlastní klávesy 
 
 | Akce                           | macOS      | Windows / Linux    |
 | ------------------------------ | ---------- | ------------------ |
-| Zeptej se AI na prvek          | ⌘K         | Ctrl+K             |
 | Odstranit prvek                | ⌫ / Delete | Backspace / Delete |
 | Předchozí sourozenec           | ↑          | ArrowUp            |
 | Následující sourozenec         | ↓          | ArrowDown          |

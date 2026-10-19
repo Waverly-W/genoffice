@@ -31,7 +31,7 @@ Chaque éditeur a ses propres combinaisons de touches, et seules quelques-unes f
 
 ## Word
 
-Word possède une barre de menus complète : les combinaisons de fichier et de mise en forme ci-dessous fonctionnent dès qu’un onglet Word a le focus, quel que soit le document ouvert. Les combinaisons d’édition exigent un document chargé et modifiable, avec le curseur placé dans le texte ; elles ne se déclenchent pas pendant que vous tapez dans la zone de recherche, dans l’invite IA ou dans tout autre champ.
+Word possède une barre de menus complète : les combinaisons de fichier et de mise en forme ci-dessous fonctionnent dès qu’un onglet Word a le focus, quel que soit le document ouvert. Les combinaisons d’édition exigent un document chargé et modifiable, avec le curseur placé dans le texte ; elles ne se déclenchent pas pendant que vous tapez dans la zone de recherche ou dans tout autre champ.
 
 ### Fichier
 
@@ -138,11 +138,10 @@ Insérer une note de fin est une véritable divergence entre les deux plateforme
 | ----------------------------------- | ----- | --------------- |
 | Suivre les modifications            | ⇧⌘E   | Ctrl+Shift+E    |
 | Nombre de mots                      | ⇧⌘G   | Ctrl+Shift+G    |
-| Relecture                           | F7    | F7              |
 | Mettre à jour le champ              | F9    | F9              |
 | Afficher/masquer les codes de champ | ⌥F9   | Alt+F9          |
 
-F7 lance la relecture IA et F9 met à jour les champs ; les deux exigent un document chargé. Dès qu’une restriction d’édition active le suivi des modifications, celui-ci ne peut plus être désactivé.
+F9 met à jour les champs et exige un document chargé. Dès qu’une restriction d’édition active le suivi des modifications, celui-ci ne peut plus être désactivé.
 
 ### Affichage
 
@@ -310,7 +309,6 @@ Fermer un onglet est le seul endroit où les deux plateformes se séparent compl
 | -------------------------------------------------------------- | ------ | --------------- |
 | Nouvelle diapositive                                           | ⇧⌘N    | Ctrl+M          |
 | Rechercher (pas pendant l’édition de texte dans une forme)     | ⌘F     | Ctrl+F          |
-| Annoter la sélection avec l’IA (avec des formes sélectionnées) | ⌘K     | Ctrl+K          |
 | Zoom avant                                                     | ⌘=     | Ctrl+=          |
 | Zoom arrière                                                   | ⌘-     | Ctrl+-          |
 | Taille réelle (100 %)                                          | ⌘0     | Ctrl+0          |
@@ -419,7 +417,7 @@ Démarrer depuis la diapositive en cours accepte `⌘⏎` autant que `⇧F5` sur
 
 Appuyez sur **Esc** pour sortir de ce que vous êtes en train de faire — un recadrage, une forme que vous dessinez, **Modifier les points**, un groupe, l’outil stylo, surligneur ou gomme, le lecteur multimédia ou le **mode lecture** — et pour effacer la sélection.
 
-Deux autres touches sont des modificateurs plutôt que des combinaisons : maintenez **Shift** pendant un dessin pour conserver les proportions de la nouvelle forme, et maintenez **Shift** pendant une rotation pourCaler sur des pas de 15°.
+Deux autres touches sont des modificateurs plutôt que des combinaisons : maintenez **Shift** pendant un dessin pour conserver les proportions de la nouvelle forme, et maintenez **Shift** pendant une rotation pour caler sur des pas de 15°.
 
 ## PDF
 
@@ -478,7 +476,7 @@ Actif uniquement lorsqu’une annotation, un tampon, une occultation ou une imag
 | Annuler l’état le plus au premier plan | Escape | Escape          |
 | Confirmer la boîte de dialogue ouverte | Enter  | Enter           |
 
-Échap remonte une couche à la fois — d’abord une boîte de dialogue ouverte, puis le menu contextuel IA, un brouillon de texte, le panneau de recherche et enfin la sélection elle-même. Avec le curseur dans la zone de recherche, Enter et `⇧Enter` passent à la correspondance suivante et à la précédente, et Échap ferme le panneau ; avec le curseur dans une nouvelle note de texte, `⌘⏎` la valide.
+Échap remonte une couche à la fois — d’abord une boîte de dialogue ouverte, puis un brouillon de texte, le panneau de recherche et enfin la sélection elle-même. Avec le curseur dans la zone de recherche, Enter et `⇧Enter` passent à la correspondance suivante et à la précédente, et Échap ferme le panneau ; avec le curseur dans une nouvelle note de texte, `⌘⏎` la valide.
 
 ## Markdown
 
@@ -555,7 +553,6 @@ Dans l’éditeur de code ou dans un champ de formulaire, ce sont les touches d�
 
 | Action                                           | macOS      | Windows / Linux    |
 | ------------------------------------------------ | ---------- | ------------------ |
-| Demander à l’IA à propos de l’élément            | ⌘K         | Ctrl+K             |
 | Supprimer l’élément                              | ⌫ / Delete | Backspace / Delete |
 | Frère précédent                                  | ↑          | ArrowUp            |
 | Frère suivant                                    | ↓          | ArrowDown          |

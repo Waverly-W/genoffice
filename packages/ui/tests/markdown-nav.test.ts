@@ -3,7 +3,13 @@ import { act, createElement } from 'react'
 import { createRoot } from 'react-dom/client'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { Markdown, type MarkdownNav } from '../src/Markdown'
-import { createFileNav, fileNavHref } from '../src/file-nav'
+
+/** a file-opening nav as a host app would build it: filenav:///abs/path */
+const fileNavHref = (path: string): string => `filenav://${path}`
+const createFileNav = (openPath: (path: string) => void): MarkdownNav => ({
+  scheme: 'filenav://',
+  onNavigate: (href) => openPath(decodeURIComponent(href.slice('filenav://'.length))),
+})
 
 let host: HTMLDivElement
 let root: ReturnType<typeof createRoot>

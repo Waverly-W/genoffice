@@ -16,19 +16,15 @@ every **applied** transaction is now appended to a per-session journal
 ```ts
 interface OpLogEntry {
   seq: number // monotonic per session
-  source: 'edit' | 'batch' | 'script' | 'generate' | 'reset'
+  source: 'edit' | 'reset'
   ops: Array<{ op: Op; slideId?: string; created?: string[] }>
 }
 ```
 
-- `edit` — UI shims and dedicated AI tools (`slides:edit-text`, fills,
-  transforms, tables, master edits, …)
-- `batch` — `apply_ops` (`slides:apply-txn`)
-- `script` — `execute_slide_script` (`slides:apply-edit-script`)
-- `generate` — generated-page landing (`slides:land-generated-pages`), which now
-  lands pages as `insertSlidePptx` ops instead of mutating the deck directly
-- `reset` — a snapshot restore happened (undo/redo/AI rollback); the journal
-  cannot express it as ops, so consumers must full-resync past it
+- `edit` — every UI edit (the `slides:edit-text` shim, fills, transforms,
+  tables, master edits, header/footer and theme changes, …)
+- `reset` — a snapshot restore happened (undo/redo); the journal cannot
+  express it as ops, so consumers must full-resync past it
 
 `slideId` is the durable id the executor stamps at apply time; `created` carries
 ids minted by additive ops. Payloads (e.g. picture bytes, extracted page
@@ -53,6 +49,3 @@ handlers.
    text ops are deterministic re-derivations done by each client's post-pass;
    they are deck mutations but not journaled as ops — a remote peer re-derives
    them by replaying the text op through the same shim path.
-5. **Whole-deck replacement.** `generate_deck` in `replace` mode builds a new
-   session (new document identity); the journal restarts. A transport should
-   treat it as "open a different document".

@@ -61,7 +61,3 @@ Cả ba đều bọc các tệp đã phát hành thay vì dựng lại ứng d�
 - **Flatpak** — cài tệp `.deb` qua cơ chế `extra-data` của Flatpak và chạy dưới Zypak, bộ điều hợp hộp cát riêng của Electron. Cây `/app` là chỉ đọc, nên các bản cập nhật đi qua Flatpak chứ không qua hộp thoại cập nhật trong ứng dụng.
 - **Nix** — một biểu thức gói mà bạn dựng từ một bản sao mã nguồn bằng `nix-build packaging/nix`; xem `packaging/nix`.
 - **Docker** — một ảnh chuyển đổi hàng loạt không giao diện (`packaging/docker`). Nó chuyển cả một cây tài liệu Office, Markdown và HTML sang PDF qua đúng dãy xuất của ứng dụng, nên kết quả đúng bằng thứ mà File ▸ Xuất sẽ tạo ra. Đây là tiện ích CLI, không phải máy chủ.
-
-## Dòng lệnh đi kèm luôn
-
-Mọi bản cài đặt đều kèm lệnh `genoffice` nói chuyện với đúng những engine mà cửa sổ dùng, nên cả hai không bao giờ bất đồng về một tệp. Trên macOS và Windows nó nằm trong gói ứng dụng; và `genoffice install-cli` đưa nó vào `PATH` của bạn. Xem **Dòng lệnh và tác nhân** để biết nó làm được gì.

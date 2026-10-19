@@ -1,15 +1,6 @@
 import type { zh } from './zh'
 
 export const id = {
-  redactMenuLabel: 'Sembunyikan pilihan dari AI',
-  redactDialogDesc:
-    'Kata-kata tetap ada di dokumen dan berkas; model hanya melihat placeholder di bawah. Beri nama agar model tahu apa yang diwakili.',
-  redactDialogScope:
-    'Penyembunyian ini hanya berlaku untuk AI di aplikasi ini. CLI, alat MCP, dan ekspor tanpa antarmuka membaca berkas secara langsung, sehingga kata-kata ini tetap terlihat olehnya.',
-  redactDialogPlaceholder: 'Nama placeholder, mis. telepon pelanggan',
-  redactCancel: 'Batal',
-  redactInsert: 'Sembunyikan',
-
   loading: 'Memuat…',
   loadFailed: 'Tidak dapat membuka file',
   untitled: 'Tanpa judul',
@@ -46,8 +37,7 @@ export const id = {
   charCount: '{n} karakter',
   previewNeedsSave: 'Gambar dan gaya relatif akan tampil di pratinjau setelah file disimpan',
   inspectHint: 'Klik elemen di pratinjau untuk memilih, klik dua kali untuk mengedit teks',
-  nodeDynamic:
-    'Elemen ini dibuat oleh skrip halaman dan tidak ada di sumber; edit lewat sumber atau AI',
+  nodeDynamic: 'Elemen ini dibuat oleh skrip halaman dan tidak ada di sumber; edit lewat sumber',
   nodeDynamicShort: 'dibuat skrip',
   nodeDirty:
     'Skrip halaman mengubah elemen ini; perubahan yang ditulis ke sumber mungkin ditimpa oleh skrip',

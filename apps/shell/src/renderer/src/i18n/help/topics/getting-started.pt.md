@@ -16,7 +16,7 @@ A janela tem três partes:
 
 De qualquer uma destas formas:
 
-- Clique num cartão de criação rápida na secção [Início rápido](help://getting-started) do **Início** (AI Docs, AI Sheets, AI Slides, ...).
+- Clique num cartão de criação rápida na secção [Início rápido](help://getting-started) do **Início** (Docs, Sheets, Slides, ...).
 - Menu **Arquivo ▸ Novo**: Docs (⌘N/ctrl+N), Sheets, Slides, Markdown, HTML ou PDF.
 - Arraste um ficheiro para a janela, ou clique duas vezes nele no gestor de ficheiros (se o GenOffice for a aplicação predefinida).
 
@@ -26,7 +26,6 @@ O documento novo abre sem título; o ficheiro no disco só é criado no primeiro
 
 - O menu **Arquivo ▸ Abrir…** (⌘O/ctrl+O) abre o seletor de ficheiros do sistema: .docx / .doc / .xlsx / .xls / .csv / .tsv / .pptx / .ppt / .pdf / .md / .html.
 - Clique em qualquer item da lista **Recentes** no ecrã Início.
-- `genoffice <ficheiro>` a partir de um terminal também abre ficheiros.
 
 ## Como funciona o salvamento
 
@@ -87,5 +86,4 @@ Isso deixa o ⌥⌘D livre para o GenOffice usar no macOS, se um comando futuro 
 
 - Onde ficam os ficheiros: [O ecrã Início](help://home-screen).
 - Gerir muitos ficheiros abertos: [Guias e gestão de janelas](help://tabs-and-windows).
-- Deixar o trabalho à IA: [O painel do assistente de IA](help://ai-panel).
-- Idioma, tema, aplicações predefinidas: [Configurações, idioma, tema e integrações MCP](help://settings-integrations).
+- Idioma, tema, aplicações predefinidas: [Configurações, idioma e tema](help://settings).

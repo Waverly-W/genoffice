@@ -16,8 +16,8 @@ Tabs: **Start / Invoegen / Tekenen / Indeling / Ontwerpen / Verwijzingen / Contr
 
   ![Het tabblad Verwijzingen](img/docs-references.png)
 
-- **Controleren**: **Editor** controleert het hele document op spelling, grammatica en interpunctie; **Vertalen**; spellingcontrole; opmerkingen (**AI-opmerkingen** werkt de openstaande door); wijzigingen bijhouden met de weergaven Alle markeringen / Eenvoudige markeringen, accepteren/weigeren en **AI-revisieoverzicht**; woordentelling; **Vergelijken** met een ander bestand; **Document beveiligen**.
-- **Beeld**: vijf manieren om het bestand te bekijken — **Afdrukweergave**, **Webindeling**, **Overzicht**, **Leesmodus** en **Paginavoorbeeld**; uitzoomen/innen/100 %/paginabreedte/één pagina; **AI-deelvenster**; **Donkere modus**; liniaal, rasterlijnen en het navigatiedeelvenster; **Nieuw tabblad**, **Splitsen** en **Tabbladen wisselen**; het doorzoekbare dialoogvenster met **sneltoetsen**.
+- **Controleren**: spellingcontrole; opmerkingen; wijzigingen bijhouden met de weergaven Alle markeringen / Eenvoudige markeringen en accepteren/weigeren; woordentelling; **Vergelijken** met een ander bestand; **Document beveiligen**.
+- **Beeld**: vijf manieren om het bestand te bekijken — **Afdrukweergave**, **Webindeling**, **Overzicht**, **Leesmodus** en **Paginavoorbeeld**; uitzoomen/innen/100 %/paginabreedte/één pagina; **Donkere modus**; liniaal, rasterlijnen en het navigatiedeelvenster; **Nieuw tabblad**, **Splitsen** en **Tabbladen wisselen**; het doorzoekbare dialoogvenster met **sneltoetsen**.
   - **Donkere modus** verduistert de pagina en het tekenvlak eromheen, nooit het lint — Words splitsing tussen een donker bewerkingsvlak en een donker venster. De keuze wordt onthouden en wint hoe dan ook boven het app-thema.
   - **Splitsen** opent daaronder een tweede deelvenster dat onafhankelijk scrolt en het eerste spiegelt; sluit het met de × op de rand.
 
@@ -55,7 +55,6 @@ Rechtermuisklik ergens in de tekst — het menu volgt waarop je klikte. Hoofdgro
 - **Klembord**: knippen / kopiëren / plakken / **plakken als platte tekst**.
 - **Lettertype, alinea**: lettertype en maat wijzigen, vet/curatief/onderstreept, uitlijning/inspringen/regelafstand zonder naar het lint te gaan.
 - **Synoniemen**: toont synoniemen voor het geselecteerde woord; klik er een aan om het te vervangen.
-- **Vertalen** (AI): vertaalt de selectie naar de doeltaal (Engels, vereenvoudigd Chinees, Japans, Koreaans, Frans, Duits, Spaans, ...) via het AI-paneel.
 - **Nieuwe opmerking**: koppelt een opmerking aan de selectie.
 - **Spelling** (bij een verkeerd gespeld woord): voorgestelde vervangingen, alles negeren, aan woordenboek toevoegen, proefleestaal instellen.
 - **Hyperlink**: openen / bewerken / link kopiëren / hyperlink verwijderen.
@@ -75,11 +74,6 @@ Rechtermuisklik ergens in de tekst — het menu volgt waarop je klikte. Hoofdgro
 
 - Tekstcompressie en regelafbreekregels (kinsoku) sluiten aan op Word; conversie tussen volle en halve breedte.
 - De lettertypenlijst dekt de gangbare CJK-familienamen van Windows en macOS.
-
-## AI
-
-- AI-knop op het lint en het zijpaneel: herschrijven, uitbreiden, vertalen, samenvatten, kant-en-klare tabellen invoegen, plus vrije instructies.
-- Elke AI-beurt maakt eerst een momentopname; je kunt terug naar elke versie uit de versielijst, en die terugstap is zelf ongedaan te maken.
 
 ## Opslaan en exporteren
 

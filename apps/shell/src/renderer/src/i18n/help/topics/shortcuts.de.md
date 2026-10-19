@@ -31,7 +31,7 @@ Jeder Editor hat eigene Tastenbelegungen, und nur wenige davon funktionieren üb
 
 ## Word
 
-Word hat eine vollständige Menüleiste, daher funktionieren die Datei- und Formatierungstasten unten, sobald ein Word-Tab den Fokus hat, egal welches Dokument geöffnet ist. Die Bearbeitungstasten brauchen ein geladenes, bearbeitbares Dokument mit dem Cursor im Text; sie lösen nicht aus, während Sie im Suchfeld, in der KI-Eingabe oder in einem anderen Feld tippen.
+Word hat eine vollständige Menüleiste, daher funktionieren die Datei- und Formatierungstasten unten, sobald ein Word-Tab den Fokus hat, egal welches Dokument geöffnet ist. Die Bearbeitungstasten brauchen ein geladenes, bearbeitbares Dokument mit dem Cursor im Text; sie lösen nicht aus, während Sie im Suchfeld oder in einem anderen Feld tippen.
 
 ### Datei
 
@@ -138,11 +138,10 @@ Endnote einfügen ist eine echte Plattformtrennung, keine Umbenennung: Word verw
 | ------------------------------ | ----- | --------------- |
 | Änderungen verfolgen           | ⇧⌘E   | Ctrl+Shift+E    |
 | Wörterzählung                  | ⇧⌘G   | Ctrl+Shift+G    |
-| Korrekturlesen                 | F7    | F7              |
 | Feld aktualisieren             | F9    | F9              |
 | Feldfunktionen ein-/ausblenden | ⌥F9   | Alt+F9          |
 
-F7 startet das KI-Korrekturlesen und F9 aktualisiert die Felder; beide brauchen ein geladenes Dokument. Sobald eine Bearbeitungseinschränkung die Änderungsverfolgung einschaltet, lässt sie sich nicht wieder abschalten.
+F9 aktualisiert die Felder und braucht ein geladenes Dokument. Sobald eine Bearbeitungseinschränkung die Änderungsverfolgung einschaltet, lässt sie sich nicht wieder abschalten.
 
 ### Ansicht
 
@@ -310,7 +309,6 @@ Einen Tab zu schließen ist die eine Stelle, an der sich die beiden Plattformen 
 | ----------------------------------------------------- | ------ | --------------- |
 | Neue Folie                                            | ⇧⌘N    | Ctrl+M          |
 | Suchen (nicht beim Bearbeiten von Text in einer Form) | ⌘F     | Ctrl+F          |
-| Auswahl mit KI kommentieren (mit ausgewählten Formen) | ⌘K     | Ctrl+K          |
 | Vergrößern                                            | ⌘=     | Ctrl+=          |
 | Verkleinern                                           | ⌘-     | Ctrl+-          |
 | Originalgröße (100 %)                                 | ⌘0     | Ctrl+0          |
@@ -478,7 +476,7 @@ Nur aktiv, wenn eine Anmerkung, ein Stempel, eine Schwärzung oder ein Bild ausg
 | Obersten Zustand abbrechen | Escape | Escape          |
 | Offenen Dialog bestätigen  | Enter  | Enter           |
 
-Escape windet eine Ebene nach der anderen ab — zuerst ein offener Dialog, dann das KI-Einblendmenü, ein Textentwurf, das Suchfeld und schließlich die Auswahl selbst. Steht der Cursor im Suchfeld, springen Enter und `⇧Enter` zum nächsten beziehungsweise vorherigen Treffer, und Escape schließt das Feld; steht der Cursor in einer neuen Textnotiz, übernimmt `⌘⏎` sie.
+Escape windet eine Ebene nach der anderen ab — zuerst ein offener Dialog, dann ein Textentwurf, das Suchfeld und schließlich die Auswahl selbst. Steht der Cursor im Suchfeld, springen Enter und `⇧Enter` zum nächsten beziehungsweise vorherigen Treffer, und Escape schließt das Feld; steht der Cursor in einer neuen Textnotiz, übernimmt `⌘⏎` sie.
 
 ## Markdown
 
@@ -555,7 +553,6 @@ Im Code-Editor oder in einem Formularfeld übernehmen stattdessen die eigenen Be
 
 | Aktion                                     | macOS      | Windows / Linux    |
 | ------------------------------------------ | ---------- | ------------------ |
-| Die KI nach dem Element fragen             | ⌘K         | Ctrl+K             |
 | Element löschen                            | ⌫ / Delete | Backspace / Delete |
 | Vorheriges Geschwisterelement              | ↑          | ArrowUp            |
 | Nächstes Geschwisterelement                | ↓          | ArrowDown          |

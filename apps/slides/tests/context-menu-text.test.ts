@@ -65,7 +65,6 @@ describe('text edit context menu', () => {
       t('ribbonNumbering'),
       '|',
       t('appCtxHyperlink'),
-      t('redactMenuLabel'),
       t('appCtxSelectAll'),
       '|',
       t('paneFormatTitleTyped', { type: t('paneFormatTextBox') }),

@@ -16,8 +16,8 @@ Karty: **Narzędzia główne / Wstawianie / Rysowanie / Układ / Projektowanie /
 
   ![Karta Odwołania](img/docs-references.png)
 
-- **Recenzja**: **Edytor** sprawdza cały dokument pod kątem pisowni, gramatyki i interpunkcji; **Przetłumacz**; sprawdzanie pisowni; komentarze (**Komentarze z AI** opracowuje nierozwiązane); śledzenie zmian z widokami Cała adiustacja / Prosta adiustacja, akceptowanie/odrzucanie oraz **Podsumowanie zmian AI**; licznik słów; **Porównaj** z innym plikiem; **Chroń dokument**.
-- **Widok**: pięć sposobów patrzenia na plik — **Układ wydruku**, **Układ sieci Web**, **Konspekt**, **Tryb czytania** i **Podgląd stron**; pomniejsz/powiększ/100 %/szerokość strony/jedna strona; **Panel AI**; **Tryb ciemny**; linijka, linie siatki i okienko nawigacji; **Nowa karta**, **Podziel** i **Przełącz karty**; wyszukiwalne okno **skrótów klawiaturowych**.
+- **Recenzja**: sprawdzanie pisowni; komentarze; śledzenie zmian z widokami Cała adiustacja / Prosta adiustacja oraz akceptowanie/odrzucanie; licznik słów; **Porównaj** z innym plikiem; **Chroń dokument**.
+- **Widok**: pięć sposobów patrzenia na plik — **Układ wydruku**, **Układ sieci Web**, **Konspekt**, **Tryb czytania** i **Podgląd stron**; pomniejsz/powiększ/100 %/szerokość strony/jedna strona; **Tryb ciemny**; linijka, linie siatki i okienko nawigacji; **Nowa karta**, **Podziel** i **Przełącz karty**; wyszukiwalne okno **skrótów klawiaturowych**.
   - **Tryb ciemny** przyciemnia stronę i płótno wokół niej, nigdy wstążkę — podział programu Word między ciemną powierzchnią edycji a ciemnym oknem. Wybór jest zapamiętywany i w każdym przypadku ma pierwszeństwo przed motywem aplikacji.
   - **Podziel** otwiera poniżej drugie okienko, które przewija się niezależnie i odwzorowuje pierwsze; zamknij je krzyżykiem × na jego krawędzi.
 
@@ -53,7 +53,6 @@ Kliknij prawym przyciskiem w dowolnym miejscu tekstu — menu dostosowuje się d
 - **Schowek**: wytnij / kopiuj / wklej / **wklej jako czysty tekst**.
 - **Czcionka, akapit**: zmiana kroju i rozmiaru, pogrubienie/pochylenie/podkreślenie, wyrównanie/wcięcie/odstępy bez przechodzenia na wstążkę.
 - **Synonimy**: wymienia synonimy zaznaczonego słowa; kliknij jeden, aby je zastąpić.
-- **Tłumacz** (AI): tłumaczy zaznaczenie na język docelowy (angielski, uproszczony chiński, japoński, koreański, francuski, niemiecki, hiszpański, ...) za pośrednictwem panelu AI.
 - **Nowy komentarz**: dodaje komentarz do zaznaczenia.
 - **Pisownia** (przy błędnie napisanym słowie): proponowane zamiany, zignoruj wszystko, dodaj do słownika, ustaw język sprawdzania.
 - **Hiperłącze**: otwórz / edytuj / kopiuj łącze / usuń hiperłącze.
@@ -73,11 +72,6 @@ Kliknij prawym przyciskiem w dowolnym miejscu tekstu — menu dostosowuje się d
 
 - Kompresja interpunkcji i zasady łamania wierszy (kinsoku) są zgodne z Wordem; konwersja pełnej i połowy szerokości.
 - Lista czcionek obejmuje najczęstsze nazwy rodzin CJK w Windows i macOS.
-
-## AI
-
-- Przycisk AI na wstążce i panel boczny: przepisanie, rozwinięcie, tłumaczenie, streszczenie, wstawianie tabel z gotowych wzorców oraz dowolne polecenia.
-- Każda tura AI najpierw tworzy migawkę; możesz cofnąć się do dowolnej z listy wersji, a samo cofnięcie można jeszcze cofnąć.
 
 ## Zapisywanie i eksport
 

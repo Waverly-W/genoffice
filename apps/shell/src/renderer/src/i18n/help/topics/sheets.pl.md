@@ -19,7 +19,7 @@ Sheets to edytor podobny do Excela; obliczenia obsługuje osobny proces silnika 
 - **Układ strony**: kolory i czcionki motywu, przełączniki drukowania linii siatki i nagłówków, podgląd podziału na strony.
 - **Formuły**: Suma automatyczna i wstawianie funkcji, definiowanie nazw (także z zaznaczenia), śledzenie poprzedników i zależności, okno obserwacji, przeliczanie arkusza lub skoroszytu.
 - **Dane**: sortowanie i filtrowanie (także filtr zaawansowany i wyczyszczenie filtra), tekst na kolumny, scalanie skoroszytów, odśwież wszystko.
-- **Recenzja**: przeglądanie komentarzy (pokaż, poprzedni/następny), tłumaczenie oraz grupa **Ochrona** — **Chroń arkusz**, **Chroń skoroszyt** i **Zezwalaj na edytowanie zakresów**.
+- **Recenzja**: przeglądanie komentarzy (pokaż, poprzedni/następny) oraz grupa **Ochrona** — **Chroń arkusz**, **Chroń skoroszyt** i **Zezwalaj na edytowanie zakresów**.
   - Ochrona jest zapisywana w pliku .xlsx, a to, co nakłada ta aplikacja, nie ma hasła, więc ten sam przycisk zmienia się w **Nie chroń…** i cofa ją. Ochrony nałożonej przez inny program, który _ma_ hasło, nie da się stąd usunąć.
   - Oba przyciski ochrony działają natychmiast — nie ma okna dialogowego, które można by anulować, tylko uwaga na pasku stanu, że zostanie zapisane przy zapisie.
   - **Zezwalaj na edytowanie zakresów** zaznacza komórki, które pozostają edytowalne, podczas gdy reszta arkusza jest zablokowana.
@@ -87,13 +87,6 @@ Karta Formuły, przycisk po przycisku:
 - **Na dolnym pasku stanu**: wybierz, które statystyki ma pokazywać pasek stanu (średnia / liczba / suma, ...); wybór zostaje zapamiętany.
 - **Na karcie arkusza na dole**: dodaj / zmień nazwę / usuń / pokoloruj / ukryj arkusze (menu kart Univer).
 - Menu kontekstowe górnego paska kart opisano w [Karty i zarządzanie oknami](help://tabs-and-windows).
-
-## AI
-
-- Boczny panel AI: zaznacz zakres i wydaj polecenie w zwykłym języku (zmień formatowanie, wygeneruj dane, napisz formuły).
-- Dołącz pliki do polecenia przyciskiem 📎 albo przeciągnij je na panel; towarzyszą pytaniu, a obrazy wracają jako miniatury.
-- Odpowiedź może wskazać komórkę — kliknięcie odwołania przenosi siatkę w to miejsce.
-- Zmiany wprowadzone przez AI można cofnąć z panelu.
 
 ## Zapisywanie i eksport
 

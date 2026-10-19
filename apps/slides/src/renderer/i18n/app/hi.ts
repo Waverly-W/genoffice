@@ -1,16 +1,6 @@
 import type { zh } from './zh'
 
 export const hi = {
-  redactMenuLabel: 'चयन को AI से छिपाएँ',
-  redactDialogDesc:
-    'चुनी हुई सामग्री दस्तावेज़ और फ़ाइल में बनी रहती है; मॉडल को केवल नीचे वाला प्लेसहोल्डर दिखता है। नाम दें ताकि उसे पता चले कि यह किसका स्थान है।',
-  redactDialogScope:
-    'यह छिपाना केवल इस ऐप के AI पर लागू होता है। CLI, MCP टूल और बिना इंटरफ़ेस वाला निर्यात फ़ाइल को सीधे पढ़ते हैं, इसलिए ये शब्द उन्हें अब भी दिखते हैं।',
-  redactDialogPlaceholder: 'प्लेसहोल्डर का नाम, जैसे ग्राहक का फ़ोन',
-  redactCancel: 'रद्द करें',
-  redactInsert: 'छिपाएँ',
-  redactEnable: 'चयनित पाठ पर राइट-क्लिक करके इसे मॉडल से छिपाएँ।',
-
   appPhPromptTitle: 'शीर्षक जोड़ने के लिए क्लिक करें',
   appPhPromptSubtitle: 'उपशीर्षक जोड़ने के लिए क्लिक करें',
   appPhPromptBody: 'टेक्स्ट जोड़ने के लिए क्लिक करें',
@@ -244,8 +234,6 @@ export const hi = {
   appNotesPlaceholder: 'वक्ता नोट्स जोड़ने के लिए क्लिक करें (.pptx में सहेजे जाते हैं)',
   appNotesShow: 'नोट्स दिखाएँ',
   appNotesHide: 'नोट्स छिपाएँ',
-  appAiRailExpand: 'AI सहायक विस्तृत करें',
-  appAiRailText: 'AI',
   appStatusBarSlide: 'स्लाइड {current} / {total}',
   appStatusBarReady: 'तैयार',
   appMediaCloseTitle: 'बंद करें (Esc)',
@@ -254,17 +242,7 @@ export const hi = {
     'स्लाइड शो की कुल अवधि {duration} रही। क्या स्लाइड स्वतः बदलने के लिए प्रत्येक स्लाइड का समय सहेजना चाहते हैं?',
   appRehearseDiscard: 'न सहेजें',
   appRehearseSave: 'सहेजें',
-  appSettingsTitle: 'AI सेटिंग्स',
-  appSettingsAccount: 'Genspark खाता',
-  appSettingsChecking: 'जाँच हो रही है…',
-  appSettingsLoggedIn: 'साइन इन किया गया',
-  appSettingsLoggedInEmail: 'साइन इन किया गया: {email}',
-  appSettingsLoggedOut: 'साइन इन नहीं किया गया (AI सुविधाओं के लिए Genspark खाता आवश्यक है)',
-  appSettingsLoginPending: 'ब्राउज़र साइन-इन की प्रतीक्षा हो रही है…',
-  appSettingsLogin: 'Genspark में साइन इन करें',
-  appSettingsModel: 'मॉडल',
   appSettingsCancel: 'रद्द करें',
-  appSettingsSave: 'सहेजें',
   appCropHint: 'पुष्टि के लिए Enter · रद्द करने के लिए Esc · पुष्टि के लिए बाहर क्लिक करें',
   appStatusZoomsInserted: '{count} ज़ूम डाले गए: स्लाइड शो में क्लिक करके उनकी स्लाइड पर जाएँ',
   appStatusSummaryZoomInserted: '{count} टाइलों के साथ सारांश ज़ूम स्लाइड डाली गई',

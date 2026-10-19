@@ -222,22 +222,6 @@ function focusCreatedUnit(runtime: UniverRuntime, unitId: string): void {
 
 export const MINIMUM_SHEET_COLUMN_COUNT = 26
 
-export function syncUniver(runtime: UniverRuntime | null, snapshot: WorkbookSnapshot): void {
-  const workbook = runtime?.univerAPI.getActiveWorkbook()
-  if (!workbook) return
-  for (const sheet of snapshot.sheets) {
-    const worksheet = workbook.getSheetBySheetId(sheet.id)
-    if (!worksheet) continue
-    worksheet.setName(sheet.name)
-    for (const [address, cell] of Object.entries(sheet.cells)) {
-      const range = worksheet.getRange(address)
-      if (cell.formula) range.setFormula(cell.formula)
-      else if (cell.value === null) range.clearContent()
-      else range.setValue(cell.value)
-    }
-  }
-}
-
 export function loadSnapshotIntoUniver(
   runtime: UniverRuntime | null,
   snapshot: WorkbookSnapshot,
@@ -7746,37 +7730,6 @@ export function columnLetter(index: number): string {
     label = String.fromCharCode(65 + (i % 26)) + label
   }
   return label
-}
-
-/// Magic-byte check for downloaded images: the ai:fetch-image handler labels
-/// bytes from the Content-Type header (JPEG fallback), so a WebP or other
-/// unsupported payload could otherwise land in the xlsx as a mislabeled media
-/// part that Excel cannot display.
-export function sniffImageMime(base64: string): 'image/png' | 'image/jpeg' | 'image/gif' | null {
-  let bytes: Uint8Array
-  try {
-    bytes = Uint8Array.from(atob(base64.slice(0, 16)), (char) => char.charCodeAt(0))
-  } catch {
-    return null
-  }
-  if (bytes[0] === 0x89 && bytes[1] === 0x50 && bytes[2] === 0x4e && bytes[3] === 0x47) {
-    return 'image/png'
-  }
-  if (bytes[0] === 0xff && bytes[1] === 0xd8 && bytes[2] === 0xff) return 'image/jpeg'
-  if (bytes[0] === 0x47 && bytes[1] === 0x49 && bytes[2] === 0x46 && bytes[3] === 0x38) {
-    return 'image/gif'
-  }
-  return null
-}
-
-/// Natural dimensions of an image data URL (fallback matches the picker).
-export function measureImage(dataUrl: string): Promise<{ width: number; height: number }> {
-  return new Promise((resolve) => {
-    const image = new Image()
-    image.onload = () => resolve({ width: image.naturalWidth, height: image.naturalHeight })
-    image.onerror = () => resolve({ width: 480, height: 320 })
-    image.src = dataUrl
-  })
 }
 
 /// Absolute A1 ref for a rectangular range string, quoted-sheet prefixed.

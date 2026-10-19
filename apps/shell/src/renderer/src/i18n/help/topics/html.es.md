@@ -3,11 +3,10 @@
 El editor HTML abre .html / .htm con dos modos: **Vista previa** (la página renderizada) y **Código**.
 
 - **Vista previa**: renderizado real; las hojas de estilo y las imágenes relativas se cargan junto al archivo.
-- **Inspector de la vista previa**: haga clic para seleccionar un elemento, doble clic para editar su texto en el sitio, borrarlo con la barra de herramientas y Preguntar a la IA sobre la selección.
+- **Inspector de la vista previa**: haga clic para seleccionar un elemento, doble clic para editar su texto en el sitio, o bórrelo desde la barra de herramientas.
 - **Modo de código**: edite el HTML; ctrl+F para buscar, Reemplazar todo guarda el marcado reescrito.
 - **Guardar**: fiel byte a byte (se conservan el BOM, los CRLF y el salto de línea final); los guardados sin cambios no reescriben.
 - **Zoom**: ctrl+rueda o pellizco escala la vista previa; ctrl+Z dentro de la vista previa deshace la última edición.
-- **Ocultar a la IA**: en modo código, clic derecho sobre una selección — contenidos, valores de atributo, cadenas de script — y el modelo ve un marcador; la página renderizada nunca cambia (detalles en el capítulo del panel de IA).
 
 ## La barra de herramientas
 
@@ -21,7 +20,6 @@ Haga clic en cualquier elemento de la vista previa y una barra de herramientas f
 - **Insertar**: título, párrafo, tabla, imagen (por enlace), más.
 - **Acciones de imagen** (con una imagen seleccionada): recortar, **Quitar fondo**, reemplazar, bloquear proporción.
 - **Acciones de elemento** (con un elemento seleccionado en el inspector de la vista previa): eliminar, duplicar, subir/bajar.
-- **Botón de IA**: abre el panel de IA; pregunte directamente sobre el elemento seleccionado.
 
 ## Exportar
 

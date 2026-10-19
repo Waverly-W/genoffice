@@ -256,9 +256,9 @@ describe('opening tabs', () => {
     expect(manager.list().find((t) => t.id === docsId)?.active).toBe(false)
   })
 
-  it('opens a fresh help tab once the previous one was closed', () => {
+  it('opens a fresh help tab once the previous one was closed', async () => {
     const first = manager.openHelpTab()
-    manager.closeTabWithoutPrompt(first)
+    await manager.closeTab(first)
     const second = manager.openHelpTab()
     expect(second).not.toBe(first)
     expect(manager.list().filter((t) => t.kind === 'help')).toHaveLength(1)
@@ -298,7 +298,7 @@ describe('opening tabs', () => {
   it('uses module default titles for pathless tabs', () => {
     manager.openSheetsTab()
     manager.openSlidesTab()
-    expect(manager.list().map((t) => t.title)).toEqual(['GenOffice', 'AI Sheets', 'AI Slides'])
+    expect(manager.list().map((t) => t.title)).toEqual(['GenOffice', 'Sheets', 'Slides'])
   })
 
   it('assigns unique, monotonic tab ids', () => {
@@ -370,7 +370,6 @@ describe('spare sheets view', () => {
     manager.openSheetsTab('/tmp/budget.xlsx')
     expect(createSheetsView).toHaveBeenCalledTimes(1)
     expect(createSheetsView).toHaveBeenCalledWith({
-      includeAiHandlers: false,
       openingWorkbook: true,
     })
     expect(nudgeQueuedWorkbook).not.toHaveBeenCalled()
@@ -379,7 +378,6 @@ describe('spare sheets view', () => {
   it('starts a new blank view without the opening state', () => {
     manager.openSheetsTab()
     expect(createSheetsView).toHaveBeenCalledWith({
-      includeAiHandlers: false,
       openingWorkbook: false,
     })
   })

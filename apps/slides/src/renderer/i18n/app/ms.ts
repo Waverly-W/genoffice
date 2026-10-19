@@ -1,16 +1,6 @@
 import type { zh } from './zh'
 
 export const ms = {
-  redactMenuLabel: 'Sembunyikan pilihan daripada AI',
-  redactDialogDesc:
-    'Kandungan yang dipilih kekal dalam dokumen dan fail; model hanya melihat placeholder di bawah. Beri nama supaya model tahu apa yang diwakili.',
-  redactDialogScope:
-    'Penyembunyian ini hanya untuk AI dalam aplikasi ini. CLI, alat MCP dan eksport tanpa antara muka membaca fail secara terus, jadi perkataan ini masih kelihatan kepada mereka.',
-  redactDialogPlaceholder: 'Nama placeholder, cth. telefon pelanggan',
-  redactCancel: 'Batal',
-  redactInsert: 'Sembunyikan',
-  redactEnable: 'Klik kanan pada teks yang dipilih untuk menyembunyikannya daripada model.',
-
   appPhPromptTitle: 'Klik untuk menambah tajuk',
   appPhPromptSubtitle: 'Klik untuk menambah subtajuk',
   appPhPromptBody: 'Klik untuk menambah teks',
@@ -243,8 +233,6 @@ export const ms = {
   appNotesPlaceholder: 'Klik untuk menambah nota penceramah (disimpan dalam fail .pptx)',
   appNotesShow: 'Tunjukkan nota',
   appNotesHide: 'Sembunyikan nota',
-  appAiRailExpand: 'Kembangkan pembantu AI',
-  appAiRailText: 'AI',
   appStatusBarSlide: 'Slaid {current} daripada {total}',
   appStatusBarReady: 'Sedia',
   appMediaCloseTitle: 'Tutup (Esc)',
@@ -253,17 +241,7 @@ export const ms = {
     'Jumlah masa persembahan ialah {duration}. Adakah anda mahu menyimpan pemasaan slaid untuk peralihan slaid automatik?',
   appRehearseDiscard: 'Jangan Simpan',
   appRehearseSave: 'Simpan',
-  appSettingsTitle: 'Tetapan AI',
-  appSettingsAccount: 'Akaun Genspark',
-  appSettingsChecking: 'Menyemak…',
-  appSettingsLoggedIn: 'Telah log masuk',
-  appSettingsLoggedInEmail: 'Telah log masuk: {email}',
-  appSettingsLoggedOut: 'Belum log masuk (ciri AI memerlukan akaun Genspark)',
-  appSettingsLoginPending: 'Menunggu log masuk pelayar…',
-  appSettingsLogin: 'Log masuk ke Genspark',
-  appSettingsModel: 'Model',
   appSettingsCancel: 'Batal',
-  appSettingsSave: 'Simpan',
   appCropHint: 'Enter untuk mengesahkan · Esc untuk membatalkan · Klik di luar untuk mengesahkan',
   appStatusZoomsInserted:
     '{count} zum disisipkan: klik semasa persembahan untuk melompat ke slaidnya',

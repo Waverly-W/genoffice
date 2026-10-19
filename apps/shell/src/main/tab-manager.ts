@@ -7,12 +7,10 @@ import {
   createDocsView,
   docsQueryDirty,
   markDocsNewBlank,
-  queueDocsAiContent,
   requestDocsClose,
   setActiveDocsResolver,
   teardownDocsRenderer,
 } from '../../../docs/src/main/docs-main'
-import type { AiDocContent } from '../../../docs/src/shared/ipc'
 import {
   createMarkdownView,
   markdownIsDirty,
@@ -46,7 +44,7 @@ import {
   slidesIsDirty,
 } from '../../../slides/src/main/slides-main'
 import { rendererUrl, safeExternalUrl } from '@genoffice/electron-utils'
-import type { DocumentTabKind, OpenDocumentTab, TabKind, TabSummary } from '../shared/tabs-api'
+import type { TabKind, TabSummary } from '../shared/tabs-api'
 import { isSettledRect, tabStripHeight } from '../shared/tab-drag-geometry'
 
 /** a tab lifted out of the strip with its live view: what "Open in New Window",
@@ -141,7 +139,7 @@ export class TabManager {
       if (this.spareSheetsView || this.shellWindow.isDestroyed()) return
       const active = this.tabs.find((t) => t.id === this.activeId)
       if (active?.kind !== 'sheets') return
-      const view = createSheetsView({ includeAiHandlers: false })
+      const view = createSheetsView()
       // registering the session made the spare the menu-action target
       setActiveSheetsWebContents(active.view?.webContents ?? null)
       this.shellWindow.contentView.addChildView(view)
@@ -265,51 +263,6 @@ export class TabManager {
     }))
   }
 
-  /**
-   * Documents an MCP agent may act on: every editor tab except Home (no file)
-   * and chrome-free Present tabs (a live preview of another tab's document, so
-   * acting on it would double-count that document).
-   *
-   * Dirtiness is resolved here per family because it is not uniform — five
-   * families answer synchronously in the main process, docs has to ask its
-   * renderer. Hence the async signature.
-   */
-  async openDocuments(): Promise<OpenDocumentTab[]> {
-    const tabs = this.tabs.filter((tab) => tab.kind !== 'home' && !tab.present && tab.view)
-    return Promise.all(
-      tabs.map(async (tab) => ({
-        id: tab.id,
-        kind: tab.kind as DocumentTabKind,
-        title: tab.title,
-        ...(tab.filePath ? { filePath: tab.filePath } : {}),
-        active: tab.id === this.activeId,
-        dirty: await this.tabIsDirty(tab),
-      })),
-    )
-  }
-
-  /** unsaved-changes state of one tab, whichever family owns it */
-  private async tabIsDirty(tab: TabRecord): Promise<boolean> {
-    const wc = tab.view?.webContents
-    if (!wc || wc.isDestroyed()) return false
-    switch (tab.kind) {
-      case 'sheets':
-        return sheetsPendingEditCount(wc.id) > 0
-      case 'pdf':
-        return pdfIsDirty(wc.id)
-      case 'markdown':
-        return markdownIsDirty(wc.id)
-      case 'html':
-        return htmlIsDirty(wc.id)
-      case 'slides':
-        return slidesIsDirty(wc.id)
-      case 'docs':
-        return docsQueryDirty(wc)
-      default:
-        return false
-    }
-  }
-
   openHomeTab(): void {
     this.activateTab(HOME_ID)
   }
@@ -335,14 +288,10 @@ export class TabManager {
     return id
   }
 
-  openDocsTab(
-    openPath?: string,
-    options?: { newBlank?: boolean; aiContent?: AiDocContent },
-  ): string {
+  openDocsTab(openPath?: string, options?: { newBlank?: boolean }): string {
     const view = createDocsView(openPath)
     const id = `t${this.nextId++}`
     if (options?.newBlank) markDocsNewBlank(view.webContents.id)
-    if (options?.aiContent) queueDocsAiContent(view.webContents.id, options.aiContent)
     this.shellWindow.contentView.addChildView(view)
     view.setVisible(false)
     this.trackHtmlFullScreen(view)
@@ -361,7 +310,7 @@ export class TabManager {
     if (options?.newBlank) setSheetsNewBlank()
     const spare = this.takeSpareSheetsView()
     const view =
-      spare ?? createSheetsView({ includeAiHandlers: false, openingWorkbook: Boolean(openPath) })
+      spare ?? createSheetsView({ openingWorkbook: Boolean(openPath) })
     // bind the path to this tab's webContents: a multi-select Open creates
     // several sheets tabs in one loop, so a single global path would be
     // overwritten before the earlier tabs consume it
@@ -379,7 +328,7 @@ export class TabManager {
       id,
       kind: 'sheets',
       view,
-      title: openPath ? basename(openPath) : this.untitled('sheets', 'AI Sheets'),
+      title: openPath ? basename(openPath) : this.untitled('sheets', 'Sheets'),
       filePath: openPath,
     })
     this.activateTab(id)
@@ -396,7 +345,7 @@ export class TabManager {
       id,
       kind: 'slides',
       view,
-      title: openPath ? basename(openPath) : this.untitled('slides', 'AI Slides'),
+      title: openPath ? basename(openPath) : this.untitled('slides', 'Slides'),
       filePath: openPath,
     })
     this.activateTab(id)
@@ -433,7 +382,7 @@ export class TabManager {
       id,
       kind: 'markdown',
       view,
-      title: openPath ? basename(openPath) : this.untitled('markdown', 'AI Markdown'),
+      title: openPath ? basename(openPath) : this.untitled('markdown', 'Markdown'),
       filePath: openPath,
     })
     this.activateTab(id)
@@ -450,7 +399,7 @@ export class TabManager {
       id,
       kind: 'html',
       view,
-      title: openPath ? basename(openPath) : this.untitled('html', 'AI HTML'),
+      title: openPath ? basename(openPath) : this.untitled('html', 'HTML'),
       filePath: openPath,
     })
     this.activateTab(id)
@@ -468,7 +417,7 @@ export class TabManager {
       id,
       kind: 'html',
       view,
-      title: title || this.untitled('html', 'AI HTML'),
+      title: title || this.untitled('html', 'HTML'),
       present: true,
     })
     this.activateTab(id)
@@ -551,14 +500,6 @@ export class TabManager {
     if (!tab) return
     tab.filePath = filePath
     tab.title = basename(filePath)
-    this.onChanged()
-  }
-
-  /** an untitled document named itself before its first save (html: from the first AI request) */
-  setTabTitleFor(webContentsId: number, title: string): void {
-    const tab = this.tabs.find((t) => t.view?.webContents.id === webContentsId)
-    if (!tab || tab.filePath || tab.title === title) return
-    tab.title = title
     this.onChanged()
   }
 
@@ -679,21 +620,6 @@ export class TabManager {
       }
     }
     this.removeTab(id)
-  }
-
-  /**
-   * Close a tab with no save prompt. The caller must have already settled the
-   * document's unsaved changes (the MCP close tool saves or discards first):
-   * this is the plain removal step of `closeTab`, so a dialog never appears in
-   * a flow the user did not start.
-   * Returns false when there is no such tab (already closed) or one is mid-prompt.
-   */
-  closeTabWithoutPrompt(id: string): boolean {
-    if (id === HOME_ID) return false
-    const tab = this.tabs.find((t) => t.id === id)
-    if (!tab || this.closingIds.has(id)) return false
-    this.removeTab(id)
-    return true
   }
 
   /** detach + drop one tab and re-activate a neighbour (no guards, no prompts) */

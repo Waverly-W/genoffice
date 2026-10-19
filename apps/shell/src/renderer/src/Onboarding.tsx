@@ -15,10 +15,8 @@ interface Slide {
   subtitleKey: StringKey
   /** 16px muted paragraph below the title block */
   bodyKey?: StringKey
-  /** render the body in the dimmer footnote gray (slide 3's credits disclaimer) */
-  bodyDim?: boolean
-  /** community slide shows the credits offer panel with the "Join GenTeam" call-to-action */
-  showOffer?: boolean
+  /** community slide shows the "Join GenTeam" call-to-action */
+  showJoin?: boolean
   /** closing slide shows the "star us on GitHub" hint */
   showStar?: boolean
   /** closing slide explains default-on analytics and how to disable it */
@@ -28,24 +26,15 @@ interface Slide {
 
 const SLIDES: readonly Slide[] = [
   { titleKey: 'onbTitle1', subtitleKey: 'onbSubtitle1', bodyKey: 'onbBody1', art: 'logo' },
-  { titleKey: 'onbTitle2', subtitleKey: 'onbBody2', showOffer: true, art: 'gift' },
+  { titleKey: 'onbTitle2', subtitleKey: 'onbBody2', showJoin: true, art: 'gift' },
   {
     titleKey: 'onbTitle3',
     subtitleKey: 'onbBody3',
-    bodyKey: 'onbNote3',
-    bodyDim: true,
     showStar: true,
     showAnalyticsNotice: true,
     art: 'check',
   },
 ]
-
-/** render `**emphasized**` segments of a localized string as <strong> */
-function renderEmphasis(text: string) {
-  return text
-    .split('**')
-    .map((part, i) => (i % 2 === 1 ? <strong key={part}>{part}</strong> : part))
-}
 
 /* exact vectors from the design spec:
  * 60px canvas, 4px strokes — same visual mass as the 60px app icon */
@@ -189,9 +178,7 @@ export function Onboarding({ onDone }: OnboardingProps) {
               <SlideArt kind={s.art} />
               <h2 className="onb-title">{t(s.titleKey)}</h2>
               <p className="onb-subtitle">{t(s.subtitleKey)}</p>
-              {s.bodyKey && (
-                <p className={`onb-body${s.bodyDim ? ' onb-body-dim' : ''}`}>{t(s.bodyKey)}</p>
-              )}
+              {s.bodyKey && <p className="onb-body">{t(s.bodyKey)}</p>}
               {s.showStar && (
                 <div className="onb-star">
                   <p className="onb-star-hint">{t('onbStarHint')}</p>
@@ -220,9 +207,8 @@ export function Onboarding({ onDone }: OnboardingProps) {
                   </span>
                 </div>
               )}
-              {s.showOffer && (
-                <div className="onb-offer">
-                  <p className="onb-credits">{renderEmphasis(t('onbCredits'))}</p>
+              {s.showJoin && (
+                <div className="onb-join-row">
                   <button className="onb-join" onClick={() => void window.aiOffice.openGenTeam()}>
                     {t('onbJoinGenTeam')}
                     <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">

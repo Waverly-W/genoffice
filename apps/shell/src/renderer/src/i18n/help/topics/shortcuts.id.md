@@ -31,7 +31,7 @@ Setiap editor punya pengikatan tombol sendiri, dan hanya sebagian yang berlaku d
 
 ## Word
 
-Word punya bilah menu penuh, jadi pintasan berkas dan format di bawah ini berlaku kapan pun sebuah tab Word punya fokus, dokumen apa pun yang terbuka. Pintasan penyuntingan membutuhkan dokumen yang sudah termuat dan bisa disunting, dengan caret di dalam teks; pintasan itu tidak aktif saat Anda mengetik di kotak Temukan, kotak perintah AI, atau kolom isian lain apa pun.
+Word punya bilah menu penuh, jadi pintasan berkas dan format di bawah ini berlaku kapan pun sebuah tab Word punya fokus, dokumen apa pun yang terbuka. Pintasan penyuntingan membutuhkan dokumen yang sudah termuat dan bisa disunting, dengan caret di dalam teks; pintasan itu tidak aktif saat Anda mengetik di kotak Temukan atau kolom isian lain apa pun.
 
 ### Berkas
 
@@ -138,11 +138,10 @@ Sisipkan Catatan Akhir adalah pembagian platform yang sungguhan, bukan sekadar n
 | ------------------ | ----- | --------------- |
 | Lacak Perubahan    | ⇧⌘E   | Ctrl+Shift+E    |
 | Jumlah Kata        | ⇧⌘G   | Ctrl+Shift+G    |
-| Proofread          | F7    | F7              |
 | Perbarui Field     | F9    | F9              |
 | Alihkan Kode Field | ⌥F9   | Alt+F9          |
 
-F7 menjalankan proofread AI dan F9 memperbarui field; keduanya butuh dokumen yang sudah termuat. Begitu pembatasan penyuntingan menyalakan Lacak Perubahan, itu tidak bisa dimatikan lagi.
+F9 memperbarui field dan butuh dokumen yang sudah termuat. Begitu pembatasan penyuntingan menyalakan Lacak Perubahan, itu tidak bisa dimatikan lagi.
 
 ### Tampilan
 
@@ -310,7 +309,6 @@ Menutup tab adalah satu-satunya tempat kedua platform benar-benar terpisah: ⌘W
 | -------------------------------------------------- | ------ | --------------- |
 | Slide baru                                         | ⇧⌘N    | Ctrl+M          |
 | Temukan (bukan saat menyunting teks dalam bentuk)  | ⌘F     | Ctrl+F          |
-| Anotasi seleksi dengan AI (dengan bentuk terpilih) | ⌘K     | Ctrl+K          |
 | Perbesar                                           | ⌘=     | Ctrl+=          |
 | Perkecil                                           | ⌘-     | Ctrl+-          |
 | Ukuran asli (100%)                                 | ⌘0     | Ctrl+0          |
@@ -478,7 +476,7 @@ Hanya aktif ketika sebuah anotasi, stempel, redaksi, atau gambar terpilih.
 | Batalkan lapisan teratas       | Escape | Escape          |
 | Konfirmasi dialog yang terbuka | Enter  | Enter           |
 
-Escape membongkar satu lapisan setiap kali — lebih dulu dialog yang terbuka, lalu munculan AI, draf teks, panel pencarian, dan terakhir seleksi itu sendiri. Dengan kursor di kotak pencarian, Enter dan ⇧Enter melangkah ke kecocokan berikutnya dan sebelumnya, dan Escape menutup panelnya; dengan kursor di catatan teks baru, `⌘⏎` menguncinya.
+Escape membongkar satu lapisan setiap kali — lebih dulu dialog yang terbuka, lalu draf teks, panel pencarian, dan terakhir seleksi itu sendiri. Dengan kursor di kotak pencarian, Enter dan ⇧Enter melangkah ke kecocokan berikutnya dan sebelumnya, dan Escape menutup panelnya; dengan kursor di catatan teks baru, `⌘⏎` menguncinya.
 
 ## Markdown
 
@@ -555,7 +553,6 @@ Di dalam editor kode atau kolom isian formulir, tombol penyuntingan milik kolom 
 
 | Tindakan                                | macOS      | Windows / Linux    |
 | --------------------------------------- | ---------- | ------------------ |
-| Tanyakan elemen itu kepada AI           | ⌘K         | Ctrl+K             |
 | Hapus elemennya                         | ⌫ / Delete | Backspace / Delete |
 | Sepupu sebelumnya                       | ↑          | ArrowUp            |
 | Sepupu berikutnya                       | ↓          | ArrowDown          |

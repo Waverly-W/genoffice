@@ -158,7 +158,7 @@ export function ImageHostDialog({
             {error && <div className="image-host-error">{error}</div>}
             <div className="image-host-actions">
               <button type="button" className="image-host-btn" onClick={onClose}>
-                {t('aiCancel')}
+                {t('imageHostCancel')}
               </button>
               <button
                 type="button"

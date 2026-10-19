@@ -3,11 +3,10 @@
 The HTML editor opens .html / .htm with two modes: **preview** (the rendered page) and **source**.
 
 - **Preview**: true rendering; relative stylesheets and images load next to the file.
-- **Preview inspector**: click to select an element, double-click to edit its text in place, toolbar delete, and Ask AI against the selection.
+- **Preview inspector**: click to select an element, double-click to edit its text in place, or delete it from the toolbar.
 - **Source mode**: edit the HTML; ctrl+F find, Replace All saves the rewritten markup.
 - **Saving**: byte-faithful (BOM/CRLF/trailing newline preserved); unmodified saves do not rewrite.
 - **Zoom**: ctrl+wheel / pinch scales the preview; ctrl+Z inside the preview undoes the last edit.
-- **Hide from AI**: in source mode, right-click a selection — element contents, attribute values, script strings — and the model sees a placeholder instead; the rendered page never changes (details in the AI panel chapter).
 
 ## The toolbar
 
@@ -21,7 +20,6 @@ Click any element in the preview and a toolbar floats above it:
 - **Insert**: heading, paragraph, table, image (by link), more.
 - **Image actions** (with an image selected): crop, **remove background**, replace, lock aspect ratio.
 - **Element actions** (with an element selected in the preview inspector): delete, duplicate, move up/down.
-- **AI button**: opens the AI panel; ask about the selected element directly.
 
 ## Exporting
 

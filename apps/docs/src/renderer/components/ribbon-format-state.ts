@@ -12,7 +12,6 @@ import {
   selectedSizeMixed,
 } from '../editor/text-style-resolve'
 import { textHasCjk } from '../line-metrics'
-import { cachedByDoc } from '../doc-cache'
 
 /**
  * Snapshot of every editor-state read the ribbon (and its tabs) shows at render
@@ -23,7 +22,6 @@ import { cachedByDoc } from '../doc-cache'
 export interface RibbonFormatState {
   /** current PM doc: any content change invalidates the ribbon (doc-derived tab displays stay fresh) */
   doc: PmNode | null
-  docEmpty: boolean
   /** focused textbox sub-editor receiving ribbon commands (active-editor routing) */
   sub: Editor | null
   editable: boolean
@@ -101,7 +99,6 @@ export interface RibbonFormatState {
 
 export const EMPTY_FORMAT_STATE: RibbonFormatState = {
   doc: null,
-  docEmpty: true,
   sub: null,
   editable: false,
   inTable: false,
@@ -161,18 +158,6 @@ export const EMPTY_FORMAT_STATE: RibbonFormatState = {
   spaceBefore: 0,
   spaceAfter: 0,
 }
-
-// stops at the first character instead of building the whole document's text
-const docEmptyOf = cachedByDoc((doc: PmNode) => {
-  let empty = true
-  doc.descendants((node) => {
-    if (!empty) return false
-    if (node.isText && node.text?.trim()) empty = false
-    else if (node.isLeaf && !node.isText) empty = false
-    return empty
-  })
-  return empty
-})
 
 const str = (v: unknown): string | null => (typeof v === 'string' && v !== '' ? v : null)
 const num = (v: unknown): number | null => {
@@ -295,7 +280,6 @@ export function computeFormatState(
 
   return {
     doc: editor.state.doc,
-    docEmpty: docEmptyOf(editor.state.doc),
     sub,
     editable: editor.isEditable,
     inTable,

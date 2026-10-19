@@ -31,7 +31,7 @@ Każdy edytor ma własne przypisania klawiszy i tylko kilka z nich działa wszę
 
 ## Word
 
-Word ma pełny pasek menu, więc poniższe skróty pliku i formatowania działają zawsze, gdy karta Word ma fokus, niezależnie od otwartego dokumentu. Skróty edycji wymagają wczytanego, edytowalnego dokumentu z kursorem w tekście; nie działają, gdy piszesz w polu wyszukiwania, w wierszu polecenia AI ani w innym polu.
+Word ma pełny pasek menu, więc poniższe skróty pliku i formatowania działają zawsze, gdy karta Word ma fokus, niezależnie od otwartego dokumentu. Skróty edycji wymagają wczytanego, edytowalnego dokumentu z kursorem w tekście; nie działają, gdy piszesz w polu wyszukiwania ani w innym polu.
 
 ### Plik
 
@@ -134,15 +134,14 @@ Wstaw przypis końcowy to prawdziwy podział platform, a nie zmiana nazwy: Word 
 
 ### Sprawdzanie i narzędzia
 
-| Czynność                     | macOS | Windows / Linux |
-| ---------------------------- | ----- | --------------- |
-| Śledź zmiany                 | ⇧⌘E   | Ctrl+Shift+E    |
-| Liczba słów                  | ⇧⌘G   | Ctrl+Shift+G    |
-| Sprawdź pisownię i gramatykę | F7    | F7              |
-| Aktualizuj pole              | F9    | F9              |
-| Pokaż / ukryj kody pól       | ⌥F9   | Alt+F9          |
+| Czynność               | macOS | Windows / Linux |
+| ---------------------- | ----- | --------------- |
+| Śledź zmiany           | ⇧⌘E   | Ctrl+Shift+E    |
+| Liczba słów            | ⇧⌘G   | Ctrl+Shift+G    |
+| Aktualizuj pole        | F9    | F9              |
+| Pokaż / ukryj kody pól | ⌥F9   | Alt+F9          |
 
-F7 uruchamia sprawdzanie przez AI, a F9 aktualizuje pola; oba wymagają wczytanego dokumentu. Gdy ograniczenie edycji włączy Śledź zmiany, nie da się go już wyłączyć.
+F9 aktualizuje pola i wymaga wczytanego dokumentu. Gdy ograniczenie edycji włączy Śledź zmiany, nie da się go już wyłączyć.
 
 ### Widok
 
@@ -306,16 +305,15 @@ Zamykanie karty to jedyne miejsce, w którym obie platformy dzielą się całkow
 
 ### Edycja
 
-| Czynność                                                   | macOS  | Windows / Linux |
-| ---------------------------------------------------------- | ------ | --------------- |
-| Nowy slajd                                                 | ⇧⌘N    | Ctrl+M          |
-| Znajdź (nie podczas edycji tekstu w kształcie)             | ⌘F     | Ctrl+F          |
-| Opisz zaznaczenie za pomocą AI (z zaznaczonymi kształtami) | ⌘K     | Ctrl+K          |
-| Powiększ                                                   | ⌘=     | Ctrl+=          |
-| Pomniejsz                                                  | ⌘-     | Ctrl+-          |
-| Rozmiar rzeczywisty (100%)                                 | ⌘0     | Ctrl+0          |
-| Zaznacz wszystko                                           | ⌘A     | Ctrl+A          |
-| Przechodź po zaznaczeniu kształtów do przodu / do tyłu     | ⇥ / ⇧⇥ | Tab / Shift+Tab |
+| Czynność                                               | macOS  | Windows / Linux |
+| ------------------------------------------------------ | ------ | --------------- |
+| Nowy slajd                                             | ⇧⌘N    | Ctrl+M          |
+| Znajdź (nie podczas edycji tekstu w kształcie)         | ⌘F     | Ctrl+F          |
+| Powiększ                                               | ⌘=     | Ctrl+=          |
+| Pomniejsz                                              | ⌘-     | Ctrl+-          |
+| Rozmiar rzeczywisty (100%)                             | ⌘0     | Ctrl+0          |
+| Zaznacz wszystko                                       | ⌘A     | Ctrl+A          |
+| Przechodź po zaznaczeniu kształtów do przodu / do tyłu | ⇥ / ⇧⇥ | Tab / Shift+Tab |
 
 Nowy slajd to drugi podział platform. Każda platforma ma własny klawisz, a drugi nic nie robi: ⇧⌘N w macOS, Ctrl+M w Windows i Linux. ⌘M nie może tego zrobić w macOS, bo jest systemowym skrótem Minimalizuj.
 
@@ -478,7 +476,7 @@ Działa tylko wtedy, gdy zaznaczono adnotację, pieczec, zaciemnienie lub obraz.
 | Anuluj najwyższy stan            | Escape | Escape          |
 | Potwierdź otwarte okno dialogowe | Enter  | Enter           |
 
-Escape cofa jedną warstwę naraz — najpierw otwarte okno dialogowe, potem wyskakujące okno AI, szkic tekstu, panel wyszukiwania, a na końcu samo zaznaczenie. Gdy kursor jest w polu wyszukiwania, Enter i ⇧Enter przechodzą do następnego i poprzedniego dopasowania, a Escape zamyka panel; gdy kursor jest w nowej notatce tekstowej, ⌘⏎ ją zatwierdza.
+Escape cofa jedną warstwę naraz — najpierw otwarte okno dialogowe, potem szkic tekstu, panel wyszukiwania, a na końcu samo zaznaczenie. Gdy kursor jest w polu wyszukiwania, Enter i ⇧Enter przechodzą do następnego i poprzedniego dopasowania, a Escape zamyka panel; gdy kursor jest w nowej notatce tekstowej, ⌘⏎ ją zatwierdza.
 
 ## Markdown
 
@@ -555,7 +553,6 @@ W edytorze kodu lub polu formularza własne klawisze edycji pola przejmują kont
 
 | Czynność                           | macOS      | Windows / Linux    |
 | ---------------------------------- | ---------- | ------------------ |
-| Zapytaj AI o element               | ⌘K         | Ctrl+K             |
 | Usuń element                       | ⌫ / Delete | Backspace / Delete |
 | Poprzedni rodzeństwo               | ↑          | ArrowUp            |
 | Następne rodzeństwo                | ↓          | ArrowDown          |

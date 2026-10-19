@@ -16,8 +16,8 @@ Karty: **Domů / Vložení / Kreslení / Rozložení / Návrh / Odkazy / Revize 
 
   ![Karta Odkazy](img/docs-references.png)
 
-- **Revize**: **Editor** prověří celý dokument — pravopis, gramatiku i interpunkci; **Přeložit**; kontrolu pravopisu; komentáře (**Vyřešit komentáře pomocí AI** zpracuje ty otevřené); sledování změn se zobrazeními Všechny značky / Jednoduché značky, přijetí/odmítnutí a **Souhrn revizí od AI**; počítání slov; **Porovnat** s jiným souborem; **Zamknout dokument**.
-- **Zobrazení**: pět způsobů, jak se na soubor podívat — **Rozložení při tisku**, **Rozložení webové stránky**, **Osnova**, **Režim čtení** a **Náhled stránky**; oddálit/přiblížit/100 %/šířka stránky/jedna stránka; **Panel AI**; **Tmavý režim**; pravítko, mřížka a navigační podokno; **Nová karta**, **Rozdělit** a **Přepnout karty**; prohledávatelný dialog **klávesových zkratek**.
+- **Revize**: kontrola pravopisu; komentáře; sledování změn se zobrazeními Všechny značky / Jednoduché značky a s přijetím/odmítnutím; počítání slov; **Porovnat** s jiným souborem; **Zamknout dokument**.
+- **Zobrazení**: pět způsobů, jak se na soubor podívat — **Rozložení při tisku**, **Rozložení webové stránky**, **Osnova**, **Režim čtení** a **Náhled stránky**; oddálit/přiblížit/100 %/šířka stránky/jedna stránka; **Tmavý režim**; pravítko, mřížka a navigační podokno; **Nová karta**, **Rozdělit** a **Přepnout karty**; prohledávatelný dialog **klávesových zkratek**.
   - **Tmavý režim** ztmaví stránku a plátno kolem ní, nikoli ale pás — je to Wordovo rozdělení mezi tmavou plochu úprav a tmavé okno. Volba se pamatuje a v každém případě má přednost před motivem aplikace.
   - **Rozdělit** otevře pod ním druhé podokno, které se posouvá nezávisle a zrcadlí první; zavřete ho křížkem × na jeho okraji.
 
@@ -51,7 +51,6 @@ Klikněte pravým tlačítkem kamkoli do textu — nabídka se přizpůsobí tom
 - **Schránka**: vystřihnout / kopírovat / vložit / **vložit jako čistý text**.
 - **Písmo, odstavec**: změna řady a velikosti, tučné/kurzíva/podtržené, zarovnání/odsazení/řádkování bez cestování na pásek.
 - **Synonyma**: vypíše synonyma vybraného slova; kliknutím na jedno ho nahradíte.
-- **Přeložit** (AI): přeloží výběr do cílového jazyka (angličtina, zjednodušená čínština, japonština, korejština, francouzština, němčina, španělština, ...) přes panel AI.
 - **Nový komentář**: připojí komentář k výběru.
 - **Pravopis** (u chybně napsaného slova): navržené náhrady, ignorovat vše, přidat do slovníku, nastavit jazyk kontroly.
 - **Hypertextový odkaz**: otevřít / upravit / kopírovat odkaz / odebrat odkaz.
@@ -71,11 +70,6 @@ Klikněte pravým tlačítkem kamkoli do textu — nabídka se přizpůsobí tom
 
 - Komprese interpunkce a pravidla dělení řádků (kinsoku) odpovídají Wordu; převod celé a poloviční šířky.
 - Nabídka písem pokrývá běžné názvy rodin CJK v Windows a macOS.
-
-## AI
-
-- Tlačítko AI na pásku a postranní panel: přeformulovat, rozšířit, přeložit, shrnout, vložit předvolenou tabulku a libovolné vlastní pokyny.
-- Každý krok AI nejprve vytvoří snímek stavu; můžete se vrátit k libovolnému ze seznamu verzí a samotný návrat lze zase vrátit zpět.
 
 ## Ukládání a export
 

@@ -16,8 +16,8 @@ Pestañas: **Inicio / Insertar / Dibujar / Disposición / Diseño / Referencias 
 
   ![La pestaña Referencias](img/docs-references.png)
 
-- **Revisar**: **Editor** revisa la ortografía, la gramática y la puntuación de todo el documento; **Traducir**; corrección ortográfica; comentarios (**Comentarios con IA** trabaja los que están abiertos); control de cambios con las vistas Todas las revisiones / Revisiones simples, aceptar/rechazar y **Resumen IA de revisiones**; contar palabras; **Comparar** con otro archivo; **Proteger documento**.
-- **Vista**: cinco maneras de mirar el archivo — **Diseño de impresión**, **Diseño web**, **Esquema**, **Modo de lectura** y **Vista previa de páginas**; alejar/acercar/100 %/ancho de página/una página; **Panel de IA**; **Modo oscuro**; regla, líneas de la cuadrícula y el panel de navegación; **Nueva pestaña**, **Dividir** y **Cambiar de pestaña**; el cuadro de diálogo de **atajos de teclado** en el que se puede buscar.
+- **Revisar**: corrección ortográfica; comentarios; control de cambios con las vistas Todas las revisiones / Revisiones simples y aceptar/rechazar; contar palabras; **Comparar** con otro archivo; **Proteger documento**.
+- **Vista**: cinco maneras de mirar el archivo — **Diseño de impresión**, **Diseño web**, **Esquema**, **Modo de lectura** y **Vista previa de páginas**; alejar/acercar/100 %/ancho de página/una página; **Modo oscuro**; regla, líneas de la cuadrícula y el panel de navegación; **Nueva pestaña**, **Dividir** y **Cambiar de pestaña**; el cuadro de diálogo de **atajos de teclado** en el que se puede buscar.
   - **Modo oscuro** oscurece la página y el lienzo que la rodea, nunca la cinta — la división de Word entre una superficie de edición oscura y una ventana oscura. La elección se recuerda y gana sobre el tema de la aplicación en cualquier caso.
   - **Dividir** abre un segundo panel debajo que se desplaza de forma independiente y refleja el primero; ciérralo con la × de su borde.
 
@@ -42,7 +42,6 @@ Haga clic derecho en cualquier parte del cuerpo: el menú se ajusta a lo que ha 
 - **Portapapeles**: cortar / copiar / pegar / **Texto Unicode sin formato**.
 - **Fuente, párrafo**: cambiar familia y tamaño, negrita/cursiva/subrayado, alineación/sangría/interlineado sin pasar por la cinta de opciones.
 - **Sinónimos**: muestra sinónimos de la palabra seleccionada; haga clic en uno para sustituirla.
-- **Traducir** (IA): traduce la selección al idioma de destino (inglés, chino simplificado, japonés, coreano, francés, alemán, español, …) a través del panel de IA.
 - **Nuevo comentario**: adjunta un comentario a la selección.
 - **Ortografía** (sobre una palabra mal escrita): sustituciones sugeridas, ignorar todo, agregar al diccionario, definir el idioma de corrección.
 - **Hipervínculo**: abrir / editar / copiar vínculo / quitar hipervínculo.
@@ -62,11 +61,6 @@ Haga clic derecho en cualquier parte del cuerpo: el menú se ajusta a lo que ha 
 
 - La compresión de signos de puntuación y las reglas de salto de línea (kinsoku) coinciden con Word; conversión de ancho completo a medio.
 - Las fuentes candidatas cubren los nombres de familia habituales de Asia oriental en Windows y macOS.
-
-## IA
-
-- Botón de IA en la cinta y panel lateral: reescribir, ampliar, traducir, resumir, insertar tablas predeterminadas, además de instrucciones libres.
-- Cada turno de la IA guarda primero una instantánea; puede volver atrás desde la lista de versiones, y ese propio retroceso se puede deshacer.
 
 ## Guardar y exportar
 

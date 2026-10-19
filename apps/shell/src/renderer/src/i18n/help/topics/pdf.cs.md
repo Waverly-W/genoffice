@@ -18,12 +18,12 @@ Vyzkoušejte na libovolném odstavci:
 
 ![Lišta s anotací po výběru textu](img/pdf-highlight.png)
 
-2. Zvolte **zvýraznění** (žlutý vzorek otevře paletu barev), **podtržení** nebo **přeškrtnutí**; **Zeptat se AI** odešle výběr spolu s vaší otázkou do panelu AI.
+2. Zvolte **zvýraznění** (žlutý vzorek otevře paletu barev), **podtržení** nebo **přeškrtnutí**.
 3. Chcete-li anotaci zrušit, znovu přetáhnutím vyberte stejný úsek a klikněte na již aktivní tlačítko na liště (přepínač ve stylu Wordu), nebo výběr vyberte a stiskněte Odstranit.
 
 Co očekávat:
 
-- Přetažení přes text zobrazí místní lištu: **zvýraznění / podtržení / přeškrtnutí / kopírovat / Zeptat se AI**.
+- Přetažení přes text zobrazí místní lištu: **zvýraznění / podtržení / přeškrtnutí / kopírovat**.
 - Barvy pocházejí z palety; **použití stejného značení na již označený úsek jej odstraní** (přepínač ve stylu Wordu).
 - Značení uložená již v souboru lze vybrat a odstranit (⋯ menu nebo Odstranit).
 - **Pozor**: dokud je aktivní nástroj kreslení, textovou vrstvu nelze vybírat — nástroj se po každém umístění sám vypne, takže před další akcí jste opět v režimu výběru.

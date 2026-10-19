@@ -27,8 +27,6 @@ import {
   toSaveVisualEdits,
 } from './edit-journal'
 import { activeCsvSheet, handleExportCsv, serializeActiveSheetCsv } from './csv-export'
-import type { CellState } from '@genoffice/xlsx-gateway/domain/workbook.types'
-import { verifiedFormulaValues } from './formula-values'
 import { t } from './i18n/locale'
 import { abortStagedEditsTransfer, stageEditsForSave, type StagedEdits } from './save-edits-staging'
 import { showToast } from './toast-bus'
@@ -48,16 +46,12 @@ export interface SaveContext {
   univerRef: { readonly current: UniverRuntime | null }
   lazyWorkbookRef: { readonly current: LazyWorkbookState | null }
   setMessage: (message: string) => void
-  /** `continueChat`: the reopen is a session swap over the same document, so
-      the AI conversation carries on rather than rehydrating from the store. */
   openLazyWorkbook: (
     opened: WorkbookFile,
-    opts?: { continueChat?: boolean; onInitialRangeLoaded?: () => void },
+    opts?: { onInitialRangeLoaded?: () => void },
   ) => void | Promise<boolean>
   /** pending-edit badge; the reopen resets it to 0 before late edits are carried over */
   setPendingEdits?: (count: number) => void
-  /** live cell readout, for the cached values of formulas an MCP batch wrote (optional in tests) */
-  readCells?: (addresses: string[], sheetId: string) => Record<string, CellState>
   /** Saving swaps the session and reinstalls the workbook, which resets the
       view to the first sheet's A1 — stash where the user was so the
       reinstall lands there instead. `viewRow`/`viewColumn` is the viewport's
@@ -78,7 +72,7 @@ export interface SaveContext {
 /// "Continue as CSV" — asked once per file, like modern Excel's banner.
 const confirmedCsvSaves = new Set<string>()
 
-/** What a save actually did — the MCP bridge needs the outcome, fire-and-forget callers ignore it. */
+/** What a save actually did; fire-and-forget callers ignore it. */
 export interface SaveOutcome {
   ok: boolean
   /** absolute path of the written file when ok */
@@ -91,16 +85,11 @@ export interface SaveOutcome {
  * mode 'recovery': assemble the very same payload but hand it to the
  * crash-recovery writer instead of the save pipeline — no dialogs, no status
  * messages, no session swap, the opened file untouched.
- *
- * explicitTarget: MCP save_sheet — a dialog-free Save As to an exact path
- * (main enforces the overwrite policy; the request carries it). Callers pass
- * mode 'save-as' with it.
  */
 export async function handleSave(
   ctx: SaveContext,
   mode: 'save' | 'save-as' | 'recovery',
   quiet = false,
-  explicitTarget?: { path: string; overwrite: boolean },
 ): Promise<SaveOutcome> {
   const state = ctx.lazyWorkbookRef.current
   // Captured at save start (the Ctrl+S moment): the post-save session swap
@@ -227,10 +216,7 @@ export async function handleSave(
           return [{ sheetId, row, column, value }]
         }),
   )
-  // Journaled formulas an MCP batch saw settle (see formula-values.ts) were left
-  // out above because the overlay could be stale; their values are read live here.
-  const journaledValues = ctx.readCells ? verifiedFormulaValues(ctx.readCells) : []
-  const formulaValues = [...overlayValues, ...journaledValues]
+  const formulaValues = overlayValues
   // The gateway fails closed when these additions ride with structural or
   // sheet changes (their coordinates entangle). Instead of bouncing the
   // user, hold them back and save in two sequential phases: structure
@@ -320,7 +306,7 @@ export async function handleSave(
         return { ok: false }
       }
       if (choice === 'xlsx') {
-        return await handleSave(ctx, 'save-as', quiet, explicitTarget)
+        return await handleSave(ctx, 'save-as', quiet)
       }
       if (state.flags.preloadComplete) confirmedCsvSaves.add(csvPath)
     }
@@ -372,11 +358,6 @@ export async function handleSave(
   const payload = {
     sessionId: state.file.sessionId,
     mode: mode === 'recovery' ? ('save' as const) : mode,
-    // MCP explicit-path save: main skips the Save-As dialog and enforces the
-    // overwrite policy from these two fields
-    ...(explicitTarget
-      ? { targetPath: explicitTarget.path, overwrite: explicitTarget.overwrite }
-      : {}),
     edits: staged.edits,
     bulkConstantFills,
     ...(staged.editsTransferId === undefined ? {} : { editsTransferId: staged.editsTransferId }),
@@ -426,10 +407,6 @@ export async function handleSave(
       ...(restoreWriteBack ? { restoreWriteBack: true } : {}),
       ...(quiet ? { quiet: true } : {}),
       ...(csvContent === undefined ? {} : { csvContent }),
-      // MCP explicit-path save: main skips the Save-As dialog for these
-      ...(explicitTarget
-        ? { targetPath: explicitTarget.path, overwrite: explicitTarget.overwrite }
-        : {}),
       edits: staged.edits,
       bulkConstantFills,
       ...(staged.editsTransferId === undefined ? {} : { editsTransferId: staged.editsTransferId }),
@@ -588,7 +565,7 @@ async function reopenCarryingLateEdits(
   cellsAtSave: JournalCellSnapshot,
   file: WorkbookFile,
 ): Promise<boolean> {
-  if ((await ctx.openLazyWorkbook(file, { continueChat: true })) === false) return false
+  if ((await ctx.openLazyWorkbook(file)) === false) return false
   const next = ctx.lazyWorkbookRef.current
   if (!next || next === state) return true
   if (carryLateJournalCells(state.editJournal, cellsAtSave, next.editJournal) > 0) {

@@ -1,15 +1,6 @@
 import type { zh } from './zh'
 
 export const cs = {
-  redactMenuLabel: 'Skrýt výběr před AI',
-  redactDialogDesc:
-    'Slova zůstanou v dokumentu i v souboru; model uvidí jen zástupný symbol. Pojmenujte ho, aby věděl, co zastupuje.',
-  redactDialogScope:
-    'Skrýtí se týká jen AI v této aplikaci. CLI, nástroje MCP a headless export čtou soubor přímo a tato slova stále vidí.',
-  redactDialogPlaceholder: 'Název zástupného symbolu, např. telefon zákazníka',
-  redactCancel: 'Zrušit',
-  redactInsert: 'Skrýt',
-
   loading: 'Načítání…',
   loadFailed: 'Soubor nelze otevřít',
   untitled: 'Bez názvu',
@@ -35,8 +26,7 @@ export const cs = {
   charCount: '{n} znaků',
   previewNeedsSave: 'Relativní obrázky a styly se v náhledu zobrazí po uložení souboru',
   inspectHint: 'Klepnutím na prvek v náhledu ho vyberete, poklepáním upravíte text',
-  nodeDynamic:
-    'Tento prvek vytvořil skript stránky a nemá zdroj; upravte ho přes zdrojový kód nebo AI',
+  nodeDynamic: 'Tento prvek vytvořil skript stránky a nemá zdroj; upravte ho přes zdrojový kód',
   nodeDynamicShort: 'vytvořeno skriptem',
   nodeDirty: 'Skript stránky tento prvek změnil; úpravy zapsané do zdroje může skript přepsat',
   nodeDirtyShort: 'změněno skriptem',

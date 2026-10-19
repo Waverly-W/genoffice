@@ -47,12 +47,6 @@ El menú depende de dónde haga clic derecho:
 - Patrones y diseños: unifican fuentes, marcadores de posición y fondos; las diapositivas nuevas heredan el diseño elegido.
 - Los colores y las fuentes del tema siguen al tema.
 
-## Generación con IA
-
-- La tarjeta AI Slides de la pantalla de inicio: dé un tema o un esquema y la IA construye la presentación; si falla la generación en la nube, recurre a la generación local.
-- Sigua ajustando después con el panel de IA.
-- Clic derecho sobre una selección de texto o un elemento imagen/vídeo/audio ▸ **Ocultar la selección a la IA** lo saca de la vista del modelo (detalles en el capítulo del panel de IA); una diapositiva con contenido oculto se salta la revisión automática por captura.
-
 ## Presentar y exportar
 
 - **Exportar como PDF**: rasterizado diapositiva a diapositiva en una ventana oculta, con progreso y vigilancia de tiempo de espera para presentaciones grandes.

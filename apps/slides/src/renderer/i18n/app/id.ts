@@ -1,16 +1,6 @@
 import type { zh } from './zh'
 
 export const id = {
-  redactMenuLabel: 'Sembunyikan pilihan dari AI',
-  redactDialogDesc:
-    'Konten yang dipilih tetap ada di dokumen dan berkas; model hanya melihat placeholder di bawah. Beri nama agar model tahu apa yang diwakili.',
-  redactDialogScope:
-    'Penyembunyian ini hanya berlaku untuk AI di aplikasi ini. CLI, alat MCP, dan ekspor tanpa antarmuka membaca berkas secara langsung, sehingga kata-kata ini tetap terlihat olehnya.',
-  redactDialogPlaceholder: 'Nama placeholder, mis. telepon pelanggan',
-  redactCancel: 'Batal',
-  redactInsert: 'Sembunyikan',
-  redactEnable: 'Klik kanan pada teks yang dipilih untuk menyembunyikannya dari model.',
-
   appPhPromptTitle: 'Klik untuk menambahkan judul',
   appPhPromptSubtitle: 'Klik untuk menambahkan subjudul',
   appPhPromptBody: 'Klik untuk menambahkan teks',
@@ -239,8 +229,6 @@ export const id = {
   appNotesPlaceholder: 'Klik untuk menambahkan catatan pembicara (disimpan ke dalam .pptx)',
   appNotesShow: 'Tampilkan catatan',
   appNotesHide: 'Sembunyikan catatan',
-  appAiRailExpand: 'Perluas asisten AI',
-  appAiRailText: 'AI',
   appStatusBarSlide: 'Slide {current} dari {total}',
   appStatusBarReady: 'Siap',
   appMediaCloseTitle: 'Tutup (Esc)',
@@ -249,17 +237,7 @@ export const id = {
     'Total waktu peragaan slide adalah {duration}. Simpan waktu setiap slide untuk perpindahan slide otomatis?',
   appRehearseDiscard: 'Jangan Simpan',
   appRehearseSave: 'Simpan',
-  appSettingsTitle: 'Pengaturan AI',
-  appSettingsAccount: 'Akun Genspark',
-  appSettingsChecking: 'Memeriksa…',
-  appSettingsLoggedIn: 'Sudah masuk',
-  appSettingsLoggedInEmail: 'Sudah masuk: {email}',
-  appSettingsLoggedOut: 'Belum masuk (fitur AI memerlukan akun Genspark)',
-  appSettingsLoginPending: 'Menunggu proses masuk di browser…',
-  appSettingsLogin: 'Masuk ke Genspark',
-  appSettingsModel: 'Model',
   appSettingsCancel: 'Batal',
-  appSettingsSave: 'Simpan',
   appCropHint:
     'Enter untuk mengonfirmasi · Esc untuk membatalkan · Klik di luar untuk mengonfirmasi',
   appStatusZoomsInserted: '{count} zoom disisipkan: klik saat peragaan untuk melompat ke slidenya',

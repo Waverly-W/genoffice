@@ -79,9 +79,6 @@ const WIN_SIDECAR = `../sheets/native/xlsx-engine/target/${winSidecarTarget}/rel
 
 function assertExtraResourceSources() {
   for (const rel of [
-    '../../node_modules/@genspark/cli',
-    '../../node_modules/@genspark/cli/node_modules/commander',
-    '../../node_modules/ws',
     '../../node_modules/electron/dist/LICENSES.chromium.html',
     '../../node_modules/@embedpdf/pdfium/dist/pdfium.wasm',
     '../pdf/node_modules/harfbuzzjs/hb-subset.wasm',
@@ -211,62 +208,12 @@ function assertModuleTreesPresent() {
     '../pdf/out',
     '../markdown/out',
     '../html/out',
-    '../../packages/cli/dist/genoffice.cjs',
-    '../../packages/cli/dist/node_modules/jsdom',
   ]) {
     if (!existsSync(join(__dirname, rel))) {
       throw new Error(
         `electron-builder extraResources source missing: ${rel} (run npm run build:all first)`,
       )
     }
-  }
-}
-
-const CLI_BUNDLE_REL = '../../packages/cli/dist/genoffice.cjs'
-const CLI_BUILD_REL = '../../packages/cli/build.mjs'
-const CLI_VERSION_ENV = 'GENOFFICE_APP_VERSION'
-const CLI_VERSION_BANNER = /^const __cliAppVersion = ("(?:[^"\\]|\\.)*");$/m
-
-/**
- * The version the packaged app reports: CI's -c.extraMetadata.version deep-merges
- * into the block below, and without it electron-builder ships apps/shell/package.json.
- */
-function packagedAppVersion() {
-  const injected = config.extraMetadata && config.extraMetadata.version
-  if (typeof injected === 'string' && injected.trim()) return injected.trim()
-  return require('./package.json').version
-}
-
-function bundledCliVersion(bundlePath) {
-  const baked = CLI_VERSION_BANNER.exec(readFileSync(bundlePath, 'utf-8'))
-  if (!baked) return null
-  try {
-    return JSON.parse(baked[1])
-  } catch {
-    return null
-  }
-}
-
-/**
- * `genoffice --version` is baked into the CLI bundle, which is built before
- * electron-builder runs and therefore before a release version is known. Rebuild
- * it here with the app version whenever the two disagree, so the packaged
- * command line can never answer with the workspace CLI version.
- */
-function ensureCliBundleCarriesAppVersion() {
-  const bundlePath = join(__dirname, CLI_BUNDLE_REL)
-  const appVersion = packagedAppVersion()
-  if (bundledCliVersion(bundlePath) === appVersion) return
-  execFileSync(process.execPath, [join(__dirname, CLI_BUILD_REL)], {
-    stdio: 'inherit',
-    env: { ...process.env, [CLI_VERSION_ENV]: appVersion },
-  })
-  const baked = bundledCliVersion(bundlePath)
-  if (baked !== appVersion) {
-    throw new Error(
-      `packaged genoffice CLI reports ${baked ?? 'no version'} but the app ships ${appVersion} ` +
-        `(rebuild it with ${CLI_VERSION_ENV}=${appVersion})`,
-    )
   }
 }
 
@@ -517,50 +464,6 @@ const config = {
       from: '../../packages/pdf2docx/ocr-helper/win-ocr.exe',
       to: 'ocr/win-ocr.exe',
     },
-    {
-      from: '../../node_modules/@genspark/cli',
-      to: 'gsk/node_modules/@genspark/cli',
-    },
-    // genoffice command line: runs on the app binary with ELECTRON_RUN_AS_NODE (as
-    // the gsk CLI above already does), so the RunAsNode fuse must stay enabled.
-    // Layout (Resources/cli next to wasm/, native/, ocr/) is what
-    // packages/cli/src/resources.ts expects.
-    {
-      from: '../../packages/cli/dist/genoffice.cjs',
-      to: 'cli/genoffice.cjs',
-    },
-    {
-      from: '../../packages/cli/bin/genoffice',
-      to: 'cli/genoffice',
-    },
-    {
-      from: '../../packages/cli/bin/genoffice.cmd',
-      to: 'cli/genoffice.cmd',
-    },
-    // the CLI's version (Settings → Integrations shows it) and the agent skill
-    // the same pane installs into Claude Code / Codex / …; bytes identical to the repo file
-    {
-      from: '../../packages/cli/package.json',
-      to: 'cli/package.json',
-    },
-    {
-      from: '../../skills/genoffice/SKILL.md',
-      to: 'cli/skills/genoffice/SKILL.md',
-    },
-    // runtime deps the genoffice bundle leaves external (jsdom for the Word/Markdown
-    // paths); collected by packages/cli/collect-deps.mjs during its build
-    {
-      from: '../../packages/cli/dist/node_modules',
-      to: 'cli/node_modules',
-    },
-    {
-      from: '../../node_modules/@genspark/cli/node_modules/commander',
-      to: 'gsk/node_modules/commander',
-    },
-    {
-      from: '../../node_modules/ws',
-      to: 'gsk/node_modules/ws',
-    },
   ],
   // `mimeType` is read only by the Linux target, where it becomes the
   // desktop entry's MimeType= list; associations without it are dropped
@@ -683,8 +586,7 @@ const config = {
   deb: {
     artifactName: 'genoffice_${version}_${arch}.deb',
     packageName: 'genoffice',
-    // expose the genoffice command line shipped inside the app
-    afterInstall: 'build/linux-after-install.sh',
+    // drop the /usr/bin/genoffice link older versions created
     afterRemove: 'build/linux-after-remove.sh',
   },
   // Same "@genoffice/shell" naming problem as deb: spell the artifact name
@@ -702,7 +604,6 @@ const config = {
     artifactName: 'genoffice-${version}.${arch}.rpm',
     packageName: 'genoffice',
     publish: null,
-    afterInstall: 'build/linux-after-install.sh',
     afterRemove: 'build/linux-after-remove.sh',
     // rpmbuild links every packaged ELF file into /usr/lib/.build-id/<hash>.
     // Two Electron apps built on the same Electron release ship identical
@@ -721,7 +622,6 @@ const config = {
     assertExtraResourceSources()
     ensureThirdPartyNotices()
     assertModuleTreesPresent()
-    ensureCliBundleCarriesAppVersion()
     if (context.electronPlatformName === 'darwin' && includeMacX64) {
       assertUniversalSidecar()
       assertUniversalVisionOcr()

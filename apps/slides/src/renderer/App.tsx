@@ -10,13 +10,10 @@ import type {
   TableRenderNode,
 } from '@genoffice/pptx-render'
 import { animGalleryKind } from './animation-play'
-import { handleSlidesControl, type ControlRequest } from './control'
 import type {
-  AiSettings,
   AnimEffectKind,
   AnimTrigger,
   AnimationItem,
-  AttachmentMeta,
   EditChartOp,
   EditParagraph,
   EditStrokeOp,
@@ -74,48 +71,27 @@ import { formatClock, type CustomShow } from './slideshow-utils'
 import { ContextMenu } from './components/ContextMenu'
 import { ShapeGalleryPopover } from './components/ShapeGalleryPopover'
 import { PasteOptionsFloater } from './components/PasteOptionsFloater'
-import {
-  AiAskPopover,
-  AiAskTrigger,
-  type AnchorRect,
-  type AskTarget,
-} from './components/AiAskPopover'
-import {
-  anchorId,
-  buildSelectionInstruction,
-  describeNode,
-  EDIT_QUEUE_MAX,
-  resolveQueueItem,
-  type EditQueueItem,
-} from './ai/edit-queue'
 import { FormatBackgroundPane, type BgPaneOp } from './components/FormatBackgroundPane'
 import { FormatPane } from './components/FormatPane'
 import { CommentsPane } from './components/CommentsPane'
 import { AnimationPane } from './components/AnimationPane'
 import { AnimPreviewOverlay } from './components/AnimatedSlide'
 import { EquationDialog, HeaderFooterDialog, LinkDialog } from './components/InsertDialogs'
-import { RedactDialog } from './components/RedactDialog'
 import { ZoomDialog } from './components/ZoomDialog'
 import { CutoutDialog } from './components/CutoutDialog'
 import {
   createWheelPager,
   createZoomWheelClassifier,
   useAutoSavePref,
-  type AiScopeQuoteData,
   type WordArtPreset,
-  aiPanelInitiallyOpen,
-  rememberAiPanelOpen,
-  useAiSidebarEnabled,
 } from '@genoffice/ui'
 import type { ChartPresetDef, IconDef, SmartArtDef } from './insert-presets'
-import { GensparkMark, IconAiBeautify, IconAiFactCheck, IconAiImage } from './components/icons'
 import { ToastHost } from './components/toast'
 import { showToast } from './components/toast-bus'
 import { t, useI18n } from './i18n/locale'
-import { AiPanel } from './ai/AiPanel'
 import { ChartDataDialog } from './components/ChartDataDialog'
 import type { BrushFormat } from './format-brush'
-import { isTextUndoTarget, shouldRouteHistoryToDeck } from './undo-routing'
+import { isTextUndoTarget } from './undo-routing'
 import type {
   ActionCtx,
   CropTargetState,
@@ -126,7 +102,6 @@ import type {
   EditingState,
   HfDialogState,
   LinkDialogState,
-  RedactDialogState,
   SlideShowState,
   EditPointsState,
   UngroupedSet,
@@ -147,20 +122,11 @@ import * as slideActions from './slide-actions'
 import * as zoomActions from './zoom-actions'
 import { groupSections } from './section-groups'
 import * as pictureEditActions from './picture-edit-actions'
-import * as redactActions from './redact-actions'
 import * as arrangeActions from './arrange-actions'
 import * as tableActions from './table-actions'
 import * as styleActions from './style-actions'
 import { handleGlobalKeydown, slideRailHasFocus } from './keyboard-actions'
 import { clickSelection, currentAfterHistory, normalizeSelection } from '../shared/slide-selection'
-import {
-  notesBaselineAfterFlush,
-  notesDraftIndex,
-  retargetNotesDraft,
-  startNotesDraft,
-  type LoadedNotes,
-  type NotesDraft,
-} from '../shared/notes-draft'
 import { useEscOverlay, useEscOverlayOpen } from './esc-overlay'
 import { buildCtxItems } from './context-menu-items'
 import { isMac, nextSelection } from './platform-modifiers'
@@ -393,8 +359,6 @@ export function App() {
       refreshMissingFonts()
     }
   }, [missingFonts, refreshMissingFonts])
-  /** AiPanel reset key: incremented only on applyOpen (open/new file), not on draft path updates */
-  const [aiPanelKey, setAiPanelKey] = useState(0)
   /** Theme body default font (fallback for the font box when the selection has no text element) */
   const [defaultFont, setDefaultFont] = useState<string | null>(null)
   const [current, setCurrent] = useState(0)
@@ -410,8 +374,6 @@ export function App() {
   )
   const [editing, setEditing] = useState<EditingState | null>(null)
   const [editingCell, setEditingCell] = useState<EditingCellState | null>(null)
-  /** Element-scoped AI edits waiting to be submitted (session-only, see the queue helpers below) */
-  const [editQueue, setEditQueue] = useState<EditQueueItem[]>([])
   // Armed shape draw mode (ribbon gallery pick); null = normal selection behavior
   const [drawKind, setDrawKind] = useState<InsertKind | null>(null)
   /** Latest-state bundle for the extracted action modules; refreshed every render (see action-context.ts). */
@@ -435,7 +397,7 @@ export function App() {
   // ── Thumbnail sidebar width (drag the divider to resize; persisted) ─────────
   const [thumbsW, setThumbsW] = useState(loadThumbsW)
   const thumbsListRef = useRef<HTMLDivElement | null>(null)
-  // Re-clamp when the window shrinks (max is 40% of the window), like the AI panel
+  // Re-clamp when the window shrinks (max is 40% of the window)
   useEffect(() => {
     const onResize = () => setThumbsW((w) => clampThumbsW(w))
     window.addEventListener('resize', onResize)
@@ -476,23 +438,8 @@ export function App() {
   useEffect(() => {
     window.slidesApi.setAutoSavePref?.(autoSave)
   }, [autoSave])
-  const [showAi, setShowAi] = useState(() => aiPanelInitiallyOpen('ai-slides-show-ai'))
-  // Settings › "show the AI sidebar" off hides the panel and its rail (Word's
-  // Copilot-pane model): an explicit Ask-AI action still opens the panel for
-  // this deck, and closing it returns to hidden. The dock stays mounted; the
-  // hook closes it when the switch itself goes off.
-  const aiSidebarEnabled = useAiSidebarEnabled(setShowAi)
   const [showFormat, setShowFormat] = useState(false)
   const [showBgFormat, setShowBgFormat] = useState(false)
-  const [aiSettings, setAiSettings] = useState<AiSettings | null>(null)
-  const [aiPreset, setAiPreset] = useState<{
-    text: string
-    nonce: number
-    autoRun?: boolean
-    displayText?: string
-    attachments?: AttachmentMeta[]
-    slideShot?: boolean
-  } | null>(null)
   const [_recent, setRecent] = useState<string[]>([])
   const consumePendingRef = useRef<ReturnType<typeof window.slidesApi.consumePendingOpen> | null>(
     null,
@@ -571,9 +518,7 @@ export function App() {
   const [showNotes, setShowNotes] = useState(true)
   const [notesText, setNotesText] = useState('')
   /** Unsaved notes draft (flushed before page switch/save) */
-  const notesDraftRef = useRef<NotesDraft | null>(null)
-  /** Notes as last read from the document, so a draft knows what it started from */
-  const notesLoadedRef = useRef<LoadedNotes | null>(null)
+  const notesDraftRef = useRef<{ index: number; text: string } | null>(null)
   /** Notes pane height (px): default shows ~4 lines (PowerPoint-like), drag-resizable */
   const [notesHeight, setNotesHeight] = useState(100)
   const notesDragRef = useRef<{ startY: number; startH: number } | null>(null)
@@ -611,7 +556,6 @@ export function App() {
   const [annotationsNonce, setAnnotationsNonce] = useState(0)
   // ── Insert tab extensions: dialogs + screen recording ──────────────────────
   const [linkDialog, setLinkDialog] = useState<LinkDialogState | null>(null)
-  const [redactDialog, setRedactDialog] = useState<RedactDialogState | null>(null)
   const [hfDialog, setHfDialog] = useState<HfDialogState | null>(null)
   const [eqDialogOpen, setEqDialogOpen] = useState(false)
   const [zoomDialog, setZoomDialog] = useState<zoomActions.ZoomMode | null>(null)
@@ -652,38 +596,13 @@ export function App() {
   }, [selectedSlides, slideSelRaw])
   const hasDoc = !!slide
 
-  /// True when no slide carries real content (only master decorations and
-  /// untouched empty placeholders) — the ribbon's one-click AI actions grey out.
-  const deckEmpty = useMemo(() => {
-    const nodesHaveContent = (nodes: RenderNode[]): boolean =>
-      nodes.some((n) => {
-        if (n.decoration) return false
-        if (n.type === 'group') return nodesHaveContent(n.children)
-        if (n.type === 'picture' || n.type === 'table' || n.type === 'chart') return true
-        if (n.type === 'shape' || n.type === 'text') {
-          const hasText = (n.text?.lines ?? []).some((line) =>
-            line.runs.some((run) => run.text.trim() !== ''),
-          )
-          // A drawn shape counts even without text; an untouched placeholder doesn't.
-          return hasText || (n.type === 'shape' && !n.placeholder)
-        }
-        return false
-      })
-    return slides.every((s) => !nodesHaveContent(s.nodes))
-  }, [slides])
-
   /** Write the notes draft back to the main process (called on page switch / blur / before save). */
   const flushNotes = useCallback(async () => {
     const pending = notesDraftRef.current
     if (!pending) return
     notesDraftRef.current = null
     const ok = await window.slidesApi.setNotes({ slideIndex: pending.index, text: pending.text })
-    if (!ok) return
-    setDirty(true)
-    // read back: the document normalizes what it stores (trailing empty paragraphs), and the
-    // baseline must match what a later getNotes returns
-    const stored = await window.slidesApi.getNotes(pending.index)
-    notesLoadedRef.current = notesBaselineAfterFlush(notesLoadedRef.current, pending.index, stored)
+    if (ok) setDirty(true)
   }, [])
 
   // Uncapped proportional fit ratio from the stage container's measured size
@@ -693,16 +612,14 @@ export function App() {
       if (!s) return 1
       const el = stageWrapRef.current
       const viewportW =
-        el?.clientWidth ||
-        stageViewportSize.w ||
-        window.innerWidth - (showThumbs ? thumbsW : 0) - (showAi ? 360 : 34)
+        el?.clientWidth || stageViewportSize.w || window.innerWidth - (showThumbs ? thumbsW : 0)
       const viewportH = el?.clientHeight || stageViewportSize.h || window.innerHeight - 150
       const availW = viewportW - 56
-      // -72: vertical padding is 48 (AI-bar headroom) + 32, minus the same 8px slack as width
-      const availH = viewportH - 72
+      // -56: vertical padding is 32 + 32, minus the same 8px slack as width
+      const availH = viewportH - 56
       return Math.min(availW / s.widthPx, availH / s.heightPx)
     },
-    [showThumbs, showAi, stageViewportSize.h, stageViewportSize.w, thumbsW],
+    [showThumbs, stageViewportSize.h, stageViewportSize.w, thumbsW],
   )
   /** Fit zoom for display: rawFit clamped to the 0.1–1.5 auto-fit range */
   const fitZoom = useCallback(
@@ -872,10 +789,6 @@ export function App() {
       setDirty(false)
       setInkTool('select')
       setUngroupedSets([])
-      setAiPanelKey((k) => k + 1)
-      // Queue anchors belong to the deck that was open; another file invalidates them all
-      setEditQueue([])
-      setAskState(null)
       needsFitRef.current = true
       setStatus(
         result.path
@@ -933,8 +846,6 @@ export function App() {
   // Save/export flows live in file-actions.ts; the editing-active flag lets ⌘S wait for the edit overlay to commit
   const editingActiveRef = useRef(false)
   editingActiveRef.current = !!editing || !!editingCell
-  /** Set while the AI annotation popover is open (assigned below, next to askState) */
-  const askOpenRef = useRef(false)
 
   const save = useCallback(
     (quiet = false): Promise<boolean> => fileActions.save(() => ctxRef.current, quiet),
@@ -1050,7 +961,7 @@ export function App() {
     return !!el && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.isContentEditable)
   }
 
-  // Text dragged in plain DOM (e.g. AI panel) focuses body; canvas shape selection stays collapsed
+  // Text dragged in plain DOM focuses body; canvas shape selection stays collapsed
   const hasDomTextSelection = () => {
     const sel = window.getSelection()
     return !!sel && !sel.isCollapsed
@@ -1074,9 +985,9 @@ export function App() {
   )
 
   const undo = useCallback(async () => {
-    // Preserve native undo while typing. The cleared AI composer explicitly yields to deck undo.
+    // Preserve native undo while typing.
     const target = document.activeElement as HTMLElement | null
-    if (editing || (isTextUndoTarget(target) && !shouldRouteHistoryToDeck(target))) {
+    if (editing || isTextUndoTarget(target)) {
       document.execCommand('undo')
       return
     }
@@ -1086,7 +997,7 @@ export function App() {
 
   const redo = useCallback(async () => {
     const target = document.activeElement as HTMLElement | null
-    if (editing || (isTextUndoTarget(target) && !shouldRouteHistoryToDeck(target))) {
+    if (editing || isTextUndoTarget(target)) {
       document.execCommand('redo')
       return
     }
@@ -1214,9 +1125,7 @@ export function App() {
       }
       // Never flip out from under a live text edit — the overlay's commit
       // must not depend on an unmount blur (same guard as autosave/⌘S).
-      // The ask popover needs it too: it is anchored to an element on this page,
-      // so a flip would tear it down before it can commit what was typed.
-      if (editingActiveRef.current || askOpenRef.current) return
+      if (editingActiveRef.current) return
       const fits = zoomLiveRef.current <= rawFitRef.current(slideLiveRef.current) + 0.001
       if (!fits) return
       const flip = pager.feed(ev.deltaY, ev.timeStamp)
@@ -1233,7 +1142,7 @@ export function App() {
   }, [applyOpen])
 
   // Files are pushed open by the main process (double-click/command line); with no pending file the
-  // window lands directly in the editor on a fresh blank deck (the AI panel carries the generate-from-prompt flow).
+  // window lands directly in the editor on a fresh blank deck.
   // StrictMode runs the mount effect twice, but the pending queue can only be consumed once, so the
   // consume Promise is stored in a shared ref and its result is processed only once.
   useEffect(() => {
@@ -1264,9 +1173,9 @@ export function App() {
     return off
   }, [applyOpen, newBlank])
 
-  // Path changed outside this renderer (shell Home list rename, or an MCP save that
-  // wrote the session to disk) → sync the title-bar path and ask the session
-  // whether it is still dirty rather than assuming
+  // Path changed outside this renderer (shell Home list rename, or a Save As from
+  // another window on the same session) → sync the title-bar path and ask the
+  // session whether it is still dirty rather than assuming
   useEffect(
     () =>
       window.slidesApi.onRenamed((p) => {
@@ -1276,193 +1185,10 @@ export function App() {
     [],
   )
 
-  useEffect(() => {
-    const loadSettings = () => void window.slidesApi.getAiSettings().then(setAiSettings)
-    loadSettings()
-    return window.slidesApi.onAiSettingsChanged?.(loadSettings)
-  }, [])
-
   // Recent files for the start screen
   useEffect(() => {
     if (slides.length === 0) void window.slidesApi.getRecentFiles().then(setRecent)
   }, [slides.length])
-
-  const toggleAi = useCallback(() => {
-    setShowAi((v) => {
-      rememberAiPanelOpen('ai-slides-show-ai', !v)
-      return !v
-    })
-  }, [])
-
-  const pushAiPreset = useCallback(
-    (
-      text: string,
-      autoRun = true,
-      displayText?: string,
-      attachments?: AttachmentMeta[],
-      slideShot?: boolean,
-      scope?: AiScopeQuoteData,
-    ) => {
-      setShowAi(() => {
-        rememberAiPanelOpen('ai-slides-show-ai', true)
-        return true
-      })
-      setAiPreset({
-        text,
-        nonce: Date.now(),
-        autoRun,
-        displayText,
-        ...(attachments && attachments.length > 0 ? { attachments } : {}),
-        ...(slideShot ? { slideShot } : {}),
-        ...(scope ? { scope } : {}),
-      })
-    },
-    [],
-  )
-
-  // ── AI element edit queue ──────────────────────────────────────────────
-  // Session-only: annotations are a scratchpad for the next AI submission, not
-  // document content, so nothing here is persisted with the file.
-
-  /** Open annotation popover; ids are the canvas selection it was opened on */
-  const [askState, setAskState] = useState<{ ids: string[]; itemKey?: string } | null>(null)
-  askOpenRef.current = askState !== null
-  /** When the popover last dismissed itself — see the guard in openAskPopover */
-  const askClosedAtRef = useRef(0)
-
-  // A deliberate page change (thumbnail, outline, queue row) leaves the popover
-  // anchored to elements that are no longer rendered, which would unmount it
-  // without committing; drop it rather than strand askState
-  useEffect(() => {
-    setAskState(null)
-  }, [current])
-
-  const askTargets = useMemo((): AskTarget[] => {
-    if (!askState) return []
-    return askState.ids.flatMap((id) => {
-      const node = findNodeCtx(id)?.node
-      return node ? [{ id: anchorId(node), sourceId: node.sourceId, desc: describeNode(node) }] : []
-    })
-  }, [askState, findNodeCtx])
-  /** what a Send-now bubble quotes: the page, the element count and their leading text */
-  const askScopeQuote = (): AiScopeQuoteData => {
-    const text = askTargets
-      .map((target) => target.desc.text?.trim() ?? '')
-      .filter(Boolean)
-      .join(' / ')
-    return {
-      label: `${t('aiScopeSlide', { n: current + 1 })} · ${t('aiScopeSelection', { count: askTargets.length })}`,
-      ...(text ? { text } : {}),
-    }
-  }
-
-  /** Viewport rect of a set of element ids; re-measured while the canvas scrolls or zooms */
-  const selectionRect = useCallback(
-    (ids: string[]): AnchorRect | null => {
-      const rel = stageRelRef.current
-      const slide = slides[current]
-      if (!rel || !slide) return null
-      const r = rel.getBoundingClientRect()
-      const scale = slide.widthPx > 0 ? r.width / slide.widthPx : 1
-      let minX = Infinity
-      let minY = Infinity
-      let maxX = -Infinity
-      let maxY = -Infinity
-      for (const id of ids) {
-        const ctx = findNodeCtx(id)
-        if (!ctx) continue
-        // Children of an entered group carry group-local coordinates
-        const parent = ctx.groupId ? findNodeCtx(ctx.groupId)?.node : null
-        const ox = parent?.box.x ?? 0
-        const oy = parent?.box.y ?? 0
-        const b = ctx.node.box
-        minX = Math.min(minX, ox + b.x)
-        minY = Math.min(minY, oy + b.y)
-        maxX = Math.max(maxX, ox + b.x + b.w)
-        maxY = Math.max(maxY, oy + b.y + b.h)
-      }
-      if (!Number.isFinite(minX)) return null
-      // Anchor to the visible part of the element and hand the canvas band along:
-      // a full-bleed picture would otherwise push the popover over the ribbon
-      const view = stageRelRef.current?.closest('.stage-wrap')?.getBoundingClientRect()
-      const rect = {
-        left: Math.max(r.left + minX * scale, view?.left ?? -Infinity),
-        top: Math.max(r.top + minY * scale, view?.top ?? -Infinity),
-        right: Math.min(r.left + maxX * scale, view?.right ?? Infinity),
-        bottom: Math.min(r.top + maxY * scale, view?.bottom ?? Infinity),
-        viewTop: view?.top ?? 0,
-        viewBottom: view?.bottom ?? window.innerHeight,
-      }
-      return rect.right <= rect.left || rect.bottom <= rect.top ? null : rect
-    },
-    [findNodeCtx, slides, current],
-  )
-
-  const getAskAnchorRect = useCallback(
-    (): AnchorRect | null => (askState ? selectionRect(askState.ids) : null),
-    [askState, selectionRect],
-  )
-
-  /** Anchor for the floating Ask AI chip that follows the live selection */
-  const getAskTriggerRect = useCallback(
-    (): AnchorRect | null => (selectedIds.length > 0 ? selectionRect(selectedIds) : null),
-    [selectedIds, selectionRect],
-  )
-
-  const openAskPopover = useCallback(() => {
-    if (editing || editingCell || selectedIds.length === 0) return
-    // Clicking the trigger while the popover is open dismisses it through
-    // the capture-phase outside-click handler before onClick runs.
-    if (Date.now() - askClosedAtRef.current < 250) return
-    // A full queue only disables "Add to queue" inside the popover; "Send now"
-    // never touches the queue, so the popover still opens
-    setAskState({ ids: selectedIds })
-  }, [editing, editingCell, selectedIds])
-
-  const commitAsk = useCallback(
-    (instruction: string) => {
-      const state = askState
-      setAskState(null)
-      if (!state) return
-      setEditQueue((prev) => {
-        if (state.itemKey) {
-          return prev.map((it) => (it.key === state.itemKey ? { ...it, instruction } : it))
-        }
-        if (prev.length >= EDIT_QUEUE_MAX || askTargets.length === 0) return prev
-        const item: EditQueueItem = {
-          key: globalThis.crypto.randomUUID(),
-          slideIndex: current,
-          targets: askTargets.map((tg) => ({
-            id: tg.id,
-            sourceId: tg.sourceId,
-            type: tg.desc.type,
-          })),
-          instruction,
-          status: 'pending',
-        }
-        return [...prev, item]
-      })
-      // The queue lives in the panel; annotating with it collapsed would look like nothing happened
-      setShowAi(() => {
-        rememberAiPanelOpen('ai-slides-show-ai', true)
-        return true
-      })
-    },
-    [askState, askTargets, current],
-  )
-
-  const focusQueueItem = useCallback(
-    (key: string) => {
-      const item = editQueue.find((it) => it.key === key)
-      if (!item) return
-      const resolved = resolveQueueItem(slides, item)
-      if (!resolved.ok) return
-      if (resolved.slideIndex !== current) setCurrent(resolved.slideIndex)
-      setEditing(null)
-      setSelectedIds(resolved.nodes.map((n) => n.sourceId))
-    },
-    [editQueue, slides, current],
-  )
 
   const applySlide = useCallback((slideIndex: number, updated: RenderSlide) => {
     setSlides((s) => s.map((sl, i) => (i === slideIndex ? updated : sl)))
@@ -1537,33 +1263,6 @@ export function App() {
       styleActions.onStroke(ctxRef.current, sourceId, stroke),
     [],
   )
-
-  const applyDeck = useCallback((all: RenderSlide[], goTo?: number) => {
-    setSlides(all)
-    if (goTo != null) setCurrent(goTo)
-    setSelectedIds([])
-    setEditing(null)
-    setDirty(true)
-    // Notes/comments aren't part of RenderSlide, so the re-fetch below reads them back. A
-    // notes draft the user is typing survives unless the batch rewrote that slide's notes
-    // (or removed the slide): park it while the stored text is compared, so the re-fetch's
-    // flush can't write a stale draft over what the batch wrote via setNotes.
-    const draft = notesDraftRef.current
-    notesDraftRef.current = null
-    if (!draft) {
-      setAnnotationsNonce((n) => n + 1)
-      return
-    }
-    const index = notesDraftIndex(draft, all)
-    void (index < 0 ? Promise.resolve('') : window.slidesApi.getNotes(index)).then((stored) => {
-      const kept = retargetNotesDraft(draft, all, stored)
-      const typedSince = notesDraftRef.current
-      if (kept && (!typedSince || typedSince.index === draft.index)) {
-        notesDraftRef.current = typedSince ? { ...typedSince, index: kept.index } : kept
-      }
-      setAnnotationsNonce((n) => n + 1)
-    })
-  }, [])
 
   const addSlide = useCallback(() => slideActions.addSlide(ctxRef.current), [])
   const addSlideWithLayout = useCallback(
@@ -1679,10 +1378,6 @@ export function App() {
   const openLinkDialog = useCallback(() => insertActions.openLinkDialog(ctxRef.current), [])
   const applyLink = useCallback(
     (target: LinkTargetOp | null) => insertActions.applyLink(ctxRef.current, target),
-    [],
-  )
-  const applyRedaction = useCallback(
-    (label: string | null) => redactActions.applyRedaction(ctxRef.current, label),
     [],
   )
   const insertZooms = useCallback((mode: zoomActions.ZoomMode, keys: number[]) => {
@@ -1967,9 +1662,7 @@ export function App() {
     void flushNotes()
       .then(() => window.slidesApi.getNotes(current))
       .then((t) => {
-        if (cancelled) return
-        notesLoadedRef.current = { index: current, text: t }
-        setNotesText(t)
+        if (!cancelled) setNotesText(t)
       })
     return () => {
       cancelled = true
@@ -1979,13 +1672,7 @@ export function App() {
   const onNotesChange = useCallback(
     (text: string) => {
       setNotesText(text)
-      notesDraftRef.current = startNotesDraft(
-        notesDraftRef.current,
-        notesLoadedRef.current,
-        current,
-        text,
-        ctxRef.current.slides[current]?.partPath,
-      )
+      notesDraftRef.current = { index: current, text }
     },
     [current],
   )
@@ -3131,15 +2818,12 @@ export function App() {
     commitEditPoints,
     linkDialog,
     setLinkDialog,
-    redactDialog,
-    setRedactDialog,
     setHfDialog,
     setEqDialogOpen,
     setChartDataDialogInit,
     setChartDataDialogOpen,
     setFindOpen,
     setPrintDlgOpen,
-    openAskPopover,
     zoom,
     setZoom,
     masterItems,
@@ -3154,7 +2838,6 @@ export function App() {
     setRecording,
     editingActiveRef,
     applySlide,
-    applyDeck,
     flushNotes,
     findNodeCtx,
     groupIdOf,
@@ -3216,26 +2899,11 @@ export function App() {
 
   const _fileName = slide ? path?.split('/').pop() || t('appUntitledPresentation') : undefined
 
-  // genoffice CLI (`open --slide/--el`, `selection`): the shell evaluates this hook
-  useEffect(() => {
-    ;(window as unknown as Record<string, unknown>).__genofficeControl = (req: ControlRequest) =>
-      handleSlidesControl(req, {
-        slides,
-        path,
-        current,
-        selectedIds,
-        setCurrent,
-        setSelectedIds,
-        clearEditing: () => setEditing(null),
-      })
-  })
-
   return (
     <div className="app">
       <ToastHost />
       <Ribbon
         hasDoc={!!slide}
-        deckEmpty={deckEmpty}
         canUndo={histState.canUndo}
         canRedo={histState.canRedo}
         dirty={dirty}
@@ -3255,9 +2923,6 @@ export function App() {
         onZoom={previewZoom}
         showThumbs={showThumbs}
         onToggleThumbs={() => setShowThumbs((v) => !v)}
-        aiOpen={showAi}
-        onToggleAi={toggleAi}
-        onAiPreset={(text, opts) => pushAiPreset(text, true, undefined, undefined, opts?.slideShot)}
         onPickShape={pickShape}
         onInsertImage={() => void insertImage()}
         onFormatBackground={openBgFormat}
@@ -3559,62 +3224,6 @@ export function App() {
       />
 
       <div className="app-main">
-        {slide && viewMode !== 'reading' && viewMode !== 'sorter' && (
-          <div
-            className={`ai-dock${showAi && aiSettings ? '' : ' collapsed'}${
-              !aiSidebarEnabled && !showAi ? ' ai-dock-off' : ''
-            }`}
-          >
-            {/* always mounted once settings load: collapse must not drop state or in-flight runs */}
-            {aiSettings ? (
-              <AiPanel
-                key={aiPanelKey}
-                slides={slides}
-                current={current}
-                selectedIds={selectedIds}
-                deckEmpty={deckEmpty}
-                images={images}
-                applySlide={applySlide}
-                applyDeck={applyDeck}
-                fitWidthPx={FIT_WIDTH}
-                settings={aiSettings}
-                preset={aiPreset}
-                open={showAi}
-                hideRail={!aiSidebarEnabled}
-                onExpand={toggleAi}
-                onCollapse={toggleAi}
-                onUndo={() => void undo()}
-                onPathChange={(p) => {
-                  setPath(p)
-                  setDirty(false)
-                }}
-                onBeforeRun={flushNotes}
-                currentFilePath={path}
-                editQueue={editQueue}
-                onQueueEditInstruction={(key, instruction) =>
-                  setEditQueue((prev) =>
-                    prev.map((it) => (it.key === key ? { ...it, instruction } : it)),
-                  )
-                }
-                onQueueRemove={(key) => setEditQueue((prev) => prev.filter((it) => it.key !== key))}
-                onQueueClear={() => setEditQueue([])}
-                onQueueFocus={focusQueueItem}
-                onQueueConsume={(keys) =>
-                  setEditQueue((prev) => prev.filter((it) => !keys.includes(it.key)))
-                }
-              />
-            ) : aiSidebarEnabled ? (
-              <button
-                className="ai-rail"
-                onClick={toggleAi}
-                data-tip={t('appAiRailExpand')}
-                aria-label={t('appAiRailExpand')}
-              >
-                <GensparkMark size={22} />
-              </button>
-            ) : null}
-          </div>
-        )}
         <div className="app-content">
           {missingFonts.length > 0 && (
             <div className="font-missing-banner">
@@ -3946,57 +3555,6 @@ export function App() {
                             : undefined
                         }
                       >
-                        <div className="stage-ai-bar">
-                          <div className="stage-ai-group">
-                            <button
-                              className={`stage-ai-btn${showAi ? ' active' : ''}`}
-                              data-tip={t('aiOpenAssistant')}
-                              onClick={toggleAi}
-                            >
-                              <GensparkMark size={14} />
-                              <span>Genspark AI</span>
-                            </button>
-                            {/* Same one-click presets as the Home tab; hidden instead of
-                        disabled while the deck has no real content */}
-                            {!deckEmpty && (
-                              <>
-                                <span className="stage-ai-divider" aria-hidden="true" />
-                                <button
-                                  className="stage-ai-btn"
-                                  data-tip={t('aiBeautifyBtn')}
-                                  onClick={() =>
-                                    pushAiPreset(
-                                      t('aiBeautifyPrompt'),
-                                      true,
-                                      undefined,
-                                      undefined,
-                                      true,
-                                    )
-                                  }
-                                >
-                                  <IconAiBeautify size={14} />
-                                  <span>{t('aiBeautifyBtn')}</span>
-                                </button>
-                                <button
-                                  className="stage-ai-btn"
-                                  data-tip={t('aiFactCheckBtn')}
-                                  onClick={() => pushAiPreset(t('aiFactCheckPrompt'))}
-                                >
-                                  <IconAiFactCheck size={14} />
-                                  <span>{t('aiFactCheckBtn')}</span>
-                                </button>
-                                <button
-                                  className="stage-ai-btn"
-                                  data-tip={t('aiImageBtn')}
-                                  onClick={() => pushAiPreset(t('aiImagePrompt'))}
-                                >
-                                  <IconAiImage size={14} />
-                                  <span>{t('aiImageBtn')}</span>
-                                </button>
-                              </>
-                            )}
-                          </div>
-                        </div>
                         <div
                           ref={stageScaleRef}
                           className="stage-scale"
@@ -4508,13 +4066,6 @@ export function App() {
           onClose={() => setLinkDialog(null)}
         />
       )}
-      {redactDialog && (
-        <RedactDialog
-          seed={redactDialog.seed}
-          onSubmit={(label) => void applyRedaction(label)}
-          onCancel={() => setRedactDialog(null)}
-        />
-      )}
       {hfDialog && (
         <HeaderFooterDialog
           initial={hfDialog}
@@ -4600,51 +4151,6 @@ export function App() {
             </div>
           </div>
         </div>
-      )}
-
-      {!askState &&
-        !editing &&
-        !editingCell &&
-        !cropTarget &&
-        !cutoutTarget &&
-        inkTool === 'select' &&
-        selectedIds.length > 0 && (
-          <AiAskTrigger getAnchorRect={getAskTriggerRect} onOpen={openAskPopover} />
-        )}
-
-      {askState && askTargets.length > 0 && (
-        <AiAskPopover
-          targets={askTargets}
-          getAnchorRect={getAskAnchorRect}
-          queueFull={editQueue.length >= EDIT_QUEUE_MAX}
-          onSubmit={(instruction) => {
-            askClosedAtRef.current = Date.now()
-            commitAsk(instruction)
-          }}
-          onCancel={() => {
-            askClosedAtRef.current = Date.now()
-            setAskState(null)
-          }}
-          onSendNow={
-            askState.itemKey
-              ? undefined
-              : (instruction) => {
-                  askClosedAtRef.current = Date.now()
-                  setAskState(null)
-                  // Carry the popover's frozen durable targets into the run.
-                  // The canvas keeps parse-time source ids for rendering, while
-                  // the AI inventory and edit tools speak durable ids.
-                  pushAiPreset(
-                    buildSelectionInstruction(current, askTargets, instruction),
-                    true,
-                    instruction,
-                    undefined,
-                    undefined,
-                    askScopeQuote(),
-                  )
-                }
-          }
-        />
       )}
 
       {ctxMenu && (

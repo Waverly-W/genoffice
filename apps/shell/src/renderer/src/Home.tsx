@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import type { DragEvent as ReactDragEvent, ReactElement } from 'react'
 import logoLockup from './assets/genoffice-logo.svg'
-import { KbAskPanel } from './KbAskPanel'
 import iconDocx from './assets/file-docx.svg'
 import iconXlsx from './assets/file-xlsx.svg'
 import iconPptx from './assets/file-pptx.svg'
@@ -9,9 +8,6 @@ import iconPdf from './assets/file-pdf.svg'
 import iconMd from './assets/file-md.svg'
 import iconHtml from './assets/file-html.svg'
 import type {
-  AccountStatus,
-  CloudProjectKind,
-  CloudProjectsSnapshot,
   FolderEntry,
   FolderListing,
   FolderRoot,
@@ -20,23 +16,18 @@ import type {
   RecentEntry,
   FileSearchHit,
   FileSearchPage,
-  FileSearchRerank,
 } from '../../shared/home-api'
-import type { IntegrationsApi } from '../../shared/integrations-api'
 import { markText } from '../../shared/text-marks'
 import { useDismissablePopover } from '@genoffice/ui'
 import { fileCountLabel, visiblePageCount } from './counts'
 import { useI18n } from './locale'
 import type { I18n, StringKey } from './locale'
 import { SettingsModal } from './SettingsModal'
-import type { SettingsTarget } from './SettingsModal'
-import { skillUpdateDue } from './IntegrationsPane'
 import { onFilesChanged } from './file-events'
 
 declare global {
   interface Window {
     aiOffice: HomeApi
-    aiOfficeIntegrations?: IntegrationsApi
   }
 }
 
@@ -289,7 +280,7 @@ function highlightText(text: string, needles: readonly string[]): ReactElement[]
 function SortCheck({ visible }: { visible: boolean }): ReactElement {
   return (
     <svg
-      className="cloud-sort-check"
+      className="file-sort-check"
       width="12"
       height="12"
       viewBox="0 0 16 16"
@@ -795,639 +786,42 @@ function GroupPicker({ groups, count, onCancel, onPick, onCreate, onRemove }: Gr
   )
 }
 
-// ── Account entry (bottom-left) ──────────────────────────
-// Currently the Genspark (gsk) login entry; to be upgraded to a signup/account system later.
-// Clicking it opens the settings modal directly (SettingsModal.tsx), which hosts
-// login/logout plus preferences (language, theme, save location, update channel).
+// ── Settings entry (bottom-left) ─────────────────────────
+// Opens the settings modal (SettingsModal.tsx): language, theme, save location,
+// update channel and the other app preferences.
 
-const LOGIN_POLL_MS = 2500
-/** fallback deadline when the CLI does not report expires_in (device codes live ~300s) */
-const LOGIN_MAX_WAIT_MS = 300_000
-
-function AccountEntry({
-  onStatusChange,
-  onFileSearchSettingsChange,
-  openRequest,
-}: {
-  onStatusChange?: (status: AccountStatus | null) => void
-  onFileSearchSettingsChange?: () => void
-  /** a fresh object per request: the home list asks to open the modal on a given block */
-  openRequest?: SettingsTarget | null
-}) {
+function SettingsEntry() {
   const { t } = useI18n()
-  const [status, setStatus] = useState<AccountStatus | null>(null)
-
-  useEffect(() => {
-    onStatusChange?.(status)
-  }, [status, onStatusChange])
-  const [waiting, setWaiting] = useState(false)
-  // incremented on login retry, resetting the polling timer
-  const [loginNonce, setLoginNonce] = useState(0)
-  const [loginError, setLoginError] = useState<
-    'timeout' | 'launch' | 'network' | 'expired' | 'failed' | null
-  >(null)
-  // auth URL reported by the login CLI — rescue entry when the browser did not open
-  const [authUrl, setAuthUrl] = useState<string | null>(null)
-  const [urlCopied, setUrlCopied] = useState(false)
-  const loginDeadline = useRef(0)
   const [settingsOpen, setSettingsOpen] = useState(false)
-  const [skillUpdate, setSkillUpdate] = useState(false)
-  const [loggingOut, setLoggingOut] = useState(false)
-  // bumped on logout so an in-flight status refresh (which can still
-  // report logged-in) is discarded instead of resurrecting the UI
-  const statusSeq = useRef(0)
-
-  // query login state once on mount
-  useEffect(() => {
-    let alive = true
-    void window.aiOffice.accountStatus?.().then((s) => {
-      if (alive) setStatus(s)
-    })
-    return () => {
-      alive = false
-    }
-  }, [])
-
-  // the skill state is a few file reads; re-probe after the modal closes so an
-  // update done inside it clears the dot
-  useEffect(() => {
-    if (settingsOpen) return
-    let alive = true
-    void window.aiOfficeIntegrations?.status().then((st) => {
-      if (alive) setSkillUpdate(skillUpdateDue(st))
-    })
-    return () => {
-      alive = false
-    }
-  }, [settingsOpen])
-
-  // login progress pushed from main (gsk login CLI output)
-  useEffect(() => {
-    const off = window.aiOffice.onAccountLogin?.((ev) => {
-      if (ev.phase === 'url') {
-        if (ev.url) setAuthUrl(ev.url)
-        if (ev.expiresInSec) loginDeadline.current = Date.now() + ev.expiresInSec * 1000
-      } else if (ev.phase === 'success') {
-        void window.aiOffice.accountStatus().then((s) => {
-          if (s.loggedIn) {
-            setStatus(s)
-            setWaiting(false)
-            setAuthUrl(null)
-          }
-        })
-      } else if (ev.phase === 'error') {
-        setWaiting(false)
-        setAuthUrl(null)
-        setLoginError(
-          ev.error === 'network' ? 'network' : ev.error === 'expired' ? 'expired' : 'failed',
-        )
-      }
-    })
-    return off
-  }, [])
-
-  // config-file polling stays as the fallback success path (works even if progress events are lost)
-  useEffect(() => {
-    if (!waiting) return
-    const timer = setInterval(() => {
-      void window.aiOffice.accountStatus().then((s) => {
-        if (s.loggedIn) {
-          setStatus(s)
-          setWaiting(false)
-          setAuthUrl(null)
-        } else if (Date.now() > loginDeadline.current) {
-          setWaiting(false)
-          setAuthUrl(null)
-          setLoginError('timeout')
-        }
-      })
-    }, LOGIN_POLL_MS)
-    return () => clearInterval(timer)
-  }, [waiting, loginNonce])
-
-  const loggedIn = status?.loggedIn ?? false
-  const email = status?.email ?? ''
-  const initial = email ? email[0].toUpperCase() : loggedIn ? 'G' : '?'
-  const errorText = loginError
-    ? {
-        timeout: t('loginTimeout'),
-        launch: t('loginLaunchFailed'),
-        network: t('loginNetworkError'),
-        expired: t('loginExpired'),
-        failed: t('loginFailed'),
-      }[loginError]
-    : null
-
-  const doLogout = () => {
-    setLoggingOut(true)
-    statusSeq.current++
-    void window.aiOffice.accountLogout().then(() => {
-      setLoggingOut(false)
-      setStatus({ loggedIn: false })
-    })
-  }
-
-  const startLogin = () => {
-    // clicking again while waiting = relaunch the login (main kills the stale CLI, so the new device code is the live one)
-    setLoginError(null)
-    setWaiting(true)
-    setAuthUrl(null)
-    setUrlCopied(false)
-    loginDeadline.current = Date.now() + LOGIN_MAX_WAIT_MS
-    setLoginNonce((n) => n + 1)
-    void window.aiOffice.accountLogin().then((launched) => {
-      if (!launched) {
-        setWaiting(false)
-        setLoginError('launch')
-      }
-    })
-  }
-
-  const openLoginUrl = () => void window.aiOffice.openLoginUrl?.()
-
-  const copyLoginUrl = () => {
-    if (!authUrl) return
-    void navigator.clipboard.writeText(authUrl).then(() => {
-      setUrlCopied(true)
-      window.setTimeout(() => setUrlCopied(false), 2000)
-    })
-  }
-
-  const [target, setTarget] = useState<SettingsTarget | null>(null)
-  const openSettings = useCallback((to: SettingsTarget | null) => {
-    // refresh the login state / credit balance; drop the response
-    // when a logout happened while it was in flight
-    const seq = statusSeq.current
-    void window.aiOffice.accountStatus?.().then((s) => {
-      if (seq === statusSeq.current) setStatus(s)
-    })
-    setTarget(to)
-    setSettingsOpen(true)
-  }, [])
-  const handleClick = () => openSettings(null)
-  useEffect(() => {
-    if (openRequest) openSettings(openRequest)
-  }, [openRequest, openSettings])
 
   return (
-    <div className="account-entry">
-      {settingsOpen && (
-        <SettingsModal
-          status={status}
-          loggingOut={loggingOut}
-          loginWaiting={waiting}
-          loginUrl={authUrl}
-          urlCopied={urlCopied}
-          onOpenLoginUrl={openLoginUrl}
-          onCopyLoginUrl={copyLoginUrl}
-          onClose={() => setSettingsOpen(false)}
-          onFileSearchChange={onFileSearchSettingsChange}
-          onLogin={() => {
-            setSettingsOpen(false)
-            startLogin()
-          }}
-          onLogout={doLogout}
-          skillUpdateDue={skillUpdate}
-          onSkillUpdateDue={setSkillUpdate}
-          target={target}
-        />
-      )}
-      {!settingsOpen && waiting && authUrl && (
-        <div className="login-hint" role="status">
-          <button className="login-hint-open" onClick={openLoginUrl}>
-            {t('loginOpenShort')}
-          </button>
-          <button
-            className={`login-hint-copy${urlCopied ? ' copied' : ''}`}
-            onClick={copyLoginUrl}
-            // static tip: screentips are suppressed from pointerdown until the pointer
-            // leaves the control, so a swapped-in "copied" tip would never show — the
-            // check-mark icon is the visible feedback
-            data-tip={t('loginCopyUrl')}
-            aria-label={urlCopied ? t('loginCopied') : t('loginCopyUrl')}
-          >
-            {urlCopied ? (
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path
-                  d="m3.5 8.5 3 3 6-7"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            ) : (
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <rect
-                  x="5.5"
-                  y="5.5"
-                  width="7"
-                  height="7"
-                  rx="1.5"
-                  stroke="currentColor"
-                  strokeWidth="1.3"
-                />
-                <path
-                  d="M3.5 10.5V5a1.5 1.5 0 0 1 1.5-1.5h5.5"
-                  stroke="currentColor"
-                  strokeWidth="1.3"
-                  strokeLinecap="round"
-                />
-              </svg>
-            )}
-          </button>
-        </div>
-      )}
+    <div className="settings-entry">
+      {settingsOpen && <SettingsModal onClose={() => setSettingsOpen(false)} />}
       <button
-        className="account-btn"
-        onClick={handleClick}
+        className="settings-btn"
+        onClick={() => setSettingsOpen(true)}
         aria-haspopup="dialog"
         aria-expanded={settingsOpen}
-        data-tip={
-          loggedIn
-            ? email || t('loggedInGenspark')
-            : waiting
-              ? t('waitingLogin')
-              : (errorText ?? t('loginGenspark'))
-        }
-        aria-label={t('settings')}
       >
-        <span
-          className={`account-avatar${loggedIn ? ' logged-in' : ''}${waiting ? ' waiting' : ''}`}
-        >
-          {waiting ? (
-            <svg
-              className="account-spinner"
-              width="14"
-              height="14"
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-            >
-              <circle
-                cx="8"
-                cy="8"
-                r="6"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                fill="none"
-                strokeDasharray="26"
-                strokeDashoffset="18"
-                strokeLinecap="round"
-              />
-            </svg>
-          ) : (
-            initial
-          )}
-          {skillUpdate && (
-            <span className="account-badge" role="img" aria-label={t('intgUpdateDue')} />
-          )}
-        </span>
-        <span className="account-text">
-          <span className="account-name">
-            {loggedIn
-              ? email
-                ? email.split('@')[0]
-                : t('loggedIn')
-              : waiting
-                ? t('waitingShort')
-                : t('login')}
-          </span>
-          {!loggedIn && !waiting && errorText && (
-            <span className="account-sub error">{errorText}</span>
-          )}
-        </span>
         <svg
-          className="account-chevron"
-          width="14"
-          height="14"
+          className="settings-icon"
+          width="16"
+          height="16"
           viewBox="0 0 16 16"
           fill="none"
           aria-hidden="true"
         >
           <path
-            d="M5 6.2 8 3.4l3 2.8M5 9.8l3 2.8 3-2.8"
+            d="M6.9 1.8h2.2l.35 1.75 1.2.7 1.7-.57 1.1 1.9-1.35 1.18v1.38l1.35 1.18-1.1 1.9-1.7-.57-1.2.7-.35 1.75H6.9l-.35-1.75-1.2-.7-1.7.57-1.1-1.9 1.35-1.18V6.76L2.55 5.58l1.1-1.9 1.7.57 1.2-.7z"
             stroke="currentColor"
-            strokeWidth="1.4"
-            strokeLinecap="round"
+            strokeWidth="1.3"
             strokeLinejoin="round"
           />
+          <circle cx="8" cy="8" r="2" stroke="currentColor" strokeWidth="1.3" />
         </svg>
+        <span className="settings-label">{t('settings')}</span>
       </button>
     </div>
-  )
-}
-
-// ── Cloud (Genspark web) projects view ──────────────────
-
-/** kind filter segments; labels shared with the recents type filter */
-const CLOUD_FILTERS = [
-  { key: 'all', label: 'filterAll' },
-  { key: 'docs', label: 'filterDocs' },
-  { key: 'sheets', label: 'filterSheets' },
-  { key: 'slides', label: 'filterSlides' },
-] as const satisfies readonly { key: 'all' | CloudProjectKind; label: StringKey }[]
-
-/** module kind → file icon extension */
-const CLOUD_KIND_EXT: Record<string, string> = { docs: 'docx', sheets: 'xlsx', slides: 'pptx' }
-
-/** rows revealed per "load more" step; purely client-side over the local snapshot */
-const CLOUD_REVEAL_STEP = 100
-
-function CloudProjectsView() {
-  const i18n = useI18n()
-  const { t } = i18n
-  const [snapshot, setSnapshot] = useState<CloudProjectsSnapshot | null>(null)
-  const [loading, setLoading] = useState(true)
-  const [syncing, setSyncing] = useState(false)
-  const [loginWaiting, setLoginWaiting] = useState(false)
-  const [kind, setKind] = useState<'all' | CloudProjectKind>('all')
-  const [query, setQuery] = useState('')
-  const [sort, setSort] = useState<'recent' | 'oldest'>('recent')
-  const [sortMenuOpen, setSortMenuOpen] = useState(false)
-  const [revealed, setRevealed] = useState(CLOUD_REVEAL_STEP)
-  const sortRef = useRef<HTMLDivElement>(null)
-
-  // the local store paints instantly; a background sync replaces it when done.
-  // a failed sync keeps whatever is shown; with nothing shown the
-  // !snapshot && !loading branch below renders the retry state
-  const startSync = () => {
-    setSyncing(true)
-    void window.aiOffice.cloudProjectsSync?.().then((synced) => {
-      setSyncing(false)
-      setLoading(false)
-      if (synced) setSnapshot(synced)
-    })
-  }
-  const startSyncRef = useRef(startSync)
-  startSyncRef.current = startSync
-
-  useEffect(() => {
-    let cancelled = false
-    void window.aiOffice.cloudProjectsCached?.().then((stored) => {
-      if (cancelled || !stored) return
-      setSnapshot((prev) => prev ?? stored)
-      setLoading(false)
-    })
-    startSyncRef.current()
-    return () => {
-      cancelled = true
-    }
-  }, [])
-
-  // the sign-in button reuses the account login flow; sync once it lands
-  useEffect(() => {
-    const off = window.aiOffice.onAccountLogin?.((ev) => {
-      if (ev.phase === 'success') {
-        setLoginWaiting(false)
-        startSyncRef.current()
-      } else if (ev.phase === 'error') {
-        setLoginWaiting(false)
-      }
-    })
-    return off
-  }, [])
-
-  // unified dismissal: outside press, window blur, chrome press (tab strip / window drag)
-  useDismissablePopover(sortMenuOpen, () => setSortMenuOpen(false), {
-    inside: () => [sortRef.current],
-  })
-
-  const startLogin = () => {
-    setLoginWaiting(true)
-    void window.aiOffice.accountLogin?.().then((ok) => {
-      if (!ok) setLoginWaiting(false)
-    })
-  }
-
-  const changeKind = (k: 'all' | CloudProjectKind) => {
-    if (k === kind) return
-    setKind(k)
-    setRevealed(CLOUD_REVEAL_STEP)
-  }
-
-  const openProject = (projectUrl: string) => {
-    void window.aiOffice.openCloudProject?.(projectUrl)
-  }
-
-  // filter / search / sort are all local over the snapshot — no requests
-  const q = query.trim().toLowerCase()
-  let list = snapshot?.projects.filter((proj) => kind === 'all' || proj.kind === kind) ?? []
-  if (q) list = list.filter((proj) => proj.title.toLowerCase().includes(q))
-  if (sort === 'oldest') list = [...list].reverse()
-  const visible = list.slice(0, revealed)
-
-  const renderRows = () => {
-    const items: ReactElement[] = []
-    for (const proj of visible) {
-      items.push(
-        <li key={proj.projectId}>
-          <button
-            className="cloud-row"
-            data-tip={t('cloudOpenInBrowser')}
-            data-tip-anchor=".cloud-row-external"
-            data-tip-place="right"
-            onClick={() => openProject(proj.projectUrl)}
-          >
-            <FileBadge ext={CLOUD_KIND_EXT[proj.kind] ?? ''} size={24} />
-            <span className="cloud-row-main">
-              <span className="cloud-row-title">{proj.title || t('untitled')}</span>
-              <svg
-                className="cloud-row-external"
-                width="13"
-                height="13"
-                viewBox="0 0 16 16"
-                fill="none"
-                aria-hidden="true"
-              >
-                <path
-                  d="M6.5 3.5H4a1.5 1.5 0 0 0-1.5 1.5v7A1.5 1.5 0 0 0 4 13.5h7A1.5 1.5 0 0 0 12.5 12V9.5M9.5 2.5h4v4M13 3l-5.5 5.5"
-                  stroke="currentColor"
-                  strokeWidth="1.3"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </span>
-            <span className="cloud-row-time">
-              {proj.ctimeMs ? formatModified(proj.ctimeMs, i18n) : ''}
-            </span>
-          </button>
-        </li>,
-      )
-    }
-    return items
-  }
-
-  const renderBody = () => {
-    if (snapshot && !snapshot.available) {
-      return (
-        <p className="empty proj-empty">
-          <span className="empty-hint">{t('cloudLoginHint')}</span>
-          <button className="btn btn-secondary" disabled={loginWaiting} onClick={startLogin}>
-            {loginWaiting ? t('waitingShort') : t('loginGenspark')}
-          </button>
-        </p>
-      )
-    }
-    if (!snapshot) {
-      if (loading || syncing) {
-        return (
-          <div className="load-more" aria-hidden="true">
-            <span className="load-more-spinner" />
-          </div>
-        )
-      }
-      return (
-        <p className="empty proj-empty">
-          <span className="empty-hint">{t('cloudError')}</span>
-          <button className="btn btn-secondary" onClick={() => startSync()}>
-            {t('cloudRetry')}
-          </button>
-        </p>
-      )
-    }
-    if (list.length === 0) {
-      return (
-        <p className="empty proj-empty">
-          <span className="empty-hint">
-            {t(q ? 'cloudNoResults' : kind === 'all' ? 'cloudEmpty' : 'emptyFiltered')}
-          </span>
-        </p>
-      )
-    }
-    return (
-      <div className="cloud-scroll">
-        <div className="cloud-table">
-          <div className="cloud-columns">
-            <span className="col-name">{t('colName')}</span>
-            <div className="cloud-col-sort" ref={sortRef}>
-              <button
-                className="cloud-col-sort-btn"
-                aria-haspopup="menu"
-                aria-expanded={sortMenuOpen}
-                onClick={() => setSortMenuOpen((o) => !o)}
-              >
-                {t('colModified')}
-                <svg
-                  width="12"
-                  height="12"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  aria-hidden="true"
-                  style={sort === 'oldest' ? { transform: 'rotate(180deg)' } : undefined}
-                >
-                  <path
-                    d="M8 3v10M4.5 9.5L8 13l3.5-3.5"
-                    stroke="currentColor"
-                    strokeWidth="1.4"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </button>
-              {sortMenuOpen && (
-                <div className="cloud-sort-menu" role="menu">
-                  {(['recent', 'oldest'] as const).map((key) => (
-                    <button
-                      key={key}
-                      className={sort === key ? 'active' : ''}
-                      role="menuitemradio"
-                      aria-checked={sort === key}
-                      onClick={() => {
-                        setSort(key)
-                        setSortMenuOpen(false)
-                        setRevealed(CLOUD_REVEAL_STEP)
-                      }}
-                    >
-                      <SortCheck visible={sort === key} />
-                      {t(key === 'recent' ? 'cloudSortRecent' : 'cloudSortOldest')}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
-          <ul className="cloud-list">{renderRows()}</ul>
-        </div>
-        {list.length > revealed && (
-          <div className="load-more">
-            <button
-              className="btn btn-secondary"
-              onClick={() => setRevealed((n) => n + CLOUD_REVEAL_STEP)}
-            >
-              {t('cloudLoadMore')}
-            </button>
-          </div>
-        )}
-      </div>
-    )
-  }
-
-  return (
-    <main className="content">
-      <section className="cloud-projects" aria-label={t('navCloud')}>
-        <header className="cloud-hero">
-          <div className="cloud-hero-top">
-            <h1 className="cloud-title">{t('navCloud')}</h1>
-          </div>
-          <p className="cloud-subtitle">{t('cloudSubtitle')}</p>
-          {snapshot?.available && (
-            <div className="cloud-controls">
-              <div className="cloud-seg" role="tablist" aria-label={t('filterAria')}>
-                {CLOUD_FILTERS.map((f) => (
-                  <button
-                    key={f.key}
-                    className={kind === f.key ? 'active' : ''}
-                    role="tab"
-                    aria-selected={kind === f.key}
-                    onClick={() => changeKind(f.key)}
-                  >
-                    {t(f.label)}
-                  </button>
-                ))}
-              </div>
-              <button
-                className={`cloud-refresh-btn${syncing ? ' syncing' : ''}`}
-                data-tip={t('cloudRefresh')}
-                aria-label={t('cloudRefresh')}
-                disabled={syncing}
-                onClick={() => startSync()}
-              >
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                  <path
-                    d="M13.6 8a5.6 5.6 0 1 1-1.64-3.96M13.6 2.4v3.2h-3.2"
-                    stroke="currentColor"
-                    strokeWidth="1.4"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </button>
-              <div className="cloud-search">
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                  <circle cx="7" cy="7" r="4.6" stroke="currentColor" strokeWidth="1.4" />
-                  <path
-                    d="M10.5 10.5L14 14"
-                    stroke="currentColor"
-                    strokeWidth="1.4"
-                    strokeLinecap="round"
-                  />
-                </svg>
-                <input
-                  value={query}
-                  placeholder={t('cloudSearchPlaceholder', { n: snapshot.projects.length })}
-                  onChange={(e) => {
-                    setQuery(e.target.value)
-                    setRevealed(CLOUD_REVEAL_STEP)
-                  }}
-                />
-              </div>
-            </div>
-          )}
-        </header>
-        {renderBody()}
-      </section>
-    </main>
   )
 }
 
@@ -1517,10 +911,6 @@ export function Home() {
   const [navCounts, setNavCounts] = useState({ recent: 0, starred: 0 })
   const [loadingMore, setLoadingMore] = useState(false)
   const [view, setView] = useState<'recent' | 'starred'>('recent')
-  // Genspark web projects take over the content area (like a selected folder)
-  const [cloudMode, setCloudMode] = useState(false)
-  // the knowledge-base ask panel takes over the content area the same way
-  const [askMode, setAskMode] = useState(false)
   const [filter, setFilter] = useState('all')
   // ── Starred groups (named buckets the Starred view can filter on) ──
   // groups that currently have at least one starred file (drives the pills)
@@ -1532,17 +922,6 @@ export function Home() {
   // ── File search (names + indexed content); active while the box has text ──
   const [searchQuery, setSearchQuery] = useState('')
   const [searchPage, setSearchPage] = useState<FileSearchPage | null>(null)
-  const [rerank, setRerank] = useState<{ key: string; result: FileSearchRerank } | null>(null)
-  // bumped when the Jev settings change so the current results are judged again (or the order dropped)
-  const [rerankSettingsTick, setRerankSettingsTick] = useState(0)
-  const [settingsRequest, setSettingsRequest] = useState<SettingsTarget | null>(null)
-  useEffect(
-    () =>
-      window.aiOffice.onOpenSettings?.((target) =>
-        setSettingsRequest({ section: target.section as SettingsTarget['section'] }),
-      ),
-    [],
-  )
   const searchInputRef = useRef<HTMLInputElement>(null)
   // IME composition: wait for the committed text instead of searching each keystroke
   const composingRef = useRef(false)
@@ -1560,19 +939,6 @@ export function Home() {
   const [confirmDelete, setConfirmDelete] = useState<string[] | null>(null)
   // unavailable recent entry (missing flag) the user clicked — offer list removal
   const [confirmMissing, setConfirmMissing] = useState<RecentEntry | null>(null)
-  // name in the greeting; omitted when logged out
-  const [accountName, setAccountName] = useState('')
-  // Genspark Projects is web-account data, so its nav entry only shows when logged in
-  const [loggedIn, setLoggedIn] = useState(false)
-  // single source of account state: AccountEntry reports every change (initial
-  // load, login, logout), keeping the greeting name and the nav entry in sync
-  const handleAccountStatus = useCallback((s: AccountStatus | null) => {
-    const on = s?.loggedIn ?? false
-    setLoggedIn(on)
-    if (!on) setCloudMode(false)
-    const name = on ? (s?.email ?? '').split('@')[0] : ''
-    setAccountName(name ? name[0].toUpperCase() + name.slice(1) : '')
-  }, [])
   const [greetAskKey] = useState(
     () => GREET_ASK_KEYS[Math.floor(Math.random() * GREET_ASK_KEYS.length)]!,
   )
@@ -1770,25 +1136,6 @@ export function Home() {
     return () => window.clearTimeout(timer)
   }, [q, filter])
 
-  // Jev judges the top local hits once they settle; the main process answers null when reranking is off.
-  // The key changes only with the query, filter or candidate set, so index polls do not restart the timer.
-  const rerankKey =
-    q && searchPage && searchPage.hits.length >= 2
-      ? [q, filter, ...searchPage.hits.slice(0, 20).map((h) => h.path)].join('\n')
-      : ''
-  useEffect(() => {
-    if (!rerankKey) return
-    const key = rerankKey
-    const paths = key.split('\n').slice(2)
-    const timer = window.setTimeout(() => {
-      void window.aiOffice.rerankSearch({ q, paths }).then((result) => {
-        if (result) setRerank({ key, result })
-        else setRerank((cur) => (cur && cur.key === key ? null : cur))
-      })
-    }, 600)
-    return () => window.clearTimeout(timer)
-  }, [q, filter, rerankKey, rerankSettingsTick])
-
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
       if (!(event.metaKey || event.ctrlKey) || event.altKey || event.shiftKey) return
@@ -1898,9 +1245,9 @@ export function Home() {
 
   // WPS-style sortable "modified" column header, shared by both file tables
   const renderModifiedHeader = () => (
-    <div className="cloud-col-sort" ref={fileSortRef}>
+    <div className="file-sort" ref={fileSortRef}>
       <button
-        className="cloud-col-sort-btn"
+        className="file-sort-btn"
         aria-haspopup="menu"
         aria-expanded={fileSortMenuOpen}
         onClick={() => setFileSortMenuOpen((o) => !o)}
@@ -1924,7 +1271,7 @@ export function Home() {
         </svg>
       </button>
       {fileSortMenuOpen && (
-        <div className="cloud-sort-menu" role="menu">
+        <div className="file-sort-menu" role="menu">
           {(['recent', 'oldest'] as const).map((key) => (
             <button
               key={key}
@@ -1937,7 +1284,7 @@ export function Home() {
               }}
             >
               <SortCheck visible={fileSort === key} />
-              {t(key === 'recent' ? 'cloudSortRecent' : 'cloudSortOldest')}
+              {t(key === 'recent' ? 'sortRecent' : 'sortOldest')}
             </button>
           ))}
         </div>
@@ -1960,8 +1307,6 @@ export function Home() {
   const changeView = (next: 'recent' | 'starred') => {
     setView(next)
     setSelectedFolder(null)
-    setCloudMode(false)
-    setAskMode(false)
     setSelected(new Set())
     setRowMenu(null)
     setGroupFilter(null)
@@ -1981,8 +1326,6 @@ export function Home() {
 
   const selectFolder = (dir: string) => {
     setSelectedFolder(dir)
-    setCloudMode(false)
-    setAskMode(false)
     setSelected(new Set())
     setRowMenu(null)
     setFolderMenu(null)
@@ -2291,7 +1634,6 @@ export function Home() {
             <span className="quick-text">
               <span className="quick-title-row">
                 <span className="quick-title">{item.title}</span>
-                <span className="ai-chip">AI</span>
               </span>
               <span className="quick-sub">{item.sub}</span>
             </span>
@@ -3013,30 +2355,6 @@ export function Home() {
     searchInputRef.current?.focus()
   }
 
-  const renderSearchSettingsButton = () => (
-    <button
-      className="file-search-settings"
-      title={t('searchJevSettings')}
-      aria-label={t('searchJevSettings')}
-      onClick={() => setSettingsRequest({ section: 'aiMedia', block: 'rerank' })}
-    >
-      <svg
-        width="16"
-        height="16"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        aria-hidden="true"
-      >
-        <path d="M12 20V4M12 4l-4 4M12 4l4 4" />
-        <path d="M3 12h6M3 16h5M3 20h4" />
-      </svg>
-    </button>
-  )
-
   const renderSearchBox = () => (
     <div className={`file-search${searchActive ? ' active' : ''}`}>
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -3132,31 +2450,15 @@ export function Home() {
         )}
         {page && page.hits.length === 0 && !busy
           ? renderEmpty(t('searchNoResults', { q }))
-          : page && (
-              <ul className="search-list">{orderedSearchHits(page.hits).map(renderSearchRow)}</ul>
-            )}
+          : page && <ul className="search-list">{page.hits.map(renderSearchRow)}</ul>}
       </div>
     )
-  }
-
-  const rerankApplied = rerank && rerank.key === rerankKey ? rerank.result : null
-
-  /** judged hits in Jev's order, then the rest in local order */
-  const orderedSearchHits = (hits: readonly FileSearchHit[]): FileSearchHit[] => {
-    if (!rerankApplied) return [...hits]
-    const rank = new Map(rerankApplied.order.map((path, i) => [path, i]))
-    return [...hits].sort((a, b) => (rank.get(a.path) ?? Infinity) - (rank.get(b.path) ?? Infinity))
   }
 
   const renderSearchHeading = () => {
     const total = searchPage?.total ?? 0
     return (
       <div className="recents-heading">
-        {rerankApplied && (
-          <span className="search-rerank-badge" title={t('searchRerankedBy')}>
-            Jev
-          </span>
-        )}
         <span className="file-count">
           {t(total === 1 ? 'searchResultCountOne' : 'searchResultCount', { n: total })}
         </span>
@@ -3217,10 +2519,7 @@ export function Home() {
                 ))}
               </div>
             )}
-            <div className="file-search-group">
-              {renderSearchBox()}
-              {renderSearchSettingsButton()}
-            </div>
+            <div className="file-search-group">{renderSearchBox()}</div>
             {searchActive ? (
               renderSearchHeading()
             ) : (
@@ -3282,7 +2581,7 @@ export function Home() {
             ? 'greetAfternoon'
             : 'greetEvening'
     const cjk = lang === 'zh' || lang === 'zh-TW' || lang === 'ja'
-    const greeting = `${t(greetKey)}${accountName ? (cjk ? '，' : ', ') + accountName : ''}${cjk ? '。' : '. '}`
+    const greeting = `${t(greetKey)}${cjk ? '。' : '. '}`
     return (
       <main className="content">
         <section className="quick-start" aria-label={t('secQuickStart')}>
@@ -3371,10 +2670,7 @@ export function Home() {
                 )}
               </div>
             )}
-            <div className="file-search-group">
-              {renderSearchBox()}
-              {renderSearchSettingsButton()}
-            </div>
+            <div className="file-search-group">{renderSearchBox()}</div>
             {searchActive ? (
               renderSearchHeading()
             ) : (
@@ -3448,7 +2744,7 @@ export function Home() {
         </div>
         <nav className="sidebar-nav">
           <button
-            className={`nav-item${view === 'recent' && !selectedFolder && !cloudMode ? ' active' : ''}`}
+            className={`nav-item${view === 'recent' && !selectedFolder ? ' active' : ''}`}
             onClick={() => changeView('recent')}
           >
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -3464,7 +2760,7 @@ export function Home() {
             <span className="nav-count">{navCounts.recent}</span>
           </button>
           <button
-            className={`nav-item${view === 'starred' && !selectedFolder && !cloudMode ? ' active' : ''}`}
+            className={`nav-item${view === 'starred' && !selectedFolder ? ' active' : ''}`}
             onClick={() => changeView('starred')}
           >
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -3478,91 +2774,14 @@ export function Home() {
             <span className="nav-label">{t('navStarred')}</span>
             <span className="nav-count">{navCounts.starred}</span>
           </button>
-          <button
-            className={`nav-item${askMode && !selectedFolder && !cloudMode ? ' active' : ''}`}
-            onClick={() => {
-              setAskMode(true)
-              setSelectedFolder(null)
-              setCloudMode(false)
-              setSelected(new Set())
-              setRowMenu(null)
-            }}
-          >
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <path
-                d="M14 10.5c0 .9-.7 1.6-1.6 1.6H5.4L2 14.5V3.6C2 2.7 2.7 2 3.6 2h8.8c.9 0 1.6.7 1.6 1.6z"
-                stroke="currentColor"
-                strokeWidth="1.3"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M5 6.2h6M5 8.6h4"
-                stroke="currentColor"
-                strokeWidth="1.3"
-                strokeLinecap="round"
-              />
-            </svg>
-            <span className="nav-label">{t('navAsk')}</span>
-          </button>
-          {loggedIn && (
-            <button
-              className={`nav-item${cloudMode && !selectedFolder ? ' active' : ''}`}
-              onClick={() => {
-                setCloudMode(true)
-                setAskMode(false)
-                setSelectedFolder(null)
-                setSelected(new Set())
-                setRowMenu(null)
-              }}
-            >
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path
-                  d="M8 1.8l1.55 4.65L14.2 8l-4.65 1.55L8 14.2 6.45 9.55 1.8 8l4.65-1.55z"
-                  stroke="currentColor"
-                  strokeWidth="1.3"
-                  strokeLinejoin="round"
-                />
-              </svg>
-              <span className="nav-label">{t('navCloud')}</span>
-              <svg
-                className="nav-external"
-                width="13"
-                height="13"
-                viewBox="0 0 16 16"
-                fill="none"
-                aria-hidden="true"
-              >
-                <path
-                  d="M6.5 3.5H4a1.5 1.5 0 0 0-1.5 1.5v7A1.5 1.5 0 0 0 4 13.5h7A1.5 1.5 0 0 0 12.5 12V9.5M9.5 2.5h4v4M13 3l-5.5 5.5"
-                  stroke="currentColor"
-                  strokeWidth="1.3"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
-          )}
         </nav>
         <div className="sidebar-divider" />
         {renderFolderPanel()}
-        <AccountEntry
-          onStatusChange={handleAccountStatus}
-          onFileSearchSettingsChange={() => setRerankSettingsTick((n) => n + 1)}
-          openRequest={settingsRequest}
-        />
+        <SettingsEntry />
       </aside>
-      {selectedFolder && rootOf(selectedFolder, roots)?.readable ? (
-        renderFolderContent()
-      ) : askMode ? (
-        <KbAskPanel
-          onOpenPath={(path) => void window.aiOffice.openPath(path)}
-          onGoToRecents={() => changeView('recent')}
-        />
-      ) : cloudMode ? (
-        <CloudProjectsView />
-      ) : (
-        renderGlobalContent()
-      )}
+      {selectedFolder && rootOf(selectedFolder, roots)?.readable
+        ? renderFolderContent()
+        : renderGlobalContent()}
       {confirmDelete && (
         <div className="modal-overlay" onClick={() => setConfirmDelete(null)}>
           <div

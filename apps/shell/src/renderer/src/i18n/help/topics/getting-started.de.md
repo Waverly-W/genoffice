@@ -16,7 +16,7 @@ Das Fenster besteht aus drei Teilen:
 
 Eines davon genügt:
 
-- Klicken Sie auf eine Schnellerstellungskarte im Bereich [Schnellstart](help://getting-started) der **Startseite** (AI Docs, AI Sheets, AI Slides, …).
+- Klicken Sie auf eine Schnellerstellungskarte im Bereich [Schnellstart](help://getting-started) der **Startseite** (Docs, Sheets, Slides, …).
 - Menü **Datei ▸ Neu**: Docs (⌘N/ctrl+N), Sheets, Slides, Markdown, HTML oder PDF.
 - Ziehen Sie eine Datei auf das Fenster oder doppelklicken Sie sie im Dateimanager (wenn GenOffice die Standard-App ist).
 
@@ -26,7 +26,6 @@ Ein neues Dokument öffnet sich ohne Namen; die Datei auf dem Datenträger entst
 
 - Menü **Datei ▸ Öffnen** (⌘O/ctrl+O) öffnet die Systemauswahl: .docx / .doc / .xlsx / .xls / .csv / .tsv / .pptx / .ppt / .pdf / .md / .html.
 - Klicken Sie auf einen Eintrag in der Liste **Zuletzt verwendet** auf der Startseite.
-- `genoffice <file>` in einem Terminal öffnet Dateien ebenfalls.
 
 ## Das Speichermodell
 
@@ -87,5 +86,4 @@ Damit bleibt ⌥⌘D auf macOS frei, falls GenOffice ihn irgendwann für einen n
 
 - Wo Dateien liegen: [Der Startbildschirm](help://home-screen).
 - Viele geöffnete Dateien verwalten: [Tabs und Fensterverwaltung](help://tabs-and-windows).
-- Die KI die Arbeit machen lassen: [Der KI-Bereich](help://ai-panel).
-- Sprache, Design, Standard-Apps: [Einstellungen, Sprache, Design und MCP-Integrationen](help://settings-integrations).
+- Sprache, Design, Standard-Apps: [Einstellungen, Sprache und Design](help://settings).

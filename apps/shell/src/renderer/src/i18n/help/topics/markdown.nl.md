@@ -2,12 +2,11 @@
 
 De Markdown-editor opent .md / .markdown — en .txt / .json, rechtstreeks in de bronweergave — met bron plus gerenderde voorbeeld.
 
-- **Openen**: vanaf Start of Bestand ▸ Openen…; de opdrachtregel werkt ook.
+- **Openen**: vanaf Start of Bestand ▸ Openen.
 - **Bewerken**: bewerken in platte tekst; GFM-uitbreidingen (tabellen, takenlijsten, doorhaling, automatische koppelingen) worden in het voorbeeld weergegeven.
 - **Voorbeeld**: live; relatieve bronnen zoals afbeeldingen worden naast het document opgezocht.
 - **Opslaan**: bytegetrouw — BOM, CRLF en de aanwezigheid van een afsluitende lege regel blijven behouden; opslaan zonder wijzigingen schrijft het bestand niet opnieuw.
 - **Zoeken en vervangen**: ctrl+F zoekt in de bron; Alles vervangen schrijft het resultaat terug.
-- **AI**: voorinstellingsknoppen laten de assistent het document herschrijven, uitbreiden of vertalen. Een selectie kan voor de AI verborgen worden (zie het hoofdstuk over het AI-paneel).
 
 ## De werkbalk
 
@@ -16,7 +15,6 @@ Eén rij knoppen boven de editor (zweef voor tooltips):
 ![De Markdown-werkbalk](img/md-toolbar.png)
 
 - **Bestand en geschiedenis**: Opslaan, Opslaan als…, Ongedaan maken, Opnieuw, Zoeken; de schakelaar **Automatisch opslaan** rechts schrijft wijzigingen op een timer naar schijf.
-- **AI-knop**: opent het AI-paneel; ernaast staan de voorinstellingen herschrijven / uitbreiden / vertalen.
 - **Alineastijl** (keuzelijst): wisselen tussen bodytekst en de verschillende kopniveaus.
 - **Tekstopmaak**: **vet**, _cursief_, ~~doorhaling~~, `inline code`, koppeling.
 - **Lijsten**: opsomming, genummerd, takenlijst.

@@ -3,7 +3,9 @@ import { findSnippet } from '../src/renderer/document/match'
 import { buildParseMap } from '../src/renderer/document/parse-map'
 import { compileOps, type HtmlOp } from '../src/renderer/document/ops'
 import { applyPatches } from '../src/renderer/document/patch'
-import { PAGE_MAX_CHARS } from '../src/renderer/ai/page-writer'
+
+/** a large page: the size the canonical-fold rung must still scan in linear time */
+const PAGE_MAX_CHARS = 200_000
 
 const DOC = `<!doctype html>
 <html>

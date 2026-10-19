@@ -1,15 +1,6 @@
 import type { zh } from './zh'
 
 export const ja = {
-  redactMenuLabel: '選択範囲をAIから隠す',
-  redactDialogDesc:
-    '文章はドキュメントとファイルに残り、AI には下のマーカーしか見えません。名前をつけると、何を表すかAIが理解できます。',
-  redactDialogScope:
-    'これはこのアプリの AI に限られます。CLI、MCP ツール、GUI なしのエクスポートはファイルを直接読み込むため、これらの文字はまだ見えています。',
-  redactDialogPlaceholder: 'プレースホルダー名（例：顧客電話）',
-  redactCancel: 'キャンセル',
-  redactInsert: '隠す',
-
   loading: '読み込み中…',
   loadFailed: 'ファイルを開けませんでした',
   untitled: '無題',
@@ -48,7 +39,7 @@ export const ja = {
   previewNeedsSave: 'ファイルを保存すると、相対パスの画像とスタイルがプレビューに表示されます',
   inspectHint: 'プレビューの要素をクリックして選択、ダブルクリックでテキスト編集',
   nodeDynamic:
-    'この要素はページのスクリプトが生成したものでソースに存在しません。ソースまたは AI で編集してください',
+    'この要素はページのスクリプトが生成したものでソースに存在しません。ソースで編集してください',
   nodeDynamicShort: 'スクリプト生成',
   nodeDirty:
     'ページのスクリプトがこの要素を変更しました。ソースへの編集はスクリプトに上書きされる可能性があります',

@@ -38,11 +38,13 @@ test.describe('markdown editor', () => {
     }
   })
 
-  test('AI Markdown quick card opens a markdown editor tab', async () => {
+  test('Markdown quick card opens a markdown editor tab', async () => {
     const launched = await launchShell({ onboardingSeen: true, videoDir: 'new-markdown-tab' })
     const { app, page } = launched
     try {
-      const card = page.locator('.quick-card', { hasText: 'AI Markdown' })
+      const card = page.locator('.quick-card', {
+        has: page.locator('.quick-title', { hasText: /^Markdown$/ }),
+      })
       await expect(card).toHaveCount(1)
       await card.click()
 
@@ -163,36 +165,6 @@ test.describe('markdown editor', () => {
       expect(saved.endsWith('\n')).toBe(true)
     } finally {
       await closeAndSaveVideo(launched, 'open-markdown-file')
-    }
-  })
-
-  test('ribbon AI preset button opens the panel and sends the instruction', async () => {
-    const dir = await mkdtemp(join(tmpdir(), 'genoffice-md-'))
-    const mdPath = join(dir, 'summary.md')
-    await writeFile(mdPath, '# Topic\n\nSome content worth summarizing.\n')
-
-    const launched = await launchShell({
-      onboardingSeen: true,
-      videoDir: 'markdown-ai-preset',
-      openFile: mdPath,
-    })
-    const { app } = launched
-    try {
-      const editorPage = await waitForPageWithUrl(app, '://markdown/')
-      await expect(editorPage.locator('.doc-editor h1')).toHaveText('Topic')
-
-      const summarizeBtn = editorPage.locator('.rb-big.ai-entry', {
-        hasText: /AI Summarize/,
-      })
-      await expect(summarizeBtn).toBeEnabled()
-      await summarizeBtn.click()
-
-      await expect(editorPage.locator('.copilot')).toBeVisible()
-      // the preset lands as a sent user message (the model reply itself needs credentials)
-      await expect(editorPage.locator('.ai-msg-user')).toContainText(/Summarize/)
-      await editorPage.screenshot({ path: screenshotPath('markdown-ai-preset') })
-    } finally {
-      await closeAndSaveVideo(launched, 'markdown-ai-preset')
     }
   })
 

@@ -18,12 +18,12 @@ Essayez sur n’importe quel paragraphe :
 
 ![La barre d’annotation après la sélection de texte](img/pdf-highlight.png)
 
-2. Choisissez **Surligner** (la pastille jaune ouvre une palette de couleurs), **Souligner** ou **Barrer** ; **Demander à l’IA** envoie la sélection avec votre question au panneau IA.
+2. Choisissez **Surligner** (la pastille jaune ouvre une palette de couleurs), **Souligner** ou **Barrer**.
 3. Pour annuler une annotation, sélectionnez de nouveau le même passage par glissement et cliquez sur le bouton actif de la barre (un interrupteur à la Word), ou sélectionnez-le et appuyez sur Suppr.
 
 Référence :
 
-- Faites glisser sur du texte et une barre contextuelle apparaît : **surligner / souligner / barrer / copier / Demander à l’IA**.
+- Faites glisser sur du texte et une barre contextuelle apparaît : **surligner / souligner / barrer / copier**.
 - Les couleurs viennent de la palette ; **appliquer le même marquage à une plage déjà marquée le retire** (interrupteur à la Word).
 - Les marquages déjà enregistrés dans le fichier peuvent être sélectionnés et supprimés (menu ⋯ ou Suppr).
 - **Remarque** : tant qu’un outil de dessin est armé, la couche de texte n’est pas sélectionnable — l’outil se désarme après chaque placement, vous êtes donc de nouveau en mode sélection pour la suite.

@@ -19,7 +19,7 @@ Sheets è l'editor simile a Excel; il calcolo avviene in un processo separato, u
 - **Layout di pagina**: colori e caratteri del tema, interruttori per linee della griglia e intestazioni in stampa, anteprima delle interruzioni di pagina.
 - **Formule**: Somma automatica e inserimento delle funzioni, definizione dei nomi (anche dalla selezione), traccia dei precendenti e dei dipendenti, Finestra di controllo, ricalcolo del foglio o della cartella di lavoro.
 - **Dati**: ordinamento e filtro (compreso il filtro avanzato e la cancellazione del filtro), da testo a colonne, unione di cartelle di lavoro, aggiorna tutto.
-- **Revisione**: sfoglia i commenti (mostra, precedente/successivo), traduci e un gruppo **Proteggi** — **Proteggi foglio**, **Proteggi cartella di lavoro** e **Consenti modifica intervalli**.
+- **Revisione**: sfoglia i commenti (mostra, precedente/successivo) e un gruppo **Proteggi** — **Proteggi foglio**, **Proteggi cartella di lavoro** e **Consenti modifica intervalli**.
   - La protezione viene scritta nel .xlsx e su ciò che questa applicazione applica non c'è alcuna password, quindi lo stesso pulsante diventa **Rimuovi protezione…** e la annulla. La protezione proveniente da un altro programma che _ha davvero_ una password non può essere rimossa da qui.
   - I due pulsanti di protezione si applicano subito — non c'è alcuna finestra da annullare, solo una nota nella barra di stato che verrà scritta al salvataggio.
   - **Consenti modifica intervalli** contrassegna le celle che restano modificabili mentre il resto del foglio è bloccato.
@@ -87,13 +87,6 @@ La scheda Formule, pulsante per pulsante:
 - **Sulla barra di stato in basso**: scegli quali statistiche mostrare nella barra di stato (media / conteggio / somma, ...); la scelta viene ricordata.
 - **Su una scheda di foglio in basso**: aggiungi / rinomina / elimina / colora / nascondi fogli (menu schede di Univer).
 - Il menu contestuale della barra delle schede in alto è descritto in [Schede e gestione delle finestre](help://tabs-and-windows).
-
-## IA
-
-- Il pannello IA laterale: seleziona un intervallo e dai istruzioni in linguaggio naturale (riformattare, generare dati, scrivere formule).
-- Allega dei file a una richiesta con il pulsante 📎, oppure trascinali sul pannello; viaggiano con la domanda e le immagini tornano come miniature.
-- Una risposta può citare una cella: fai clic sul riferimento e la griglia ci salta.
-- Le modifiche dell'IA si possono annullare dal pannello.
 
 ## Salvataggio ed esportazione
 

@@ -1,16 +1,6 @@
 import type { zh } from './zh'
 
 export const cs = {
-  redactMenuLabel: 'Skrýt výběr před AI',
-  redactDialogDesc:
-    'Vybraný obsah zůstane v dokumentu i v souboru; model uvidí jen zástupný symbol. Pojmenujte ho, aby věděl, co zastupuje.',
-  redactDialogScope:
-    'Skrýtí se týká jen AI v této aplikaci. CLI, nástroje MCP a headless export čtou soubor přímo a tato slova stále vidí.',
-  redactDialogPlaceholder: 'Název zástupného symbolu, např. telefon zákazníka',
-  redactCancel: 'Zrušit',
-  redactInsert: 'Skrýt',
-  redactEnable: 'Pravým klikem na výběr jej skryjete před modelem.',
-
   appPhPromptTitle: 'Klikněte a přidejte nadpis',
   appPhPromptSubtitle: 'Klikněte a přidejte podnadpis',
   appPhPromptBody: 'Klikněte a přidejte text',
@@ -237,8 +227,6 @@ export const cs = {
   appNotesPlaceholder: 'Klikněte a přidejte poznámky lektora (ukládají se do .pptx)',
   appNotesShow: 'Zobrazit poznámky',
   appNotesHide: 'Skrýt poznámky',
-  appAiRailExpand: 'Rozbalit asistenta AI',
-  appAiRailText: 'AI',
   appStatusBarSlide: 'Snímek {current} z {total}',
   appStatusBarReady: 'Připraveno',
   appMediaCloseTitle: 'Zavřít (Esc)',
@@ -247,17 +235,7 @@ export const cs = {
     'Celková doba prezentace byla {duration}. Chcete uložit časování snímků pro automatické přepínání?',
   appRehearseDiscard: 'Neukládat',
   appRehearseSave: 'Uložit',
-  appSettingsTitle: 'Nastavení AI',
-  appSettingsAccount: 'Účet Genspark',
-  appSettingsChecking: 'Kontroluje se…',
-  appSettingsLoggedIn: 'Přihlášeno',
-  appSettingsLoggedInEmail: 'Přihlášeno: {email}',
-  appSettingsLoggedOut: 'Nepřihlášeno (funkce AI vyžadují účet Genspark)',
-  appSettingsLoginPending: 'Čeká se na přihlášení v prohlížeči…',
-  appSettingsLogin: 'Přihlásit se ke Gensparku',
-  appSettingsModel: 'Model',
   appSettingsCancel: 'Zrušit',
-  appSettingsSave: 'Uložit',
   appCropHint: 'Enter — potvrdit · Esc — zrušit · Kliknutím mimo potvrdíte',
   appStatusZoomsInserted: 'Vloženo zoomů: {count} – klepnutím během prezentace přejdete na snímky',
   appStatusSummaryZoomInserted: 'Vložen souhrnný snímek Zoom s {count} dlaždicemi',

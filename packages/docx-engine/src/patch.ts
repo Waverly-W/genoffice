@@ -1,5 +1,5 @@
 import JSZip from 'jszip'
-import { REDACT_EL, REDACT_NS, REDACT_PREFIX } from '@genoffice/agent-core/redact-range'
+import { REDACT_EL, REDACT_NS, REDACT_PREFIX } from './redact-marker'
 import {
   applyImageWrap,
   generateParagraphXml,

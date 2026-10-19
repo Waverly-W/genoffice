@@ -19,7 +19,7 @@ Sheets est l’éditeur de tableurs analogue à Excel ; le calcul s’exécute d
 - **Mise en page** : couleurs et polices du thème, interrupteurs d’impression du quadrillage et des en-têtes, aperçu des sauts de page.
 - **Formules** : Somme automatique et insertion de fonction, définir les noms (aussi depuis la sélection), repérer les antécédents et les dépendants, Fenêtre Espion, recalculer la feuille ou le classeur.
 - **Données** : trier et filtrer (y compris filtre avancé, effacer le filtre), convertir, fusionner des classeurs, tout actualiser.
-- **Révision** : parcourir les commentaires (afficher, précédent/suivant), traduire, et un groupe **Protection** — **Protéger la feuille**, **Protéger le classeur** et **Permettre la modification des plages**.
+- **Révision** : parcourir les commentaires (afficher, précédent/suivant) et un groupe **Protection** — **Protéger la feuille**, **Protéger le classeur** et **Permettre la modification des plages**.
   - La protection est écrite dans le .xlsx et ce que cette application applique ne porte aucun mot de passe : le même bouton devient **Ôter la protection…** et l’annule. Une protection provenant d’un autre programme qui _porte_ un mot de passe ne peut pas être retirée d’ici.
   - Les deux boutons de protection s’appliquent immédiatement — aucune boîte de dialogue à annuler, seulement une note dans la barre d’état indiquant que l’écriture aura lieu à l’enregistrement.
   - **Permettre la modification des plages** marque les cellules qui restent modifiables pendant que le reste de la feuille est verrouillé.
@@ -87,13 +87,6 @@ L’onglet Formules, bouton par bouton :
 - **Sur la barre d’état du bas** : choisissez les statistiques affichées dans la barre d’état (moyenne / nombre / somme, …) ; le choix est conservé.
 - **Sur un onglet de feuille en bas** : ajouter / renommer / supprimer / colorer / masquer des feuilles (menu d’onglet d’Univer).
 - Le menu contextuel de la barre d’onglets en haut est traité dans [Onglets et gestion des fenêtres](help://tabs-and-windows).
-
-## IA
-
-- Le panneau IA latéral : sélectionnez une plage et donnez votre instruction en langage naturel (reformater, générer des données, écrire des formules).
-- Joignez des fichiers à une invite avec le bouton 📎, ou faites-les glisser sur le panneau ; ils accompagnent la question et les images reviennent sous forme de vignettes.
-- Une réponse peut citer une cellule — cliquez sur la référence et la grille s’y rend.
-- Les modifications de l’IA peuvent être annulées depuis le panneau.
 
 ## Enregistrement et export
 

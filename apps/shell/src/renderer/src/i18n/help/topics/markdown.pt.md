@@ -2,12 +2,11 @@
 
 O editor Markdown abre .md / .markdown — e .txt / .json, direto na visão de código — com código mais prévia renderizada.
 
-- **Abrir**: a partir do Início ou de Arquivo ▸ Abrir…; também funciona a partir da linha de comandos.
+- **Abrir**: a partir do Início ou de Arquivo ▸ Abrir…
 - **Editar**: edição de texto simples; as extensões GFM (tabelas, listas de tarefas, rasurado, ligações automáticas) são renderizadas na pré-visualização.
 - **Pré-visualização**: em tempo real; os recursos relativos, como imagens, são resolvidos ao lado do documento.
 - **Salvar**: fiel byte a byte — o BOM, o CRLF e a presença de uma quebra de linha no fim do ficheiro são preservados; um salvamento sem alterações não reescreve o ficheiro.
 - **Pesquisar e substituir**: o ctrl+F pesquisa no código; Substituir grava o resultado de volta.
-- **IA**: botões prontos deixam o assistente reescrever, desenvolver ou traduzir o documento. Uma seleção pode ser ocultada da IA (veja o capítulo do painel de IA).
 
 ## A barra de ferramentas
 
@@ -16,7 +15,6 @@ Uma fila de botões por cima do editor (passe o cursor para ver as dicas):
 ![A barra de ferramentas do Markdown](img/md-toolbar.png)
 
 - **Ficheiro e histórico**: Salvar, Salvar Como…, Desfazer, Refazer, Localizar; o interruptor de **Salvamento automático** à direita grava as alterações periodicamente no disco.
-- **Botão de IA**: abre o painel de IA; ao lado ficam as opções de reescrever / desenvolver / traduzir.
 - **Estilo de parágrafo** (menu suspenso): alterna entre o texto do corpo e os vários níveis de título.
 - **Formatação na linha**: **negrito**, _itálico_, ~~tachado~~, `código embutido`, ligação.
 - **Listas**: lista com marcadores, lista numerada, lista de tarefas.

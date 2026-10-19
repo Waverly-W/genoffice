@@ -1,15 +1,6 @@
 import type { zh } from './zh'
 
 export const vi = {
-  redactMenuLabel: 'Ẩn phần đã chọn khỏi AI',
-  redactDialogDesc:
-    'Văn bản vẫn còn trong tài liệu và tệp; mô hình chỉ thấy placeholder bên dưới. Đặt tên để mô hình biết nó đại diện cho điều gì.',
-  redactDialogScope:
-    'Điều này chỉ áp dụng cho AI trong ứng dụng này. CLI, các công cụ MCP và bản xuất không có cửa sổ đều đọc thẳng tệp, nên chúng vẫn thấy những từ này.',
-  redactDialogPlaceholder: 'Tên placeholder, ví dụ: số điện thoại khách hàng',
-  redactCancel: 'Hủy',
-  redactInsert: 'Ẩn',
-
   loading: 'Đang tải…',
   loadFailed: 'Không thể mở tệp',
   untitled: 'Không có tiêu đề',
@@ -48,7 +39,7 @@ export const vi = {
     'Hình ảnh và kiểu dáng có đường dẫn tương đối sẽ hiển thị trong bản xem trước sau khi tệp được lưu',
   inspectHint: 'Nhấp vào một phần tử trong bản xem trước để chọn, nhấp đúp để chỉnh sửa văn bản',
   nodeDynamic:
-    'Phần tử này được tạo bởi tập lệnh trang và không có mã nguồn; hãy chỉnh sửa qua mã nguồn hoặc AI',
+    'Phần tử này được tạo bởi tập lệnh trang và không có mã nguồn; hãy chỉnh sửa qua mã nguồn',
   nodeDynamicShort: 'tạo bởi tập lệnh',
   nodeDirty:
     'Tập lệnh trang đã thay đổi phần tử này; các chỉnh sửa ghi vào mã nguồn có thể bị tập lệnh ghi đè',

@@ -2,12 +2,11 @@
 
 Editor Markdown membuka .md / .markdown — dan .txt / .json, langsung ke tampilan sumber — dengan sumber plus pratinjau terender.
 
-- **Buka**: dari Beranda atau File ▸ Buka…; perintah baris perintah juga bisa.
+- **Buka**: dari Beranda atau File ▸ Buka.
 - **Sunting**: penyuntingan teks biasa; ekstensi GFM (tabel, daftar tugas, coret, autolink) dirender di pratinjau.
 - **Pratinjau**: langsung; aset relatif seperti gambar diselesaikan di samping dokumen.
 - **Menyimpan**: setia byte demi byte — BOM, CRLF, dan keberadaan baris baru di akhir file dipertahankan; penyimpanan tanpa perubahan tidak menulis ulang file.
 - **Cari dan ganti**: ctrl+F mencari di sumber; Ganti Semua menuliskan hasilnya kembali.
-- **AI**: tombol siap pakai membiarkan asisten menulis ulang, memperpanjang, atau menerjemahkan dokumen. Seleksi bisa disembunyikan dari AI (lihat bab panel AI).
 
 ## Bilah alat
 
@@ -16,7 +15,6 @@ Satu baris tombol di atas editor (arahkan kursor untuk melihat keterangan):
 ![Bilah alat Markdown](img/md-toolbar.png)
 
 - **File & riwayat**: Simpan, Simpan Sebagai…, Urungkan, Ulangi, Temukan; sakelar **Simpan Otomatis** di sebelah kanan menulis perubahan ke disk secara berkala.
-- **Tombol AI**: membuka panel AI; di sebelahnya adalah siap-siap untuk menulis ulang / memperpanjang / menerjemahkan.
 - **Gaya paragraf** (drop-down): berpindah antara teks isi dan berbagai tingkat judul.
 - **Format sebaris**: **tebal**, _miring_, ~~coret~~, `kode sebaris`, tautan.
 - **Daftar**: daftar poin, daftar bernomor, daftar tugas.

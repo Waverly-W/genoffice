@@ -45,12 +45,6 @@ Menu berubah mengikut tempat anda klik kanan:
 - Induk dan susun atur menyatukan fon, ruang letak, dan latar belakang, manakala slaid baharu mewarisi susun atur yang dipilih.
 - Warna dan fon tema mengikut tema tersebut.
 
-## Penjanaan dengan AI
-
-- Kad AI Slides pada Laman Utama: berikan topik atau rangka kerja, dan AI akan menyediakan persembahan tersebut. Jika penjanaan dalam awan gagal, sistem akan berpatah balik kepada penjanaan setempat.
-- Anda boleh terus menyelaraskan dengan panel AI, yang mengubah gaya teks melalui skrip dalam persekitaran terkawal, iaitu mekanisme yang sama seperti dalam [Sheets].
-- Klik kanan pada pemilihan teks atau elemen gambar/video/audio ▸ **Sembunyikan pemilihan daripada AI** menjauhkannya daripada mata model (butiran dalam bab panel AI); slaid dengan kandungan tersembunyi melangkau semakan tangkapan skrin automatik.
-
 ## Pertunjukan dan eksport
 
 - **Eksport sebagai PDF**: penukaran kepada imej halaman demi halaman dalam tingkap tersembunyi, dengan penunjuk kemajuan dan pemerhati masa HAD untuk persembahan yang besar.

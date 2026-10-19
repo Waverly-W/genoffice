@@ -3,11 +3,10 @@
 Editor HTML otevírá soubory .html / .htm ve dvou režimech: **náhled** (vykreslená stránka) a **zdroj**.
 
 - **Náhled**: skutečné vykreslování; relativní styly a obrázky se načítají vedle souboru.
-- **Inspektor náhledu**: kliknutím vyberete prvek, dvojklikem upravíte jeho text přímo na místě, tlačítko na liště jej odstraní a Zeptat se AI se zeptá na výběr.
+- **Inspektor náhledu**: kliknutím vyberete prvek, dvojklikem upravíte jeho text přímo na místě, nebo ho odstraníte tlačítkem na liště.
 - **Režim zdroje**: úprava HTML; ctrl+F hledá, Nahradit vše uloží přepsané značky.
 - **Ukládání**: věrné bajt po bajtu (BOM/CRLF/závěrečný řádek se zachovávají); uložení bez změn nic nepřepíše.
 - **Přiblížení**: ctrl+kolečko / štípek mění měřítko náhledu; ctrl+Z uvnitř náhledu zruší poslední úpravu.
-- **Skrýt před AI**: v režimu zdroje pravý klik na výběr — obsah prvku, hodnota atributu, řetězce skriptu — a model vidí zástupný text; vykreslená stránka se nemění (detaily v kapitole o AI panelu).
 
 ## Pruh nástrojů
 
@@ -21,7 +20,6 @@ Klikněte na libovolný prvek v náhledu a nad ním se objeví pruh nástrojů:
 - **Vložit**: nadpis, odstavec, tabulka, obrázek (podle odkazu), další.
 - **Operace s obrázkem** (s vybraným obrázkem): oříznout, **odebrat pozadí**, nahradit, zamknout poměr stran.
 - **Operace s prvkem** (s vybraným prvkem v inspektoru náhledu): odstranit, duplikovat, posunout nahoru a dolů.
-- **Tlačítko AI**: otevře panel AI; můžete se rovnou zeptat na vybraný prvek.
 
 ## Export
 

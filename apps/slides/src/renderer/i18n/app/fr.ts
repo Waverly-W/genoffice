@@ -1,16 +1,6 @@
 import type { zh } from './zh'
 
 export const fr = {
-  redactMenuLabel: 'Masquer la sélection à l’IA',
-  redactDialogDesc:
-    'La sélection reste dans le document et dans le fichier ; le modèle ne voit que le marqueur ci-dessous. Donnez-lui un nom pour qu’il sache ce qu’il désigne.',
-  redactDialogScope:
-    'Le masquage ne concerne que l’IA de cette application. La CLI, les outils MCP et l’exportation sans interface lisent le fichier directement et voient toujours ces mots.',
-  redactDialogPlaceholder: 'Nom du placeholder, ex. : téléphone du client',
-  redactCancel: 'Annuler',
-  redactInsert: 'Masquer',
-  redactEnable: 'Clic droit sur une sélection pour la masquer au modèle.',
-
   appPhPromptTitle: 'Cliquez pour ajouter un titre',
   appPhPromptSubtitle: 'Cliquez pour ajouter un sous-titre',
   appPhPromptBody: 'Cliquez pour ajouter du texte',
@@ -247,8 +237,6 @@ export const fr = {
     'Cliquez pour ajouter des notes du présentateur (enregistrées dans le .pptx)',
   appNotesShow: 'Afficher les notes',
   appNotesHide: 'Masquer les notes',
-  appAiRailExpand: 'Développer l’assistant IA',
-  appAiRailText: 'IA',
   appStatusBarSlide: 'Diapositive {current} sur {total}',
   appStatusBarReady: 'Prêt',
   appMediaCloseTitle: 'Fermer (Échap)',
@@ -257,17 +245,7 @@ export const fr = {
     'La durée totale du diaporama était de {duration}. Voulez-vous enregistrer le minutage des diapositives pour le défilement automatique ?',
   appRehearseDiscard: 'Ne pas enregistrer',
   appRehearseSave: 'Enregistrer',
-  appSettingsTitle: 'Paramètres IA',
-  appSettingsAccount: 'Compte Genspark',
-  appSettingsChecking: 'Vérification…',
-  appSettingsLoggedIn: 'Connecté',
-  appSettingsLoggedInEmail: 'Connecté : {email}',
-  appSettingsLoggedOut: 'Non connecté (les fonctionnalités IA nécessitent un compte Genspark)',
-  appSettingsLoginPending: 'En attente de la connexion dans le navigateur…',
-  appSettingsLogin: 'Se connecter à Genspark',
-  appSettingsModel: 'Modèle',
   appSettingsCancel: 'Annuler',
-  appSettingsSave: 'Enregistrer',
   appCropHint: 'Entrée pour confirmer · Échap pour annuler · Cliquez à l’extérieur pour confirmer',
   appStatusZoomsInserted:
     '{count} zooms insérés : cliquez pendant le diaporama pour accéder à leurs diapositives',

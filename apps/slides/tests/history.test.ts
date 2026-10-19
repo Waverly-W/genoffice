@@ -9,11 +9,8 @@ import {
 import type { Session } from '../src/main/session-state'
 import {
   beginHistoryBatch,
-  carryHistoryForReplacement,
   endHistoryBatch,
   pushHistory,
-  registerAiSnapshot,
-  restoreAiSnapshot,
   restoreSnapshot,
   settleStaleHistoryBatch,
   takeSnapshot,
@@ -51,7 +48,7 @@ function setValue(session: Session, value: string): void {
 }
 
 describe('Slides main-process history batching', () => {
-  it('collapses several edits into one pre-run snapshot', () => {
+  it('collapses several edits into one pre-batch snapshot', () => {
     const session = sessionWith('before')
     beginHistoryBatch(session)
     pushHistory(session)
@@ -65,7 +62,7 @@ describe('Slides main-process history batching', () => {
     expect(valueOf(session)).toBe('before')
   })
 
-  it('supports nested tool batching inside an AI-run batch', () => {
+  it('supports nested batches inside an outer batch', () => {
     const session = sessionWith('before')
     beginHistoryBatch(session)
     beginHistoryBatch(session)
@@ -94,61 +91,6 @@ describe('Slides main-process history batching', () => {
 
     restoreSnapshot(session, session.undoStack.pop()!)
     expect(session.opened.deck.size).toEqual({ cx: 1, cy: 1 })
-    expect(valueOf(session)).toBe('before')
-  })
-
-  it('keeps the old deck snapshot when replacing the full deck', () => {
-    const previous = sessionWith('old deck')
-    const replacement = sessionWith('new deck')
-    carryHistoryForReplacement(previous, replacement)
-
-    expect(replacement.undoStack).toHaveLength(1)
-    restoreSnapshot(replacement, replacement.undoStack.pop()!)
-    expect(valueOf(replacement)).toBe('old deck')
-  })
-
-  it('returns the pre-run snapshot from the outermost batch end with edits', () => {
-    const session = sessionWith('before')
-    beginHistoryBatch(session)
-    beginHistoryBatch(session)
-    pushHistory(session)
-    setValue(session, 'after')
-    expect(endHistoryBatch(session)).toBeNull()
-    const before = endHistoryBatch(session)
-    expect(before).not.toBeNull()
-    expect((before!.slides[0] as unknown as { value: string }).value).toBe('before')
-
-    const emptyRun = sessionWith('untouched')
-    beginHistoryBatch(emptyRun)
-    expect(endHistoryBatch(emptyRun)).toBeNull()
-  })
-
-  it('rolls back to a registered AI snapshot and makes the rollback undoable', () => {
-    const session = sessionWith('before')
-    beginHistoryBatch(session)
-    pushHistory(session)
-    setValue(session, 'ai edited')
-    const id = registerAiSnapshot(session, endHistoryBatch(session)!)
-
-    setValue(session, 'user edited on top')
-    expect(restoreAiSnapshot(session, id)).toBe(true)
-    expect(valueOf(session)).toBe('before')
-    expect(restoreAiSnapshot(session, id)).toBe(false) // consumed
-
-    restoreSnapshot(session, session.undoStack.pop()!) // ⌘Z returns to the pre-rollback state
-    expect(valueOf(session)).toBe('user edited on top')
-  })
-
-  it('keeps registered snapshots isolated from later in-place deck mutations', () => {
-    const session = sessionWith('before')
-    beginHistoryBatch(session)
-    pushHistory(session)
-    setValue(session, 'ai edited')
-    const id = registerAiSnapshot(session, endHistoryBatch(session)!)
-
-    restoreSnapshot(session, session.undoStack.pop()!) // undo hands the stack snapshot to the live deck
-    setValue(session, 'mutated after undo')
-    expect(restoreAiSnapshot(session, id)).toBe(true)
     expect(valueOf(session)).toBe('before')
   })
 
@@ -182,12 +124,12 @@ describe('Slides main-process history batching', () => {
     expect(valueOf(session)).toBe('edited')
   })
 
-  it('a batch left open by a crashed tool path is collapsed so undo still works', () => {
+  it('a batch left open by a failed gesture is collapsed so undo still works', () => {
     const session = sessionWith('before')
-    // run begins a batch, a tool nests another, then the tool path dies without ending either
+    // a gesture begins a batch, a step nests another, then the path dies without ending either
     beginHistoryBatch(session)
     pushHistory(session)
-    setValue(session, 'ai edited')
+    setValue(session, 'edited')
     beginHistoryBatch(session)
     expect(session.historyBatch).toBeDefined()
 

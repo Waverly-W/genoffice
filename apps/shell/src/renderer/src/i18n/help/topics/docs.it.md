@@ -16,8 +16,8 @@ Le schede: **Home / Inserisci / Disegno / Layout / Progettazione / Riferimenti /
 
   ![La scheda Riferimenti](img/docs-references.png)
 
-- **Revisione**: **Editor** controlla l'intero documento per ortografia, grammatica e punteggiatura; **Traduci**; controllo ortografico; commenti (**Commenti con IA** lavora quelli aperti); revisioni con le viste Tutte le modifiche/Revisioni semplici, accetta/rifiuta e **Riepilogo revisioni IA**; conteggio delle parole; **Confronta** con un altro file; **Proteggi documento**.
-- **Visualizza**: cinque modi per guardare il file — **Layout di stampa**, **Layout Web**, **Struttura**, **Modalità di lettura** e **Anteprima pagine**; riduci/ingrandisci/100 %/larghezza pagina/una pagina; **Pannello IA**; **Modalità scura**; righello, griglia e riquadro di spostamento; **Nuova scheda**, **Dividi** e **Cambia scheda**; la finestra di dialogo ricercabile delle **scorciatoie da tastiera**.
+- **Revisione**: controllo ortografico; commenti; revisioni con le viste Tutte le modifiche/Revisioni semplici e accetta/rifiuta; conteggio delle parole; **Confronta** con un altro file; **Proteggi documento**.
+- **Visualizza**: cinque modi per guardare il file — **Layout di stampa**, **Layout Web**, **Struttura**, **Modalità di lettura** e **Anteprima pagine**; riduci/ingrandisci/100 %/larghezza pagina/una pagina; **Modalità scura**; righello, griglia e riquadro di spostamento; **Nuova scheda**, **Dividi** e **Cambia scheda**; la finestra di dialogo ricercabile delle **scorciatoie da tastiera**.
   - **Modalità scura** scurisce la pagina e la tela intorno, mai il nastro: è la divisione di Word fra una superficie di modifica scura e una finestra scura. La scelta viene ricordata e in ogni caso prevail sull'aspetto dell'app.
   - **Dividi** apre un secondo riquadro sotto che scorre in modo indipendente e rispecchia il primo; chiudilo con la × sul suo bordo.
 
@@ -55,7 +55,6 @@ Fai clic destro ovunque nel corpo del testo — il menu si adatta all'elemento s
 - **Appunti**: taglia / copia / incolla / **incolla come testo semplice**.
 - **Carattere, paragrafo**: cambia famiglia e dimensione, grassetto/corsivo/sottolineato, allineamento/rientro/interlinea senza passare dalla barra multifunzione.
 - **Sinonimi**: elenca i sinonimi della parola selezionata; fai clic su uno per sostituirla.
-- **Traduci** (IA): traduce la selezione nella lingua di destinazione (inglese, cinese semplificato, giapponese, coreano, francese, tedesco, spagnolo, ...) tramite il pannello IA.
 - **Nuovo commento**: allega un commento alla selezione.
 - **Ortografia** (su una parola scritta male): sostituzioni suggerite, ignora tutto, aggiungi al dizionario, imposta la lingua di correzione.
 - **Collegamento ipertestuale**: apri / modifica / copia collegamento / rimuovi collegamento.
@@ -75,11 +74,6 @@ Fai clic destro ovunque nel corpo del testo — il menu si adatta all'elemento s
 
 - Compressione della punteggiatura e regole di interruzione di linea (kinsoku) allineate a Word; conversione larghezza piena/metà.
 - I caratteri candidati coprono i nomi di famiglia CJK più comuni di Windows e macOS.
-
-## IA
-
-- Pulsante IA nella barra multifunzione e pannello laterale: riscrittura, espansione, traduzione, sintesi, inserimento di tabelle preimpostate, più istruzioni libere.
-- Ogni intervento dell'IA crea prima uno snapshot; puoi tornare indietro dall'elenco delle versioni e il ripristino stesso è annullabile.
 
 ## Salvataggio ed esportazione
 
